@@ -197,9 +197,9 @@ public class IntroPagerFragment extends Fragment {
     private void validatingRadioButton(int d){
         if (d==0){
             //how
-            Log.d("miotag","dialog selezionato: HOW");
+            Log.d("miotag","dialog selected: HOW");
 
-            Log.d("miotag","Controllo sui radio: rdWalk: "+", "+cbWalk.isChecked()+", rdBike: "+", "+cbBike.isChecked());
+            Log.d("miotag","Control over radiobuttons: rdWalk: "+", "+cbWalk.isChecked()+", rdBike: "+", "+cbBike.isChecked());
 
             if (cbWalk.isChecked() && cbBike.isChecked()){
                 Log.d("miotag","entrambi Checked");
@@ -211,23 +211,23 @@ public class IntroPagerFragment extends Fragment {
                     (!(cbBike.isChecked()))
                     )
             {
-                Log.d("miotag","nessuno dei due checked");
+                Log.d("miotag","neither checked");
 
 
 
             } else if
                 (cbWalk.isChecked()){
                     Repository.save(getActivity(), Constants.HOW_SAVE, "walk");
-                Log.d("miotag", "checked on Walk. Ho salvato: " + Repository.retrieve(getActivity(), Constants.HOW_SAVE, String.class));
+                Log.d("miotag", "checked on Walk. Saved: " + Repository.retrieve(getActivity(), Constants.HOW_SAVE, String.class));
                 }
             else {
                 Repository.save(getActivity(),Constants.HOW_SAVE,"bike");
-                Log.d("miotag","checked on Bike. Ho salvato: "+Repository.retrieve(getActivity(), Constants.HOW_SAVE,  String.class));
+                Log.d("miotag","checked on Bike. Saved: "+Repository.retrieve(getActivity(), Constants.HOW_SAVE,  String.class));
             }
 
         } else {
-            Log.d("miotag", "dialog selezionato: What");{
-                Log.d("miotag","LO DEVO FARE!");
+            Log.d("miotag", "dialog selected: What");{
+                Log.d("miotag","SOON");
             }
         }
     }
@@ -268,7 +268,7 @@ public class IntroPagerFragment extends Fragment {
 
                 }
             });
-            builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dismiss();
                 }
@@ -300,20 +300,13 @@ public class IntroPagerFragment extends Fragment {
             Type type2=new TypeToken<ArrayList<String>>() {}.getType();
             Gson gson2=new Gson();
             whatToSeeItems=gson2.fromJson(Repository.retrieve(getActivity(),Constants.WHAT_SAVE,String.class),type2);
-//            Log.d("miotag"," in on Creation di What Dialog, dopo riempimeno da repository, whatToSettItems: "+whatToSeeItems);
-//  check per controllare se esiste una precedente selezione (stessa sessione di utilizzo, l'eliminazione dei setting non ancora chiamata)
-//            String somethingChecked=Repository.retrieve(getActivity(),Constants.WHAT_SAVE,String.class);
-//            switch (somethingChecked){
-//                case ""
-//
-//
-//            }
 
-            if (whatToSeeItems!=null) {
-                for (int i = 0; i < whatToSeeItems.size(); i++) {
-//                    Log.d("miotag", "whatToSeeItems: " + whatToSeeItems.get(i) + "\n");
-                }
-            }
+
+//            if (whatToSeeItems!=null) {
+//                for (int i = 0; i < whatToSeeItems.size(); i++) {
+////                    Log.d("miotag", "whatToSeeItems: " + whatToSeeItems.get(i) + "\n");
+//                }
+//            }
 
 
             if (whatToSeeItems==null) {
@@ -480,7 +473,7 @@ public class IntroPagerFragment extends Fragment {
                     }
                 }
             });
-// CAMBIAMENTI DEL 24 Giugno
+
             rbTheater.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

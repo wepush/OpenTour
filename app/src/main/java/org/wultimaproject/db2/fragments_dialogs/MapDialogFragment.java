@@ -51,18 +51,14 @@ public class MapDialogFragment extends DialogFragment {
             builder.setView(view);
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-//la richiesta per il lookup delle coordinate del marker sulla mappa nn avviene attraverso la classe GeoMarker perchè risultarebbe
-//troppo seccante/complicato adattarla , quindi si costruisce l'oggetto Location che viene poi passato a LookUpService
 
-                    //creazione Location mDialogLocation da passare a LookUpService tramite intent
+
+                    //the lookup request for marker's coordinates on maps doesn't happen inside GeoMarker- too annoyin
+                    //what is done is to instantiate a new Location object beefed up with user settings
+
 
                     Location mDialogLocation = new Location(LocationManager.GPS_PROVIDER);
-//                    String json2 = Repository.retrieve(getActivity(), Constants.ACTUAL_MAP_PIN_POSITION, String.class);
-//                    Log.d("miotag", "json2");
-//                    Gson gson2 = new Gson();
-//                    type = new TypeToken<LatLng>() {
-//                    }.getType();
-//                    LatLng thisLatLng = gson2.fromJson(json2, type);
+
 
                     LatLng thisLatLng=new LatLng
                             (
@@ -73,7 +69,7 @@ public class MapDialogFragment extends DialogFragment {
                     mDialogLocation.setLatitude(thisLatLng.getLatitude());
                     mDialogLocation.setLongitude(thisLatLng.getLongitude());
 
-                    Log.d("miotag", "coordinate da dialog: " + mDialogLocation.getLatitude() + ", " + mDialogLocation.getLongitude());
+                    Log.d("miotag", "coordinates from dialog: " + mDialogLocation.getLatitude() + ", " + mDialogLocation.getLongitude());
                     Intent intent = new Intent(getActivity(), LookUpIntentService.class);
                     ResultReceiver mResultReceiver = new SettingTourActivity.AddressResultReceiver(new Handler());
                     intent.putExtra(Constants.RECEIVER, mResultReceiver);
@@ -93,7 +89,7 @@ public class MapDialogFragment extends DialogFragment {
         LatLng thisLatLng=new LatLng(Double.valueOf(Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class)),
                                 Double.valueOf(Repository.retrieve(getActivity(),Constants.LONGITUDE_STARTING_POINT,String.class)));
 
-        mark=new Marker("Sono Qui", "partenza",thisLatLng);
+        mark=new Marker("I'm here", "startingPoint",thisLatLng);
         mark.setMarker(getResources().getDrawable(R.drawable.pin_blue));
         mv = (MapView) view.findViewById(R.id.mapview);
         mv.setMinZoomLevel(mv.getTileProvider().getMinimumZoomLevel());
@@ -142,7 +138,7 @@ public class MapDialogFragment extends DialogFragment {
                 } catch (NullPointerException e){
                     e.printStackTrace();
                 }
-                mark=new Marker("Sono qui","Descrizione",lt);
+                mark=new Marker("I'm here","Description",lt);
                 mark.setMarker(getResources().getDrawable(R.drawable.pin_blue));
                 mv.clearMarkerFocus();
                 mv.clear();
@@ -150,25 +146,7 @@ public class MapDialogFragment extends DialogFragment {
 
 
 
-//                mapView.clear();
-//                Log.d("miotag", "nuovo marker");
-//                LatLng lt = ((LatLng) iLatLng);
-//                Marker m = new Marker("Some Title", "Some Description", lt);
-//                m.setMarker(getResources().getDrawable(R.drawable.pin_blue));
-//                mapView.addMarker(m);
 
-//
-//                //serializzazione
-//                Gson gson = new Gson();
-//                type = new TypeToken<LatLng>() {}.getType();
-//                String json = gson.toJson(m.getPosition(),type);
-//                Repository.save(getActivity(), Constants.ACTUAL_MAP_PIN_POSITION, json);
-//
-//                //deserializzazione
-//                String json2=Repository.retrieve(getActivity(),Constants.ACTUAL_MAP_PIN_POSITION,String.class);
-//                Gson gson2=new Gson();
-//                LatLng thisLatLng=gson.fromJson(json2,type);
-//                Log.d("miotag","La posizione salvata è: "+thisLatLng.getLatitude()+", "+thisLatLng.getLongitude());
 
                 Repository.save(getActivity(), Constants.LATITUDE_STARTING_POINT, String.valueOf(lt.getLatitude()));
                 Repository.save(getActivity(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(lt.getLongitude()));

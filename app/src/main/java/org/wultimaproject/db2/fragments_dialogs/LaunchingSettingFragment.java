@@ -14,8 +14,7 @@ import android.view.ViewGroup;
 public class LaunchingSettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        Intent intent = new Intent(getActivity(), SettingTourActivity.class);
-//        startActivity(intent);
+
 
         return null;
     }

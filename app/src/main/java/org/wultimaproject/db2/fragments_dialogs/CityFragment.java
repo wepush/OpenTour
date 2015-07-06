@@ -33,7 +33,6 @@ public class CityFragment extends Fragment {
         Bundle bundle = getArguments();
         ImageView imageView=(ImageView)view.findViewById(R.id.cityChoose);
            textCity.setText(bundle.getString(CITY_NAME));
-//        LinearLayout ll=(LinearLayout)view.findViewById(R.id.llCityChooser);
 
         if(TextUtils.equals(bundle.getString(CITY_NAME),"Milano")){
 

@@ -40,8 +40,6 @@ public class LookUpIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        Log.d("miotag","onHandleIntent");
-       // mReceiver=new SettingTourActivity.AddressResultReceiver(intent.getParcelableExtra(Constants.RECEIVER));
         mReceiver=intent.getParcelableExtra(Constants.RECEIVER);
 
 
@@ -65,7 +63,6 @@ public class LookUpIntentService extends IntentService {
                     1);
 
 
-            //saving latitude/longitude starting location
             Log.d("miotag","GEOCODING from Location");
             Repository.save(this, Constants.LATITUDE_STARTING_POINT, String.valueOf(location.getLatitude()));
             Repository.save(this,Constants.LONGITUDE_STARTING_POINT,String.valueOf(location.getLongitude()));
@@ -75,11 +72,11 @@ public class LookUpIntentService extends IntentService {
 
         } catch (IOException ioException) {
             // Catch network or other I/O problems.
-            errorMessage = "Non disponibile: tocca qui";
+            errorMessage = "Unavailable: touch here";
             Log.e("miotag", errorMessage, ioException);
         } catch (IllegalArgumentException illegalArgumentException) {
             // Catch invalid latitude or longitude values.
-            errorMessage = "valore lat/lon utilizzato non valido";
+            errorMessage = " lat/lon aren't valid values";
             Log.e("miotag", errorMessage + ". " +
                     "Latitude = " + location.getLatitude() +
                     ", Longitude = " +
@@ -89,7 +86,7 @@ public class LookUpIntentService extends IntentService {
         // Handle case where no address was found.
         if (addresses == null || addresses.size()  == 0) {
             if (errorMessage.isEmpty()) {
-                errorMessage = "Non disponibile: tap qui";
+                errorMessage = "Unavailable: touch here";
                 Log.e("miotag", errorMessage);
             }
             deliverResultToReceiver(1, errorMessage);

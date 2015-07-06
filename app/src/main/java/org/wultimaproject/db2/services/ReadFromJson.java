@@ -35,29 +35,13 @@ public class ReadFromJson extends IntentService {
 
         try {
 
-//            COMMENTATO DA DB2 ORIGINALE AL FINE DI INTREGRARE CON IL VECCHIO SERVICES DI OPENTOUR
-//            if (TextUtils.equals(intent.getStringExtra("dbToLoad"),"milano")) {
-//                stringFromJson = jsonToStringFromAssetFolder("milandb", getApplication());
-//            } else {
-//                Log.d("miotag","arriva palermo");
-//                stringFromJson = jsonToStringFromAssetFolder("palermodb",getApplication());
-//            }
 
-//            if(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY,String.class),"palermo")){
-//                Log.d("miotag","db da caricare: PALERMO");
-//                stringFromJson=jsonToStringFromAssetFolder("palermodb_final",getApplication());
-//                //     stringFromJson=jsonToStringFromAssetFolder("citiesJsonSites",getApplication());
-//
-//            }else if(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class),"milano")){
-//                Log.d("miotag","db da caricare. MILANO");
-//                stringFromJson = jsonToStringFromAssetFolder("milandb", getApplication());
-//            }
 
             if(TextUtils.equals(Repository.retrieve(this,Constants.KEY_CURRENT_CITY,String.class),"milano")) {
-                Log.d("miotag","MILANO da caricare");
+                Log.d("miotag","Loading Milan");
                 stringFromJson = jsonToStringFromAssetFolder("milandb", getApplication());
             } else {
-                Log.d("miotag","PALERMO da caricare");
+                Log.d("miotag","Loading Palermo");
                 stringFromJson=jsonToStringFromAssetFolder("palermodb",getApplication());
             }
 
