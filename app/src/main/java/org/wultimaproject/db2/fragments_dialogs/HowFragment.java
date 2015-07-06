@@ -88,18 +88,18 @@ public class HowFragment extends DialogFragment {
                 (!(cbBike.isChecked())) &&
                         (!(cbWalk.isChecked()))
                 ) {
-            Toast.makeText(getActivity(),"Selezionare una scelta!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),R.string.select_how,Toast.LENGTH_SHORT).show();
         } else if (
                   (cbBike.isChecked())
                 ){
             Repository.save(getActivity(), Constants.HOW_SAVE, "bike");
-            SettingTourActivity.txtHow.setText("In Bici");
+            SettingTourActivity.txtHow.setText(R.string.by_bike);
         //    Log.d("miotag","how: "+PreferencesHelper.get(getActivity(),String.class,Constants.HOW_SAVE));
         } else if (
                 (cbWalk.isChecked())
                 ){
             Repository.save(getActivity(), Constants.HOW_SAVE, "walk");
-            SettingTourActivity.txtHow.setText("A Piedi");
+            SettingTourActivity.txtHow.setText(R.string.by_walk);
         //    Log.d("miotag","how: "+PreferencesHelper.get(getActivity(),String.class,Constants.HOW_SAVE));
 
 

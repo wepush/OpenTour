@@ -61,8 +61,22 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     public static TextView txtWhatToSee,txtHow;
     private static TextView txtWhere;
     public Calendar calendar;
-    private String[] monthNames= {"0","Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"};
-    private String[] dayNames = {"Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato","Domenica"};
+//   private String[] monthNames= {"0","Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"};
+//   private String[] dayNames = {"Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato","Domenica"};
+//    private String[] monthNames={"", getResources().getString(R.string.january),
+//        getResources().getString(R.string.february),
+//            getResources().getString(R.string.march),getResources().getString(R.string.april),
+//            getResources().getString(R.string.may),getResources().getString(R.string.june),
+//            getResources().getString(R.string.july),getResources().getString(R.string.august),
+//            getResources().getString(R.string.september),getResources().getString(R.string.october),
+//            getResources().getString(R.string.november),getResources().getString(R.string.december)};
+
+
+    private String[] monthNames;
+    private String[] dayNames;
+//    private String[] dayNames={getResources().getString(R.string.monday),getResources().getString(R.string.tuesday),
+//            getResources().getString(R.string.wednesday),getResources().getString(R.string.thursday),
+//            getResources().getString(R.string.friday),getResources().getString(R.string.saturday),getResources().getString(R.string.sunday)};
     private CircledPicker circledPicker;
     private TextView tSetTime;
     private  static String mAddressOutput;
@@ -71,6 +85,19 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        monthNames=new String []{"", getResources().getString(R.string.january),
+                getResources().getString(R.string.february),
+                getResources().getString(R.string.march),getResources().getString(R.string.april),
+                getResources().getString(R.string.may),getResources().getString(R.string.june),
+                getResources().getString(R.string.july),getResources().getString(R.string.august),
+                getResources().getString(R.string.september),getResources().getString(R.string.october),
+                getResources().getString(R.string.november),getResources().getString(R.string.december)};
+
+
+        dayNames=new String[] {getResources().getString(R.string.monday),getResources().getString(R.string.tuesday),
+            getResources().getString(R.string.wednesday),getResources().getString(R.string.thursday),
+            getResources().getString(R.string.friday),getResources().getString(R.string.saturday),getResources().getString(R.string.sunday)};
 
 
         context=this;
@@ -104,17 +131,17 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
             geo=(GeoManager) getApplicationContext();
             geo.createClient();
             if (geo.isGpsOn()){
-                Log.d("miotag","ho lanciato LookupSerivce");
+                Log.d("miotag"," LookupService launched");
                 geo.connectClient();
 
             } else {
-                Toast.makeText(context,"Accendere GPS alta precisione", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"turn on GPS high precision", Toast.LENGTH_SHORT).show();
             }
 
             //TODO qui devo lanciare GeoManager, non dopo
 
         } else {
-            Log.d("miotag", "mAddressOutput vale:" + mAddressOutput);
+            Log.d("miotag", "mAddressOutput is:" + mAddressOutput);
             txtWhere.setText(mAddressOutput);
 
         }
@@ -124,12 +151,12 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                Log.d("miotag","L'azione che sto compiendo è: "+event.getAction()+"\n");
+                Log.d("miotag","Aciont performing is: "+event.getAction()+"\n");
 
                 if (event.getAction()==0){
                     return true;
                 } else if (event.getAction()==2){
-                    Log.d("miotag", "posso salvare questo valore: "+circledPicker.getValue()*60);
+                    Log.d("miotag", "saving this value: "+circledPicker.getValue()*60);
                     Repository.save(context,Constants.TIME_TO_SPEND,String.valueOf(circledPicker.getValue()*60));
                 }
 
@@ -163,7 +190,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
             public void onClick(View v) {
 
                 if (isAnySettingVoid()) {
-                    Toast.makeText(context, "Completare correttamente tutti i campi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.complete_all_fields, Toast.LENGTH_SHORT).show();
                 } else {
 
 
@@ -254,7 +281,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                 Log.d("miotag","applicationContext: OK");
                 geo.createClient();
                 if (geo.isGpsOn()) {
-                    Log.d("miotag","GPS acceso!");
+                    Log.d("miotag","GPS on!");
                     geo.connectClient();
 
 
@@ -265,9 +292,9 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                     hf.show(fm, "map_fragment");
                 }
                 else {
-                    Toast.makeText(context,"Accendere GPS alta precisione",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,R.string.turn_gps_on,Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(context, "Acquisizione dato",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Acquisizione dato",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -303,7 +330,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
             geo.connectClient();
         }
         else {
-            Toast.makeText(context,"Accendere GPS alta precisione",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,R.string.turn_gps_on,Toast.LENGTH_SHORT).show();
         }
 
         if (mAddressOutput!= null){
@@ -348,35 +375,35 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         int result = calendarToSave.get(Calendar.DAY_OF_WEEK);
         switch (result) {
             case Calendar.MONDAY:
-                txtWhen.setText("Lunedì, "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+                txtWhen.setText(getResources().getString(R.string.monday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
 
                 break;
             case Calendar.TUESDAY:
-                txtWhen.setText("Martedì, "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+                txtWhen.setText(getResources().getString(R.string.tuesday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
 
                 break;
 
             case Calendar.WEDNESDAY:
-                txtWhen.setText("Mercoledì, "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+                txtWhen.setText(getResources().getString(R.string.wednesday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
 
                 break;
             case Calendar.THURSDAY:
-                txtWhen.setText("Giovedì, "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+                txtWhen.setText(getResources().getString(R.string.thursday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
 
                 break;
 
             case Calendar.FRIDAY:
-                txtWhen.setText("Venerdì, "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+                txtWhen.setText(getResources().getString(R.string.friday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
 
                 break;
 
             case Calendar.SATURDAY:
-                txtWhen.setText("Sabato, "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+                txtWhen.setText(getResources().getString(R.string.saturday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
 
                 break;
 
             case Calendar.SUNDAY:
-                txtWhen.setText("Domenica, "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+                txtWhen.setText(getResources().getString(R.string.sunday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
 
                 break;
         }
@@ -476,7 +503,7 @@ private boolean isAnySettingVoid(){
         }
 
         if(id == R.id.cityChooser){
-          Toast.makeText(this,"Prossimamente!",Toast.LENGTH_SHORT).show();
+          Toast.makeText(this,R.string.soon,Toast.LENGTH_SHORT).show();
 
         }
 

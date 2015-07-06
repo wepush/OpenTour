@@ -125,9 +125,9 @@ public class TourAlgorithm {
 //TODO riempimento di allpossibilePaths con 10 iterazioni di getRandomPaths
         for (int i=0; i<512; i++){
 
-            Log.d("miotag","NUOVA ITERAZIONE con siteToStart="+siteToStart.toString());
+//            Log.d("miotag","NUOVA ITERAZIONE con siteToStart="+siteToStart.toString());
 
-
+            Log.d("miotag","NEW ITERATION with siteToStart="+siteToStart.toString());
                 allPossiblePaths.add(getRandomPaths(siteToStart));
 //re inizializzazione di timeToStart dopo ciascun ciclo a partire dalle impostazioni utente
                 timeToStart.set(Calendar.HOUR_OF_DAY, timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
@@ -252,77 +252,6 @@ public class TourAlgorithm {
 
 
 
-//        private  ArrayList<Site> getShortestPath(Site startSite) {
-//                ArrayList<Site> chosenShortestPath=new ArrayList<Site>();
-//                double maxDist=Double.MAX_VALUE;
-//                double minDistanceToTravelInMeters;
-//                Site siteToAdd=new Site();
-//                //timeLeft and all the times in this method MUST BE in minutes
-//                timeLeft=timeLeft/60f;
-//
-//
-//                //these instructions adds and update startingSite to the final list of results, setting also the time where to get there
-//
-//                if (checkIfSiteIsOpen(startSite,(SphericalMercator.getDistanceFromLatLonInKm(startSite, userStartingSite)) * 1000f)){
-//                    startSite.alreadyTaken=true;
-//                    chosenShortestPath.add(startSite);
-//                    timeLeft=timeLeft-startSite.visitTime;
-//                    timeToStart.add(Calendar.MINUTE,((int)startSite.visitTime));
-//
-//                }
-//   //to be fair, the next timeLeft is diminished if the startingSite is a site to be visited
-//                while (timeLeft > 0)
-//                {
-//                    Log.d("miotag","TEMPO RIMASTO: "+timeLeft);
-//
-//
-//                    Log.d("miotag", "sito capofila: "+startSite.name);
-//
-//
-//                    fillInAdjacency(startSite);
-//
-//                    for(Site site: startSite.adjacencySite){
-//                        if(!site.alreadyTaken) {
-//
-////                            Log.d("miotag", startSite.name + "->adiacenza in lavorazione: " + site.name);
-//                            minDistanceToTravelInMeters = (SphericalMercator.getDistanceFromLatLonInKm(startSite, site)) * 1000f;
-////                            Log.d("miotag"," la cui distanza dal sito capofila è: "+minDistanceToTravelInMeters);
-//                                    if (checkIfSiteIsOpen(site, minDistanceToTravelInMeters))
-//                                        {
-//                                            if (minDistanceToTravelInMeters < maxDist)
-//                                                {
-//                                                    maxDist = minDistanceToTravelInMeters;
-//                                                    siteToAdd = site;
-//                                                    site.alreadyTaken=true;
-//                                                }
-//                                        }
-//                        }
-//                    }
-//                    maxDist=Double.MAX_VALUE;
-//                    if(siteToAdd != null) {
-////                        Log.d("miotag", "ho aggiunto il sito " + siteToAdd.name + " all'array dei risultati");
-//    //here is where to update timeLeft and hour/mins of arrive
-//                        timeLeft=timeLeft-siteToAdd.visitTime;
-//                        //I need to update the total time, the one stored in TIME TO START
-//                        timeToStart.add(Calendar.MINUTE,((int)siteToAdd.visitTime));
-//                        chosenShortestPath.add(siteToAdd);
-//                        startSite = siteToAdd;
-//                        siteToAdd=null;
-//
-//                    } else {
-//                        //if siteToAdd IS NULL then means that there aren't any adjacent sites left to choose, so return the array of results
-//                        return chosenShortestPath;
-//                    }
-//
-//                }
-//                Log.d("miotag","SHORTEST path da tornare ");
-//                for (Site site: chosenShortestPath){
-//                    Log.d("miotag",site.name+", ora: "+site.showingTime);
-//                }
-//                return chosenShortestPath;
-//            }
-
-
     private static ArrayList<Site> getRandomPaths (Site startSite){
 //        Log.d("miotag","GET RANDOM PATHS to return");
 
@@ -373,7 +302,7 @@ public class TourAlgorithm {
 //            timeToStart.add(Calendar.HOUR_OF_DAY,futureTimeSite.getDate());
 //            timeToStart.add(Calendar.MINUTE,futureTimeSite.getMinutes());
                //CAMBIAMENTO DI IDEA: IL TEMPO GLOBALE (QUELLO DI OROLOGIO) VIENE PRESO DA site.showingTime
-               Log.d("miotag", "startSite.showingTime per intero (prima del While): " + startSite.showingTime);
+               Log.d("miotag", "startSite.showingTime (before While): " + startSite.showingTime);
                timeToStart.set(Calendar.HOUR_OF_DAY, Integer.valueOf(startSite.showingTime.substring(0, 2)));
                timeToStart.set(Calendar.MINUTE, Integer.valueOf(startSite.showingTime.substring(3)));
                Log.d("miotag", "startSite.showingTime BEFORE del while: " + startSite.showingTime.substring(0, 2));

@@ -174,14 +174,14 @@ public class IntroPagerFragment extends Fragment {
     //                new ArrayAdapter<String>(diagContext, android.R.layout.simple_list_item_1, selectionItems);
     //        lv.setAdapter(adapter);
               builder.setView(inflater.inflate(resourceIdLayout, null))
-                          .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                          .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                               public void onClick(DialogInterface dialog, int id) {
 
 
                                   validatingRadioButton(dialogType);
                               }
                           })
-                          .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                          .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                               public void onClick(DialogInterface dialog, int id) {
                                   dismiss();
                               }

@@ -18,9 +18,42 @@
     <string name="skip">Skip</string>
     <string name="recapTextTimeLineMain">Questo è il tour pensato solo per te!</string>
     <string name="recapTextTimeLineSub">Puoi fare tutte le modifiche che vuoi prima di partire</string>
-    <string name="loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at rhoncus libero. Maecenas auctor tristique lacinia. Sed pretium iaculis porttitor. Sed scelerisque pharetra tortor, eget pretium lacus dictum et. Quisque nec consectetur sapien, ac rutrum ante. Quisque ac erat eget ex ultrices tempus ut ut nulla. Pellentesque pellentesque fringilla nisl ut consequat. Etiam fermentum dolor sit amet felis efficitur vulputate.
 
-Morbi consectetur semper justo sit amet mollis. Nunc urna leo, euismod vel ante in, egestas efficitur odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut accumsan velit urna. Donec pharetra dui eget neque ultrices, non tincidunt nulla mollis. In porta sem vitae dictum posuere. Cras condimentum at risus et semper. In hac habitasse platea dictumst. Nunc viverra sollicitudin diam id volutpat.
 
-Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin nisl orci, finibus eu lacus vel, ultrices suscipit nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut pulvinar velit. Curabitur in erat molestie lacus efficitur luctus. Maecenas vitae mi non mauris vestibulum placerat id et erat. Vestibulum sit amet finibus lectus. Maecenas eu eros in erat hendrerit dapibus ut sed turpis. Aenean quis mauris vel libero laoreet pretium. Praesent bibendum a nulla nec ullamcorper. Integer maximus consequat enim eu efficitur. Etiam pulvinar pretium dolor sagittis commodo.</string>
-</resources>
+    <string name="confirm">Ok</string>
+    <string name="cancel">Annulla</string>
+    <string name="select_how">Seleziona una modalità!</string>
+    <string name="by_walk">A piedi</string>
+    <string name="by_bike">In Bici</string>
+    <string name="im_here_marker">Sono qui</string>
+    <string name="description_marker">Punto di Partenza</string>
+    <string name="complete_all_fields">Completare correttamente tutti i campi</string>
+    <string name="turn_gps_on">Attivare GPS (alta precisione)</string>
+    <string name="open_from">Apertura dalle ore</string>
+    <string name="open_to">alle</string>
+
+    <string name="monday">Lunedì</string>
+    <string name="tuesday">Martedì</string>
+    <string name="wednesday">Mercoledì</string>
+    <string name="thursday">Giovedì</string>
+    <string name="friday">Venerdì</string>
+    <string name="saturday">Sabato</string>
+    <string name="sunday">Domenica</string>
+
+    <string name="january">Gennaio</string>
+    <string name="february">Febbraio</string>
+    <string name="march">Marzo</string>
+    <string name="april">Aprile</string>
+    <string name="may">Maggio</string>
+    <string name="june">Giugno</string>
+    <string name="july">Luglio</string>
+    <string name="august">Agosto</string>
+    <string name="september">Settembre</string>
+    <string name="october">Ottobre</string>
+    <string name="november">Novembre</string>
+    <string name="december">Dicembre</string>
+    <string name="soon">Soon!</string>
+
+
+
+  </resources>

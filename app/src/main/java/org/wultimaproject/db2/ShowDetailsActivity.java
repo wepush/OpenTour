@@ -176,7 +176,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
         Log.d("miotag","TICKETS outside IF with ToString"+ siteToShow.tickets.toString());
 
         if (TextUtils.equals(siteToShow.tickets.toString(),"[]")){
-            Log.d("miotag","TICKETS ASSENTE");
+            Log.d("miotag","No Tickets");
             RelativeLayout rlTickets=(RelativeLayout)findViewById(R.id.rlTickets);
             rlTickets.setVisibility(View.GONE);
 
@@ -312,7 +312,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
                     daysFromOpenings=singleOpeningFromObject.getJSONArray("days");
 
                     for (int j=0; j<daysFromOpenings.length();j++) {
-                            Log.d("miotag","I GIORNI CHE STO INSERENDO: "+daysFromOpenings.getString(j));
+                            Log.d("miotag","Days fitting in: "+daysFromOpenings.getString(j));
                             daysArray.add(daysFromOpenings.getString(j));
                         }
 
@@ -332,7 +332,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
                     }
 
                     //da qui gli orari
-                    String openingTime="Apertura dalle ore "+timeFrom+" alle "+timeTo;
+                    String openingTime=getResources().getString(R.string.open_from)+" "+timeFrom+" "+getResources().getString(R.string.open_to)+" "+timeTo;
                     txtOpeningsTime.setText(openingTime);
                     txtToDisappear2.setText(timeFrom+" - "+timeTo);
 

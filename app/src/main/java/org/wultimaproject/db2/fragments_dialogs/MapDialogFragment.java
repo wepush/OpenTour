@@ -49,7 +49,7 @@ public class MapDialogFragment extends DialogFragment {
             View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_map, null);
 
             builder.setView(view);
-            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 
 
@@ -60,10 +60,10 @@ public class MapDialogFragment extends DialogFragment {
                     Location mDialogLocation = new Location(LocationManager.GPS_PROVIDER);
 
 
-                    LatLng thisLatLng=new LatLng
+                    LatLng thisLatLng = new LatLng
                             (
-                             Double.valueOf(Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class)),
-                            Double.valueOf(Repository.retrieve(getActivity(),Constants.LONGITUDE_STARTING_POINT,String.class))
+                                    Double.valueOf(Repository.retrieve(getActivity(), Constants.LATITUDE_STARTING_POINT, String.class)),
+                                    Double.valueOf(Repository.retrieve(getActivity(), Constants.LONGITUDE_STARTING_POINT, String.class))
                             );
 
                     mDialogLocation.setLatitude(thisLatLng.getLatitude());
@@ -79,7 +79,7 @@ public class MapDialogFragment extends DialogFragment {
 
                 }
             });
-            builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dismiss();
                 }
@@ -89,7 +89,7 @@ public class MapDialogFragment extends DialogFragment {
         LatLng thisLatLng=new LatLng(Double.valueOf(Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class)),
                                 Double.valueOf(Repository.retrieve(getActivity(),Constants.LONGITUDE_STARTING_POINT,String.class)));
 
-        mark=new Marker("I'm here", "startingPoint",thisLatLng);
+        mark=new Marker(getResources().getString(R.string.im_here_marker), getResources().getString(R.string.description_marker),thisLatLng);
         mark.setMarker(getResources().getDrawable(R.drawable.pin_blue));
         mv = (MapView) view.findViewById(R.id.mapview);
         mv.setMinZoomLevel(mv.getTileProvider().getMinimumZoomLevel());
