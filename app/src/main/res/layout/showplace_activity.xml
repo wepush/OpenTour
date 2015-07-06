@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/toolbarShowPlace"
+        tools:ignore="NewApi"
+        android:background="@color/cyan300"
+        android:minHeight="?android:attr/actionBarSize"
+        android:titleTextAppearance="@color/white">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtTitleToolbar"
+            android:text="Place Title"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+
+            android:layout_marginTop="5dp" />
+ </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:id="@+id/scrollShowPlaceActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+
+        >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/llBackgroundInfoPlace"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/imageToolbar"
+
+
+                />
+
+        </LinearLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal">
+
+                                         <ImageView
+                                             android:layout_width="wrap_content"
+                                             android:layout_height="match_parent"
+                                             android:id="@+id/imgIconDetailInfo"
+                                             android:src="@drawable/pin_yellow"
+                                             android:layout_alignParentTop="true"
+                                             android:layout_alignParentLeft="true"
+                                             android:layout_alignParentStart="true" />
+
+                                          <TextView
+                                              android:id="@+id/txtPlaceDetailDescription"
+                                              android:layout_width="match_parent"
+                                              android:layout_height="match_parent"
+
+
+                                              android:layout_alignParentTop="true"
+                                              android:layout_marginRight="20dp"
+                                              android:layout_marginEnd="20dp"
+                                              android:layout_toRightOf="@+id/imgIconDetailInfo"
+                                              android:layout_toEndOf="@+id/imgIconDetailInfo" />
+
+
+                            </RelativeLayout>
+
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="match_parent"
+                                                android:id="@+id/imgIconDetailQuestion"
+                                                android:src="@drawable/pin_red"
+                                                android:layout_alignParentTop="true"
+                                                android:layout_alignParentLeft="true"
+                                                android:layout_alignParentStart="true"/>
+
+                                            <TextView
+                                                android:id="@+id/txtPlaceDetailTips"
+                                                android:layout_width="wrap_content"
+                                                android:textStyle="italic"
+                                                android:layout_height="match_parent"
+
+
+                                                android:layout_alignParentTop="true"
+                                                android:layout_toRightOf="@+id/imgIconDetailQuestion"
+                                                android:layout_toEndOf="@+id/imgIconDetailQuestion"/>
+
+
+                            </RelativeLayout>
+
+
+
+     </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

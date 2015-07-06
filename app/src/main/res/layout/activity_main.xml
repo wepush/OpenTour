@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnForShowDb"
+        android:text="Stampa db"
+        android:onClick="onShowDb"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Erase DB"
+        android:onClick="onEraseDb"
+        android:id="@+id/btnEraseDb"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/btnLoadPalermo"
+        android:layout_toEndOf="@+id/btnLoadPalermo" />
+
+    <Button
+        android:id="@+id/btnLoadMilan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onLoadMilan"
+        android:text="Load Milan"
+        android:layout_below="@+id/btnForShowDb"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLoadPalermo"
+        android:text="Load Palermo"
+        android:onClick="onLoadPalermo"
+        android:layout_below="@+id/btnLoadMilan"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+         <TextView
+            android:id="@+id/txtForShortResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnForShowDb"
+            android:text="ShortSite"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RandomSite"
+            android:id="@+id/txtForRandomResult"
+            android:layout_below="@+id/scrollView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="90dp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lancia ShortestPath"
+        android:id="@+id/btnToLaunchShortest"
+        android:onClick="onLaunchAlgorithmShortest"
+        android:layout_above="@+id/btnLoadPalermo"
+        android:layout_toRightOf="@+id/btnLoadPalermo"
+        android:layout_toEndOf="@+id/btnLoadPalermo" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lancia RandomPath"
+        android:onClick="onLaunchAlgorithmRandom"
+        android:id="@+id/btnToLaunchRandom"
+        android:layout_alignTop="@+id/btnLoadPalermo"
+        android:layout_toRightOf="@+id/btnLoadPalermo"
+        android:layout_toEndOf="@+id/btnLoadPalermo" />
+
+
+
+</RelativeLayout>

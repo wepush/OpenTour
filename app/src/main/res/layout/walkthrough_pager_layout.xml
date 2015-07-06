@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.wepush.traffico2.ui.activities.IntroActivity">
+
+    <View
+        android:id="@+id/view_activity_intro_center_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        />
+
+    <!--android:background="@mipmap/background_1"-->
+
+    <View
+        android:id="@+id/view_activity_intro_left_background"
+        android:alpha="0"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <!--android:background="@color/indigo400"-->
+
+    <View
+        android:id="@+id/view_activity_intro_right_background"
+        android:alpha="0"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <!--android:background="@mipmap/background_2"-->
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/introPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_gravity="bottom|center_horizontal">
+
+        <Button
+            android:id="@+id/btnSkipWalkthrough"
+            android:textColor="@color/white"
+            android:onClick="onSettingActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/standard_margin"
+            android:text="Skip!"
+            android:background="@null"/>
+
+        <LinearLayout
+            android:id="@+id/layout_activity_walkthrought_transition_indicators"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+
+            <View
+                android:id="@+id/view_transition_one"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginRight="@dimen/medium_margin"
+                android:background="@drawable/transition_walkthrough"/>
+
+            <View
+                android:id="@+id/view_transition_two"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginRight="@dimen/medium_margin"
+                android:background="@drawable/transition_walkthrough"/>
+
+            <View
+                android:id="@+id/view_transition_three"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginRight="@dimen/medium_margin"
+                android:background="@drawable/transition_walkthrough"/>
+
+            <View
+                android:id="@+id/view_transition_four"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/transition_walkthrough"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnNextWalkthrough"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:textColor="@color/white"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@null"/>
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>

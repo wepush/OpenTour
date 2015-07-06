@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragmentBaseLayout"
+    >
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/rl1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageIntro"
+                android:layout_marginTop="50dp"
+
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTitleWalkThroughDescription"
+                android:layout_marginTop="350dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtBodyWalkThroughDescription"
+                android:textColor="@color/white"
+                android:layout_below="@+id/txtTitleWalkThroughDescription"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <com.viewpagerindicator.CirclePageIndicator
+                android:id="@+id/pageIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:padding="10dip"
+                android:layout_below="@+id/txtBodyWalkThroughDescription"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <!--android:layout_alignParentBottom="true"-->
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <!--<Button-->
+        <!--android:id="@+id/btnSkipWalkthrough"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:text="Tutto Chiaro!"-->
+
+        <!--android:onClick="onSettingActivity"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--/>-->
+
+</LinearLayout>

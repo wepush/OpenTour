@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:local="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbarDiscovery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/cyan300"
+        android:elevation="4dp"
+        android:titleTextAppearance="@color/white"
+        >
+        <ImageView
+            android:id="@+id/imageArrowNavigationDiscovery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open Tour"
+            android:id="@+id/txtTitleToolbarDiscovery"
+            android:layout_marginLeft="30dp"
+            android:textSize="30sp"
+            android:textColor="@color/white"/>
+    </android.support.v7.widget.Toolbar>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="org.wultimaproject.db2.fragments_dialogs.LiveMapFragment"
+        android:id="@+id/mapDialogFragment"
+        android:layout_weight="1"
+        />
+
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_weight="2">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewDiscovery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".HomeActivity">
+
+    <fragment
+            android:id="@+id/fragment_activity_main_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <!--
+    modificato Button onNextTapped aggiungendo @id-->
+
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:id="@+id/btnNext"
+            android:layout_alignParentBottom="true"
+            android:text="Next"
+            android:onClick="onNextTapped"/>
+    <!--
+    aggiunto pulsante per test su intro-->
+
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Intro"
+            android:onClick="onIntro"
+        android:layout_above="@+id/btnNext"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/button" />
+
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="SettingTour"
+        android:onClick="onSettingTour"
+        android:layout_above="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

@@ -1,0 +1,67 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="AppTheme" parent="AppTheme.Base">
+
+        </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/blue400</item>
+        <item name="colorPrimaryDark">@color/blue600</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <item name="android:textColorSecondary">@color/white</item>
+
+  </style>
+
+    <style name="AmberCheckBox">
+        <item name="android:theme">@style/CheckBoxAppThemeAmber</item>
+    </style>
+
+    <style name="IndigoCheckBox">
+        <item name="android:theme">@style/CheckBoxAppThemeIndigo</item>
+    </style>
+
+    <style name="CheckBoxAppThemeAmber">
+        <item name="android:colorAccent">
+            @color/amber400
+        </item>
+        <item name="android:colorControlNormal">
+            @color/amber400
+        </item>
+        <item name="android:colorControlHighlight">
+            @color/amber400
+        </item>
+
+        <item name="android:colorControlActivated">
+            @color/amber400
+        </item>
+    </style>
+
+
+    <style name="CheckBoxAppThemeIndigo">
+        <item name="android:colorAccent">
+            @color/indigo300
+        </item>
+        <item name="android:colorControlNormal">
+            @color/indigo300
+        </item>
+        <item name="android:colorControlHighlight">
+            @color/indigo300
+        </item>
+
+        <item name="android:colorControlActivated">
+            @color/indigo300
+        </item>
+    </style>
+
+
+    <style name="Theme.ShowDetailsActivity" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+
+
+    </style>
+  
+
+</resources>

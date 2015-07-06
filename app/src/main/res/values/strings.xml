@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">OpenTour</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="sites_remote_endpoint_palermo">http://192.168.69.108:5005/api/v1/cities/54f6e2d7694d6101bf030000/sites</string>
+    <string name="title_activity_city_chooser">CityChooserActivity</string>
+    <string name="go_ahead">Avanti</string>
+    <string name="firstTitleWalk">Benvenuto!</string>
+    <string name="firstBodyWalk">Open Tour \è l\'app che pianifica i tour delle città in base alle tue esigenze. Una guida completa e a portata di mano, disponibile anche offline, per scoprire i luoghi più interessanti da visitare. </string>
+    <string name="seconTitleWalk">Quanto Tempo hai a disposizione?</string>
+    <string name="secondBodyWalk">Open Tour crea in tempo reale dei percorsi turistici fatti su misura per te: ti basterà indicare il punto di partenza del tuo tour, gli interessi, il mezzo di trasporto e il tempo che hai a disposizione. Al resto pensa l\'app!</string>
+    <string name="thirdTitleWalk">Esplora e scopri le città</string>
+    <string name="thirdBodyWalk">Open Tour è un\'app collaborativa: al momento è disponibile per Palermo e Milano, ma vuole esplorare tante altre città.  </string>
+    <string name="fourthTitleWalk">Open Data</string>
+    <string name="fourthBodyWalk">Open Tour è un\'app basata sugli OpenData, una tipologia di dati accessibili gratuitamente a tutti, privi di brevetti o altre forme di controllo che ne limitino la riproduzione.</string>
+    <string name="fifthWalk">LoremIpsum 4</string>
+    <string name="skip">Skip</string>
+    <string name="recapTextTimeLineMain">Questo è il tour pensato solo per te!</string>
+    <string name="recapTextTimeLineSub">Puoi fare tutte le modifiche che vuoi prima di partire</string>
+    <string name="loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at rhoncus libero. Maecenas auctor tristique lacinia. Sed pretium iaculis porttitor. Sed scelerisque pharetra tortor, eget pretium lacus dictum et. Quisque nec consectetur sapien, ac rutrum ante. Quisque ac erat eget ex ultrices tempus ut ut nulla. Pellentesque pellentesque fringilla nisl ut consequat. Etiam fermentum dolor sit amet felis efficitur vulputate.
+
+Morbi consectetur semper justo sit amet mollis. Nunc urna leo, euismod vel ante in, egestas efficitur odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut accumsan velit urna. Donec pharetra dui eget neque ultrices, non tincidunt nulla mollis. In porta sem vitae dictum posuere. Cras condimentum at risus et semper. In hac habitasse platea dictumst. Nunc viverra sollicitudin diam id volutpat.
+
+Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin nisl orci, finibus eu lacus vel, ultrices suscipit nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut pulvinar velit. Curabitur in erat molestie lacus efficitur luctus. Maecenas vitae mi non mauris vestibulum placerat id et erat. Vestibulum sit amet finibus lectus. Maecenas eu eros in erat hendrerit dapibus ut sed turpis. Aenean quis mauris vel libero laoreet pretium. Praesent bibendum a nulla nec ullamcorper. Integer maximus consequat enim eu efficitur. Etiam pulvinar pretium dolor sagittis commodo.</string>
+</resources>

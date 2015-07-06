@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Show Time"-->
+        <!--android:id="@+id/btnOnShowTime"-->
+
+        <!--/>-->
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:orientation="vertical"
+        >
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+
+                                   <LinearLayout
+                                       android:id="@+id/whenLayout"
+                                       android:clickable="true"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       android:layout_margin="5dp"
+                                       android:layout_weight="1"
+                                       android:orientation="horizontal"
+                                       android:background="@drawable/layout_bg_red"
+                                       android:elevation="5dp"
+                                       >
+                                                <RelativeLayout
+                                                    android:layout_width="55dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginStart="20dp"
+                                                    android:layout_marginLeft="20dp"
+                                                    >
+
+                                                       <ImageView
+                                                           android:layout_width="50dp"
+                                                           android:layout_height="50dp"
+                                                           android:src="@drawable/circle_red"
+
+                                                           android:id="@+id/imageView3"
+                                                           android:layout_centerVertical="true"
+                                                           android:layout_centerHorizontal="true" />
+
+                                                       <ImageView
+                                                           android:layout_width="wrap_content"
+                                                           android:layout_height="wrap_content"
+                                                           android:src="@mipmap/ic_time"
+                                                           android:layout_gravity="center_vertical"
+                                                           android:id="@+id/imageView2"
+                                                           android:layout_centerVertical="true"
+                                                           android:layout_centerHorizontal="true" />
+                                                </RelativeLayout>
+
+                                       <LinearLayout
+                                           android:layout_width="wrap_content"
+                                           android:layout_height="match_parent"
+                                           android:layout_weight="2"
+                                           android:orientation="vertical"
+                                           android:id="@+id/linearLayout"
+                                           android:gravity="center">
+                                         <TextView
+                                           android:id="@+id/txtQuando"
+                                           android:layout_width="wrap_content"
+                                           android:layout_height="wrap_content"
+                                           android:text="Quando"
+                                           android:textColor="@color/white"
+                                           android:textStyle="bold"
+
+                                             />
+
+
+
+                                       <TextView
+                                           android:layout_width="wrap_content"
+                                           android:layout_height="wrap_content"
+
+
+                                           android:textColor="@color/white"
+                                           android:textStyle="bold"
+                                           android:id="@+id/txtWhen"
+                                            />
+
+                                       </LinearLayout>
+                                       <TextView
+                                           android:layout_width="wrap_content"
+                                           android:layout_height="match_parent"
+                                           android:text="Orario"
+                                           android:baselineAligned="false"
+                                           android:textColor="@color/white"
+                                           android:textStyle="bold"
+                                            android:layout_weight="1"
+                                           android:id="@+id/txtSetTime"
+                                           android:layout_gravity="center_vertical"
+                                           android:gravity="center_vertical|center_horizontal" />
+                                   </LinearLayout>
+                            <!--</LinearLayout>-->
+
+           <LinearLayout
+               android:id="@+id/whereLayout"
+               android:clickable="true"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_margin="5dp"
+               android:layout_weight="1"
+               android:orientation="horizontal"
+               android:background="@drawable/layout_bg_blue"
+               android:elevation="5dp"
+               >
+               <RelativeLayout
+                   android:layout_width="55dp"
+                   android:layout_height="match_parent"
+                   android:layout_marginStart="20dp"
+                   android:layout_marginLeft="20dp"
+                   >
+
+                   <ImageView
+                       android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:src="@drawable/circle_blue600"
+
+                       android:id="@+id/imageView4"
+                       android:layout_centerVertical="true"
+                       android:layout_centerHorizontal="true" />
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@mipmap/ic_marker"
+                       android:layout_gravity="center_vertical"
+                       android:id="@+id/imgTime"
+                       android:layout_centerVertical="true"
+                       android:layout_centerHorizontal="true" />
+               </RelativeLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:layout_weight="2"
+                   android:orientation="vertical"
+                   android:id="@+id/linearLayout2"
+                   android:gravity="center">
+                   <TextView
+                       android:id="@+id/txtDove"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Da Dove"
+                       android:textColor="@color/white"
+                       android:textStyle="bold" />
+                     <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+
+
+                       android:textColor="@color/white"
+                       android:textStyle="bold"
+                       android:id="@+id/txtWhere"
+
+                       />
+
+               </LinearLayout>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Orario"
+                   android:visibility="invisible"
+
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   android:layout_weight="1"
+                   android:id="@+id/txt3"
+                   android:layout_gravity="center_vertical"
+                   android:gravity="center_horizontal" />
+           </LinearLayout>
+           <LinearLayout
+               android:id="@+id/whatLayout"
+               android:clickable="true"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_margin="5dp"
+               android:layout_weight="1"
+               android:elevation="5dp"
+               android:background="@drawable/layout_bg_indigo"
+               >
+               <RelativeLayout
+                   android:layout_width="55dp"
+                   android:layout_height="match_parent"
+                   android:layout_marginStart="20dp"
+                   android:layout_marginLeft="20dp"
+                   >
+
+                   <ImageView
+                       android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:src="@drawable/circle_indigo600"
+
+                       android:id="@+id/imageView5"
+                       android:layout_centerVertical="true"
+                       android:layout_centerHorizontal="true" />
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@mipmap/ic_what"
+                       android:layout_gravity="center_vertical"
+                       android:id="@+id/imgWhat"
+                       android:layout_centerVertical="true"
+                       android:layout_centerHorizontal="true" />
+               </RelativeLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:layout_weight="2"
+                   android:orientation="vertical"
+                   android:id="@+id/linearLayout3"
+                   android:gravity="center">
+                   <TextView
+                       android:id="@+id/txtCosa"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Cosa"
+                       android:textColor="@color/white"
+                       android:textStyle="bold" />
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+
+
+                       android:textColor="@color/white"
+                       android:textStyle="bold"
+                       android:id="@+id/txtWhatToVisit"
+                       />
+
+               </LinearLayout>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Orario"
+                   android:visibility="invisible"
+                   android:baselineAligned="false"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   android:layout_weight="1"
+                   android:id="@+id/txt2"
+                   android:layout_gravity="center_vertical"
+                   android:gravity="center_horizontal" />
+           </LinearLayout>
+           <LinearLayout
+               android:id="@+id/howLayout"
+               android:clickable="true"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_margin="5dp"
+               android:layout_weight="1"
+               android:background="@drawable/layout_bg_amber"
+               android:elevation="5dp"
+               >
+               <RelativeLayout
+                   android:layout_width="55dp"
+                   android:layout_height="match_parent"
+                   android:layout_marginStart="20dp"
+                   android:layout_marginLeft="20dp"
+                   >
+
+                   <ImageView
+                       android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:src="@drawable/circle_amber600"
+
+                       android:id="@+id/imageView6"
+                       android:layout_centerVertical="true"
+                       android:layout_centerHorizontal="true" />
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@mipmap/ic_walk"
+                       android:layout_gravity="center_vertical"
+                       android:id="@+id/imgHow"
+                       android:layout_centerVertical="true"
+                       android:layout_centerHorizontal="true" />
+               </RelativeLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:layout_weight="2"
+                   android:orientation="vertical"
+                   android:id="@+id/linearLayout5"
+                   android:gravity="center">
+                   <TextView
+                       android:id="@+id/txtCome"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Come"
+                       android:textColor="@color/white"
+                       android:textStyle="bold" />
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+
+
+                       android:textColor="@color/white"
+                       android:textStyle="bold"
+                       android:id="@+id/txtHow"
+                       />
+
+               </LinearLayout>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Orario"
+                   android:visibility="invisible"
+                   android:baselineAligned="false"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   android:layout_weight="1"
+                   android:id="@+id/txt4"
+                   android:layout_gravity="center_vertical"
+                   android:gravity="center_horizontal" />
+           </LinearLayout>
+
+
+
+           </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

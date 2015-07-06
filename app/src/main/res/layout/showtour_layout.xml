@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recapFragmentTimeLine"
+        android:layout_weight="1"
+        android:name="org.wepush.opentour.fragments.RecapTimeLineFragment"
+        />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listFragmentTimeLine"
+        android:layout_weight="1"
+        android:name="org.wepush.opentour.fragments.ListViewTimeLineFragment"
+
+        android:layout_gravity="bottom" />
+
+    </LinearLayout>
+
+
+</FrameLayout>

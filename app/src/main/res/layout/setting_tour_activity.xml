@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbarSettingTour"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                tools:ignore="NewApi"
+                android:background="@color/cyan300"
+                android:titleTextAppearance="@color/white">
+
+                <ImageView
+                    android:id="@+id/imageArrowNavigationSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Open Tour"
+                    android:id="@+id/txtTitleToolbar"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/white"/>
+
+                </android.support.v7.widget.Toolbar>
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                    <fragment
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/circleSelectorFragment"
+                        android:layout_weight="3"
+                        android:name="org.wultimaproject.db2.fragments_dialogs.CircleSelectorFragment"/>
+
+                    <fragment
+                        android:id="@+id/rectSelectorFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:name="org.wultimaproject.db2.fragments_dialogs.RectSelectorFragment"
+                        android:layout_gravity="center_horizontal|bottom" />
+               </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
