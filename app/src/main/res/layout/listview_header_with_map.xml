@@ -121,7 +121,7 @@
                                          <TextView
                                              android:layout_width="wrap_content"
                                              android:layout_height="wrap_content"
-                                             android:text="Durata del tour"
+                                             android:text="@string/tour_lasting_time"
 
 
                                              android:textSize="17dp"
@@ -133,7 +133,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:id="@+id/txtTimeSummary"
-                                            android:text="orario"
+                                            android:text="@string/timeclock"
                                             android:layout_alignBottom="@+id/relativeLayout2"
                                             android:layout_alignParentRight="true"
                                             android:layout_alignParentEnd="true"
@@ -182,7 +182,7 @@
                                            <TextView
                                                android:layout_width="wrap_content"
                                                android:layout_height="wrap_content"
-                                               android:text="Luoghi da visitare"
+                                               android:text="@string/place_to_visit"
 
 
                                                android:textSize="17dp"
@@ -195,7 +195,7 @@
                                                android:layout_width="wrap_content"
                                                android:layout_height="wrap_content"
                                                android:id="@+id/txtSiteSummary"
-                                               android:text="n.siti"
+                                               android:text="@string/number_sites"
                                                android:layout_alignBottom="@+id/relativeLayout"
                                                android:layout_alignParentRight="true"
                                                android:layout_alignParentEnd="true"
@@ -247,7 +247,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Chilometri Percorsi"
+                   android:text="@string/walked_km"
 
 
                    android:textSize="17dp"
@@ -260,7 +260,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:id="@+id/txtKmSummary"
-                   android:text="km"
+                   android:text="@string/km"
                    android:layout_alignBottom="@+id/relativeLayout3"
                    android:layout_alignParentRight="true"
                    android:layout_alignParentEnd="true"
@@ -311,7 +311,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/txtTitleFirstElement"
-                    android:text="Partenza"/>
+                    android:text="@string/start2"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -325,7 +325,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Orario di Partenza"
+                    android:text="@string/time_to_start"
                     android:id="@+id/txtStartingTimeTimeLine"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"

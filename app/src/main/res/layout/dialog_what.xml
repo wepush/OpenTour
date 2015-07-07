@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cosa"
+            android:text="@string/what"
             android:textColor="@color/white"
             android:gravity="center_vertical|center_horizontal"
             android:layout_centerVertical="true"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/whatAll"
             style="@style/IndigoCheckBox"
-            android:text="Chiese"/>
+            android:text="@string/church"/>
 
         <CheckBox
             android:id="@+id/whatMuseum"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/whatChurch"
             style="@style/IndigoCheckBox"
-            android:text="Musei "/>
+            android:text="@string/museums"/>
 
         <CheckBox
             android:id="@+id/whatVilla"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/whatMuseum"
             style="@style/IndigoCheckBox"
-            android:text="Ville e Giardini"/>
+            android:text="@string/villasgardens"/>
 
         <CheckBox
             android:id="@+id/whatBuildings"
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/whatVilla"
             style="@style/IndigoCheckBox"
-            android:text="Palazzi e Castelli"/>
+            android:text="@string/palace_castle"/>
 
         <CheckBox
             android:id="@+id/whatSquare"
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/whatBuildings"
             style="@style/IndigoCheckBox"
-            android:text="Piazze e Strade"/>
+            android:text="@string/square_street"/>
 
         <CheckBox
             android:id="@+id/whatStatue"
@@ -103,14 +103,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/whatSquare"
             style="@style/IndigoCheckBox"
-            android:text="Statue e Fontane"/>
+            android:text="@string/statue_funtains"/>
 
         <CheckBox
             android:id="@+id/whatArc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/IndigoCheckBox"
-            android:text="Archi, Porte e Mura"
+            android:text="@string/arc"
             android:layout_marginRight="25dp"
             android:layout_marginEnd="25dp"
             android:layout_alignParentTop="true"
@@ -122,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/IndigoCheckBox"
-            android:text="Teatri"
+            android:text="@string/theater"
             android:layout_below="@+id/whatArc"
             android:layout_alignLeft="@+id/whatArc"
             android:layout_alignStart="@+id/whatArc"
@@ -145,7 +145,7 @@
             android:id="@+id/whatBridges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ponti"
+            android:text="@string/bridges"
             android:layout_below="@+id/whatTheater"
             android:layout_alignLeft="@+id/whatArc"
             android:layout_alignStart="@+id/whatArc" />
@@ -155,7 +155,7 @@
             android:id="@+id/whatCemetery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cimiteri"
+            android:text="@string/cemetery"
             android:layout_above="@+id/whatSquare"
             android:layout_alignLeft="@+id/whatMarket"
             android:layout_alignStart="@+id/whatMarket" />
@@ -165,7 +165,7 @@
             android:id="@+id/whatMarket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fiere e Mercati"
+            android:text="@string/market"
             android:layout_below="@+id/whatCemetery"
             android:layout_alignLeft="@+id/whatArc"
             android:layout_alignStart="@+id/whatArc" />
@@ -175,7 +175,7 @@
             android:id="@+id/whatOthers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Altri Monumenti e Luoghi di Interesse"
+            android:text="@string/other_monuments"
             android:layout_below="@+id/whatStatue"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -185,7 +185,7 @@
             android:id="@+id/whatMonuments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Monumenti"
+            android:text="@string/monuments"
             android:layout_above="@+id/whatCemetery"
             android:layout_alignLeft="@+id/whatCemetery"
             android:layout_alignStart="@+id/whatCemetery" />
@@ -195,7 +195,7 @@
             android:id="@+id/whatStructures"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edifici"
+            android:text="@string/structures"
             android:layout_above="@+id/whatOthers"
             android:layout_alignLeft="@+id/whatMarket"
             android:layout_alignStart="@+id/whatMarket" />

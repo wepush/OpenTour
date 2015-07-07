@@ -393,12 +393,25 @@ public class IntroPagerFragment extends Fragment {
 //            });
 
 
-            tb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (!isChecked) {
+//            tb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                    if (!isChecked) {
+//                        tb.setChecked(false);
+//                    } else {
+//                        tb.setChecked(true);
+//                    }
+//                }
+//            });
+
+            tb.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    if(!(tb.isChecked())){
                         tb.setChecked(false);
+                        setAllFalse();
                     } else {
                         tb.setChecked(true);
+                        setAllTrue();
                     }
                 }
             });

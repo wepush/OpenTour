@@ -16,13 +16,13 @@
     <Button android:layout_width="match_parent" android:layout_height="wrap_content"
             android:id="@+id/btnNext"
             android:layout_alignParentBottom="true"
-            android:text="Next"
+            android:text="@string/next"
             android:onClick="onNextTapped"/>
     <!--
     aggiunto pulsante per test su intro-->
 
     <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="Intro"
+            android:text="@string/intro"
             android:onClick="onIntro"
         android:layout_above="@+id/btnNext"
         android:layout_alignParentLeft="true"
@@ -30,7 +30,7 @@
         android:id="@+id/button" />
 
     <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:text="SettingTour"
+        android:text="@string/SettingTour"
         android:onClick="onSettingTour"
         android:layout_above="@+id/button"
         android:layout_alignParentLeft="true"

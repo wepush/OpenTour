@@ -97,7 +97,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Open Tour"
+                android:text="@string/name"
                 android:id="@+id/txtTitleToolbar"
                 android:layout_marginLeft="30dp"
                 android:textSize="30sp"
@@ -173,7 +173,7 @@
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Parti!"
+            android:text="@string/start"
             android:background="@null"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"

@@ -74,7 +74,7 @@
                                            android:id="@+id/txtQuando"
                                            android:layout_width="wrap_content"
                                            android:layout_height="wrap_content"
-                                           android:text="Quando"
+                                           android:text="@string/when"
                                            android:textColor="@color/white"
                                            android:textStyle="bold"
 
@@ -96,7 +96,7 @@
                                        <TextView
                                            android:layout_width="wrap_content"
                                            android:layout_height="match_parent"
-                                           android:text="Orario"
+                                           android:text="@string/timeclock"
                                            android:baselineAligned="false"
                                            android:textColor="@color/white"
                                            android:textStyle="bold"
@@ -155,7 +155,7 @@
                        android:id="@+id/txtDove"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="Da Dove"
+                       android:text="@string/from_where"
                        android:textColor="@color/white"
                        android:textStyle="bold" />
                      <TextView
@@ -173,7 +173,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Orario"
+                   android:text="@string/timeclock"
                    android:visibility="invisible"
 
                    android:textColor="@color/white"
@@ -230,7 +230,7 @@
                        android:id="@+id/txtCosa"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="Cosa"
+                       android:text="@string/what"
                        android:textColor="@color/white"
                        android:textStyle="bold" />
                    <TextView
@@ -247,7 +247,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Orario"
+                   android:text="@string/timeclock"
                    android:visibility="invisible"
                    android:baselineAligned="false"
                    android:textColor="@color/white"
@@ -304,7 +304,7 @@
                        android:id="@+id/txtCome"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="Come"
+                       android:text="@string/how"
                        android:textColor="@color/white"
                        android:textStyle="bold" />
                    <TextView
@@ -321,7 +321,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Orario"
+                   android:text="@string/timeclock"
                    android:visibility="invisible"
                    android:baselineAligned="false"
                    android:textColor="@color/white"
