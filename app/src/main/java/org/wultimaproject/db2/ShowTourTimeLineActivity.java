@@ -139,6 +139,7 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
                     Intent intentToShowSite=new Intent(getBaseContext(),ShowDetailsActivity.class);
                     intentToShowSite.putExtra("siteId",siteToStamp.get(position).id);
+//                    intentToShowSite.putExtra("time",siteToStamp.get(position).showingTime);
                     startActivity(intentToShowSite);
 
 
@@ -149,7 +150,7 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
 
 
-        //preparazione dell'array di id da passare a DiscoveryActivity per la visualizzazione/interazione
+        //preparazione dell'array di id da passare a LiveMapActivity per la visualizzazione/interazione
 
         idSitesToShow=new ArrayList<>();
         for (Site site: siteToStamp){

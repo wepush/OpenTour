@@ -93,8 +93,6 @@ public class CityChooserActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
 
 
-
-
                 switch (position) {
                     case FIRST_PAGE:
                         return CityFragment.newInstance("Milano");

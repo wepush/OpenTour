@@ -43,20 +43,74 @@
         />
 
 
-    <RelativeLayout
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_weight="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="2">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewLivePager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"/>
+
+                    <!--<RelativeLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1">-->
+
+                        <!--<ImageView-->
+
+                            <!--android:id="@+id/pinMapHolder"-->
+                            <!--android:layout_width="50dp"-->
+                            <!--android:layout_height="50dp"-->
+                            <!--android:src="@drawable/pin_acqua"-->
+
+                            <!--android:layout_marginLeft="20dp"-->
+                            <!--android:layout_marginStart="20dp"-->
+                            <!--android:layout_marginTop="10dp"-->
+                             <!--/>-->
+
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="LiveTitleSite"-->
+                            <!--android:id="@+id/liveTitleSite"-->
+                            <!--android:layout_alignTop="@+id/pinMapHolder"-->
+                            <!--android:layout_toRightOf="@+id/pinMapHolder"-->
+                            <!--android:layout_toEndOf="@+id/pinMapHolder" />-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="LiveAddressSite"-->
+                            <!--android:id="@+id/liveAddressSite"-->
+                            <!--android:layout_below="@+id/liveTitleSite"-->
+                            <!--android:layout_alignLeft="@+id/liveTitleSite"-->
+                            <!--android:layout_alignStart="@+id/liveTitleSite" />-->
+
+
+
+
+                    <!--</RelativeLayout>-->
+
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewDiscovery"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
 
 
-    </RelativeLayout>
+        </LinearLayout>
+
+
+
 
 
 
