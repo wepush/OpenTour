@@ -1,11 +1,13 @@
 package org.wultimaproject.db2.utils;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.wultimaproject.db2.R;
+import org.wultimaproject.db2.structures.Site;
 
 import java.util.ArrayList;
 
@@ -14,17 +16,36 @@ import java.util.ArrayList;
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<String> myList;
 
+    private ArrayList<String> idLive;
+    private ArrayList<String> timeLive;
+    private ArrayList<String> distanceLive;
+//    private ArrayList<Double> distanceLive;
 
-    public RecyclerAdapter(ArrayList<String> oldArrayList){
-       myList=new ArrayList<>();
-        myList=oldArrayList;
-
-
+    public RecyclerAdapter(ArrayList<String> oldIdArrayList,ArrayList<String>oldTimeArrayList,ArrayList<String> oldDistanceArrayList){
+       idLive=new ArrayList<>();
+        timeLive=new ArrayList<>();
+        distanceLive=new ArrayList<>();
+        idLive=oldIdArrayList;
+        timeLive=oldTimeArrayList;
+        distanceLive=oldDistanceArrayList;
 
     }
 
+//    public RecyclerAdapter(ArrayList<Site> sitesFromShowTour){
+//
+//        timeLive=new ArrayList<>();
+//        ArrayList<Site> sitesForViewHolder=new ArrayList<>();
+//        sitesForViewHolder=sitesFromShowTour;
+////        for (int i=0; i<sitesForViewHolder.size(); i++){
+////            Log.d("miotag","siti in arrivo: "+sitesForViewHolder.get(i).name+" ,con posizione: "+i);
+////        }
+//        for (Site s: sitesForViewHolder){
+//
+//            timeLive.add(s.name);
+//
+//        }
+//    }
 
 
 
@@ -41,17 +62,32 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         //cast between abstract RecyclerView.ViewHolder and ViewHolder
         RecyclerViewHolder recHolder=(RecyclerViewHolder) holder;
         //taking array strings identified by "position" and passing them to ViewHolder
-        String tempString=myList.get(position);
-        recHolder.setTextInViewHolder(tempString);
+//        String tempString=myList.get(position);
+        String tempIdString=idLive.get(position);
+        //0807
+        String tempTimeString=timeLive.get(position);
+
+        String tempDistanceString=distanceLive.get(position);
+        Log.d("miotag", " la stringa di id di onBind è : " + tempIdString);
+        Log.d("miotag", " la stringa di time di onBind è : " + tempTimeString);
+        Log.d("miotag", " la stringa di distance di onBind è : " + tempDistanceString);
+
+        recHolder.setTextInViewHolder(tempIdString,tempTimeString,tempDistanceString);
 
     }
 
     @Override
     public int getItemCount() {
-        if (myList.size()==0){
+//        if (myList.size()==0){
+//            return 0;
+//        } else {
+//            return myList.size();
+//        }
+
+        if (idLive.size()==0){
             return 0;
         } else {
-            return myList.size();
+            return idLive.size();
         }
     }
 }

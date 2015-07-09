@@ -41,6 +41,7 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
     private ListViewTimeLineFragment listViewTimeLineFragment;
     public ArrayList<Site> siteToStamp;
     private ArrayList<String> idSitesToShow;
+    private ArrayList<String> showTimeSitesToShow;
     private TextView txtFirstAddress,txtFirstSiteTime;
 //    private Type type;
 
@@ -78,7 +79,9 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 //                i.putExtra("id",idToSend);
 
                 Intent i=new Intent(getBaseContext(),LiveMapActivity.class);
+
                 i.putStringArrayListExtra("id",idSitesToShow);
+                i.putStringArrayListExtra("showingTime",showTimeSitesToShow);
                 Log.d("miotag","intent"+i.getStringArrayListExtra("id"));
                 startActivity(i);
             }
@@ -139,6 +142,7 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
                     Intent intentToShowSite=new Intent(getBaseContext(),ShowDetailsActivity.class);
                     intentToShowSite.putExtra("siteId",siteToStamp.get(position).id);
+
 //                    intentToShowSite.putExtra("time",siteToStamp.get(position).showingTime);
                     startActivity(intentToShowSite);
 
@@ -150,11 +154,16 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
 
 
-        //preparazione dell'array di id da passare a LiveMapActivity per la visualizzazione/interazione
+        //preparazione dell'array di id e showingTime da passare a LiveMapActivity per la visualizzazione/interazione
 
         idSitesToShow=new ArrayList<>();
         for (Site site: siteToStamp){
             idSitesToShow.add(site.id);
+        }
+
+        showTimeSitesToShow=new ArrayList<>();
+        for (Site site: siteToStamp){
+            showTimeSitesToShow.add(site.showingTime);
         }
 
 

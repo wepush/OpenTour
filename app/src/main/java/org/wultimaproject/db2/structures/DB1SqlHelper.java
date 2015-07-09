@@ -204,7 +204,6 @@ public class DB1SqlHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 site.name = cursor.getString(COLUMN_NAME);
                 site.description = cursor.getString(COLUMN_DESCRIPTION);
-
                 site.typeOfSite = cursor.getString(COLUMN_TYPE_OF_SITE);
                 site.tips = cursor.getString(COLUMN_TIPS);
                 site.address = cursor.getString(COLUMN_ADDRESS);
@@ -214,6 +213,8 @@ public class DB1SqlHelper extends SQLiteOpenHelper {
                 site.tickets = cursor.getString(COLUMN_TICKETS);
                 site.contacts = cursor.getString(COLUMN_CONTACTS);
                 site.openings=cursor.getString(COLUMN_OPENINGS);
+                site.latitude=cursor.getDouble(COLUMN_LATITUDE);
+                site.longitude=cursor.getDouble(COLUMN_LONGITUDE);
             }
         } catch (Exception e){
             e.printStackTrace();

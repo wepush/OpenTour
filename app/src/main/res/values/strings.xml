@@ -48,6 +48,7 @@
     <string name="start2">Partenza</string>
     <string name="time_to_start">Orario di partenza</string>
     <string name="detail_sheet">Dettaglio Scheda</string>
+    <string name="end_of_tour">Fine del Tour</string>
 
     <string name="church">Chiese</string>
     <string name="museums">Musei</string>

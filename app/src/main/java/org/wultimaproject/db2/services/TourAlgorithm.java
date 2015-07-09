@@ -63,10 +63,10 @@ public class TourAlgorithm {
 
        if( TextUtils.equals(Repository.retrieve(context,Constants.HOW_SAVE,String.class),"walk"))
         {
-            Log.d("miotag","HOW TO MOVE: walk");
+//            Log.d("miotag","HOW TO MOVE: walk");
             howToMove=3;
         } else{
-           Log.d("miotag","HOW TO MOVE: bike");
+//           Log.d("miotag","HOW TO MOVE: bike");
            howToMove=6;
        }
 
@@ -137,12 +137,12 @@ public class TourAlgorithm {
                 timeLeft = Float.valueOf(Repository.retrieve(context, Constants.TIME_TO_SPEND, String.class));
                 siteToStart = new Site();
 
-                Log.d("miotag2", "startingSite=" + startingSite.name);
-                Log.d("miotag2", "startingSite.visitTime=" + startingSite.visitTime);
+//                Log.d("miotag2", "startingSite=" + startingSite.name);
+//                Log.d("miotag2", "startingSite.visitTime=" + startingSite.visitTime);
                 siteToStart = findNearestFromDb(startingSite);
                 siteToStart.visitTime = 0.0f;
-                Log.d("miotag2", "siteToStart.name=" + siteToStart.name);
-                Log.d("miotag2", "siteToStart.visitTime=" + siteToStart.visitTime);
+//                Log.d("miotag2", "siteToStart.name=" + siteToStart.name);
+//                Log.d("miotag2", "siteToStart.visitTime=" + siteToStart.visitTime);
 
 
         }
@@ -277,12 +277,12 @@ public class TourAlgorithm {
 
                chosenRandomPath.add(startSite);
                //following instructions tracking only the movement between actual position and first site found in db
-               Log.d("miotag", "TimeLeft before being modified(first site outside while): " + timeLeft);
-               Log.d("miotag", "startSite.visitTime after the sum between visit time and move time " + startSite.visitTime);
+//               Log.d("miotag", "TimeLeft before being modified(first site outside while): " + timeLeft);
+//               Log.d("miotag", "startSite.visitTime after the sum between visit time and move time " + startSite.visitTime);
 
                timeLeft = timeLeft - startSite.visitTime;
 
-               Log.d("miotag", "TimeLeft after substract the first site outside while " + timeLeft);
+//               Log.d("miotag", "TimeLeft after substract the first site outside while " + timeLeft);
 
                //DA QUI MODIFICHE DEL 22 GIUGNODA RIVEDERE
                //TODO: LE DUE VARIABILI QUI CALCOLATE SONO
@@ -302,12 +302,12 @@ public class TourAlgorithm {
 //            timeToStart.add(Calendar.HOUR_OF_DAY,futureTimeSite.getDate());
 //            timeToStart.add(Calendar.MINUTE,futureTimeSite.getMinutes());
                //CAMBIAMENTO DI IDEA: IL TEMPO GLOBALE (QUELLO DI OROLOGIO) VIENE PRESO DA site.showingTime
-               Log.d("miotag", "startSite.showingTime (before While): " + startSite.showingTime);
+//               Log.d("miotag", "startSite.showingTime (before While): " + startSite.showingTime);
                timeToStart.set(Calendar.HOUR_OF_DAY, Integer.valueOf(startSite.showingTime.substring(0, 2)));
                timeToStart.set(Calendar.MINUTE, Integer.valueOf(startSite.showingTime.substring(3)));
-               Log.d("miotag", "startSite.showingTime BEFORE del while: " + startSite.showingTime.substring(0, 2));
-               Log.d("miotag", "startSite.showingTime BEFORE del while: " + startSite.showingTime.substring(3));
-               Log.d("miotag", "TimeToStart modified after the first site before while is being processed: " + timeToStart.get(Calendar.HOUR_OF_DAY) + ":" + timeToStart.get(Calendar.MINUTE));
+//               Log.d("miotag", "startSite.showingTime BEFORE del while: " + startSite.showingTime.substring(0, 2));
+//               Log.d("miotag", "startSite.showingTime BEFORE del while: " + startSite.showingTime.substring(3));
+//               Log.d("miotag", "TimeToStart modified after the first site before while is being processed: " + timeToStart.get(Calendar.HOUR_OF_DAY) + ":" + timeToStart.get(Calendar.MINUTE));
 
                //FIN QUI MODIFICHE DEL 22 GIUGNO
 //            timeToStart.add(Calendar.MINUTE,((int)startSite.visitTime));
@@ -370,7 +370,7 @@ public class TourAlgorithm {
            }//fine while
        } catch(NullPointerException e){
            e.printStackTrace();
-           Log.d("miotag",e.toString());
+//           Log.d("miotag",e.toString());
            startSite.name="dummy";
            ArrayList<Site> dummyArrayToReturn=new ArrayList<Site>();
            dummyArrayToReturn.add(startSite);
@@ -602,7 +602,7 @@ public class TourAlgorithm {
                 return true;
             }
             if(TextUtils.equals(site.typeOfSite,s)){
-                Log.d("miotag","TOS: "+site.typeOfSite+"->"+s);
+//                Log.d("miotag","TOS: "+site.typeOfSite+"->"+s);
                 return true;
             }
         }
