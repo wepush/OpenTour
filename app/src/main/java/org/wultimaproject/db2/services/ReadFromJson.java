@@ -37,13 +37,17 @@ public class ReadFromJson extends IntentService {
 
 
 
-            if(TextUtils.equals(Repository.retrieve(this,Constants.KEY_CURRENT_CITY,String.class),"milano")) {
-                Log.d("miotag","Loading Milan");
-                stringFromJson = jsonToStringFromAssetFolder("milandb", getApplication());
-            } else {
-                Log.d("miotag","Loading Palermo");
-                stringFromJson=jsonToStringFromAssetFolder("palermodb",getApplication());
-            }
+//            if(TextUtils.equals(Repository.retrieve(this,Constants.KEY_CURRENT_CITY,String.class),"milano")) {
+//                Log.d("miotag","Loading Milan");
+//                stringFromJson = jsonToStringFromAssetFolder("milandb", getApplication());
+//            } else {
+//                Log.d("miotag","Loading Palermo");
+//                stringFromJson=jsonToStringFromAssetFolder("palermodb",getApplication());
+//            }
+
+//10 Luglio: since Milan is the only city available, if/else is useless
+
+            stringFromJson=jsonToStringFromAssetFolder("milandb",getApplication());
 
             parseResult(new JSONObject(stringFromJson));
 

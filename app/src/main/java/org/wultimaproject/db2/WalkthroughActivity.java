@@ -142,20 +142,28 @@ public class WalkthroughActivity extends ActionBarActivity {
                 }
 
                 if (mLastPosition == FIFTH_PAGE) {
+//
+//                    if(
+//                            !(TextUtils.equals(Repository.retrieve(getBaseContext(), Constants.KEY_CURRENT_CITY, String.class), "milano"))&&
+//                                    !(TextUtils.equals(Repository.retrieve(getBaseContext(), Constants.KEY_CURRENT_CITY, String.class),"palermo") )
+//                            )
+//                    {
+//                        startActivity(new Intent(getBaseContext(),CityChooserActivity.class));
+//                        finish();
+//                    }else {
+//                        startService(new Intent(getBaseContext(),ReadFromJson.class));
+//                        Intent intent = new Intent(getBaseContext(), SettingTourActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
 
-                    if(
-                            !(TextUtils.equals(Repository.retrieve(getBaseContext(), Constants.KEY_CURRENT_CITY, String.class), "milano"))&&
-                                    !(TextUtils.equals(Repository.retrieve(getBaseContext(), Constants.KEY_CURRENT_CITY, String.class),"palermo") )
-                            )
-                    {
-                        startActivity(new Intent(getBaseContext(),CityChooserActivity.class));
-                        finish();
-                    }else {
-                        startService(new Intent(getBaseContext(),ReadFromJson.class));
-                        Intent intent = new Intent(getBaseContext(), SettingTourActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+    // 10 Luglio 2015
+// Since Milan is the only city, at the end of the walkthrough the only thing left to do is launch SplashScreenActivity (that in turns will launch SettingActivity AND ReadJson
+                    startService(new Intent(getBaseContext(), ReadFromJson.class));
+                    startActivity(new Intent(getBaseContext(), SplashActivityTimeLine.class));
+                    finish();
+
+
                 }
 
 
@@ -238,19 +246,28 @@ public class WalkthroughActivity extends ActionBarActivity {
 
     public void onSettingActivity (View v){
 
-        if(
-                !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY,String.class), "milano"))&&
-                        !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class),"palermo") )
-                )
-        {
-            startActivity(new Intent(this,CityChooserActivity.class));
+//        if(
+//                !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY,String.class), "milano"))&&
+//                        !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class),"palermo") )
+//                )
+//        {
+//            startActivity(new Intent(this,CityChooserActivity.class));
+//            finish();
+//        }else {
+//            startService(new Intent(getBaseContext(),ReadFromJson.class));
+//            Intent intent = new Intent(this, SettingTourActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+
+
+// 10 Luglio 2015:
+//since Milan is the oncly city availabele, etc
+
+        startService(new Intent(getBaseContext(),ReadFromJson.class));
+            Intent intent = new Intent(this, SplashActivityTimeLine.class);
+        startActivity(intent);
             finish();
-        }else {
-            startService(new Intent(getBaseContext(),ReadFromJson.class));
-            Intent intent = new Intent(this, SettingTourActivity.class);
-            startActivity(intent);
-            finish();
-        }
     }
 
 

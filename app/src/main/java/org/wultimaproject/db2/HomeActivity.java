@@ -18,12 +18,49 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//       destroyTourPreferences(this);
+//
+//
+//        if( !(TextUtils.equals(Repository.retrieve(this, Constants.WALKTHROUGH_SEEN,String.class),"yes"))
+//                )
+//        {
+//            Log.d("miotag","Launch Walkthrough");
+//            startActivity(new Intent(this, WalkthroughActivity.class));
+//            finish();
+//        }else if(
+//                !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY,  String.class),"milano"))&&
+//                !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class),"palermo") )
+//            )
+//        {
+//            Log.d("miotag","CityChooserActivity");
+//            startActivity(new Intent(this,CityChooserActivity.class));
+//            finish();
+//        } else {
+//
+//            startActivity(new Intent(this,SettingTourActivity.class));
+//            finish();
+//        }
+//
+//
+//
+//    }//fine onCreate
+
+
+    //10 luglio 2015
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       destroyTourPreferences(this);
+        destroyTourPreferences(this);
 
+//Since just Milan is available, the only choise to do at the start is if this is the first launch or not.
+//if this is first launch after installation, then Walkthrough is launched alongside ReadFromJson
+//else launch Setting activity since local db is already loaded
 
         if( !(TextUtils.equals(Repository.retrieve(this, Constants.WALKTHROUGH_SEEN,String.class),"yes"))
                 )
@@ -31,15 +68,7 @@ public class HomeActivity extends AppCompatActivity {
             Log.d("miotag","Launch Walkthrough");
             startActivity(new Intent(this, WalkthroughActivity.class));
             finish();
-        }else if(
-                !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY,  String.class),"milano"))&&
-                !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class),"palermo") )
-            )
-        {
-            Log.d("miotag","CityChooserActivity");
-            startActivity(new Intent(this,CityChooserActivity.class));
-            finish();
-        } else {
+        }else  {
 
             startActivity(new Intent(this,SettingTourActivity.class));
             finish();
@@ -48,6 +77,15 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }//fine onCreate
+
+
+
+
+
+
+
+
+
 
     public static void destroyTourPreferences(Context ctx)
     {

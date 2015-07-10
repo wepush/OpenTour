@@ -64,6 +64,7 @@
     <string name="other_monuments">Altri monumenti e luoghi di interesse</string>
     <string name="monuments">Monumenti</string>
     <string name="structures">Edifici</string>
+    <string name="turn_on_gps">Attivare GPS ad alta precisione</string>
 
     <string name="when">Quando</string>
     <string name="timeclock">Orario</string>

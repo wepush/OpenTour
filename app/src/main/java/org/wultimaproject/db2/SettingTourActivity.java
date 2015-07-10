@@ -60,23 +60,11 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     private TextView txtWhen;
     public static TextView txtWhatToSee,txtHow;
     private static TextView txtWhere;
-    public Calendar calendar;
-//   private String[] monthNames= {"0","Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"};
-//   private String[] dayNames = {"Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato","Domenica"};
-//    private String[] monthNames={"", getResources().getString(R.string.january),
-//        getResources().getString(R.string.february),
-//            getResources().getString(R.string.march),getResources().getString(R.string.april),
-//            getResources().getString(R.string.may),getResources().getString(R.string.june),
-//            getResources().getString(R.string.july),getResources().getString(R.string.august),
-//            getResources().getString(R.string.september),getResources().getString(R.string.october),
-//            getResources().getString(R.string.november),getResources().getString(R.string.december)};
+
 
 
     private String[] monthNames;
     private String[] dayNames;
-//    private String[] dayNames={getResources().getString(R.string.monday),getResources().getString(R.string.tuesday),
-//            getResources().getString(R.string.wednesday),getResources().getString(R.string.thursday),
-//            getResources().getString(R.string.friday),getResources().getString(R.string.saturday),getResources().getString(R.string.sunday)};
     private CircledPicker circledPicker;
     private TextView tSetTime;
     private  static String mAddressOutput;
@@ -135,7 +123,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                 geo.connectClient();
 
             } else {
-                Toast.makeText(context,"turn on GPS high precision", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,R.string.turn_gps_on, Toast.LENGTH_SHORT).show();
             }
 
             //TODO qui devo lanciare GeoManager, non dopo
@@ -252,7 +240,6 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
             public void onClick(View view){
 
                 FragmentManager fm = getSupportFragmentManager();
-
                 HowFragment hf=new HowFragment();
                 hf.show(fm,"how_fragment");
             }
@@ -263,7 +250,6 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
             public void onClick(View view){
 
                 FragmentManager fm = getSupportFragmentManager();
-
                 IntroPagerFragment.WhatFragment wf=new IntroPagerFragment.WhatFragment();
                 wf.show(fm,"what_fragment");
             }
@@ -272,9 +258,6 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         llClickWhere.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-
-;
-
 
                 GeoManager geo=new GeoManager();
                 geo=(GeoManager) getApplicationContext();
@@ -286,15 +269,27 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 
 
 //Activate tap to launch fragment for new start location
-
-                    FragmentManager fm = getSupportFragmentManager();
-                    MapDialogFragment hf=new MapDialogFragment();
-                    hf.show(fm, "map_fragment");
+//if LATITUDE_STARTING_POING is NOT null, then go ahead and show map
+//else, if LATITUDE_STARTING_POINT is null (no internet connection)
+                        if (!(TextUtils.equals(Repository.retrieve(getBaseContext(),Constants.LATITUDE_STARTING_POINT,String.class),"")))
+                            {
+                                FragmentManager fm = getSupportFragmentManager();
+                                MapDialogFragment hf = new MapDialogFragment();
+                                hf.show(fm, "map_fragment");
+                            } else {
+                                    Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(45.464259));
+                                    Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(9.191402));
+                                        Log.d("miotag","DUMMY LOCATION");
+                                            FragmentManager fm = getSupportFragmentManager();
+                                            MapDialogFragment hf = new MapDialogFragment();
+                                            hf.show(fm, "map_fragment");
+                                }
                 }
-                else {
+                else //if GPS is not ON
+                 {
                     Toast.makeText(context,R.string.turn_gps_on,Toast.LENGTH_SHORT).show();
+
                 }
-//                Toast.makeText(context, "Acquisizione dato",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -305,17 +300,17 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 
     }//fine onCreate
 
-    @Override
-    public void onStop(){
-        super.onStop();
-        Log.d("miotag","OnStop");
-    }
-
-    @Override
-    public void onPause(){
-        super.onPause();
-        Log.d("miotag","OnPause");
-    }
+//    @Override
+//    public void onStop(){
+//        super.onStop();
+//        Log.d("miotag","OnStop");
+//    }
+//
+//    @Override
+//    public void onPause(){
+//        super.onPause();
+//        Log.d("miotag","OnPause");
+//    }
 
     @Override
     public void onResume(){
