@@ -52,10 +52,10 @@ public class TourAlgorithmTask extends AsyncTask<Void, Void, ArrayList<Site>> {
         showTourTimeLineActivityWeakReference=new WeakReference<ShowTourTimeLineActivity>(wShowTourTimeLineActivity);
         algToUse=algortithmToUse;
         newSite= new Site();
-//        newSite.latitude=Double.valueOf(Repository.retrieve(context,Constants.LATITUDE_STARTING_POINT,String.class));
-//        newSite.longitude=Double.valueOf(Repository.retrieve(context,Constants.LONGITUDE_STARTING_POINT,String.class));
-        newSite.latitude=45.482596;
-        newSite.longitude=9.200048;
+        newSite.latitude=Double.valueOf(Repository.retrieve(context,Constants.LATITUDE_STARTING_POINT,String.class));
+        newSite.longitude=Double.valueOf(Repository.retrieve(context,Constants.LONGITUDE_STARTING_POINT,String.class));
+//        newSite.latitude=45.482596;
+//        newSite.longitude=9.200048;
         newSite.name="this actual position";
         Log.d("miotag","Before TourAlgorith, the coordinates are: "+newSite.latitude+", "+newSite.longitude);
 

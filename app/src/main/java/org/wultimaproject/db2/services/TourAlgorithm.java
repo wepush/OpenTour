@@ -123,7 +123,7 @@ public class TourAlgorithm {
 
 //           allPossiblePaths.add(getRandomPaths(siteToStart));
 //TODO riempimento di allpossibilePaths con 10 iterazioni di getRandomPaths
-        for (int i=0; i<512; i++){
+        for (int i=0; i<256; i++){
 
 //            Log.d("miotag","NUOVA ITERAZIONE con siteToStart="+siteToStart.toString());
 

@@ -18,6 +18,7 @@ import org.wultimaproject.db2.utils.Repository;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by antoniocoppola on 29/05/15.
@@ -46,8 +47,17 @@ public class ReadFromJson extends IntentService {
 //            }
 
 //10 Luglio: since Milan is the only city available, if/else is useless
+//but! choose right json based on system language
+            Log.d("miotag","lingua di sistema: "+Locale.getDefault().getDisplayLanguage());
 
-            stringFromJson=jsonToStringFromAssetFolder("milandb",getApplication());
+            if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")){
+                //TODO associare il giusto json in lingua inglese
+                Log.d("miotag","INGLESE selezionato");
+                stringFromJson = jsonToStringFromAssetFolder("milandb", getApplication());
+            } else {
+
+                stringFromJson = jsonToStringFromAssetFolder("milandb", getApplication());
+            }
 
             parseResult(new JSONObject(stringFromJson));
 

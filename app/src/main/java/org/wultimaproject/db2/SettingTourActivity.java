@@ -273,12 +273,15 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 //else, if LATITUDE_STARTING_POINT is null (no internet connection)
                         if (!(TextUtils.equals(Repository.retrieve(getBaseContext(),Constants.LATITUDE_STARTING_POINT,String.class),"")))
                             {
+                                //TODO localizzazione fittizia per debug
+                                Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(45.468309));
+                                Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(9.183810));
                                 FragmentManager fm = getSupportFragmentManager();
                                 MapDialogFragment hf = new MapDialogFragment();
                                 hf.show(fm, "map_fragment");
                             } else {
-                                    Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(45.464259));
-                                    Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(9.191402));
+                                    Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(45.468309));
+                                    Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(9.183810));
                                         Log.d("miotag","DUMMY LOCATION");
                                             FragmentManager fm = getSupportFragmentManager();
                                             MapDialogFragment hf = new MapDialogFragment();
@@ -498,7 +501,8 @@ private boolean isAnySettingVoid(){
         }
 
         if(id == R.id.cityChooser){
-          Toast.makeText(this,R.string.soon,Toast.LENGTH_SHORT).show();
+          startActivity(new Intent(this, CityChooserActivity.class));
+            finish();
 
         }
 

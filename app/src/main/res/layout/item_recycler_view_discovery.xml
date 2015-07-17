@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -15,18 +16,32 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <TextView
             android:id="@+id/itemDistanceToPut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="distanza km"/>
-        <TextView
-            android:id="@+id/itemToPut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pin_acqua"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imgToPut"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            app:border_width="10dp"
+            app:border_color="@color/VilleLight"
+
+           />
+        <!--<TextView-->
+            <!--android:id="@+id/itemToPut"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
+        <!--android:src="@drawable/pin_acqua"-->
         <TextView
             android:id="@+id/itemTimeToPut"
             android:layout_width="wrap_content"

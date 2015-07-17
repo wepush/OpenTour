@@ -5,21 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-//
-//import android.app.Activity;
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.os.Handler;
-//import android.util.Log;
-//
-//import com.google.gson.Gson;
-//
-//import org.wepush.opentour.models.Place;
-//import org.wepush.opentour.models.Site;
-//import org.wepush.opentour.workers.DetourAlgoritmTask;
-//
-//import java.util.ArrayList;
-//
+
 ///**
 // * Created by Antonio on 13/05/2015.
 // */

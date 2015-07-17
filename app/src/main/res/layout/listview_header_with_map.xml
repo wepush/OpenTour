@@ -13,18 +13,31 @@
         android:layout_width="match_parent"
         android:layout_height="300dp">
 
-        <com.mapbox.mapboxsdk.views.MapView
+
+        <org.osmdroid.views.MapView
             android:id="@+id/mapSummaryTL"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            mapbox:uiControls="true"
-            mapbox:centerLat="38.115184"
-            mapbox:centerLng="13.366025"
-            mapbox:zoomLevel="17"
-            mapbox:mapid="antcopp.mk0kb3ji"
-            mapbox:accessToken="sk.eyJ1IjoiYW50Y29wcCIsImEiOiI3Mjg1YmJjMGY3ZGUzYWExMmU2MWZjNGMzZjZlZDBhZiJ9.UPSJ4nwv1ubW9cy3HG6_hA"
+            android:layout_height="400dp"
+            android:clickable="true"
+            android:enabled="true"
+            tilesource="Mapnik"/>
 
-            />
+        <!--17/07: Mapbox commented out to make room for OSMdroid-->
+
+        <!--<com.mapbox.mapboxsdk.views.MapView-->
+            <!--android:id="@+id/mapSummaryTL"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--mapbox:uiControls="true"-->
+            <!--mapbox:centerLat="38.115184"-->
+            <!--mapbox:centerLng="13.366025"-->
+            <!--mapbox:zoomLevel="17"-->
+            <!--mapbox:mapid="antcopp.mk0kb3ji"-->
+            <!--mapbox:accessToken="sk.eyJ1IjoiYW50Y29wcCIsImEiOiI3Mjg1YmJjMGY3ZGUzYWExMmU2MWZjNGMzZjZlZDBhZiJ9.UPSJ4nwv1ubW9cy3HG6_hA"-->
+
+            <!--/>-->
+
+
 
 
     </RelativeLayout>

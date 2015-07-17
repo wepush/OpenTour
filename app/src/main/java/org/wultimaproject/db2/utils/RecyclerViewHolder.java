@@ -1,42 +1,69 @@
 package org.wultimaproject.db2.utils;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.wultimaproject.db2.R;
+import org.wultimaproject.db2.structures.DB1SqlHelper;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by antoniocoppola on 02/07/15.
  */
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-
-    private TextView textToSet;
+    //TODO below txtToSet should be ImageView
+    private CircleImageView imageToSet;
     private TextView timeTextToSet;
     private TextView distanceTextToSet;
+    private static Context context;
 
 
-    public static RecyclerViewHolder newInstance (View view){
-        TextView txtItem=(TextView)view.findViewById(R.id.itemToPut);
+    public static RecyclerViewHolder newInstance (View view, Context ctx){
+        //TODO below txtItem should be ImageView
+        CircleImageView imageItem=(CircleImageView)view.findViewById(R.id.imgToPut);
         TextView txtTime=(TextView)view.findViewById(R.id.itemTimeToPut);
         TextView txtDistance=(TextView)view.findViewById(R.id.itemDistanceToPut);
-        return new RecyclerViewHolder(view,txtItem,txtTime,txtDistance);
+        context=ctx;
+        return new RecyclerViewHolder(view,imageItem,txtTime,txtDistance);
 
 
     }
 
 
-    public RecyclerViewHolder(final View parent, TextView newTextToSet,TextView newTimeToSet,TextView newDistanceToSet) {
+    public RecyclerViewHolder(final View parent, CircleImageView newImageToSet,TextView newTimeToSet,TextView newDistanceToSet) {
         super(parent);
 
-            textToSet=newTextToSet;
+        //TODO below txtItem should be ImageView
+            imageToSet=newImageToSet;
             timeTextToSet=newTimeToSet;
             distanceTextToSet=newDistanceToSet;
 
     }
 
     public void setTextInViewHolder(String id,String time,String distance){
-        textToSet.setText(id);
+        //TODO the above textToSet should take the id and through the DB method getPictureSite, set the correct image
+//        textToSet.setText(id);
+       String imagePath= DB1SqlHelper.getInstance(context).getPictureSite(id);
+        String imagePathToUse="";
+
+        if(TextUtils.equals(imagePath, "placeholder")){
+            imagePathToUse="header_milan";
+        } else {
+            Log.d("miotag", "SiteToShow PICTURE: " + imagePath);
+            imagePathToUse = imagePath.substring(79, imagePath.length()-4);
+            Log.d("miotag","imagePAth: "+imagePathToUse);
+        }
+
+//        Ottengo la giusta immagine del monumento da impostare nella toolbar
+        int drawableResource=context.getResources().getIdentifier(imagePathToUse, "drawable", context.getPackageName());
+
+        imageToSet.setBackground(context.getResources().getDrawable(drawableResource));
         timeTextToSet.setText(time);
         distanceTextToSet.setText(distance);
     }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -220,6 +221,30 @@ public class DB1SqlHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
         return site;
+    }
+
+    public String getPictureSite(String id){
+        Log.d("miotag", "getPictureSite con id: "+id);
+        SQLiteDatabase database = getReadableDatabase();
+        Site site = new Site();
+        Cursor cursor = null;
+
+        try {
+            // columns, where, selectionArgs?, groupby,
+            cursor = database.query(SITES_TABLE, null, "id='" + id + "'", null, null, null, null);
+
+            if (cursor.moveToFirst()) {
+
+                site.pictureUrl = cursor.getString(COLUMN_PICTURE);
+
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        Log.d("miotag","ritordando da DB per picture: "+site.pictureUrl);
+        return site.pictureUrl;
+
+
     }
 
 

@@ -1,9 +1,11 @@
 package org.wultimaproject.db2.fragments_dialogs;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,9 @@ import android.widget.TextView;
 
 import org.wultimaproject.db2.LiveMapActivity;
 import org.wultimaproject.db2.R;
+import org.wultimaproject.db2.ShowDetailsActivity;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -69,6 +74,9 @@ public class LivePagerFragment extends Fragment {
 //
         final TextView bodyView=(TextView) view.findViewById(R.id.liveAddressSite);
         final TextView titleView = (TextView) view.findViewById(R.id.liveTitleSite);
+        final TextView distanceTextViewPager=(TextView) view.findViewById(R.id.distanceViewPager);
+        final CircleImageView circleImage=(CircleImageView) view.findViewById(R.id.viewCirclePicture);
+        final TextView timeTextViewPager=(TextView) view.findViewById(R.id.timeViewPager);
 //
         final Bundle args=getArguments();
 //
@@ -77,11 +85,44 @@ public class LivePagerFragment extends Fragment {
 
         titleView.setText(args.getString("title"));
         bodyView.setText(args.getString("description"));
-        Log.d("miotag","tipo di sito: "+args.getString("type"));
+        Log.d("miotag", "tipo di sito: " + args.getString("type"));
+
+        distanceTextViewPager.setText(args.getString("distanceCovered"));
+        timeTextViewPager.setText(args.getString("time"));
+
+//displaying pictures
+        String imagePathToUse="";
+        String imagePath=args.getString("picture");
+
+        if(TextUtils.equals(imagePath, "placeholder")){
+            imagePathToUse="header_milan";
+        } else {
+            Log.d("miotag", "SiteToShow PICTURE: " + imagePath);
+            imagePathToUse = imagePath.substring(79, imagePath.length()-4);
+            Log.d("miotag","imagePAth: "+imagePathToUse);
+        }
+
+//        Ottengo la giusta immagine del monumento da impostare nella toolbar
+        int drawableResource=getActivity().getResources().getIdentifier(imagePathToUse, "drawable", getActivity().getPackageName());
+
+        circleImage.setBackground(getActivity().getResources().getDrawable(drawableResource));
+        final String actualId=args.getString("siteId");
+        Log.d("miotag","id da passare a ShowDetails: "+actualId);
+
+        circleImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(),ShowDetailsActivity.class);
+                intent.putExtra("siteId", actualId);
+                startActivity(intent);
+
+            }
+        });
 
 
         return view;
-    }
+    } //fine onCreateView
+
 
 
 
