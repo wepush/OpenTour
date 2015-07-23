@@ -53,10 +53,10 @@ public class ReadFromJson extends IntentService {
             if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")){
                 //TODO associare il giusto json in lingua inglese
                 Log.d("miotag","INGLESE selezionato");
-                stringFromJson = jsonToStringFromAssetFolder("milandb", getApplication());
+                stringFromJson = jsonToStringFromAssetFolder("palermodb", getApplication());
             } else {
 
-                stringFromJson = jsonToStringFromAssetFolder("milandb", getApplication());
+                stringFromJson = jsonToStringFromAssetFolder("palermodb", getApplication());
             }
 
             parseResult(new JSONObject(stringFromJson));

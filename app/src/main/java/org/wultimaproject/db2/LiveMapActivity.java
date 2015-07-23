@@ -116,10 +116,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
 
 
-
-
-
-
     //Section RECYCLERVIEW
         //retrieve ids from intent directly
         Intent intent=getIntent();
@@ -140,7 +136,7 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         recyclerView=(RecyclerView) findViewById(R.id.recyclerViewDiscovery);
 
         //link to LayoutManager
-        LinearLayoutManager lManager=new LinearLayoutManager(this);
+       final LinearLayoutManager lManager=new LinearLayoutManager(this);
         lManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(lManager);
         //0807
@@ -150,14 +146,128 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
 //        RecyclerAdapter recAdapter=new RecyclerAdapter(liveSites);
         recyclerView.setAdapter(recAdapter);
+
+//        23 luglio
+//        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//            }
+//        });
+
+
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            private boolean scrollingUp;
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
+                // Or use dx for horizontal scrolling
+                scrollingUp = dx < 0;
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                // Make sure scrolling has stopped before snapping
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    // layoutManager is the recyclerview's layout manager which you need to have reference in advance
+                    int visiblePosition = scrollingUp ? lManager.findFirstVisibleItemPosition()
+                            : lManager.findLastVisibleItemPosition();
+                    int completelyVisiblePosition = scrollingUp ? lManager
+                            .findFirstCompletelyVisibleItemPosition() : lManager
+                            .findLastCompletelyVisibleItemPosition();
+                    // Check if we need to snap
+                    if (visiblePosition != completelyVisiblePosition) {
+                        recyclerView.smoothScrollToPosition(visiblePosition);
+                        return;
+                    }
+
+                }
+            }});
+
+
+
+//    //Section MAPPA commentata 17/07 per OSMdroid
+////        mv=(MapView) findViewById(R.id.mapDiscovery);
+////        LatLng llng=new LatLng(45.470303,9.190306);
+////        mv.setCenter(llng);
+//
+//        map = (org.osmdroid.views.MapView) findViewById(R.id.mapLive);
+//        map.setTileSource(new XYTileSource("MapQuest",
+//                ResourceProxy.string.mapquest_osm, 17, 17, 300, ".jpg", new String[]{
+//                "http://otile1.mqcdn.com/tiles/1.0.0/map/",
+//                "http://otile2.mqcdn.com/tiles/1.0.0/map/",
+//                "http://otile3.mqcdn.com/tiles/1.0.0/map/",
+//                "http://otile4.mqcdn.com/tiles/1.0.0/map/"}));
+//
+//
+//
+//
+//        map.setBuiltInZoomControls(false);
+//        map.setMultiTouchControls(false);
+//        map.setUseDataConnection(false);
+//        mapController = map.getController();
+//        mapController.setZoom(ZOOM);
+////        mapController.setCenter(new GeoPoint(Double.valueOf(Repository.retrieve(this, Constants.LATITUDE_STARTING_POINT,String.class)),Double.valueOf(Repository.retrieve(this,Constants.LONGITUDE_STARTING_POINT,String.class))));
+//
+//     //TODO settare il centro della visuale sul PRIMO elemento della lista in dettagli
+//       mapController.setCenter(new GeoPoint(45.4699939,9.1809641));
+//        Log.d("miotag", "initial location");
+
+
+
+        //ViewPager for LiveSiteDetail
+
+        liveSites=new ArrayList<>();
+        for (String s: idsFromShowTL){
+            liveSites.add(DB1SqlHelper.getInstance(this).getSite(s));
+
+        }
+
+        viewLivePager=(ViewPager) findViewById(R.id.viewLivePager);
+        viewLivePager.setCurrentItem(1);
+        viewLivePagerAdapter=new ViewLivePagerAdapter(getSupportFragmentManager());
+        viewLivePager.setAdapter(viewLivePagerAdapter);
+
+        viewLivePager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                Log.d("miotag","onPageScrolled");
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                viewLivePager.setCurrentItem(position);
+//                Log.d("miotag","onPageSelected");
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                Log.d("miotag","onPageScrollStateChanged");
+                recyclerView.smoothScrollToPosition(viewLivePager.getCurrentItem());
+
+
             }
         });
 
-    //Section MAPPA commentata 17/07 per OSMdroid
+
+        //section Live Geolocalization
+
+        //filling up ArrayList with lat/long for everySite through idsFromShowTL
+
+        for (String s: idsFromShowTL){
+            Site site=DB1SqlHelper.getInstance(this).getSite(s);
+            Location l=new Location("gpsprovider");
+            l.setLatitude(site.latitude);
+            l.setLongitude(site.longitude);
+            arrayOfLocation.add(l);
+        }
+
+
+
+
+        //Section MAPPA commentata 17/07 per OSMdroid
 //        mv=(MapView) findViewById(R.id.mapDiscovery);
 //        LatLng llng=new LatLng(45.470303,9.190306);
 //        mv.setCenter(llng);
@@ -180,55 +290,9 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         mapController.setZoom(ZOOM);
 //        mapController.setCenter(new GeoPoint(Double.valueOf(Repository.retrieve(this, Constants.LATITUDE_STARTING_POINT,String.class)),Double.valueOf(Repository.retrieve(this,Constants.LONGITUDE_STARTING_POINT,String.class))));
 
-     //TODO settare il centro della visuale sul PRIMO elemento della lista in dettagli
-       mapController.setCenter(new GeoPoint(45.4699939,9.1809641));
+        //TODO settare il centro della visuale sul PRIMO elemento della lista in dettagli
+        mapController.setCenter(new GeoPoint(arrayOfLocation.get(0).getLatitude(),arrayOfLocation.get(0).getLongitude()));
         Log.d("miotag", "initial location");
-
-
-
-        //ViewPager for LiveSiteDetail
-
-        liveSites=new ArrayList<>();
-        for (String s: idsFromShowTL){
-            liveSites.add(DB1SqlHelper.getInstance(this).getSite(s));
-
-        }
-
-        viewLivePager=(ViewPager) findViewById(R.id.viewLivePager);
-        viewLivePager.setCurrentItem(1);
-        viewLivePagerAdapter=new ViewLivePagerAdapter(getSupportFragmentManager());
-        viewLivePager.setAdapter(viewLivePagerAdapter);
-
-        viewLivePager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                viewLivePager.setCurrentItem(position);
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-
-        //section Live Geolocalization
-
-        //filling up ArrayList with lat/long for everySite through idsFromShowTL
-
-        for (String s: idsFromShowTL){
-            Site site=DB1SqlHelper.getInstance(this).getSite(s);
-            Location l=new Location("gpsprovider");
-            l.setLatitude(site.latitude);
-            l.setLongitude(site.longitude);
-            arrayOfLocation.add(l);
-        }
 
 
         //GoogleMapClient implementation
@@ -238,8 +302,11 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             .addOnConnectionFailedListener(this)
             .build();
 
+
+
+
 //TODO: DECOMMENTARE a seguire per riattivare il navigatore
-//        liveGoogleApiClient.connect();
+        liveGoogleApiClient.connect();
 //        actualUserLocalization();
 
     }//fine onCreate
@@ -260,14 +327,18 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
             final Bundle bundle = new Bundle();
             final LivePagerFragment fragment = new LivePagerFragment();
-
+//First 3 info of ViewPager
             bundle.putString("title", liveSites.get(position).name);
             bundle.putString("description",liveSites.get(position).address);
             bundle.putString("type",liveSites.get(position).typeOfSite);
-            bundle.putString("distanceCovered",distanceShowTL.get(position));
-            bundle.putString("picture",liveSites.get(position).pictureUrl);
-            bundle.putString("time",showingTimeShowTL.get(position));
-            bundle.putString("siteId",idsFromShowTL.get(position));
+
+//Seconds of ViewPager
+//            bundle.putString("distanceCovered",distanceShowTL.get(position));
+//            bundle.putString("picture",liveSites.get(position).pictureUrl);
+//            bundle.putString("time",showingTimeShowTL.get(position));
+//            bundle.putString("siteId",idsFromShowTL.get(position));
+
+
 
             fragment.setArguments(bundle);
             return fragment;
@@ -454,8 +525,18 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     }
 
     protected void stopLocationUpdates() {
-        LocationServices.FusedLocationApi.removeLocationUpdates(
-                liveGoogleApiClient, this);
+        if (liveGoogleApiClient.isConnected()) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(
+                    liveGoogleApiClient, this);
+            liveGoogleApiClient.disconnect();
+        }
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        stopLocationUpdates();
+        liveGoogleApiClient.disconnect();
     }
 
 
@@ -463,12 +544,13 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     public void onStop(){
         super.onStop();
 //TODO decommentare per rilascio
-//        stopLocationUpdates();
-        if (liveGoogleApiClient != null) {
-            if (liveGoogleApiClient.isConnected()) {
-                liveGoogleApiClient.disconnect();
-            }
-        }
+        stopLocationUpdates();
+//        if (liveGoogleApiClient != null) {
+//            if (liveGoogleApiClient.isConnected()) {
+//                liveGoogleApiClient.disconnect();
+//            }
+//        }
+        liveGoogleApiClient.disconnect();
     }
 
 

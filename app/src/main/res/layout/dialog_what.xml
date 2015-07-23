@@ -47,15 +47,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp">
         <Switch
             android:id="@+id/whatAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tutti/Nessuno"
             style="@style/IndigoCheckBox"
-
-            />
+            android:layout_marginLeft="80dp"
+            android:layout_alignParentTop="true"
+             />
 
         <CheckBox
             android:id="@+id/whatChurch"
@@ -63,7 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/whatAll"
             style="@style/IndigoCheckBox"
-            android:text="@string/church"/>
+            android:text="@string/church"
+            />
 
         <CheckBox
             android:id="@+id/whatMuseum"
@@ -111,11 +114,11 @@
             android:layout_height="wrap_content"
             style="@style/IndigoCheckBox"
             android:text="@string/arc"
-            android:layout_marginRight="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/whatAll"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp" />
 
         <CheckBox
             android:id="@+id/whatTheater"
@@ -186,9 +189,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/monuments"
-            android:layout_above="@+id/whatCemetery"
-            android:layout_alignLeft="@+id/whatCemetery"
-            android:layout_alignStart="@+id/whatCemetery" />
+            android:layout_below="@+id/whatStructures"
+            android:layout_alignLeft="@+id/whatStructures"
+            android:layout_alignStart="@+id/whatStructures" />
 
         <CheckBox
             style="@style/IndigoCheckBox"

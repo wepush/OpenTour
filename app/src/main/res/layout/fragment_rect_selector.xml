@@ -40,8 +40,8 @@
                                                 <RelativeLayout
                                                     android:layout_width="55dp"
                                                     android:layout_height="match_parent"
-                                                    android:layout_marginStart="20dp"
-                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginStart="15dp"
+                                                    android:layout_marginLeft="15dp"
                                                     >
 
                                                        <ImageView
@@ -63,49 +63,97 @@
                                                            android:layout_centerHorizontal="true" />
                                                 </RelativeLayout>
 
-                                       <LinearLayout
+                                       <RelativeLayout
                                            android:layout_width="wrap_content"
                                            android:layout_height="match_parent"
                                            android:layout_weight="2"
-                                           android:orientation="vertical"
-                                           android:id="@+id/linearLayout"
-                                           android:gravity="center">
-                                         <TextView
-                                           android:id="@+id/txtQuando"
-                                           android:layout_width="wrap_content"
-                                           android:layout_height="wrap_content"
-                                           android:text="@string/when"
-                                           android:textColor="@color/white"
-                                           android:textStyle="bold"
+                                           android:id="@+id/RelativeLayoutWhen"
+                                           android:layout_marginLeft="10dp"
 
-                                             />
+                                           >
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:id="@+id/txtQuando"
+                                                android:text="@string/when"
+                                                android:textColor="@color/white"
+                                                android:textStyle="bold"
+                                                android:fontFamily="sans-serif"
+                                                android:layout_marginTop="10dp"
+
+                                                 />
+
+                                           <TextView
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:textColor="@color/white"
+                                               android:text="@string/setting_date"
+                                               android:id="@+id/txtWhen"
+                                               android:fontFamily="sans-serif-light"
+                                               android:layout_below="@+id/txtQuando"
+                                               android:layout_alignLeft="@+id/txtQuando"
+                                               android:layout_alignStart="@+id/txtQuando" />
+
+                                               <TextView
+                                               android:layout_width="100dp"
+                                               android:layout_height="match_parent"
+                                               android:text="@string/timeclock"
+                                               android:baselineAligned="false"
+                                               android:textColor="@color/white"
+                                               android:fontFamily="sans-serif"
+                                               android:id="@+id/txtSetTime"
+                                                   android:paddingLeft="15dp"
+                                                   android:layout_below="@+id/txtQuando"
+                                                   android:layout_alignParentRight="true"
+                                                   android:layout_alignParentEnd="true" />
+
+
+                                       </RelativeLayout>
+
+                                       <!--<LinearLayout-->
+                                           <!--android:layout_width="wrap_content"-->
+                                           <!--android:layout_height="match_parent"-->
+                                           <!--android:layout_weight="2"-->
+                                           <!--android:orientation="vertical"-->
+                                           <!--android:id="@+id/linearLayout"-->
+                                           <!--android:gravity="center_vertical">-->
+                                         <!--<TextView-->
+                                           <!--android:id="@+id/txtQuando"-->
+                                           <!--android:layout_marginLeft="10dp"-->
+                                           <!--android:layout_width="wrap_content"-->
+                                           <!--android:layout_height="wrap_content"-->
+                                           <!--android:text="@string/when"-->
+                                           <!--android:textColor="@color/white"-->
+                                           <!--android:textStyle="bold"-->
+                                             <!--android:fontFamily="sans-serif"-->
+                                             <!--/>-->
 
 
 
-                                       <TextView
-                                           android:layout_width="wrap_content"
-                                           android:layout_height="wrap_content"
+                                       <!--<TextView-->
+                                           <!--android:layout_width="wrap_content"-->
+                                           <!--android:layout_height="wrap_content"-->
 
+                                           <!--android:layout_marginLeft="10dp"-->
+                                           <!--android:textColor="@color/white"-->
+                                           <!--android:fontFamily="sans-serif-light"-->
+                                           <!--android:id="@+id/txtWhen"-->
+                                            <!--/>-->
 
-                                           android:textColor="@color/white"
-                                           android:textStyle="bold"
-                                           android:id="@+id/txtWhen"
-                                            />
-
-                                       </LinearLayout>
-                                       <TextView
-                                           android:layout_width="wrap_content"
-                                           android:layout_height="match_parent"
-                                           android:text="@string/timeclock"
-                                           android:baselineAligned="false"
-                                           android:textColor="@color/white"
-                                           android:textStyle="bold"
-                                            android:layout_weight="1"
-                                           android:id="@+id/txtSetTime"
-                                           android:layout_gravity="center_vertical"
-                                           android:gravity="center_vertical|center_horizontal" />
+                                       <!--</LinearLayout>-->
+                                       <!--<TextView-->
+                                           <!--android:layout_width="wrap_content"-->
+                                           <!--android:layout_height="match_parent"-->
+                                           <!--android:text="@string/timeclock"-->
+                                           <!--android:baselineAligned="false"-->
+                                           <!--android:textColor="@color/white"-->
+                                           <!--android:fontFamily="sans-serif"-->
+                                           <!--android:layout_weight="1"-->
+                                           <!--android:layout_marginTop="15dp"-->
+                                           <!--android:id="@+id/txtSetTime"-->
+                                            <!--/>-->
                                    </LinearLayout>
-                            <!--</LinearLayout>-->
+
 
            <LinearLayout
                android:id="@+id/whereLayout"
@@ -121,8 +169,8 @@
                <RelativeLayout
                    android:layout_width="55dp"
                    android:layout_height="match_parent"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginLeft="20dp"
+                   android:layout_marginStart="15dp"
+                   android:layout_marginLeft="15dp"
                    >
 
                    <ImageView
@@ -150,21 +198,23 @@
                    android:layout_weight="2"
                    android:orientation="vertical"
                    android:id="@+id/linearLayout2"
-                   android:gravity="center">
+                   android:gravity="center_vertical"
+                   android:layout_marginLeft="10dp"
+                   >
                    <TextView
                        android:id="@+id/txtDove"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/from_where"
                        android:textColor="@color/white"
+                       android:fontFamily="sans-serif"
                        android:textStyle="bold" />
                      <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-
-
-                       android:textColor="@color/white"
-                       android:textStyle="bold"
+                        android:text="indirizzo"
+                         android:fontFamily="sans-serif-light"
+                         android:textColor="@color/white"
                        android:id="@+id/txtWhere"
 
                        />
@@ -196,8 +246,8 @@
                <RelativeLayout
                    android:layout_width="55dp"
                    android:layout_height="match_parent"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginLeft="20dp"
+                   android:layout_marginStart="15dp"
+                   android:layout_marginLeft="15dp"
                    >
 
                    <ImageView
@@ -225,21 +275,23 @@
                    android:layout_weight="2"
                    android:orientation="vertical"
                    android:id="@+id/linearLayout3"
-                   android:gravity="center">
+                   android:gravity="center_vertical">
                    <TextView
                        android:id="@+id/txtCosa"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/what"
+                       android:layout_marginLeft="10dp"
                        android:textColor="@color/white"
-                       android:textStyle="bold" />
+                       android:textStyle="bold"
+                       android:fontFamily="sans-serif" />
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
 
-
+                       android:layout_marginLeft="10dp"
                        android:textColor="@color/white"
-                       android:textStyle="bold"
+                       android:fontFamily="sans-serif-light"
                        android:id="@+id/txtWhatToVisit"
                        />
 
@@ -270,8 +322,8 @@
                <RelativeLayout
                    android:layout_width="55dp"
                    android:layout_height="match_parent"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginLeft="20dp"
+                   android:layout_marginStart="15dp"
+                   android:layout_marginLeft="15dp"
                    >
 
                    <ImageView
@@ -299,21 +351,24 @@
                    android:layout_weight="2"
                    android:orientation="vertical"
                    android:id="@+id/linearLayout5"
-                   android:gravity="center">
+                   android:gravity="center_vertical">
                    <TextView
                        android:id="@+id/txtCome"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/how"
+                       android:layout_marginLeft="10dp"
+                       android:fontFamily="sans-serif"
                        android:textColor="@color/white"
-                       android:textStyle="bold" />
+                       android:textStyle="bold"
+                       />
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
 
-
+                       android:layout_marginLeft="10dp"
                        android:textColor="@color/white"
-                       android:textStyle="bold"
+                       android:fontFamily="sans-serif-light"
                        android:id="@+id/txtHow"
                        />
 

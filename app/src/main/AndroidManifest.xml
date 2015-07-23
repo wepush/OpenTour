@@ -109,12 +109,20 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".NoResultActivity"
+            android:label="NoResultActivity"
+            android:screenOrientation="portrait"/>
+
 
 
 
         <service
             android:name="org.wultimaproject.db2.services.LookUpIntentService"
             android:exported="false"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="70bb5f90d93cfb10de8fa22af09c03d1e4ecdfd0" />
     </application>
 
 </manifest>

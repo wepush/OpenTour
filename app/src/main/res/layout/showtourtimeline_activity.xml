@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/llShowTimeLine">
+    android:id="@+id/llShowTimeLine"
+    android:background="@color/blue400">
 
 
     <android.support.v7.widget.Toolbar
@@ -15,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        android:background="@color/cyan300"
+        android:background="@color/blue400"
         android:elevation="4dp"
         android:titleTextAppearance="@color/white"
         >
@@ -31,7 +32,7 @@
             android:text="@string/name"
             android:id="@+id/txtTitleToolbarShowTour"
             android:layout_marginLeft="30dp"
-            android:textSize="30sp"
+            android:textSize="18sp"
             android:textColor="@color/white"/>
     </android.support.v7.widget.Toolbar>
 
@@ -39,13 +40,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#64b5f6"
+        android:id="@+id/linearLayoutList"
 
-        android:layout_margin="5dp">
+       >
+
+        <!--android:layout_margin="5dp"-->
 
         <ProgressBar
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
+            android:layout_marginTop="140dp"
             android:id="@+id/progressBarTourTimeLine"/>
     <ListView
 
@@ -53,16 +59,20 @@
         android:divider="@null"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginBottom="30dp"
 
         />
     </LinearLayout>
 
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/llLastListElement"
+                android:layout_marginTop="15dp"
                >
 
                 <ImageView

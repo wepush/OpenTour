@@ -10,10 +10,12 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import io.fabric.sdk.android.Fabric;
 import org.wultimaproject.db2.SettingTourActivity;
 import org.wultimaproject.db2.services.LookUpIntentService;
 import org.wultimaproject.db2.structures.Constants;
@@ -35,6 +37,7 @@ public class GeoManager extends Application implements GoogleApiClient.Connectio
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
 
     }

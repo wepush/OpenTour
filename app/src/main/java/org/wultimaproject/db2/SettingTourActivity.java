@@ -1,5 +1,7 @@
 package org.wultimaproject.db2;
 
+import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,9 +30,11 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import org.angmarch.circledpicker.CircledPicker;
 
+import org.wultimaproject.db2.fragments_dialogs.GPSDialogFragment;
 import org.wultimaproject.db2.fragments_dialogs.HowFragment;
 import org.wultimaproject.db2.fragments_dialogs.IntroPagerFragment;
 import org.wultimaproject.db2.fragments_dialogs.MapDialogFragment;
+import org.wultimaproject.db2.services.TourAlgorithmTask;
 import org.wultimaproject.db2.structures.Constants;
 import org.wultimaproject.db2.structures.DB1SqlHelper;
 import org.wultimaproject.db2.structures.FloatingActionButton;
@@ -38,9 +42,12 @@ import org.wultimaproject.db2.utils.GeoManager;
 import org.wultimaproject.db2.utils.Repository;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.SimpleTimeZone;
 
 
 /**
@@ -53,6 +60,14 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     public static Context context;
     private View dialogHowView;
     private Type type;
+
+    private final static double DUMMY_STARTING_LOCATION_LATITUDE=38.121243;
+    private final static double DUMMY_STARTING_LOCATION_LONGITUDE=13.357887;
+
+//    45.4655925
+//    9.1838722
+
+//    38.117059 13.363698
 
 
 
@@ -69,10 +84,17 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     private TextView tSetTime;
     private  static String mAddressOutput;
 
+    private AddressResultReceiver receiver;
+
+//    private AddressResultReceiver mReceiver;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        receiver=new AddressResultReceiver(new Handler());
 
         monthNames=new String []{"", getResources().getString(R.string.january),
                 getResources().getString(R.string.february),
@@ -101,14 +123,53 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 
         setSupportActionBar(toolbar);
 
-        ImageView backArrow=(ImageView) findViewById(R.id.imageArrowNavigationSettings);
-        backArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
+//        mReceiver = new AddressResultReceiver(null);
+
+
+//        ImageView backArrow=(ImageView) findViewById(R.id.imageArrowNavigationSettings);
+//        backArrow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+
+
+
+        //initialization of settings with preset data
+
+    //                             DATE / TIME
+//        tSetTime=(TextView)findViewById(R.id.txtSetTime);
+//
+//        Calendar c=Calendar.getInstance();
+//        c.get(Calendar.YEAR);
+//        c.get(Calendar.MONTH);
+//        c.get(Calendar.DAY_OF_MONTH);
+//        Log.d("miotag", "DUMMY calendar: c" + c);
+
+//        settingDate(c,c.get(Calendar.DAY_OF_WEEK),c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_WEEK_IN_MONTH));
+
+////         Log.d("miotag","DATA ATTUALE: "+c+"day of week"+ c.get(Calendar.DAY_OF_WEEK)+",anno: "+c.get(Calendar.YEAR)+", month: "+(c.get(Calendar.MONTH)+1)+"; "+c.get(Calendar.DAY_OF_MONTH));
+//        settingDate(c, c.get(Calendar.DAY_OF_WEEK), c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+////        settingTime(c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE));
+//
+//
+////                          WHAT
+//
+        txtWhatToSee.setText("Tutti i siti");
+        ArrayList<String> whatToSeeItems=new ArrayList<>();
+        whatToSeeItems.add("all");
+        Gson gson = new Gson();
+
+        String json = gson.toJson(whatToSeeItems);
+        Repository.save(this, Constants.WHAT_SAVE, json);
+//
+////                        HOW
+//
+        txtHow.setText("A piedi");
+        Repository.save(this,Constants.HOW_SAVE,"walk");
+//
 
 
 //First if on mAddressOuput is to check if it was created through mapDialog; if not, it is created now through GeoManager
@@ -180,15 +241,28 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                 if (isAnySettingVoid()) {
                     Toast.makeText(context, R.string.complete_all_fields, Toast.LENGTH_SHORT).show();
                 } else {
+//todo checking for actual values from GPS. If not, launch dialog
+
+                    String valuesFromGsp=Repository.retrieve(getBaseContext(),Constants.LATITUDE_STARTING_POINT,String.class);
+                    if (TextUtils.equals(valuesFromGsp,"")){
+
+                        Log.d("miotag", "NO GPS COORDINATES! ABORT!");
 
 
+                        FragmentManager fm = getSupportFragmentManager();
+                        GPSDialogFragment hf = new GPSDialogFragment();
+                        hf.show(fm, "nogps_fragment");
 
-                    startActivity(new Intent(getBaseContext(), ShowTourTimeLineActivity.class));
-               finish();
+                    }
+                    else {
+
+                        startActivity(new Intent(getBaseContext(), ShowTourTimeLineActivity.class));
+                        finish();
+
+                    }
 
               }
-            }})
-            ;
+            }});
 
 
         LinearLayout rlClickWhen = (LinearLayout)findViewById(R.id.whenLayout);
@@ -228,6 +302,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                         now.get(Calendar.DAY_OF_MONTH)
 
                 );
+                Log.d("miotag","valore di Calendar prima del picker. NOW: "+now);
                 dpd.setMinDate(now);//this instruction let calendar to exclude past dates
                 dpd.show(getFragmentManager(), "Datepickerdialog");
 
@@ -274,14 +349,14 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                         if (!(TextUtils.equals(Repository.retrieve(getBaseContext(),Constants.LATITUDE_STARTING_POINT,String.class),"")))
                             {
                                 //TODO localizzazione fittizia per debug
-                                Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(45.468309));
-                                Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(9.183810));
+//                                Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(DUMMY_STARTING_LOCATION_LATITUDE));
+//                                Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(DUMMY_STARTING_LOCATION_LONGITUDE));
                                 FragmentManager fm = getSupportFragmentManager();
                                 MapDialogFragment hf = new MapDialogFragment();
                                 hf.show(fm, "map_fragment");
                             } else {
-                                    Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(45.468309));
-                                    Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(9.183810));
+                                    Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(DUMMY_STARTING_LOCATION_LATITUDE));
+                                    Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(DUMMY_STARTING_LOCATION_LONGITUDE));
                                         Log.d("miotag","DUMMY LOCATION");
                                             FragmentManager fm = getSupportFragmentManager();
                                             MapDialogFragment hf = new MapDialogFragment();
@@ -303,25 +378,15 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 
     }//fine onCreate
 
-//    @Override
-//    public void onStop(){
-//        super.onStop();
-//        Log.d("miotag","OnStop");
-//    }
-//
-//    @Override
-//    public void onPause(){
-//        super.onPause();
-//        Log.d("miotag","OnPause");
-//    }
+
 
     @Override
     public void onResume(){
         super.onResume();
         Log.d("miotag","onResume");
-        GeoManager geo=new GeoManager();
-        geo=(GeoManager) getApplicationContext();
-     Log.d("miotag","applicationContext: OK");
+        GeoManager geo= new GeoManager();
+        geo = (GeoManager) getApplicationContext();
+     Log.d("miotag", "applicationContext: OK");
         geo.createClient();
         if (geo.isGpsOn()) {
 
@@ -334,11 +399,15 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         if (mAddressOutput!= null){
             txtWhere.setText(mAddressOutput);
         }
+
+
+
     }
 
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
+//        settingTime( hourOfDay,minute);
         Calendar calendarTime = Calendar.getInstance(Locale.getDefault());
 
         calendarTime.set(Calendar.HOUR_OF_DAY,hourOfDay);
@@ -362,6 +431,8 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 
         tSetTime.setText(time);
 
+//  21/07      Repository.save(this,Constants.STARTING_TIME_READABLE_FORMAT,time);
+
         Gson gson = new Gson();
         String json = gson.toJson(calendarTime);
         Repository.save(this, Constants.TIME_TO_START, json);
@@ -370,7 +441,10 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayWeekMonth) {
        Calendar calendarToSave = new GregorianCalendar(year, monthOfYear, dayWeekMonth); // Note that Month value is 0-based. e.g., 0 for January.
+//        Log.d("miotag","tornando dal picker: calendarToSave: "+calendarToSave);
         int result = calendarToSave.get(Calendar.DAY_OF_WEEK);
+
+//        settingDate(calendarToSave,result,year,monthOfYear,dayWeekMonth);
         switch (result) {
             case Calendar.MONDAY:
                 txtWhen.setText(getResources().getString(R.string.monday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
@@ -419,28 +493,69 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     }
 
 
-    public static class AddressResultReceiver extends ResultReceiver {
 
-        public AddressResultReceiver(Handler handler) {
-            super(handler);
-        }
+//        private Receiver mReceiver;
+
+//    23 Luglio
+        public static class AddressResultReceiver extends ResultReceiver {
+
+            public AddressResultReceiver(Handler handler) {
+                super(handler);
+            }
             @Override
             protected void onReceiveResult(int resultCode, Bundle resultData) {
 
-            // Display the address string
-            // or an error message sent from the intent service.
-            mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
-            Repository.save(context, Constants.WHERE_SAVE, mAddressOutput);
+                // Display the address string
+                // or an error message sent from the intent service.
+                mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
+                Repository.save(context, Constants.WHERE_SAVE, mAddressOutput);
 
-            // Show a toast message if an address was found.
-            if (resultCode == Constants.SUCCESS_RESULT) {
-                // 09/05
+                // Show a toast message if an address was found.
+                if (resultCode == Constants.SUCCESS_RESULT) {
+                    // 09/05
 
-                 txtWhere.setText(mAddressOutput);
+                    txtWhere.setText(mAddressOutput);
+
+                }
 
             }
-
         }
+
+
+//   public class AddressResultReceiver extends ResultReceiver {
+//        public AddressResultReceiver(Handler handler) {
+//            super(handler);
+//        }
+//
+//
+//        public interface Receiver {
+//            public void onReceiveResult(int resultCode, Bundle resultData);
+//
+//        }
+//
+//        @Override
+//        protected void onReceiveResult(int resultCode, Bundle resultData) {
+//
+//            mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
+//                Repository.save(context, Constants.WHERE_SAVE, mAddressOutput);
+//
+//                // Show a toast message if an address was found.
+//                if (resultCode == Constants.SUCCESS_RESULT) {
+//                    // 09/05
+//
+//                    txtWhere.setText(mAddressOutput);
+//
+//                }
+//        }
+//    }
+
+
+
+
+    @Override
+    public void onStop(){
+        super.onStop();
+
     }
 
 
@@ -508,6 +623,90 @@ private boolean isAnySettingVoid(){
 
         return super.onOptionsItemSelected(item);
     }
+
+
+//    private void settingDate(Calendar calendarToSave,int result,int year, int monthOfYear, int dayWeekMonth){
+//        switch (result) {
+//            case Calendar.MONDAY:
+//                txtWhen.setText(getResources().getString(R.string.monday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+//
+//                break;
+//            case Calendar.TUESDAY:
+//                txtWhen.setText(getResources().getString(R.string.tuesday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+//
+//                break;
+//
+//            case Calendar.WEDNESDAY:
+//                txtWhen.setText(getResources().getString(R.string.wednesday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+//
+//                break;
+//            case Calendar.THURSDAY:
+//                txtWhen.setText(getResources().getString(R.string.thursday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+//
+//                break;
+//
+//            case Calendar.FRIDAY:
+//                txtWhen.setText(getResources().getString(R.string.friday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+//
+//                break;
+//
+//            case Calendar.SATURDAY:
+//                txtWhen.setText(getResources().getString(R.string.saturday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+//
+//                break;
+//
+//            case Calendar.SUNDAY:
+//                txtWhen.setText(getResources().getString(R.string.sunday)+", "+dayWeekMonth+" "+(monthNames[monthOfYear+1])+" "+year);
+//
+//                break;
+//        }
+//
+//        Gson gson = new Gson();
+//        type = new TypeToken<Calendar>() {}.getType();
+//        String json = gson.toJson(calendarToSave);
+//        Log.d("miotag","calendarToSave: "+calendarToSave);
+//        Repository.save(this, Constants.WHEN_SAVE, json);
+//
+//        calendarToSave.clear();
+//
+//    }
+
+
+//    private void settingTime( int hourOfDay, int minute){
+//
+//
+//        Calendar calendarTime = Calendar.getInstance(Locale.getDefault());
+//
+//        calendarTime.set(Calendar.HOUR_OF_DAY,hourOfDay);
+//        calendarTime.set(Calendar.MINUTE,minute);
+//
+//
+//
+//        String mins,hours;
+//        if (minute <10){
+//            mins="0"+minute;
+//        }else {
+//            mins=String.valueOf(minute);
+//        }
+//
+//        if (hourOfDay <10){
+//            hours="0"+hourOfDay;
+//        } else {
+//            hours=String.valueOf(hourOfDay);
+//        }
+//        String time =hours+":"+mins;
+//
+//        tSetTime.setText(time);
+//
+//        Repository.save(this,Constants.STARTING_TIME_READABLE_FORMAT,time);
+//
+//        Gson gson = new Gson();
+//        String json = gson.toJson(calendarTime);
+//        Repository.save(this, Constants.TIME_TO_START, json);
+//
+//    }
+
+
 
 
 

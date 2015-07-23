@@ -52,8 +52,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        >
+        android:padding="10dp">
 
         <CheckBox
             android:id="@+id/howWalk"
@@ -61,15 +60,19 @@
             android:layout_height="wrap_content"
             android:text="A Piedi"
             style="@style/AmberCheckBox"
-            />
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <CheckBox
             android:id="@+id/howBike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/howWalk"
             android:text="In Bici"
-            style="@style/AmberCheckBox"/>
+            style="@style/AmberCheckBox"
+            android:layout_below="@+id/howWalk"
+            android:layout_alignLeft="@+id/howWalk"
+            android:layout_alignStart="@+id/howWalk" />
         <!--<ListView-->
             <!--android:id="@+id/listViewDialog"-->
             <!--android:layout_width="fill_parent"-->

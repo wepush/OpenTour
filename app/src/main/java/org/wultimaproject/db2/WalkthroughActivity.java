@@ -220,7 +220,7 @@ public class WalkthroughActivity extends ActionBarActivity {
 
                 case SECOND_PAGE:
 
-                    return IntroPagerFragment.newInstance(R.drawable.secondowalk,R.string.seconTitleWalk,R.string.secondBodyWalk);
+                    return IntroPagerFragment.newInstance(R.drawable.secondowalk,R.string.secondTitleWalk,R.string.secondBodyWalk);
 
                 case THIRD_PAGE:
 

@@ -54,7 +54,7 @@ public class LookUpIntentService extends IntentService {
 
 
         List<Address> addresses = null;
-
+//TODO crash if no internet connection is available
         try {
             addresses = geocoder.getFromLocation(
                     location.getLatitude(),
@@ -91,18 +91,28 @@ public class LookUpIntentService extends IntentService {
             }
             deliverResultToReceiver(1, errorMessage);
         } else {
-            Address address = addresses.get(0);
+
+            //If address has something in it, is sent to SettingActivity through the receiver.
+            //Since I just need the address without code or anything else, i just take the first element of "address"
+//            20/07
+
+
+//            Address address = addresses.get(0);
             ArrayList<String> addressFragments = new ArrayList<String>();
+//
+//            // Fetch the address lines using getAddressLine,
+//            // join them, and send them to the thread.
+//            for(int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+//                addressFragments.add(address.getAddressLine(i));
+//            }
+//
+//            deliverResultToReceiver(Constants.SUCCESS_RESULT,
+//                    TextUtils.join(System.getProperty("line.separator"),
+//                            addressFragments));
+            Address address = addresses.get(0);
+            addressFragments.add(address.getAddressLine(0));
+            deliverResultToReceiver(Constants.SUCCESS_RESULT, addressFragments.get(0) );
 
-            // Fetch the address lines using getAddressLine,
-            // join them, and send them to the thread.
-            for(int i = 0; i < address.getMaxAddressLineIndex(); i++) {
-                addressFragments.add(address.getAddressLine(i));
-            }
-
-            deliverResultToReceiver(Constants.SUCCESS_RESULT,
-                    TextUtils.join(System.getProperty("line.separator"),
-                            addressFragments));
         }
     }
 private void deliverResultToReceiver(int resultCode, String message) {

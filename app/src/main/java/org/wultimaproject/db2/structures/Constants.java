@@ -25,6 +25,12 @@ public class Constants {
     public static final String TIME_TO_SPEND_STATIC=PACKAGE_NAME+"_TIME_TO_SPEND";
     public static final String TIME_TO_START_STATIC=PACKAGE_NAME+"_PACKAGE_NAME";
     public static final String  ACTUAL_MAP_PIN_POSITION=PACKAGE_NAME+"_ACTUAL_MAP_PIN_POSITION";
+    public static final String STARTING_TIME_READABLE_FORMAT=PACKAGE_NAME+"_TIME_READABLE";
+
+    //intent actions
+    public final static String INSUFFICIENT_SETTINS=PACKAGE_NAME+"_INSUFFICIENT_SETTINGS";
+    public final static String INSUFFICIENT_GPS=PACKAGE_NAME+"_INSUFFICIENT_GPS";
+
 
 
 

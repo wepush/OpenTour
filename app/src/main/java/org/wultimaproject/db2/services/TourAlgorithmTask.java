@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
@@ -52,10 +53,14 @@ public class TourAlgorithmTask extends AsyncTask<Void, Void, ArrayList<Site>> {
         showTourTimeLineActivityWeakReference=new WeakReference<ShowTourTimeLineActivity>(wShowTourTimeLineActivity);
         algToUse=algortithmToUse;
         newSite= new Site();
+
+        //todo if the GPS failed, Double.valueOf tries to convert "" in Double, which cause crash.
+
+        //checking if the result from GPS is valid or not
+
         newSite.latitude=Double.valueOf(Repository.retrieve(context,Constants.LATITUDE_STARTING_POINT,String.class));
         newSite.longitude=Double.valueOf(Repository.retrieve(context,Constants.LONGITUDE_STARTING_POINT,String.class));
-//        newSite.latitude=45.482596;
-//        newSite.longitude=9.200048;
+
         newSite.name="this actual position";
         Log.d("miotag","Before TourAlgorith, the coordinates are: "+newSite.latitude+", "+newSite.longitude);
 
@@ -76,8 +81,17 @@ public class TourAlgorithmTask extends AsyncTask<Void, Void, ArrayList<Site>> {
 
             if (TextUtils.equals(siteReturning.get(0).name,"dummy")){
                 Log.d("miotag","DUMMY! relaunch screen mode: ON!");
+                 if (showTourTimeLineActivityInstance != null){
+                     showTourTimeLineActivityInstance.showDummyActivity();
+                 }
+
             } else if (showTourTimeLineActivityInstance != null){
             showTourTimeLineActivityInstance.siteToStamp=siteReturning;
+
+//            showTourTimeLineActivityInstance.ll1=  (LinearLayout) showTourTimeLineActivityInstance.findViewById(R.id.llShowTimeLine);
+//            showTourTimeLineActivityInstance.ll1.setBackgroundColor(context.getResources().getColor(R.color.white));
+
+
             showTourTimeLineActivityInstance.progressBar=(ProgressBar)  showTourTimeLineActivityInstance.findViewById(R.id.progressBarTourTimeLine);
             showTourTimeLineActivityInstance.progressBar.setVisibility(View.GONE);
             showTourTimeLineActivityInstance.showResultFromAlgorithm();

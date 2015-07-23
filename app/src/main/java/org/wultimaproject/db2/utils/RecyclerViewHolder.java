@@ -1,6 +1,7 @@
 package org.wultimaproject.db2.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.wultimaproject.db2.R;
+import org.wultimaproject.db2.ShowDetailsActivity;
 import org.wultimaproject.db2.structures.DB1SqlHelper;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -21,6 +23,8 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     private CircleImageView imageToSet;
     private TextView timeTextToSet;
     private TextView distanceTextToSet;
+
+    private String idToPassFromCLick;
     private static Context context;
 
 
@@ -44,11 +48,22 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
             timeTextToSet=newTimeToSet;
             distanceTextToSet=newDistanceToSet;
 
+        //listener sul click dell'elemento recyclerView
+        parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(context, ShowDetailsActivity.class);
+                i.putExtra("siteId",idToPassFromCLick);
+                context.startActivity(i);
+            }
+        });
+
     }
 
     public void setTextInViewHolder(String id,String time,String distance){
         //TODO the above textToSet should take the id and through the DB method getPictureSite, set the correct image
 //        textToSet.setText(id);
+        idToPassFromCLick=id;
        String imagePath= DB1SqlHelper.getInstance(context).getPictureSite(id);
         String imagePathToUse="";
 
@@ -63,7 +78,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 //        Ottengo la giusta immagine del monumento da impostare nella toolbar
         int drawableResource=context.getResources().getIdentifier(imagePathToUse, "drawable", context.getPackageName());
 
-        imageToSet.setBackground(context.getResources().getDrawable(drawableResource));
+        imageToSet.setImageDrawable(context.getResources().getDrawable(drawableResource));
         timeTextToSet.setText(time);
         distanceTextToSet.setText(distance);
     }

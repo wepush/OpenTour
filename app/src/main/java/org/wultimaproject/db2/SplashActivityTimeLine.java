@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ProgressBar;
 
 
 ///**
@@ -17,6 +18,12 @@ public class SplashActivityTimeLine extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splashscreen);
+
+        ProgressBar progressBar=(ProgressBar) findViewById(R.id.progressPreSettings);
+        progressBar.getIndeterminateDrawable().setColorFilter(
+                getResources().getColor(R.color.white),
+                android.graphics.PorterDuff.Mode.SRC_IN);
+
 
 
         new Handler().postDelayed(new Runnable() {

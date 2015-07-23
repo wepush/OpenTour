@@ -74,9 +74,9 @@ public class LivePagerFragment extends Fragment {
 //
         final TextView bodyView=(TextView) view.findViewById(R.id.liveAddressSite);
         final TextView titleView = (TextView) view.findViewById(R.id.liveTitleSite);
-        final TextView distanceTextViewPager=(TextView) view.findViewById(R.id.distanceViewPager);
-        final CircleImageView circleImage=(CircleImageView) view.findViewById(R.id.viewCirclePicture);
-        final TextView timeTextViewPager=(TextView) view.findViewById(R.id.timeViewPager);
+//        final TextView distanceTextViewPager=(TextView) view.findViewById(R.id.distanceViewPager);
+//        final CircleImageView circleImage=(CircleImageView) view.findViewById(R.id.viewCirclePicture);
+//        final TextView timeTextViewPager=(TextView) view.findViewById(R.id.timeViewPager);
 //
         final Bundle args=getArguments();
 //
@@ -87,37 +87,37 @@ public class LivePagerFragment extends Fragment {
         bodyView.setText(args.getString("description"));
         Log.d("miotag", "tipo di sito: " + args.getString("type"));
 
-        distanceTextViewPager.setText(args.getString("distanceCovered"));
-        timeTextViewPager.setText(args.getString("time"));
+//        distanceTextViewPager.setText(args.getString("distanceCovered"));
+//        timeTextViewPager.setText(args.getString("time"));
 
 //displaying pictures
-        String imagePathToUse="";
-        String imagePath=args.getString("picture");
+//        String imagePathToUse="";
+//        String imagePath=args.getString("picture");
+//
+//        if(TextUtils.equals(imagePath, "placeholder")){
+//            imagePathToUse="header_milan";
+//        } else {
+//            Log.d("miotag", "SiteToShow PICTURE: " + imagePath);
+//            imagePathToUse = imagePath.substring(79, imagePath.length()-4);
+//            Log.d("miotag","imagePAth: "+imagePathToUse);
+//        }
+//
+////        Ottengo la giusta immagine del monumento da impostare nella toolbar
+//        int drawableResource=getActivity().getResources().getIdentifier(imagePathToUse, "drawable", getActivity().getPackageName());
+//
+////        circleImage.setBackground(getActivity().getResources().getDrawable(drawableResource));
+//        final String actualId=args.getString("siteId");
+//        Log.d("miotag","id da passare a ShowDetails: "+actualId);
 
-        if(TextUtils.equals(imagePath, "placeholder")){
-            imagePathToUse="header_milan";
-        } else {
-            Log.d("miotag", "SiteToShow PICTURE: " + imagePath);
-            imagePathToUse = imagePath.substring(79, imagePath.length()-4);
-            Log.d("miotag","imagePAth: "+imagePathToUse);
-        }
-
-//        Ottengo la giusta immagine del monumento da impostare nella toolbar
-        int drawableResource=getActivity().getResources().getIdentifier(imagePathToUse, "drawable", getActivity().getPackageName());
-
-        circleImage.setBackground(getActivity().getResources().getDrawable(drawableResource));
-        final String actualId=args.getString("siteId");
-        Log.d("miotag","id da passare a ShowDetails: "+actualId);
-
-        circleImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getActivity(),ShowDetailsActivity.class);
-                intent.putExtra("siteId", actualId);
-                startActivity(intent);
-
-            }
-        });
+//        circleImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent= new Intent(getActivity(),ShowDetailsActivity.class);
+//                intent.putExtra("siteId", actualId);
+//                startActivity(intent);
+//
+//            }
+//        });
 
 
         return view;

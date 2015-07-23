@@ -1,15 +1,18 @@
 package org.wultimaproject.db2.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import org.wultimaproject.db2.R;
+import org.wultimaproject.db2.structures.DB1SqlHelper;
 import org.wultimaproject.db2.structures.Site;
 
 import java.util.ArrayList;
@@ -21,10 +24,12 @@ public class TimeLineAdapter extends BaseAdapter{
 
     private LayoutInflater layoutInflater;
     private ArrayList<Site>siteToShowInList=new ArrayList<>();
+    private Context context;
 
-    public TimeLineAdapter(Context context,ArrayList<Site> showingListOfSite){
+    public TimeLineAdapter(Context ctx,ArrayList<Site> showingListOfSite){
 
-        this.siteToShowInList=showingListOfSite;
+        context=ctx;
+        siteToShowInList=showingListOfSite;
         layoutInflater = LayoutInflater.from(context);
 
     }
@@ -54,6 +59,7 @@ public class TimeLineAdapter extends BaseAdapter{
             holder.vTitle = (TextView) convertView.findViewById(R.id.txtTitle);
             holder.vDescription = (TextView) convertView.findViewById(R.id.txtAddress);
             holder.vTime = (TextView) convertView.findViewById(R.id.txtTime);
+            holder.vPlaceHolder= (ImageView) convertView.findViewById(R.id.imgPlaceHolder);
 
             convertView.setTag(holder);
         } else {
@@ -65,6 +71,22 @@ public class TimeLineAdapter extends BaseAdapter{
         holder.vDescription.setText(siteToShowInList.get(position).address+","+siteToShowInList.get(position).addressCivic);
         holder.vTime.setText(String.valueOf(siteToShowInList.get(position).showingTime));
 
+
+        String imagePath= DB1SqlHelper.getInstance(context).getPictureSite(siteToShowInList.get(position).id);
+        String imagePathToUse="";
+
+        if(TextUtils.equals(imagePath, "placeholder")){
+            imagePathToUse="header_milan";
+        } else {
+            Log.d("miotag", "SiteToShow PICTURE: " + imagePath);
+            imagePathToUse = imagePath.substring(79, imagePath.length()-4);
+            Log.d("miotag","imagePAth: "+imagePathToUse);
+        }
+
+//        Ottengo la giusta immagine del monumento da impostare nella toolbar
+        int drawableResource=context.getResources().getIdentifier(imagePathToUse, "drawable", context.getPackageName());
+
+        holder.vPlaceHolder.setImageDrawable(context.getResources().getDrawable(drawableResource));
         return convertView;
     }
 
@@ -72,6 +94,8 @@ public class TimeLineAdapter extends BaseAdapter{
         TextView vTitle;
         TextView vDescription;
         TextView vTime;
+
+        ImageView vPlaceHolder;
 
     }
 }

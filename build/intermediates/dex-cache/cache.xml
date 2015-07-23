@@ -2,18 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/fr.avianey.com.viewpagerindicator/library/2.4.1/jars/classes.jar"
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="86f452c126cb92a79e1dcf08efec5404529b698e">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-6884d98dc772503f4a9b8794879efb358f4ee3c9.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.osmdroid/osmdroid-android/4.3/2fcf7bc3cb27daa6e67c8990ea418d19f6b5b296/osmdroid-android-4.3.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="2fcf7bc3cb27daa6e67c8990ea418d19f6b5b296">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/osmdroid-android-4.3-c93a31e6b8a7defeab0c3364268d3447908a8754.jar" />
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-197f3a6d23260010c4dbd2619ec0b79f13bd34ab.jar" />
     </item>
     <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
@@ -23,144 +16,11 @@
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-699af2f0bf04056506832a03ea9b474cf3723ed1.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/gson-2.3.1-dc20437292bf539f4e9a0350b6f2a19f836d3ec5.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-739f2c93fd18b32067b8a8bbcb66ba16e99a86e6.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-f00bac65f453bc8c917e62af9447d9c61ab61aec.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-197f3a6d23260010c4dbd2619ec0b79f13bd34ab.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/DB2/circled-picker-master/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="77cf4ec05f84c4d4901a73acc4fe0b598ff1b2bd">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-587ec26c99e2632add0fad83f89d84300f4ab158.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.github.ksoichiro/android-observablescrollview/1.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="010ee9e87a286afcaeaed368dcf829e42d0aa2a0">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-414a6e9d8b257bc8a966d2fb1b7709e5522e421b.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="5b72bf48563ea8410e650de14aa33ff69a3e8c35">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/okio-1.4.0-8d09e1b7563dc9f9756fee24871176f70ac43058.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/okhttp-2.4.0-d53886775e99ac582d42f1028bff3d1c710a3972.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-26e28f6eb77ec6327134bbed1023180438db3b4a.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/library-2.4.0-32ad1284d203604bca706fe9dd95d36c0aeb27f4.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.github.bluejamesbond/textjustify-android/2.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="9e3ac75a5e3f8ef059c7766dc9640e0487e32749">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-43470f03c692aa56a3799e8e96621fcb3dec307a.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-3170b07e9b036813b2757e937122b85deb225278.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.4.0/a0c195f14cefc7597e0bebf22c3e7b43920dcf4/okhttp-urlconnection-2.4.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="0a0c195f14cefc7597e0bebf22c3e7b43920dcf4">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-2.4.0-6465bd0e772958ad97fcefcb25d745d4ae4bbbe5.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.mapbox.mapboxsdk/mapbox-android-sdk/0.7.4/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4bd64ebaab7edb0bccbb031dbdb7b1a7239d58f7">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-1e72401db9b5353a9f47eedce78bfb3f246a639a.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-9f99eaca4c4f867b3ce8c473d663eb21297b69ed.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/me.grantland/autofittextview/0.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="972ca945f0cf5ff0765ab94fa8e1a90661ea197a">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-490eccd404f4ac181309641b667618343120ef2a.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-android/1.6.1-RC1/fe76e182946faad493a50968f3344e848b467b42/slf4j-android-1.6.1-RC1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="fe76e182946faad493a50968f3344e848b467b42">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/slf4j-android-1.6.1-RC1-74311fe452a83032ea95d7776384bef9c40161de.jar" />
-    </item>
-    <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-cf38878ac5566b776d6b4c90d48366f2fd640046.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/me.drakeet.materialdialog/library/1.2.2/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8646b1e69dd5d923d8866dc4311859f0fbca456c">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-18ca7ee9c0aac14ed1587130659e12471a0e8fed.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/me.neavo/volley/2014.12.09/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="fba1ad83fb68864551a039aa2148f798dd6ec970">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-ec752ccdd5bb26a9c741ecdfc13f8c055e8fd31f.jar" />
     </item>
     <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/osmbonuspack_v5.2/jars/classes.jar"
@@ -170,11 +30,60 @@
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-3fd274d07b7d115eeca573442be8ff753cfdad9f.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.jakewharton/disklrucache/2.0.2/93b399470e72c0bc8cb52379943b63c9aa586cd8/disklrucache-2.0.2.jar"
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.3/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="93b399470e72c0bc8cb52379943b63c9aa586cd8">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/disklrucache-2.0.2-6a268481c5243e14b2685734a475e04e7e14e6ce.jar" />
+        sha1="b7a78990c10481f43cb4909f535ef4f11e60f1ab">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-517bcceb0d2c90238b413e897d9e07a74697a574.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5b72bf48563ea8410e650de14aa33ff69a3e8c35">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/okio-1.4.0-8d09e1b7563dc9f9756fee24871176f70ac43058.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-415d566a0a567ba727df43f3d907fa6139e102d0.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/gson-2.3.1-dc20437292bf539f4e9a0350b6f2a19f836d3ec5.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/okhttp-2.4.0-d53886775e99ac582d42f1028bff3d1c710a3972.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/me.grantland/autofittextview/0.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="972ca945f0cf5ff0765ab94fa8e1a90661ea197a">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-490eccd404f4ac181309641b667618343120ef2a.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fd39f74f23c7bd9aeafe58c6d988a7329c3e2790">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-d53cd4b3423fc4592270247b5a98f1bf4371c04f.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/library-2.4.0-32ad1284d203604bca706fe9dd95d36c0aeb27f4.jar" />
     </item>
     <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.wdullaer/materialdatetimepicker/1.2.2/jars/classes.jar"
@@ -184,11 +93,18 @@
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-11a91168c32f00eec3d414c263259a2b3e410b04.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar"
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="90a3822c38ec8c996e84c16a3477ef632cbc87a3">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/commons-lang3-3.3.2-f3b6cd66be446aa53b0524ecbfed176a303ea217.jar" />
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-9f99eaca4c4f867b3ce8c473d663eb21297b69ed.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-739f2c93fd18b32067b8a8bbcb66ba16e99a86e6.jar" />
     </item>
     <item
         jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.vividsolutions/jts/1.13/3ccfb9b60f04d71add996a666ceb8902904fd805/jts-1.13.jar"
@@ -198,11 +114,130 @@
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/jts-1.13-15461468aa70da6f249e3c80f0d6c5dd52b55f96.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar"
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-415d566a0a567ba727df43f3d907fa6139e102d0.jar" />
+        sha1="90a3822c38ec8c996e84c16a3477ef632cbc87a3">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/commons-lang3-3.3.2-f3b6cd66be446aa53b0524ecbfed176a303ea217.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.osmdroid/osmdroid-android/4.3/2fcf7bc3cb27daa6e67c8990ea418d19f6b5b296/osmdroid-android-4.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2fcf7bc3cb27daa6e67c8990ea418d19f6b5b296">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/osmdroid-android-4.3-c93a31e6b8a7defeab0c3364268d3447908a8754.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.mapbox.mapboxsdk/mapbox-android-sdk/0.7.4/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4bd64ebaab7edb0bccbb031dbdb7b1a7239d58f7">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-1e72401db9b5353a9f47eedce78bfb3f246a639a.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/me.neavo/volley/2014.12.09/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fba1ad83fb68864551a039aa2148f798dd6ec970">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-ec752ccdd5bb26a9c741ecdfc13f8c055e8fd31f.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/me.drakeet.materialdialog/library/1.2.2/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8646b1e69dd5d923d8866dc4311859f0fbca456c">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-18ca7ee9c0aac14ed1587130659e12471a0e8fed.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/DB2/circled-picker-master/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a18da02d3a7d3dd0a4b963a877b3bd4cf3a9be1d">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-587ec26c99e2632add0fad83f89d84300f4ab158.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-26e28f6eb77ec6327134bbed1023180438db3b4a.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.2.2/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c364019628ff5b32e4930334e9db4680829f7115">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-1e3fd5ebaab48a87dbd6eac952dd5a1f6eff46a3.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-f00bac65f453bc8c917e62af9447d9c61ab61aec.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.github.bluejamesbond/textjustify-android/2.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e3ac75a5e3f8ef059c7766dc9640e0487e32749">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-43470f03c692aa56a3799e8e96621fcb3dec307a.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.4/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f7dc6b43d7c7f3d94e98531aef88269f9ed2a37b">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-bcce6fd734399cf714073f8cecf44838e2ec362c.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-3170b07e9b036813b2757e937122b85deb225278.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-android/1.6.1-RC1/fe76e182946faad493a50968f3344e848b467b42/slf4j-android-1.6.1-RC1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fe76e182946faad493a50968f3344e848b467b42">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/slf4j-android-1.6.1-RC1-74311fe452a83032ea95d7776384bef9c40161de.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.3/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3013d965c748748ec9c7d0d42102e9abd1c9ed91">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-963a7be00e7e95195ad6b5726c722cd7931e90cc.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/com.github.ksoichiro/android-observablescrollview/1.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="010ee9e87a286afcaeaed368dcf829e42d0aa2a0">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-414a6e9d8b257bc8a966d2fb1b7709e5522e421b.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/exploded-aar/fr.avianey.com.viewpagerindicator/library/2.4.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="86f452c126cb92a79e1dcf08efec5404529b698e">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/classes-6884d98dc772503f4a9b8794879efb358f4ee3c9.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.4.0/a0c195f14cefc7597e0bebf22c3e7b43920dcf4/okhttp-urlconnection-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0a0c195f14cefc7597e0bebf22c3e7b43920dcf4">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-2.4.0-6465bd0e772958ad97fcefcb25d745d4ae4bbbe5.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.jakewharton/disklrucache/2.0.2/93b399470e72c0bc8cb52379943b63c9aa586cd8/disklrucache-2.0.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="93b399470e72c0bc8cb52379943b63c9aa586cd8">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/DB2/app/build/intermediates/pre-dexed/debug/disklrucache-2.0.2-6a268481c5243e14b2685734a475e04e7e14e6ce.jar" />
     </item>
 
 </items>

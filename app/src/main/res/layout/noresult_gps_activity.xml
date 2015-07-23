@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" GPS non disponibile"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Controllare le impostazioni GPS e lanciare nuovamente l'applicazione"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Impostazioni GPS"
+        android:onClick="onBackToGPSActivity"/>
+
+    <Button
+        android:id="@+id/btnToSettings"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Torna all'inserimento delle impostazioni"
+        android:onClick="onBackToSettingActivity"
+        android:visibility="invisible"/>
+
+</LinearLayout>

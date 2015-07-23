@@ -6,14 +6,39 @@
     <string name="sites_remote_endpoint_palermo">http://192.168.69.108:5005/api/v1/cities/54f6e2d7694d6101bf030000/sites</string>
     <string name="title_activity_city_chooser">CityChooserActivity</string>
     <string name="go_ahead">Avanti</string>
+    <!--<string name="firstTitleWalk">Benvenuto!</string>-->
+    <!--<string name="firstBodyWalk">Open Tour \è l\'app che pianifica i tour delle città in base alle tue esigenze. Una guida completa e a portata di mano, disponibile anche offline, per scoprire i luoghi più interessanti da visitare. </string>-->
+    <!--&lt;!&ndash;<string name="seconTitleWalk">Quanto Tempo hai a disposizione?</string>&ndash;&gt;-->
+    <!--<string name="secondTitleWalk">Il tuo tempo è al sicuro</string>-->
+    <!--<string name="secondBodyWalk">Open Tour crea in tempo reale dei percorsi turistici fatti su misura per te: ti basterà indicare il punto di partenza del tuo tour, gli interessi, il mezzo di trasporto e il tempo che hai a disposizione. Al resto pensa l\'app!</string>-->
+    <!--<string name="thirdTitleWalk">Esplora e scopri le città</string>-->
+    <!--<string name="thirdBodyWalk">Open Tour è un\'app collaborativa: al momento è disponibile per Palermo e Milano, ma vuole esplorare tante altre città.  </string>-->
+    <!--<string name="fourthTitleWalk">Open Data</string>-->
+    <!--<string name="fourthBodyWalk">Open Tour è un\'app basata sugli OpenData, una tipologia di dati accessibili gratuitamente a tutti, privi di brevetti o altre forme di controllo che ne limitino la riproduzione.</string>-->
+
     <string name="firstTitleWalk">Benvenuto!</string>
-    <string name="firstBodyWalk">Open Tour \è l\'app che pianifica i tour delle città in base alle tue esigenze. Una guida completa e a portata di mano, disponibile anche offline, per scoprire i luoghi più interessanti da visitare. </string>
-    <string name="seconTitleWalk">Quanto Tempo hai a disposizione?</string>
-    <string name="secondBodyWalk">Open Tour crea in tempo reale dei percorsi turistici fatti su misura per te: ti basterà indicare il punto di partenza del tuo tour, gli interessi, il mezzo di trasporto e il tempo che hai a disposizione. Al resto pensa l\'app!</string>
-    <string name="thirdTitleWalk">Esplora e scopri le città</string>
-    <string name="thirdBodyWalk">Open Tour è un\'app collaborativa: al momento è disponibile per Palermo e Milano, ma vuole esplorare tante altre città.  </string>
-    <string name="fourthTitleWalk">Open Data</string>
-    <string name="fourthBodyWalk">Open Tour è un\'app basata sugli OpenData, una tipologia di dati accessibili gratuitamente a tutti, privi di brevetti o altre forme di controllo che ne limitino la riproduzione.</string>
+    <string name="firstBodyWalk">Open Tour è il modo ideale per scoprire le città in cui ti trovi per la prima volta.</string>
+    <!--<string name="seconTitleWalk">Quanto Tempo hai a disposizione?</string>-->
+    <string name="secondTitleWalk">Il tuo tour personalizzato</string>
+    <string name="secondBodyWalk">Indicando il tempo che hai a disposizione, il punto di partenza e ciò che più ti interessa potrai creare il tour fatto su misura per te.</string>
+    <string name="thirdTitleWalk">Una per tutte, tutte per una</string>
+    <string name="thirdBodyWalk">Un’unica applicazione disponibile per infinite città: chiunque può candidarsi per realizzare un dataset e collaborare al progetto.  </string>
+    <string name="fourthTitleWalk">Tutto è open, dati compresi</string>
+    <string name="fourthBodyWalk">Grazie agli Open Data, dati liberamente accessibili e fruibili da tutti, i dataset delle città saranno scaricabili gratuitamente dal nostro sito.</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <string name="fifthWalk">LoremIpsum 4</string>
     <string name="skip">Salta</string>
     <string name="recapTextTimeLineMain">Questo è il tour pensato solo per te!</string>
@@ -31,6 +56,7 @@
     <string name="select_how">Seleziona una modalità!</string>
     <string name="by_walk">A piedi</string>
     <string name="by_bike">In Bici</string>
+    <string name="setting_date">Scegli data e orario</string>
 
     <string name="im_here_marker">Sono qui</string>
     <string name="description_marker">Punto di Partenza</string>
@@ -40,6 +66,8 @@
     <string name="open_to">alle</string>
     <string name="time_to_spend">Quanto tempo hai a disposizione?</string>
     <string name="future_time">Orario previsto</string>
+    <string name="price_full_tour">Spesa stimata</string>
+    <string name="prices">prezzi</string>
     <string name="tour_lasting_time">Durata del tour</string>
     <string name="place_to_visit">Luoghi da visitare</string>
     <string name="number_sites">n. siti</string>
@@ -61,7 +89,7 @@
     <string name="bridges">Ponti</string>
     <string name="cemetery">Cimiteri</string>
     <string name="market">Fiere e Mercati</string>
-    <string name="other_monuments">Altri monumenti e luoghi di interesse</string>
+    <string name="other_monuments">Altri monumenti</string>
     <string name="monuments">Monumenti</string>
     <string name="structures">Edifici</string>
     <string name="turn_on_gps">Attivare GPS ad alta precisione</string>
@@ -71,6 +99,17 @@
     <string name="from_where">Da dove</string>
     <string name="how">Come</string>
     <string name="what">Cosa</string>
+
+
+
+    <string name="titleGpsMissing">GPS Disattivato!</string>
+    <string name="bodyGpsMissing">Modifica le impostazioni GPS per ottenere la massima precisione</string>
+    <string name="confirmGPSlaunch">Impostazioni GPS</string>
+    <string name="confirmSettingsLaunch">Impostazioni insufficienti</string>
+
+
+    <string name="titleSettingsMissing">Attenzione!</string>
+    <string name="bodySettingsMissing">Le impostazioni scelte non sono sufficienti per generare il tour richiesto. Consiglio: indicare preferenze meno restrittive</string>
 
     <string name="tips">Lo sai che?</string>
     <string name="text_tips">testo tips</string>
