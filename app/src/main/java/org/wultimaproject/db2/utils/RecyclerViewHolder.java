@@ -80,7 +80,9 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
         imageToSet.setImageDrawable(context.getResources().getDrawable(drawableResource));
         timeTextToSet.setText(time);
-        distanceTextToSet.setText(distance);
+
+
+        distanceTextToSet.setText(distance.substring(0,4)+" km");
     }
 
 

@@ -1,0 +1,276 @@
+<resources>
+    <string name="app_name">OpenTour</string>
+
+    <string name="name">Open Tour</string>
+    <string name="action_settings">Settings</string>
+    <string name="sites_remote_endpoint_palermo">http://192.168.69.108:5005/api/v1/cities/54f6e2d7694d6101bf030000/sites</string>
+    <string name="title_activity_city_chooser">CityChooserActivity</string>
+    <string name="go_ahead">Next</string>
+    <!--<string name="firstTitleWalk">Benvenuto!</string>-->
+    <!--<string name="firstBodyWalk">Open Tour \è l\'app che pianifica i tour delle città in base alle tue esigenze. Una guida completa e a portata di mano, disponibile anche offline, per scoprire i luoghi più interessanti da visitare. </string>-->
+    <!--&lt;!&ndash;<string name="seconTitleWalk">Quanto Tempo hai a disposizione?</string>&ndash;&gt;-->
+    <!--<string name="secondTitleWalk">Il tuo tempo è al sicuro</string>-->
+    <!--<string name="secondBodyWalk">Open Tour crea in tempo reale dei percorsi turistici fatti su misura per te: ti basterà indicare il punto di partenza del tuo tour, gli interessi, il mezzo di trasporto e il tempo che hai a disposizione. Al resto pensa l\'app!</string>-->
+    <!--<string name="thirdTitleWalk">Esplora e scopri le città</string>-->
+    <!--<string name="thirdBodyWalk">Open Tour è un\'app collaborativa: al momento è disponibile per Palermo e Milano, ma vuole esplorare tante altre città.  </string>-->
+    <!--<string name="fourthTitleWalk">Open Data</string>-->
+    <!--<string name="fourthBodyWalk">Open Tour è un\'app basata sugli OpenData, una tipologia di dati accessibili gratuitamente a tutti, privi di brevetti o altre forme di controllo che ne limitino la riproduzione.</string>-->
+
+    <string name="firstTitleWalk">Welcome!</string>
+    <string name="firstBodyWalk">Open Tour è il modo ideale per scoprire le città in cui ti trovi per la prima volta.</string>
+    <string name="firstBodyWalk">Open Tour is the best way to explore the city you visit for the first time</string>
+
+    <!--<string name="seconTitleWalk">Quanto Tempo hai a disposizione?</string>-->
+    <string name="secondTitleWalk">Il tuo tour personalizzato</string>
+    <string name="secondTitleWalk">Your self-tuned tour!</string>
+    <string name="secondBodyWalk">Indicando il tempo che hai a disposizione, il punto di partenza e ciò che più ti interessa potrai creare il tour fatto su misura per te.</string>
+    <string name="secondBodyWalk">Choosing the time you want to spend, the starting position and what interested you the most, you will shape the perfect tour just for you.</string>
+    <string name="thirdTitleWalk">Una per tutte, tutte per una</string>
+    <string name="thirdTitleWalk">One for all, all for one</string>
+
+    <string name="thirdBodyWalk">Un’unica applicazione disponibile per infinite città: chiunque può candidarsi per realizzare un dataset e collaborare al progetto.  </string>
+    <string name="thirdBodyWalk">One app serves all the cities in the world: everyone can apply to realize a dataset to collaborate with the project  </string>
+
+    <string name="fourthTitleWalk">Tutto è open, dati compresi</string>
+    <string name="fourthTitleWalk">Everything is open, datasets too!</string>
+    <string name="fourthBodyWalk">Grazie agli Open Data, dati liberamente accessibili e fruibili da tutti, i dataset delle città saranno scaricabili gratuitamente dal nostro sito.</string>
+    <string name="fourthBodyWalk">Thanks to Open Data, a whole bunch of data and reusable from anyone, cities's dataset will be available for free download from our web site</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <string name="fifthWalk">LoremIpsum 4</string>
+    <string name="skip">Salta</string>
+    <string name="skip">Skipe</string>
+
+    <string name="recapTextTimeLineMain">Questo è il tour pensato solo per te!</string>
+    <string name="recapTextTimeLineMain">This is the tour created just for you!</string>
+
+    <string name="recapTextTimeLineSub">Puoi fare tutte le modifiche che vuoi prima di partire</string>
+    <string name="recapTextTimeLineSub">Modify it as you wish before start your journey</string>
+
+    <string name="start">Parti!</string>
+    <string name="start">Go!</string>
+
+    <string name="next">Continua</string>
+    <string name="next">Next</string>
+
+    <string name="intro">Intro</string>
+    <string name="intro">Intro</string>
+
+    <string name="SettingTour">Setting Tour</string>
+    <string name="milano">Milano</string>
+    <string name="palermo">Palermo</string>
+    <string name="city_name">Nome Città</string>
+    <string name="city_name">City Name</string>
+
+    <string name="confirm">Ok</string>
+    <string name="cancel">Annulla</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="select_how">Seleziona una modalità!</string>
+    <string name="select_how">Select how you move!</string>
+
+    <string name="by_walk">A piedi</string>
+    <string name="by_walk">By Walk</string>
+
+    <string name="by_bike">In Bici</string>
+    <string name="by_bike">By Bike</string>
+
+    <string name="setting_date">Scegli data e orario</string>
+    <string name="setting_date">Choose a date and a time to start</string>
+
+
+    <string name="im_here_marker">Sono qui</string>
+    <string name="im_here_marker">You are here</string>
+
+    <string name="description_marker">Punto di Partenza</string>
+    <string name="description_marker">Starting point</string>
+
+    <string name="complete_all_fields">Completare correttamente tutti i campi</string>
+    <string name="complete_all_fields">Complete all requested settings</string>
+
+    <string name="turn_gps_on">Attivare GPS (alta precisione)</string>
+    <string name="turn_gps_on">Switch on GPS (high sensibility)</string>
+
+    <string name="open_from">Apertura dalle ore</string>
+    <string name="open_from">Open from</string>
+
+    <string name="open_to">alle</string>
+    <string name="open_to">to</string>
+
+    <string name="time_to_spend">Quanto tempo hai a disposizione?</string>
+    <string name="time_to_spend">How much time you have for your tour?</string>
+
+    <string name="future_time">Orario previsto</string>
+    <string name="future_time">Estimated time</string>
+
+    <string name="price_full_tour">Spesa stimata</string>
+    <string name="price_full_tour">Estimated cost</string>
+
+    <string name="prices">prezzi</string>
+    <string name="prices">prices</string>
+
+    <string name="tour_lasting_time">Durata del tour</string>
+    <string name="tour_lasting_time">time duration</string>
+
+    <string name="place_to_visit">Luoghi da visitare</string>
+    <string name="place_to_visit">Places to visit</string>
+
+    <string name="number_sites">n. siti</string>
+    <string name="number_sites">nr sites</string>
+
+    <string name="walked_km">Chilometri percorsi</string>
+    <string name="walked_km">Km covered</string>
+
+    <string name="km">Km</string>
+
+    <string name="start2">Partenza</string>
+    <string name="start2">Start</string>
+
+    <string name="time_to_start">Orario di partenza</string>
+    <string name="time_to_start">Starting time</string>
+
+    <string name="detail_sheet">Dettaglio Scheda</string>
+    <string name="detail_sheet">Detailed Card</string>
+
+    <string name="end_of_tour">Fine del Tour</string>
+    <string name="end_of_tour">End of the Tour</string>
+
+
+    <string name="church">Chiese</string>
+    <string name="church">Churches</string>
+
+    <string name="museums">Musei</string>
+    <string name="museums">Museums</string>
+
+    <string name="villasgardens">Ville e Giardini</string>
+    <string name="villasgardens">Villas and Gardens</string>
+
+    <string name="palace_castle">Palazzi e Castelli</string>
+    <string name="palace_castle">Palaces and Castles</string>
+
+    <string name="square_street">Piazze e Strade</string>
+    <string name="square_street">Squares and Streets</string>
+
+    <string name="statue_funtains">Statue e Fontane</string>
+    <string name="statue_funtains">Statues and Fountains</string>
+
+    <string name="arc">Archi, Porte e Mura</string>
+    <string name="arc">Arcs, Ports and Wallk</string>
+
+    <string name="theater">Teatri</string>
+    <string name="theater">Theathers</string>
+
+    <string name="bridges">Ponti</string>
+    <string name="bridges">Bridges</string>
+    <string name="cemetery">Cimiteri</string>
+    <string name="cemetery">Cemeteries</string>
+
+    <string name="market">Fiere e Mercati</string>
+    <string name="market">Fairs and Markets</string>
+
+    <string name="other_monuments">Altri monumenti</string>
+    <string name="other_monuments">Other monuments</string>
+
+    <string name="monuments">Monumenti</string>
+    <string name="monuments">Monuments</string>
+
+    <string name="structures">Edifici</string>
+    <string name="structures">Buildings</string>
+
+    <string name="turn_on_gps">Attivare GPS ad alta precisione</string>
+    <string name="turn_on_gps">Turn on GPS (high sensibility)</string>
+
+
+    <string name="when">Quando</string>
+    <string name="when">When</string>
+
+    <string name="timeclock">Orario</string>
+    <string name="timeclock">Time</string>
+
+    <string name="from_where">Da dove</string>
+    <string name="from_where">From where</string>
+
+    <string name="how">Come</string>
+    <string name="how">How</string>
+
+    <string name="what">Cosa</string>
+    <string name="what">What</string>
+
+
+
+    <string name="titleInsufficientInfo">Informazioni Insufficienti</string>
+    <string name="titleInsufficientInfo">Insufficient informations</string>
+
+    <string name="bodyInsufficientInfo1">Modifica i criteri di vista per generare un Tour completo!</string>
+    <string name="bodyInsufficientInfo1">Change your settings to create your tour</string>
+
+
+    <string name="confirmGPSlaunch">Attiva GPS</string>
+    <string name="confirmGPSlaunch">Turn ON GPS</string>
+
+    <string name="confirmSettingsLaunch">Impostazioni insufficienti</string>
+    <string name="confirmSettingsLaunch">Insufficient settings</string>
+
+    <string name="modifyPreferences">Torna a Preferenze</string>
+    <string name="modifyPreferences">Back to Settings</string>
+
+
+
+    <string name="titleSettingsMissing">Attenzione!</string>
+    <string name="titleSettingsMissing">Attention!</string>
+
+    <string name="bodySettingsMissing">Le impostazioni scelte non sono sufficienti per generare il tour richiesto. Consiglio: indicare preferenze meno restrittive</string>
+    <string name="bodySettingsMissing">Chosen settings aren't enough to generate a proper tour. Hint: try to be less restrictive</string>
+
+    <string name="tips">Lo sai che?</string>
+    <string name="tips">Did you know?</string>
+
+    <string name="text_tips">testo tips</string>
+    <string name="opening_days">Giorni di Apertura</string>
+    <string name="opening_days">Opening days</string>
+
+    <string name="ticket_types">Tipi di Tickets</string>
+    <string name="ticket_types">Ticket types</string>
+
+    <string name="contact_types">Tipi di Contatti</string>
+    <string name="contact_types">Contact types</string>
+
+
+
+
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+
+    <string name="january">January</string>
+    <string name="february">February</string>
+    <string name="march">March</string>
+    <string name="april">April</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">October</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
+    <string name="soon">Soon!</string>
+
+
+
+  </resources>

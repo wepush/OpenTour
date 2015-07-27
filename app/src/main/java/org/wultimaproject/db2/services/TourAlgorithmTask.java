@@ -79,7 +79,7 @@ public class TourAlgorithmTask extends AsyncTask<Void, Void, ArrayList<Site>> {
         showTourTimeLineActivityInstance=showTourTimeLineActivityWeakReference.get();
 
 
-            if (TextUtils.equals(siteReturning.get(0).name,"dummy")){
+            if ((siteReturning.isEmpty()) || (TextUtils.equals(siteReturning.get(0).name,"dummy"))   ){
                 Log.d("miotag","DUMMY! relaunch screen mode: ON!");
                  if (showTourTimeLineActivityInstance != null){
                      showTourTimeLineActivityInstance.showDummyActivity();

@@ -42,11 +42,11 @@ import java.util.Calendar;
  */
 public class MapDialogFragment extends DialogFragment {
 
-    private static MapView mv;
-    private Marker mark;
-    private UserLocationOverlay myLocationOverlay;
-    private String currentMap = null;
-    private Type type;
+//    private static MapView mv;
+//    private Marker mark;
+//    private UserLocationOverlay myLocationOverlay;
+//    private String currentMap = null;
+//    private Type type;
 
     //section for OSMdroidMap
     private final static int ZOOM=17;
@@ -74,27 +74,29 @@ public class MapDialogFragment extends DialogFragment {
                     //the lookup request for marker's coordinates on maps doesn't happen inside GeoMarker- too annoyin
                     //what is done is to instantiate a new Location object beefed up with user settings
 
-
-                    Location mDialogLocation = new Location(LocationManager.GPS_PROVIDER);
-
-
-                    LatLng thisLatLng = new LatLng
-                            (
-                                    Double.valueOf(Repository.retrieve(getActivity(), Constants.LATITUDE_STARTING_POINT, String.class)),
-                                    Double.valueOf(Repository.retrieve(getActivity(), Constants.LONGITUDE_STARTING_POINT, String.class))
-                            );
-
-                    mDialogLocation.setLatitude(thisLatLng.getLatitude());
-                    mDialogLocation.setLongitude(thisLatLng.getLongitude());
-
-                    Log.d("miotag", "MAPDIALOGFRAGMENT coordinates from dialog: " + mDialogLocation.getLatitude() + ", " + mDialogLocation.getLongitude());
-                    Intent intent = new Intent(getActivity(), LookUpIntentService.class);
-                    ResultReceiver mResultReceiver = new SettingTourActivity.AddressResultReceiver(new Handler());
-                    intent.putExtra(Constants.RECEIVER, mResultReceiver);
-                    intent.putExtra(Constants.LOCATION_DATA_EXTRA, mDialogLocation);
-                    getActivity().startService(intent);
+//
+//                    Location mDialogLocation = new Location(LocationManager.GPS_PROVIDER);
+//
+//
+//                    LatLng thisLatLng = new LatLng
+//                            (
+//                                    Double.valueOf(Repository.retrieve(getActivity(), Constants.LATITUDE_STARTING_POINT, String.class)),
+//                                    Double.valueOf(Repository.retrieve(getActivity(), Constants.LONGITUDE_STARTING_POINT, String.class))
+//                            );
+//
+//                    mDialogLocation.setLatitude(thisLatLng.getLatitude());
+//                    mDialogLocation.setLongitude(thisLatLng.getLongitude());
+//
+//                    Log.d("miotag", "MAPDIALOGFRAGMENT coordinates from dialog: " + mDialogLocation.getLatitude() + ", " + mDialogLocation.getLongitude());
+//                    Intent intent = new Intent(getActivity(), LookUpIntentService.class);
+//                    ResultReceiver mResultReceiver = new SettingTourActivity.AddressResultReceiver(new Handler());
+//                    intent.putExtra(Constants.RECEIVER, mResultReceiver);
+//                    intent.putExtra(Constants.LOCATION_DATA_EXTRA, mDialogLocation);
+//                    getActivity().startService(intent);
 //                    }
 
+//TODO 24Luglio: Since no LookUpService, LAT/LON on the map taken from user interaction, are all is needed
+                    Log.d("miotag","from Dialog, torno la location : "+Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class)+","+Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class));
                 }
             });
             builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -247,6 +249,16 @@ public class MapDialogFragment extends DialogFragment {
 
 
 
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        Log.d("miotag","onStop from MapDialogFragment");
+        map.getOverlays().remove(overlayEventos);
+        map.getOverlays().clear();
+        map.getTileProvider().createTileCache();
+        map.getTileProvider().detach();
     }
 
 

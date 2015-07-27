@@ -24,6 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -56,6 +58,10 @@ public class TourAlgorithm {
         int indexToChoose=0;
         int indexActualSize=0;
 
+        //TODO 23 LuglioTO avoid a nasty bug about timeToStart, Initilizing it right now
+//            timeToStart=Calendar.getInstance();
+        Log.d("miotag","entrata all'algoritmo: "+timeOfDay);
+        //TODO 23 fine
         timeLeft=timeToSpend;
         timeToStart=timeOfDay;//al momento è solo la data
 //             timeLeftGlobal=timeLeft;//quanto dura il tour
@@ -71,17 +77,109 @@ public class TourAlgorithm {
        }
 
 
+       try {
+           timeToStart.set(Calendar.DAY_OF_WEEK_IN_MONTH, 1);
+
+           timeToStart.set(Calendar.DAY_OF_WEEK, 1);
+           timeToStart.set(Calendar.DAY_OF_MONTH, 1);
+       } catch (NullPointerException e ){
+          Log.d("miotag",""+ e.toString());
+           timeToStart=new GregorianCalendar(timeOfDay.get(Calendar.YEAR),timeOfDay.get(Calendar.MONTH),timeOfDay.get(Calendar.DAY_OF_WEEK),
+                   timeOfDay.get(Calendar.HOUR_OF_DAY),timeOfDay.get(Calendar.MINUTE));
+       }
+
 
 
 
         //since timeLeft and timeToStart have to keep their max values for every getRandomPaths iterations. To keep track of them, we use timeLeftGlobal
         // and timeToStartGlobal but their visibility is methode-scope, so for every new iteration their values will be re-initialized from timeLeft,timeToStart
+
+        //TODO 24Luglio: Avoid crash initilizind timToStart
         Gson gson=new Gson();
         Type type = new TypeToken<Calendar>() {}.getType();
         String json=Repository.retrieve(context, Constants.TIME_TO_START, String.class);
         Calendar timeToStartFromUser=gson.fromJson(json, type);
-        timeToStart.add(Calendar.HOUR_OF_DAY,timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
-        timeToStart.add(Calendar.MINUTE,timeToStartFromUser.get(Calendar.MINUTE));
+
+
+        int minutes=timeToStart.get(Calendar.MINUTE)+timeToStartFromUser.get(Calendar.MINUTE);
+        int hours=timeToStart.get(Calendar.HOUR_OF_DAY)+ timeToStartFromUser.get(Calendar.HOUR_OF_DAY);
+        if (minutes > 59){
+            int overMinutes=minutes/60;
+            minutes= minutes - (minutes*overMinutes);
+            hours=hours+overMinutes;
+        }
+
+        if (hours > 23){
+            int overHours=hours/24;
+            hours=hours-(hours*overHours);
+        }
+        timeToStart.set(Calendar.MINUTE,minutes);
+        timeToStart.set(Calendar.HOUR_OF_DAY,hours);
+
+//        timeToStart.add(Calendar.MINUTE,timeToStartFromUser.get(Calendar.MINUTE));
+//        timeToStart.add(Calendar.HOUR_OF_DAY,timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
+
+
+        //TODO check if sum of minutes from minutes exceeds current day
+
+//        int currentMinute=Calendar.MINUTE + timeToStartFromUser.get(Calendar.MINUTE);
+//        int addingHour=currentMinute/60;
+//        currentMinute=(currentMinute) -(60*addingHour);
+//        int currentHour=Calendar.HOUR_OF_DAY+timeToStartFromUser.get(Calendar.HOUR_OF_DAY) + addingHour;
+//            if (currentHour > 23){
+//                int addingMoreHour=currentHour/24;
+//                currentHour=currentHour - addingMoreHour;
+//            }
+
+//        timeToStart.add(Calendar.HOUR_OF_DAY,currentHour);
+//        timeToStart.add(Calendar.MINUTE,currentMinute);
+
+//        if (currentMinute>59){
+//            currentHour=currentHour+1;
+//             if (currentHour > 23) {
+//                 timeToStart.set(Calendar.HOUR_OF_DAY,(currentHour - 24));
+//                 timeToStart.set(Calendar.MINUTE,(currentMinute - 59));
+//             }
+//        } else {
+//
+//            timeToStart.add(Calendar.HOUR_OF_DAY, timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
+//            timeToStart.add(Calendar.MINUTE, timeToStartFromUser.get(Calendar.MINUTE));
+//        }
+
+//        if ( ((currentMinute > 59) && (currentHour >22))  ){
+//            timeToStart.set(Calendar.HOUR_OF_DAY,(currentHour-24));
+//            timeToStart.set(Calendar.MINUTE,(currentMinute-60));
+//        } else {
+//
+//        Log.d("miotag","onBackground: data: "+timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
+
+//        int minutes=timeToStart.get(Calendar.MINUTE)+timeToStartFromUser.get(Calendar.MINUTE);
+//        int overflowMinutes=minutes/60;
+//
+//        int hours=timeToStart.get(Calendar.HOUR_OF_DAY)+timeToStartFromUser.get(Calendar.HOUR_OF_DAY);
+//
+//        if (hours+overflowMinutes>23){
+//            Log.d("miotag","sono qui con hours: "+hours+"; ovMinutes"+overflowMinutes);
+//            timeToStart.roll(Calendar.MINUTE, timeToStartFromUser.get(Calendar.MINUTE));
+//            timeToStart.roll(Calendar.HOUR_OF_DAY,overflowMinutes);
+//        } else {
+//            Log.d("miotag","non sono qui con hours: "+hours+"; ovMinutes"+overflowMinutes);
+//                timeToStart.add(Calendar.MINUTE, timeToStartFromUser.get(Calendar.MINUTE));
+//                timeToStart.add(Calendar.HOUR_OF_DAY, timeToStartFromUser.get(Calendar.MINUTE));
+//        }
+
+
+//        long timeToStartInMilly=timeToStart.getTimeInMillis();
+//        long timeFromUserInMilly=timeToStartFromUser.getTimeInMillis();
+//        timeToStart.add(Calendar.MILLISECOND,((int)(timeToStartInMilly+timeFromUserInMilly)));
+
+
+//                timeToStart.add(Calendar.MINUTE, timeToStartFromUser.get(Calendar.MINUTE));
+//                timeToStart.roll(Calendar.HOUR_OF_DAY, timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
+
+
+//        }
+
 
         userStartingSite=startingSite;
         //find out how far the user can go knowing timeToSpend and vehicles
@@ -127,7 +225,7 @@ public class TourAlgorithm {
 
 //            Log.d("miotag","NUOVA ITERAZIONE con siteToStart="+siteToStart.toString());
 
-            Log.d("miotag","NEW ITERATION with siteToStart="+siteToStart.toString());
+//            Log.d("miotag","NEW ITERATION with siteToStart="+siteToStart.toString());
                 allPossiblePaths.add(getRandomPaths(siteToStart));
 //re inizializzazione di timeToStart dopo ciascun ciclo a partire dalle impostazioni utente
                 timeToStart.set(Calendar.HOUR_OF_DAY, timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
@@ -360,7 +458,7 @@ public class TourAlgorithm {
                        iterations++;
                        if (iterations > 21) {
 
-                           Log.d("miotag", "ATTENTION: iterations > 11");
+//                           Log.d("miotag", "ATTENTION: iterations > 11");
                            return chosenRandomPath;
                        }
                    }

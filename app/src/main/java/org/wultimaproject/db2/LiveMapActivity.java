@@ -537,6 +537,10 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         super.onPause();
         stopLocationUpdates();
         liveGoogleApiClient.disconnect();
+        map.getOverlays().remove(overlayEventos);
+        map.getOverlays().clear();
+        map.getTileProvider().createTileCache();
+        map.getTileProvider().detach();
     }
 
 

@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/titleGpsMissing"
+        android:text="@string/titleInsufficientInfo"
         android:id="@+id/txtTitleGpsDialog"
         android:fontFamily="sans-serif"
         android:layout_marginTop="20dp"
@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/bodyGpsMissing"
+        android:text="@string/bodyInsufficientInfo1"
         android:id="@+id/txtBodyGpsDialog"
         android:fontFamily="sans-serif-light"
         android:gravity="left"
@@ -26,5 +26,19 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp" />
+
+
+    <TextView
+
+        android:gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/bodyInsufficientInfo2"
+        android:layout_below="@+id/txtBodyGpsDialog"
+        android:layout_alignLeft="@+id/txtBodyGpsDialog"
+        android:layout_alignStart="@+id/txtBodyGpsDialog" />
+
 
 </RelativeLayout>

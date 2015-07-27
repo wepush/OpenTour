@@ -1,12 +1,10 @@
 package org.wultimaproject.db2;
 
-import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.ResultReceiver;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,11 +15,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -30,30 +30,26 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import org.angmarch.circledpicker.CircledPicker;
 
-import org.wultimaproject.db2.fragments_dialogs.GPSDialogFragment;
+import org.wultimaproject.db2.fragments_dialogs.ErrorDialogFragment;
 import org.wultimaproject.db2.fragments_dialogs.HowFragment;
 import org.wultimaproject.db2.fragments_dialogs.IntroPagerFragment;
 import org.wultimaproject.db2.fragments_dialogs.MapDialogFragment;
-import org.wultimaproject.db2.services.TourAlgorithmTask;
 import org.wultimaproject.db2.structures.Constants;
-import org.wultimaproject.db2.structures.DB1SqlHelper;
 import org.wultimaproject.db2.structures.FloatingActionButton;
-import org.wultimaproject.db2.utils.GeoManager;
+
 import org.wultimaproject.db2.utils.Repository;
 
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-import java.util.SimpleTimeZone;
 
 
 /**
  * Created by Antonio on 13/04/2015.
  */
-public class SettingTourActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
+public class SettingTourActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener{
     private final static int BY_WALK=1;
     private final static int BY_BYKE=2;
     static final int CITY_REQUEST = 90;
@@ -84,7 +80,10 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     private TextView tSetTime;
     private  static String mAddressOutput;
 
-    private AddressResultReceiver receiver;
+//    private AddressResultReceiver receiver;
+
+    private LocationManager serviceGPS;
+    private GoogleApiClient mGoogleApiClient;
 
 //    private AddressResultReceiver mReceiver;
 
@@ -94,7 +93,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        receiver=new AddressResultReceiver(new Handler());
+//      receiver=new AddressResultReceiver(new Handler());
 
         monthNames=new String []{"", getResources().getString(R.string.january),
                 getResources().getString(R.string.february),
@@ -124,7 +123,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         setSupportActionBar(toolbar);
 
 
-//        mReceiver = new AddressResultReceiver(null);
+
 
 
 //        ImageView backArrow=(ImageView) findViewById(R.id.imageArrowNavigationSettings);
@@ -174,26 +173,41 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 
 //First if on mAddressOuput is to check if it was created through mapDialog; if not, it is created now through GeoManager
 //in the latter, mAddressOutput is created for the first time, or user already saw ShowTourTimeLine
-        if (mAddressOutput == null || TextUtils.equals(mAddressOutput,"")) {
-            Log.d("miotag","mAddressOutput is null");
-            GeoManager geo=new GeoManager();
-            geo=(GeoManager) getApplicationContext();
-            geo.createClient();
-            if (geo.isGpsOn()){
-                Log.d("miotag"," LookupService launched");
-                geo.connectClient();
 
-            } else {
-                Toast.makeText(context,R.string.turn_gps_on, Toast.LENGTH_SHORT).show();
-            }
+        //TODO 23 Luglio -> no Address lookup
+//        if (mAddressOutput == null || TextUtils.equals(mAddressOutput,"")) {
+//            Log.d("miotag","mAddressOutput is null");
+//            GeoManager geo=new GeoManager();
+//            geo=(GeoManager) getApplicationContext();
+//            geo.createClient();
+//            if (geo.isGpsOn()){
+//                Log.d("miotag"," LookupService launched");
+//                geo.connectClient();
+//
+//            } else {
+//                Toast.makeText(context,R.string.turn_gps_on, Toast.LENGTH_SHORT).show();
+//            }
+//
+//
+//        } else {
+//            Log.d("miotag", "mAddressOutput is:" + mAddressOutput);
+//            txtWhere.setText(mAddressOutput);
+//
+//        }
 
-            //TODO qui devo lanciare GeoManager, non dopo
+        //TODO fine
+        //parte sostitutiva 23 luglio
 
-        } else {
-            Log.d("miotag", "mAddressOutput is:" + mAddressOutput);
-            txtWhere.setText(mAddressOutput);
+        mGoogleApiClient=new GoogleApiClient.Builder(this)
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
 
-        }
+
+        actualUserPosition();
+
+
 
         circledPicker=(CircledPicker)findViewById(R.id.circledPicker);
         circledPicker.setOnTouchListener(new View.OnTouchListener() {
@@ -247,11 +261,40 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                     if (TextUtils.equals(valuesFromGsp,"")){
 
                         Log.d("miotag", "NO GPS COORDINATES! ABORT!");
+                                FragmentManager fm = getSupportFragmentManager();
+                                ErrorDialogFragment hf = new ErrorDialogFragment();
+                                hf.show(fm, "badsettings_fragment");
 
 
-                        FragmentManager fm = getSupportFragmentManager();
-                        GPSDialogFragment hf = new GPSDialogFragment();
-                        hf.show(fm, "nogps_fragment");
+//                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//                                context);
+//
+//                        // set title
+//                        alertDialogBuilder.setTitle("Segnale GPS assente");
+//
+//                        // set dialog message
+//                        alertDialogBuilder
+//                                .setMessage("Verificare che la modalità GPS sia impostata su Alta Precisione, e che il segnale sia disponibile")
+//                                .setCancelable(false)
+//                                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog,int id) {
+//                                        // if this button is clicked, close
+//                                        // current activity
+//                                        startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+//                                    }
+//                                })
+//                                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog,int id) {
+//                                        // if this button is clicked, just close
+//                                        // the dialog box and do nothing
+//                                        dialog.cancel();
+//                                    }
+//                                });
+//
+//                        AlertDialog alertDialog = alertDialogBuilder.create();
+//                        alertDialog.show();
+
+
 
                     }
                     else {
@@ -334,13 +377,21 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
             @Override
             public void onClick(View view){
 
-                GeoManager geo=new GeoManager();
-                geo=(GeoManager) getApplicationContext();
-                Log.d("miotag","applicationContext: OK");
-                geo.createClient();
-                if (geo.isGpsOn()) {
-                    Log.d("miotag","GPS on!");
-                    geo.connectClient();
+
+                //TODO commentata la parte relativa a GeoManager il 23Luglio
+
+//                GeoManager geo=new GeoManager();
+//                geo=(GeoManager) getApplicationContext();
+//                Log.d("miotag","applicationContext: OK");
+//                geo.createClient();
+
+                serviceGPS = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+                if (serviceGPS.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    Log.d("miotag", "GPS on!");
+//                    geo.connectClient();
+
+                //TODO fine commento del 23 Luglio
 
 
 //Activate tap to launch fragment for new start location
@@ -384,21 +435,20 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     public void onResume(){
         super.onResume();
         Log.d("miotag","onResume");
-        GeoManager geo= new GeoManager();
-        geo = (GeoManager) getApplicationContext();
-     Log.d("miotag", "applicationContext: OK");
-        geo.createClient();
-        if (geo.isGpsOn()) {
+      //TODO 23 luglio commentato GeoManager
+//        GeoManager geo= new GeoManager();
+//        geo = (GeoManager) getApplicationContext();
 
-            geo.connectClient();
-        }
-        else {
-            Toast.makeText(context,R.string.turn_gps_on,Toast.LENGTH_SHORT).show();
+//        geo.createClient();
+        if (serviceGPS!= null) {
+            if (!(serviceGPS.isProviderEnabled(LocationManager.GPS_PROVIDER))) {
+                Toast.makeText(context, R.string.turn_gps_on, Toast.LENGTH_SHORT).show();
+            }
         }
 
-        if (mAddressOutput!= null){
-            txtWhere.setText(mAddressOutput);
-        }
+//        if (mAddressOutput!= null){
+//            txtWhere.setText(mAddressOutput);
+//        }
 
 
 
@@ -496,47 +546,19 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 
 //        private Receiver mReceiver;
 
-//    23 Luglio
-        public static class AddressResultReceiver extends ResultReceiver {
-
-            public AddressResultReceiver(Handler handler) {
-                super(handler);
-            }
-            @Override
-            protected void onReceiveResult(int resultCode, Bundle resultData) {
-
-                // Display the address string
-                // or an error message sent from the intent service.
-                mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
-                Repository.save(context, Constants.WHERE_SAVE, mAddressOutput);
-
-                // Show a toast message if an address was found.
-                if (resultCode == Constants.SUCCESS_RESULT) {
-                    // 09/05
-
-                    txtWhere.setText(mAddressOutput);
-
-                }
-
-            }
-        }
-
-
-//   public class AddressResultReceiver extends ResultReceiver {
-//        public AddressResultReceiver(Handler handler) {
-//            super(handler);
-//        }
+//TODO commentato il     23 Luglio
+//        public static class AddressResultReceiver extends ResultReceiver {
 //
+//            public AddressResultReceiver(Handler handler) {
+//                super(handler);
+//            }
 //
-//        public interface Receiver {
-//            public void onReceiveResult(int resultCode, Bundle resultData);
+//            @Override
+//            protected void onReceiveResult(int resultCode, Bundle resultData) {
 //
-//        }
-//
-//        @Override
-//        protected void onReceiveResult(int resultCode, Bundle resultData) {
-//
-//            mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
+//                // Display the address string
+//                // or an error message sent from the intent service.
+//                mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
 //                Repository.save(context, Constants.WHERE_SAVE, mAddressOutput);
 //
 //                // Show a toast message if an address was found.
@@ -546,16 +568,15 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 //                    txtWhere.setText(mAddressOutput);
 //
 //                }
+//
+//            }
 //        }
-//    }
-
-
 
 
     @Override
     public void onStop(){
         super.onStop();
-
+//        unregisterReceiver(null);
     }
 
 
@@ -568,15 +589,16 @@ private boolean isAnySettingVoid(){
             Repository.retrieve(context, Constants.TIME_TO_SPEND, String.class )==null ||
 
             TextUtils.equals(Repository.retrieve(context, Constants.HOW_SAVE, String.class ),"")||
-           Repository.retrieve(context, Constants.HOW_SAVE, String.class)==null||
+            Repository.retrieve(context, Constants.HOW_SAVE, String.class)==null||
 
             TextUtils.equals(Repository.retrieve(context, Constants.WHAT_SAVE, String.class),"")||
             Repository.retrieve(context, Constants.WHAT_SAVE, String.class )==null||
 
+            TextUtils.equals(Repository.retrieve(context, Constants.WHEN_SAVE, String.class),"")||
             Repository.retrieve(context, Constants.WHEN_SAVE, String.class)==null||
 
             Repository.retrieve(context, Constants.TIME_TO_START,String.class)==null||
-                    TextUtils.equals("", Repository.retrieve(context, Constants.TIME_TO_START,String.class))
+            TextUtils.equals("", Repository.retrieve(context, Constants.TIME_TO_START,String.class))
 
 
 
@@ -705,6 +727,42 @@ private boolean isAnySettingVoid(){
 //        Repository.save(this, Constants.TIME_TO_START, json);
 //
 //    }
+
+    //TODO in place of GeoManager+LookUpService, direct GPS request to obtain user position
+    private void actualUserPosition(){
+
+        if (mGoogleApiClient.isConnected()){
+            mGoogleApiClient.disconnect();
+            mGoogleApiClient.connect();
+        } else {
+            mGoogleApiClient.connect();
+        }
+
+
+    }
+        public void onConnected(Bundle hintBundle){
+
+                Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                        mGoogleApiClient);
+               if (mLastLocation != null){
+                    Repository.save(this,Constants.LATITUDE_STARTING_POINT,String.valueOf(mLastLocation.getLatitude()) );
+                    Repository.save(this,Constants.LONGITUDE_STARTING_POINT,String.valueOf(mLastLocation.getLongitude()));
+       }
+
+    }//fine onConnected
+
+    public void onConnectionSuspended(int i){
+        mGoogleApiClient.disconnect();
+        Log.d("miotag","client connection: INTERRUPTED");
+        Toast.makeText(this, "Client Connection: SUSPENDED!", Toast.LENGTH_LONG).show();
+
+    }
+
+    public void onConnectionFailed(ConnectionResult connResult){
+        Log.d("miotag","connection to LocalServices lost ");
+        Toast.makeText(this, "Lost Connection: No Signal!", Toast.LENGTH_LONG).show();
+            }
+
 
 
 

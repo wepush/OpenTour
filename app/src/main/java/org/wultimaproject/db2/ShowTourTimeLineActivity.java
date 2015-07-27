@@ -2,12 +2,10 @@
 package org.wultimaproject.db2;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,16 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.overlay.Marker;
-import com.mapbox.mapboxsdk.overlay.PathOverlay;
-import com.mapbox.mapboxsdk.views.MapView;
-
-import java.lang.reflect.Type;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,14 +27,10 @@ import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
 import org.osmdroid.bonuspack.overlays.MapEventsReceiver;
 import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
-import org.w3c.dom.Text;
-import org.wultimaproject.db2.fragments_dialogs.GPSDialogFragment;
-import org.wultimaproject.db2.fragments_dialogs.InsufficientSettingsDialogFragment;
+import org.wultimaproject.db2.fragments_dialogs.ErrorDialogFragment;
 import org.wultimaproject.db2.fragments_dialogs.ListViewTimeLineFragment;
-import org.wultimaproject.db2.fragments_dialogs.MapDialogFragment;
 import org.wultimaproject.db2.services.TourAlgorithmTask;
 import org.wultimaproject.db2.structures.Constants;
-import org.wultimaproject.db2.structures.DB1SqlHelper;
 import org.wultimaproject.db2.structures.FloatingActionButton;
 import org.wultimaproject.db2.structures.Site;
 import org.wultimaproject.db2.utils.Repository;
@@ -79,6 +63,8 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
     private  MapEventsReceiver mapEventsReceiver;
     private IMapController mapController;
 
+
+    private ArrayList<org.osmdroid.bonuspack.overlays.Marker> geoPointMarkers;
 
 
     @Override
@@ -220,17 +206,25 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
             showTimeSitesToShow.add(site.showingTime);
         }
 
-
-
-
-
-        map = (org.osmdroid.views.MapView) findViewById(R.id.mapSummaryTL);
-        map.setTileSource(new XYTileSource("MapQuest",
+        XYTileSource mCustomTileSource=new XYTileSource("MapQuest",
                 ResourceProxy.string.mapquest_osm, 13, 17, 300, ".jpg", new String[]{
                 "http://otile1.mqcdn.com/tiles/1.0.0/map/",
                 "http://otile2.mqcdn.com/tiles/1.0.0/map/",
                 "http://otile3.mqcdn.com/tiles/1.0.0/map/",
-                "http://otile4.mqcdn.com/tiles/1.0.0/map/"}));
+                "http://otile4.mqcdn.com/tiles/1.0.0/map/"});
+
+
+
+        map = (org.osmdroid.views.MapView) findViewById(R.id.mapSummaryTL);
+
+//        map.setTileSource(new XYTileSource("MapQuest",
+//                ResourceProxy.string.mapquest_osm, 13, 17, 300, ".jpg", new String[]{
+//                "http://otile1.mqcdn.com/tiles/1.0.0/map/",
+//                "http://otile2.mqcdn.com/tiles/1.0.0/map/",
+//                "http://otile3.mqcdn.com/tiles/1.0.0/map/",
+//                "http://otile4.mqcdn.com/tiles/1.0.0/map/"}));
+
+        map.setTileSource(mCustomTileSource);
         map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(false);
         map.setUseDataConnection(false);
@@ -256,7 +250,7 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
         double totalKM=0.0;
         TextView txtDistance=(TextView) findViewById(R.id.txtKmSummary);
 
-
+        geoPointMarkers=new ArrayList<>();
 
         for (Site site: siteToStamp){
 
@@ -267,8 +261,8 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
             mark.setPosition(gp);
             mark.setIcon(getResources().getDrawable(R.drawable.pin_blue));
             map.getOverlays().add(mark);
-
             map.invalidate();
+            geoPointMarkers.add(mark);
 
             //statistics:
 
@@ -276,9 +270,6 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
             totalPrice=totalPrice+showPrice(site);
             Log.d("miotag","TOTALPRICE: "+totalPrice);
-
-
-
 
         }
             txtSummaryMoney.setText(String.valueOf(totalPrice)+" €");
@@ -313,8 +304,37 @@ private GeoPoint findTourCenter(ArrayList<Site> a){
     public  void showDummyActivity(){
 
         FragmentManager fm = getSupportFragmentManager();
-        InsufficientSettingsDialogFragment hf = new InsufficientSettingsDialogFragment();
-        hf.show(fm, "ins_settings_fragment");
+        ErrorDialogFragment hf = new ErrorDialogFragment();
+        hf.show(fm, "badsettings_fragment");
+//
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//                this);
+//
+//        // set title
+//        alertDialogBuilder.setTitle("Impostazioni insufficienti!");
+//
+//        // set dialog message
+//        alertDialogBuilder
+//                .setMessage("Le preferenze impostate per la generazione del tour sono troppo restrittive")
+//                .setCancelable(false)
+//                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog,int id) {
+//                        // if this button is clicked, close
+//                        // current activity
+//                        startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+//                        finish();
+//                    }
+//                })
+//                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog,int id) {
+//                        // if this button is clicked, just close
+//                        // the dialog box and do nothing
+//                        dialog.cancel();
+//                    }
+//                });
+//
+//        AlertDialog alertDialog = alertDialogBuilder.create();
+//        alertDialog.show();
     }
 
 
@@ -369,6 +389,21 @@ private GeoPoint findTourCenter(ArrayList<Site> a){
         String time = df.format(new Date(secondTime*1000L));
 
         return time;
+
+    }
+
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        if (map != null) {
+           for (org.osmdroid.bonuspack.overlays.Marker mark: geoPointMarkers){
+               map.getOverlays().remove(mark);
+               map.getOverlays().clear();
+               map.getTileProvider().createTileCache();
+               map.getTileProvider().detach();
+           }
+        }
 
     }
 

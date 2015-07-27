@@ -102,10 +102,12 @@
 
 
 
-    <string name="titleGpsMissing">GPS Disattivato!</string>
-    <string name="bodyGpsMissing">Modifica le impostazioni GPS per ottenere la massima precisione</string>
-    <string name="confirmGPSlaunch">Impostazioni GPS</string>
+    <string name="titleInsufficientInfo">Informazioni Insufficienti</string>
+    <string name="bodyInsufficientInfo1">Modifica i criteri di vista per generare un Tour completo!</string>
+    <string name="bodyInsufficientInfo2">Attivare connessione GPS (modalità Alta Precisione)</string>
+    <string name="confirmGPSlaunch">Attiva GPS</string>
     <string name="confirmSettingsLaunch">Impostazioni insufficienti</string>
+    <string name="modifyPreferences">Torna a Preferenze</string>
 
 
     <string name="titleSettingsMissing">Attenzione!</string>

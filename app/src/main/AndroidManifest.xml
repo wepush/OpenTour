@@ -27,7 +27,9 @@
         android:icon="@mipmap/ic_launch"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name=".utils.GeoManager">
+        >
+        <!--24Luglio: nolonger used-->
+        <!--android:name=".utils.GeoManager"-->
 
         <!-- Used for Google Map widget -->
         <meta-data
