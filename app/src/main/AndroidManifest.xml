@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.wultimaproject.db2" >
+    package="org.wepush.opentour" >
 
     <!-- Guess what? -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,10 +16,10 @@
 
     <!-- Google Map widget: permissions to receive map images and stuff -->
     <permission
-        android:name="org.wultimaproject.db2.permission.MAPS_RECEIVE"
+        android:name="org.wepush.opentour.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="org.wultimaproject.db2.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="org.wepush.opentour.permission.MAPS_RECEIVE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
@@ -42,7 +42,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".HomeActivity"
+            android:name="org.wepush.opentour.HomeActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -53,7 +53,7 @@
         </activity>
 
         <service
-            android:name=".services.ReadFromJson"
+            android:name="org.wepush.opentour.services.ReadFromJson"
             android:exported="false" />
 
         <activity
@@ -120,7 +120,7 @@
 
 
         <service
-            android:name="org.wultimaproject.db2.services.LookUpIntentService"
+            android:name=".services.LookUpIntentService"
             android:exported="false"/>
         <meta-data
             android:name="io.fabric.ApiKey"

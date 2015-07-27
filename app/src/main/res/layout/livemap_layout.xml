@@ -30,14 +30,14 @@
             android:text="@string/name"
             android:id="@+id/txtTitleToolbarDiscovery"
             android:layout_marginLeft="30dp"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textColor="@color/white"/>
     </android.support.v7.widget.Toolbar>
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="org.wultimaproject.db2.fragments_dialogs.LiveMapFragment"
+        android:name="org.wepush.opentour.fragments_dialogs.LiveMapFragment"
         android:id="@+id/mapDialogFragment"
         android:layout_weight="5"
         />
