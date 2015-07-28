@@ -53,7 +53,7 @@
             android:id="@+id/whatAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tutti/Nessuno"
+            android:text="@string/allnothing"
             style="@style/IndigoCheckBox"
             android:layout_marginLeft="80dp"
             android:layout_alignParentTop="true"

@@ -38,7 +38,7 @@ public class HowFragment extends DialogFragment {
 
            }
        });
-        builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dismiss();
             }
@@ -92,15 +92,15 @@ public class HowFragment extends DialogFragment {
         } else if (
                   (cbBike.isChecked())
                 ){
-            Repository.save(getActivity(), Constants.HOW_SAVE, "bike");
+            Repository.save(getActivity(), Constants.HOW_SAVE, R.string.by_bike);
             SettingTourActivity.txtHow.setText(R.string.by_bike);
-        //    Log.d("miotag","how: "+PreferencesHelper.get(getActivity(),String.class,Constants.HOW_SAVE));
+            Log.d("miotag", "how: " + Repository.retrieve(getActivity(), Constants.HOW_SAVE, String.class));
         } else if (
                 (cbWalk.isChecked())
                 ){
-            Repository.save(getActivity(), Constants.HOW_SAVE, "walk");
+            Repository.save(getActivity(), Constants.HOW_SAVE, R.string.by_walk);
             SettingTourActivity.txtHow.setText(R.string.by_walk);
-        //    Log.d("miotag","how: "+PreferencesHelper.get(getActivity(),String.class,Constants.HOW_SAVE));
+            Log.d("miotag", "how: " + Repository.retrieve(getActivity(), Constants.HOW_SAVE, String.class));
 
 
         }

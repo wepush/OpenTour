@@ -6,28 +6,21 @@
     <string name="sites_remote_endpoint_palermo">http://192.168.69.108:5005/api/v1/cities/54f6e2d7694d6101bf030000/sites</string>
     <string name="title_activity_city_chooser">CityChooserActivity</string>
     <string name="go_ahead">Next</string>
-    <!--<string name="firstTitleWalk">Benvenuto!</string>-->
-    <!--<string name="firstBodyWalk">Open Tour \è l\'app che pianifica i tour delle città in base alle tue esigenze. Una guida completa e a portata di mano, disponibile anche offline, per scoprire i luoghi più interessanti da visitare. </string>-->
-    <!--&lt;!&ndash;<string name="seconTitleWalk">Quanto Tempo hai a disposizione?</string>&ndash;&gt;-->
-    <!--<string name="secondTitleWalk">Il tuo tempo è al sicuro</string>-->
-    <!--<string name="secondBodyWalk">Open Tour crea in tempo reale dei percorsi turistici fatti su misura per te: ti basterà indicare il punto di partenza del tuo tour, gli interessi, il mezzo di trasporto e il tempo che hai a disposizione. Al resto pensa l\'app!</string>-->
-    <!--<string name="thirdTitleWalk">Esplora e scopri le città</string>-->
-    <!--<string name="thirdBodyWalk">Open Tour è un\'app collaborativa: al momento è disponibile per Palermo e Milano, ma vuole esplorare tante altre città.  </string>-->
-    <!--<string name="fourthTitleWalk">Open Data</string>-->
-    <!--<string name="fourthBodyWalk">Open Tour è un\'app basata sugli OpenData, una tipologia di dati accessibili gratuitamente a tutti, privi di brevetti o altre forme di controllo che ne limitino la riproduzione.</string>-->
 
     <string name="firstTitleWalk">Welcome!</string>
-    <string name="firstBodyWalk">Open Tour is the best way to explore the city you visit for the first time</string>
+    <string name="firstBodyWalk">Welcome! Open Tour is the best way to discover the cities you are visiting for the first time.
+
+</string>
 
     <!--<string name="seconTitleWalk">Quanto Tempo hai a disposizione?</string>-->
-    <string name="secondTitleWalk">Your self-tuned tour!</string>
-    <string name="secondBodyWalk">Choosing the time you want to spend, the starting position and what interested you the most, you will shape the perfect tour just for you.</string>
+    <string name="secondTitleWalk">Your custom-made tour</string>
+    <string name="secondBodyWalk">By stating the time you have, your starting point and  what you’d like to see the most, you can create your customized tour. </string>
     <string name="thirdTitleWalk">One for all, all for one</string>
 
-    <string name="thirdBodyWalk">One app serves all the cities in the world: everyone can apply to realize a dataset to collaborate with the project  </string>
+    <string name="thirdBodyWalk">A single application  available for infinite cities: anyone can apply to create a dataset contributing to the growth of the project.</string>
 
-    <string name="fourthTitleWalk">Everything is open, datasets too!</string>
-    <string name="fourthBodyWalk">Thanks to Open Data, a whole bunch of data and reusable from anyone, cities\'s dataset will be available for free download from our web site</string>
+    <string name="fourthTitleWalk">Everything is open, including data</string>
+    <string name="fourthBodyWalk">Thanks to Open Data, freely available to everyone, all datasets can be downloaded for free from our website.</string>
 
 
 
@@ -46,7 +39,7 @@
 
     <string name="recapTextTimeLineMain">This is the tour created just for you!</string>
 
-    <string name="recapTextTimeLineSub">Modify it as you wish before start your journey</string>
+    <string name="recapTextTimeLineSub">Modify it as you wish before starting your journey</string>
 
     <string name="start">Go!</string>
 
@@ -62,28 +55,29 @@
     <string name="confirm">Ok</string>
     <string name="cancel">Cancel</string>
 
-    <string name="select_how">Select how you move!</string>
+    <string name="select_how">Select how to move </string>
 
-    <string name="by_walk">By Walk</string>
+    <string name="by_walk">Walk</string>
 
     <string name="by_bike">By Bike</string>
 
-    <string name="setting_date">Choose a date and a time to start</string>
+    <string name="setting_date">Choose date </string>
 
+    <string name="your_position">Your actual position</string>
 
     <string name="im_here_marker">You are here</string>
 
     <string name="description_marker">Starting point</string>
 
-    <string name="complete_all_fields">Complete all requested settings</string>
+    <string name="complete_all_fields">Complete all the requested fields</string>
 
-    <string name="turn_gps_on">Switch on GPS (high sensibility)</string>
+    <string name="turn_gps_on">Switch on GPS (high accuracy)</string>
 
     <string name="open_from">Open from</string>
 
     <string name="open_to">to</string>
 
-    <string name="time_to_spend">How much time you have for your tour?</string>
+    <string name="time_to_spend">How much time you want to spend on your tour?</string>
 
     <string name="future_time">Estimated time</string>
 
@@ -91,13 +85,13 @@
 
     <string name="prices">prices</string>
 
-    <string name="tour_lasting_time">time duration</string>
+    <string name="tour_lasting_time">Tour length</string>
 
     <string name="place_to_visit">Places to visit</string>
 
-    <string name="number_sites">nr sites</string>
+    <string name="number_sites">No. of sites</string>
 
-    <string name="walked_km">Km covered</string>
+    <string name="walked_km">Travelled Km</string>
 
     <string name="km">Km</string>
 
@@ -105,9 +99,10 @@
 
     <string name="time_to_start">Starting time</string>
 
-    <string name="detail_sheet">Detailed Card</string>
+    <string name="detail_sheet">Card Detail</string>
 
     <string name="end_of_tour">End of the Tour</string>
+
 
 
     <string name="church">Churches</string>
@@ -122,9 +117,9 @@
 
     <string name="statue_funtains">Statues and Fountains</string>
 
-    <string name="arc">Arcs, Ports and Wallk</string>
+    <string name="arc">Arches, Ports and Walls</string>
 
-    <string name="theater">Theathers</string>
+    <string name="theater">Theaters</string>
 
     <string name="bridges">Bridges</string>
     <string name="cemetery">Cemeteries</string>
@@ -137,29 +132,40 @@
 
     <string name="structures">Buildings</string>
 
-    <string name="turn_on_gps">Turn on GPS (high sensibility)</string>
+    <string name="turn_on_gps">Turn on GPS (high accuracy)</string>
+
 
     <string name="when">When</string>
 
     <string name="timeclock">Time</string>
 
-    <string name="from_where">From where</string>
+    <string name="from_where">Where from</string>
 
     <string name="how">How</string>
 
     <string name="what">What</string>
 
+    <string name="all_sites">All Sites</string>
 
-    <string name="titleInsufficientInfo">Insufficient informations</string>
+
+    <string name="titleInsufficientInfo">Incomplete informations</string>
 
     <string name="bodyInsufficientInfo1">Change your settings to create your tour</string>
+
+    <string name="bodyInsufficientInfo2">Switch on GPS (high accuracy)</string>
 
 
     <string name="confirmGPSlaunch">Turn ON GPS</string>
 
-    <string name="confirmSettingsLaunch">Insufficient settings</string>
+    <string name="confirmSettingsLaunch">Incomplete settings</string>
 
     <string name="modifyPreferences">Back to Settings</string>
+
+    <string name="and_more">and more</string>
+    <string name="allnothing">All/Nothing</string>
+
+
+
 
     <string name="titleSettingsMissing">Attention!</string>
 
@@ -170,9 +176,9 @@
     <string name="text_tips">testo tips</string>
     <string name="opening_days">Opening days</string>
 
-    <string name="ticket_types">Ticket types</string>
+    <string name="ticket_types">Tickets</string>
 
-    <string name="contact_types">Contact types</string>
+    <string name="contact_types">Contacts</string>
 
 
 
@@ -201,4 +207,21 @@
 
 
 
-  </resources>
+
+
+    <string name="theaters">Theaters</string>
+    <string name="palaces_and_castels">Palaces and Castles</string>
+    <string name="villas_gardens_parks">Villas, Gardens and Parks</string>
+    <string name="museums_and_art_galleries">Museums and Art galleries</string>
+    <string name="statues_funtains">Statues and Fountains</string>
+    <string name="squares_and_streets">Squares and Streets</string>
+    <string name="arches_gates_walls">Arches, Gates and Walls</string>
+    <string name="fairs_markets">Fairs and Markets</string>
+    <string name="cemeteries_memorials">Cemeteries and Memorials</string>
+    <string name="buildings">Buildings</string>
+    <string name="bridge">Bridges</string>
+    <string name="churchs_oratories_worship">Churches, Oratories and Places of worship</string>
+    <string name="others_monuments">Other monuments and Places of interest</string>
+
+
+</resources>

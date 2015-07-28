@@ -267,7 +267,7 @@ public class IntroPagerFragment extends Fragment {
 
                 }
             });
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dismiss();
                 }
@@ -737,12 +737,12 @@ public class IntroPagerFragment extends Fragment {
             }
 
            if (TextUtils.equals(whatToSeeItems.get(0), "all")){
-               SettingTourActivity.txtWhatToSee.setText("Tutti i siti");
+               SettingTourActivity.txtWhatToSee.setText(R.string.all_sites);
            } else if(whatToSeeItems.size()==1){
 
                SettingTourActivity.txtWhatToSee.setText(whatToSeeItems.get(0));
            } else {
-               SettingTourActivity.txtWhatToSee.setText(whatToSeeItems.get(0)+ ", e altri");
+               SettingTourActivity.txtWhatToSee.setText(whatToSeeItems.get(0)+ ", "+getActivity().getResources().getString(R.string.and_more));
            }
 
         }

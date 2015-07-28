@@ -78,6 +78,11 @@
     <string name="detail_sheet">Dettaglio Scheda</string>
     <string name="end_of_tour">Fine del Tour</string>
     <string name="your_position">La tua posizione</string>
+    <string name="all_sites">Tutti i siti</string>
+
+    <string name="and_more">e altri</string>
+    <string name="allnothing">Tutti/Nessuno</string>
+
 
     <string name="church">Chiese</string>
     <string name="museums">Musei</string>
@@ -143,6 +148,22 @@
     <string name="november">Novembre</string>
     <string name="december">Dicembre</string>
     <string name="soon">Soon!</string>
+
+
+
+    <string name="theaters">Teatri</string>
+    <string name="palaces_and_castels">Palazzi e Castelli</string>
+    <string name="villas_gardens_parks">Ville, Giardini e Parchi</string>
+    <string name="museums_and_art_galleries">Musei e Gallerie d\'arte</string>
+    <string name="statues_funtains">Statue e Fontane</string>
+    <string name="squares_and_streets">Piazze e Strade</string>
+    <string name="arches_gates_walls">Archi, Porte e Mura</string>
+    <string name="fairs_markets">Fiere e Mercati</string>
+    <string name="cemeteries_memorials">Cimiteri e Memoriali</string>
+    <string name="buildings">Edifici</string>
+    <string name="bridge">Ponti</string>
+    <string name="churchs_oratories_worship">Chiese, Oratori e Luoghi di culto</string>
+    <string name="others_monuments">Altri monumenti e Luoghi di interesse</string>
 
 
 

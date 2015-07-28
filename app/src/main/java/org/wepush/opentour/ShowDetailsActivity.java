@@ -29,6 +29,7 @@ import org.wepush.opentour.structures.Site;
 
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ShowDetailsActivity extends AppCompatActivity implements ObservableScrollViewCallbacks {
     private ImageView mImageDetail;
@@ -49,7 +50,9 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
     private  int toolbarBackground;
     private ImageView imgArrowNavigation;
 
-    private Site siteToShow;
+    private String siteTypeOfSite;
+
+
 
     private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
 
@@ -75,7 +78,13 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
 
         Site siteToShow= DB1SqlHelper.getInstance(this).getSite(intent.getStringExtra("siteId"));
 
-        chooseThemeColors(siteToShow);
+
+//        chooseThemeColors(siteToShow);
+        if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+            convertLanguageTypeOfSite(siteToShow);
+        } else {
+            chooseThemeColors(siteToShow);
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
@@ -114,6 +123,12 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
         txtOpeningsTime=(TextView)findViewById(R.id.txtOpeningsTime);
         txtTickets=(TextView)findViewById(R.id.txtTicketsDetails);
         txtContacts=(TextView)findViewById(R.id.txtContactsDetails);
+
+
+        //initialization strings for switch
+
+
+
 
 
         txtTitleToolbar.setTextColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.amber400)));
@@ -452,9 +467,10 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
 
     private void chooseThemeColors(Site site){
 
+
         switch(site.typeOfSite){
             case "Teatri":
-                cardBackground=getResources().getIdentifier("TeatriLight", "color", this.getPackageName());
+                cardBackground=this.getResources().getIdentifier("TeatriLight", "color", this.getPackageName());
                 toolbarBackground=this.getResources().getIdentifier("TeatriDark", "color", this.getPackageName());
                 break;
 
@@ -555,6 +571,91 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
             }
         return sToReturn;
         }
+
+
+
+    private void convertLanguageTypeOfSite(Site site){
+
+
+        switch(site.typeOfSite){
+            case "Theaters":
+                cardBackground=this.getResources().getIdentifier("TeatriLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("TeatriDark", "color", this.getPackageName());
+                break;
+
+            case "Palaces and Castles":
+                cardBackground=this.getResources().getIdentifier("PalazziLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("PalazziDark", "color", this.getPackageName());
+                break;
+
+            case "Villas, Gardens and Parks":
+                cardBackground=this.getResources().getIdentifier("VilleLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("VilleDark", "color", this.getPackageName());
+                break;
+
+            case "Museums and Art galleries":
+                cardBackground=this.getResources().getIdentifier("MuseiLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("MuseiDark", "color", this.getPackageName());
+                break;
+
+            case "Statues and Fountains":
+
+                cardBackground=this.getResources().getIdentifier("StatueLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("StatueDark", "color", this.getPackageName());
+                break;
+
+            case "Squares and Streets":
+                Log.d("miotag","Piazza e Strade selezionate");
+                cardBackground=getResources().getIdentifier("PiazzeLight", "color", this.getPackageName());
+                toolbarBackground=getResources().getIdentifier("PiazzeDark", "color", this.getPackageName());
+
+                break;
+
+            case "Arches, Gates and Walls":
+                cardBackground=this.getResources().getIdentifier("ArchiLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("ArchiDark", "color", this.getPackageName());
+                break;
+
+            case "Fairs and Markets":
+                cardBackground=this.getResources().getIdentifier("MercatiLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("MercatiDark", "color", this.getPackageName());
+                break;
+
+            case "Cemeteries and Memorials":
+                cardBackground=this.getResources().getIdentifier("CimiteriLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("CimiteriDark", "color", this.getPackageName());
+
+            case "Buildings":
+                cardBackground=this.getResources().getIdentifier("EdificiLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("EdificiDark", "color", this.getPackageName());
+                break;
+
+            case "Bridges":
+                cardBackground=this.getResources().getIdentifier("PontiLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("PontiDark", "color", this.getPackageName());
+                break;
+
+            case "Churches, Oratories and Places of worship":
+                cardBackground=this.getResources().getIdentifier("ChieseLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("ChieseDark", "color", this.getPackageName());
+                break;
+
+            case "Other monuments and Places of interest":
+                cardBackground=this.getResources().getIdentifier("AltriMonumentiLight", "color", this.getPackageName());
+                toolbarBackground=this.getResources().getIdentifier("AltriMonumentiDark", "color", this.getPackageName());
+                break;
+
+        }
+
+
+
+
+
+
+
+
+
+    }
 
 
 

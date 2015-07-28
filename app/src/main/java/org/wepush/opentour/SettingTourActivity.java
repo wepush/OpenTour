@@ -156,7 +156,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 //
 ////                          WHAT
 //
-        txtWhatToSee.setText("Tutti i siti");
+        txtWhatToSee.setText(R.string.all_sites);
         ArrayList<String> whatToSeeItems=new ArrayList<>();
         whatToSeeItems.add("all");
         Gson gson = new Gson();
@@ -165,9 +165,10 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         Repository.save(this, Constants.WHAT_SAVE, json);
 //
 ////                        HOW
-//
-        txtHow.setText("A piedi");
-        Repository.save(this, Constants.HOW_SAVE, "walk");
+////TODO passaggio da hardcodedstring a resource @string
+        txtHow.setText(R.string.by_walk);
+        String thisWalk=getResources().getString(R.string.by_walk);
+        Repository.save(this, Constants.HOW_SAVE, thisWalk);
 //
 
 
@@ -745,7 +746,7 @@ private boolean isAnySettingVoid(){
                 Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                         mGoogleApiClient);
                if (mLastLocation != null){
-                   //TODO CANCELLARE PER RELEASE
+
 //                    Repository.save(this,Constants.LATITUDE_STARTING_POINT,String.valueOf(mLastLocation.getLatitude()) );
 //                    Repository.save(this,Constants.LONGITUDE_STARTING_POINT,String.valueOf(mLastLocation.getLongitude()));
 
