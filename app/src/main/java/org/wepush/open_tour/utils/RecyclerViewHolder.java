@@ -1,5 +1,6 @@
 package org.wepush.open_tour.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
+import org.wepush.open_tour.LiveMapActivity;
 import org.wepush.open_tour.R;
 import org.wepush.open_tour.ShowDetailsActivity;
 import org.wepush.open_tour.structures.DB1SqlHelper;
@@ -45,18 +47,21 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     public RecyclerViewHolder(final View parent, CircleImageView newImageToSet,TextView newTimeToSet,TextView newDistanceToSet) {
         super(parent);
 
-        //TODO below txtItem should be ImageView
+       final LiveMapActivity  liveMapActivity=new LiveMapActivity();
+
             imageToSet=newImageToSet;
             timeTextToSet=newTimeToSet;
             distanceTextToSet=newDistanceToSet;
 
         //listener sul click dell'elemento recyclerView
+        //TODO 29luglio disabilita click on recyclerview
         parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(context, ShowDetailsActivity.class);
                 i.putExtra("siteId",idToPassFromCLick);
                 context.startActivity(i);
+//                  LiveMapActivity.showingDetailsFromRecycler(idToPassFromCLick);
             }
         });
 
@@ -88,6 +93,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
             imagePathToUse="header_milan";
             int drawableResourceNoPicture=context.getResources().getIdentifier(imagePathToUse, "drawable", context.getPackageName());
             imageToSet.setImageDrawable(context.getResources().getDrawable(drawableResourceNoPicture));
+
         }
 
 
@@ -96,6 +102,10 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
 
         distanceTextToSet.setText(distance.substring(0,4)+" km");
+    }
+
+    public CircleImageView returnCircleImageFromHolder(){
+        return imageToSet;
     }
 
 

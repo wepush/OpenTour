@@ -60,7 +60,7 @@
 
     <string name="im_here_marker">Sono qui</string>
     <string name="description_marker">Punto di Partenza</string>
-    <string name="complete_all_fields">Completare correttamente tutti i campi</string>
+    <string name="complete_all_fields">Specificare Data ed Ora</string>
     <string name="turn_gps_on">Attivare GPS (alta precisione)</string>
     <string name="open_from">Apertura dalle ore</string>
     <string name="open_to">alle</string>
@@ -82,6 +82,8 @@
 
     <string name="and_more">e altri</string>
     <string name="allnothing">Tutti/Nessuno</string>
+
+    <string name="startingTour">Inizio Tour</string>
 
 
     <string name="church">Chiese</string>
@@ -114,6 +116,8 @@
     <string name="confirmGPSlaunch">Attiva GPS</string>
     <string name="confirmSettingsLaunch">Impostazioni insufficienti</string>
     <string name="modifyPreferences">Torna a Preferenze</string>
+
+    <string name="goLiveFloating">Tap sul pulsante float per il tour Live!</string>
 
 
     <string name="titleSettingsMissing">Attenzione!</string>

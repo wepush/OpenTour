@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +65,8 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
     private MapEventsOverlay overlayEventos;
     private  MapEventsReceiver mapEventsReceiver;
     private IMapController mapController;
+    private MapEventsOverlay overlayNoEventos;
+    private MapEventsReceiver mapNoEventsReceiver;
 
 
     private ArrayList<org.osmdroid.bonuspack.overlays.Marker> geoPointMarkers;
@@ -162,7 +165,7 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
         //Primo elemento RecyclerView
 
         TextView firstElement=(TextView) findViewById(R.id.txtTitleFirstElement);
-        firstElement.setText("Inizio Tour");
+        firstElement.setText(getResources().getString(R.string.startingTour));
 
         TextView addressElement=(TextView) findViewById(R.id.txtAddressFirstElement);
         addressElement.setText(Repository.retrieve(this, Constants.WHERE_SAVE, String.class));
@@ -229,12 +232,29 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 //                "http://otile4.mqcdn.com/tiles/1.0.0/map/"}));
 
         map.setTileSource(mCustomTileSource);
-        map.setBuiltInZoomControls(true);
+        map.setBuiltInZoomControls(false);
         map.setMultiTouchControls(false);
         map.setUseDataConnection(false);
         mapController = map.getController();
         mapController.setZoom(ZOOM);
         mapController.setCenter(findTourCenter(siteToStamp));
+
+        mapNoEventsReceiver=new MapEventsReceiver() {
+            @Override
+            public boolean singleTapConfirmedHelper(GeoPoint geoPoint) {
+                Toast.makeText(getBaseContext(), R.string.goLiveFloating,Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            @Override
+            public boolean longPressHelper(GeoPoint geoPoint) {
+                Toast.makeText(getBaseContext(), R.string.goLiveFloating,Toast.LENGTH_SHORT).show();
+               return false;
+            }
+        };
+
+        overlayNoEventos = new MapEventsOverlay(this, mapNoEventsReceiver);
+        map.getOverlays().add(overlayNoEventos);
 
 
 //taking advantage of this for, it'll also complete statistic fields
@@ -263,7 +283,8 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
             Log.d("miotag", "geopoin generato: " + gp.getLatitude() + ", " + gp.getLongitude());
             org.osmdroid.bonuspack.overlays.Marker mark = new org.osmdroid.bonuspack.overlays.Marker(map);
             mark.setPosition(gp);
-            mark.setIcon(getResources().getDrawable(R.drawable.pin_blue));
+            mark.setIcon(getResources().getDrawable(R.drawable.pin_red));
+            mark.setTitle(site.name);
             map.getOverlays().add(mark);
             map.invalidate();
             geoPointMarkers.add(mark);

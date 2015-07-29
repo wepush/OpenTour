@@ -1,16 +1,20 @@
 package org.wepush.open_tour.fragments_dialogs;
 
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.wepush.open_tour.R;
+import org.wepush.open_tour.structures.DB1SqlHelper;
 
 
 /**
@@ -66,6 +70,7 @@ public class LivePagerFragment extends Fragment {
 //
         final TextView bodyView=(TextView) view.findViewById(R.id.liveAddressSite);
         final TextView titleView = (TextView) view.findViewById(R.id.liveTitleSite);
+        final ImageView placeHolder=(ImageView) view.findViewById(R.id.pinMapHolder);
 //        final TextView distanceTextViewPager=(TextView) view.findViewById(R.id.distanceViewPager);
 //        final CircleImageView circleImage=(CircleImageView) view.findViewById(R.id.viewCirclePicture);
 //        final TextView timeTextViewPager=(TextView) view.findViewById(R.id.timeViewPager);
@@ -77,7 +82,36 @@ public class LivePagerFragment extends Fragment {
 
         titleView.setText(args.getString("title"));
         bodyView.setText(args.getString("description"));
-        Log.d("miotag", "tipo di sito: " + args.getString("type"));
+
+
+        String idOfTheImageToRetrieve=args.getString("id");
+        Log.d("miotag","IDofTheImageRetrieve: "+idOfTheImageToRetrieve);
+        String imagePath= DB1SqlHelper.getInstance(getActivity()).getPictureSite(args.getString("id"));
+        String imagePathToUse="";
+
+        if(TextUtils.equals(imagePath, "placeholder")){
+            imagePathToUse="header_milan";
+        } else {
+            Log.d("miotag", "SiteToShow PICTURE: " + imagePath);
+            imagePathToUse = imagePath.substring(79, imagePath.length()-4);
+            Log.d("miotag","imagePAth: "+imagePathToUse);
+        }
+
+//        Ottengo la giusta immagine del monumento da impostare nella toolbar
+
+        int drawableResource=getActivity().getResources().getIdentifier(imagePathToUse, "drawable", getActivity().getPackageName());
+
+        try {
+            placeHolder.setImageDrawable(getActivity().getResources().getDrawable(drawableResource));
+        } catch (Resources.NotFoundException e){
+            Log.d("miotag","eccezione!!!!! immagine mancante: "+imagePathToUse);
+            imagePathToUse="header_milan";
+            int drawableResourceNoPicture=getActivity().getResources().getIdentifier(imagePathToUse, "drawable", getActivity().getPackageName());
+            placeHolder.setImageDrawable(getActivity().getResources().getDrawable(drawableResourceNoPicture));
+
+        }
+//        Log.d("miotag", "tipo di sito: " + args.getString("id"));
+
 
 //        distanceTextViewPager.setText(args.getString("distanceCovered"));
 //        timeTextViewPager.setText(args.getString("time"));

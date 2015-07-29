@@ -11,6 +11,8 @@ import org.wepush.open_tour.R;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by antoniocoppola on 02/07/15.
  */
@@ -21,6 +23,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ArrayList<String> timeLive;
     private ArrayList<String> distanceLive;
     private static Context context;
+    private RecyclerViewHolder recHolder;
 //    private ArrayList<Double> distanceLive;
 
     public RecyclerAdapter(ArrayList<String> oldIdArrayList,ArrayList<String>oldTimeArrayList,ArrayList<String> oldDistanceArrayList,Context ctx){
@@ -56,24 +59,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_discovery, parent, false);
 
+
         return RecyclerViewHolder.newInstance(view,context);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         //cast between abstract RecyclerView.ViewHolder and ViewHolder
-        RecyclerViewHolder recHolder=(RecyclerViewHolder) holder;
+       recHolder=(RecyclerViewHolder) holder;
         //taking array strings identified by "position" and passing them to ViewHolder
 //        String tempString=myList.get(position);
         String tempIdString=idLive.get(position);
         //0807
         String tempTimeString=timeLive.get(position);
-
         String tempDistanceString=distanceLive.get(position);
-        Log.d("miotag", " la stringa di id di onBind è : " + tempIdString);
-        Log.d("miotag", " la stringa di time di onBind è : " + tempTimeString);
-        Log.d("miotag", " la stringa di distance di onBind è : " + tempDistanceString);
-
         recHolder.setTextInViewHolder(tempIdString,tempTimeString,tempDistanceString);
 
     }
@@ -91,5 +90,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else {
             return idLive.size();
         }
+    }
+
+    public CircleImageView getCurrentCircleImageRecycler(int position){
+        return recHolder.returnCircleImageFromHolder();
     }
 }

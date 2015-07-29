@@ -31,17 +31,17 @@
             android:layout_marginStart="10dp"
             android:text="distanza km"/>
 
+
+
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/imgToPut"
             android:layout_width="80dp"
             android:layout_height="80dp"
-
-
             app:border_color="@color/white"
 
-
            />
+
         <!--<TextView-->
             <!--android:id="@+id/itemToPut"-->
             <!--android:layout_width="wrap_content"-->

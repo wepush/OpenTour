@@ -172,7 +172,7 @@ public class MapDialogFragment extends DialogFragment {
                 "http://otile2.mqcdn.com/tiles/1.0.0/map/",
                 "http://otile3.mqcdn.com/tiles/1.0.0/map/",
                 "http://otile4.mqcdn.com/tiles/1.0.0/map/"}));
-        map.setBuiltInZoomControls(true);
+        map.setBuiltInZoomControls(false);
         map.setMultiTouchControls(true);
         map.setUseDataConnection(false);
 
@@ -218,12 +218,14 @@ public class MapDialogFragment extends DialogFragment {
     private void putMarker(GeoPoint geoPoint){
         map.invalidate();
         map.getOverlays().clear();
+
         overlayEventos = new MapEventsOverlay(getActivity(), mapEventsReceiver);
         map.getOverlays().add(overlayEventos);
         Log.d("miotagw","metto mark con posizione: "+geoPoint.getLatitude()+", "+geoPoint.getLongitude());
         org.osmdroid.bonuspack.overlays.Marker startMarker=new org.osmdroid.bonuspack.overlays.Marker(map);
         startMarker.setIcon(getResources().getDrawable(R.drawable.pin_acqua));
         startMarker.setPosition(geoPoint);
+        startMarker.setTitle(getActivity().getResources().getString(R.string.your_position));
         map.getOverlays().add(startMarker);
         mapController.setCenter(geoPoint);
 

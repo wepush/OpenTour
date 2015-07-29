@@ -60,9 +60,6 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.showdetails_activity);
 
@@ -168,6 +165,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
         imgArrowNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
             }
         });

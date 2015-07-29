@@ -203,6 +203,7 @@ public class DB1SqlHelper extends SQLiteOpenHelper {
             cursor = database.query(SITES_TABLE, null, "id='" + id + "'", null, null, null, null);
 
             if (cursor.moveToFirst()) {
+                site.id=cursor.getString(COLUMN_ID);
                 site.name = cursor.getString(COLUMN_NAME);
                 site.description = cursor.getString(COLUMN_DESCRIPTION);
                 site.typeOfSite = cursor.getString(COLUMN_TYPE_OF_SITE);

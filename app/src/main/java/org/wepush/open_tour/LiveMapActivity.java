@@ -1,5 +1,7 @@
 package org.wepush.open_tour;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.google.android.gms.common.ConnectionResult;
@@ -43,6 +46,8 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by antoniocoppola on 02/07/15.
  */
@@ -57,6 +62,8 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     private ArrayList<Location> arrayOfLocation;
     public static ArrayList<Site> liveSites;
 
+    public static Context context;
+
 //    private com.mapbox.mapboxsdk.views.MapView mv;
 //    private Marker mark;
     private ViewPager viewLivePager;
@@ -66,22 +73,25 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
     private final static int ZOOM=17;
     private org.osmdroid.views.MapView map;
-    private MapEventsOverlay overlayEventos;
-    private MapEventsReceiver mapEventsReceiver;
+    private MapEventsOverlay overlayEventos, overlayNoEventos;
+    private MapEventsReceiver mapEventsReceiver, mapNoEventsReceiver;
     private IMapController mapController;
+    private static Intent intentFromRecycler;
 
-//    private static final int FIRST_LIVE_PAGE=0;
-//    private static final int SECOND_LIVE_PAGE=1;
-//    private static int counting=0;
+
 
     private static final double RADIUS=0.002;
 
 //to avoid conflicts, in "actualUserLocalization" is used a custom GoogleApiCient
 
    private GoogleApiClient liveGoogleApiClient;
+
+
 //actual Location of the user
 
 //    private Location actualUserLocation;
+
+
 
     @Override
 
@@ -89,6 +99,7 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.livemap_layout);
 
+        context=this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarDiscovery);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -103,6 +114,10 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
                 finish();
             }
         });
+
+
+
+        intentFromRecycler=new Intent(this, ShowDetailsActivity.class);
 
 
 
@@ -129,23 +144,9 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
        final LinearLayoutManager lManager=new LinearLayoutManager(this);
         lManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(lManager);
-        //0807
-//        RecyclerAdapter recAdapter=new RecyclerAdapter(idsFromShowTL);
+
         RecyclerAdapter recAdapter=new RecyclerAdapter(idsFromShowTL,showingTimeShowTL,distanceShowTL,this);
-
-
-//        RecyclerAdapter recAdapter=new RecyclerAdapter(liveSites);
         recyclerView.setAdapter(recAdapter);
-
-//        23 luglio
-//        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//            }
-//        });
-
-
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             private boolean scrollingUp;
 
@@ -175,30 +176,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             }});
 
 
-
-//    //Section MAPPA commentata 17/07 per OSMdroid
-////        mv=(MapView) findViewById(R.id.mapDiscovery);
-////        LatLng llng=new LatLng(45.470303,9.190306);
-////        mv.setCenter(llng);
-//
-//        map = (org.osmdroid.views.MapView) findViewById(R.id.mapLive);
-//        map.setTileSource(new XYTileSource("MapQuest",
-//                ResourceProxy.string.mapquest_osm, 17, 17, 300, ".jpg", new String[]{
-//                "http://otile1.mqcdn.com/tiles/1.0.0/map/",
-//                "http://otile2.mqcdn.com/tiles/1.0.0/map/",
-//                "http://otile3.mqcdn.com/tiles/1.0.0/map/",
-//                "http://otile4.mqcdn.com/tiles/1.0.0/map/"}));
-//
-//
-//
-//
-//        map.setBuiltInZoomControls(false);
-//        map.setMultiTouchControls(false);
-//        map.setUseDataConnection(false);
-//        mapController = map.getController();
-//        mapController.setZoom(ZOOM);
-////        mapController.setCenter(new GeoPoint(Double.valueOf(Repository.retrieve(this, Constants.LATITUDE_STARTING_POINT,String.class)),Double.valueOf(Repository.retrieve(this,Constants.LONGITUDE_STARTING_POINT,String.class))));
-//
 //     //TODO settare il centro della visuale sul PRIMO elemento della lista in dettagli
 //       mapController.setCenter(new GeoPoint(45.4699939,9.1809641));
 //        Log.d("miotag", "initial location");
@@ -212,6 +189,9 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             liveSites.add(DB1SqlHelper.getInstance(this).getSite(s));
 
         }
+
+
+
 
         viewLivePager=(ViewPager) findViewById(R.id.viewLivePager);
         viewLivePager.setCurrentItem(1);
@@ -256,33 +236,8 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
 
 
+            showingOfflineMap();
 
-        //Section MAPPA commentata 17/07 per OSMdroid
-//        mv=(MapView) findViewById(R.id.mapDiscovery);
-//        LatLng llng=new LatLng(45.470303,9.190306);
-//        mv.setCenter(llng);
-
-        map = (org.osmdroid.views.MapView) findViewById(R.id.mapLive);
-        map.setTileSource(new XYTileSource("MapQuest",
-                ResourceProxy.string.mapquest_osm, 17, 17, 300, ".jpg", new String[]{
-                "http://otile1.mqcdn.com/tiles/1.0.0/map/",
-                "http://otile2.mqcdn.com/tiles/1.0.0/map/",
-                "http://otile3.mqcdn.com/tiles/1.0.0/map/",
-                "http://otile4.mqcdn.com/tiles/1.0.0/map/"}));
-
-
-
-
-        map.setBuiltInZoomControls(false);
-        map.setMultiTouchControls(false);
-        map.setUseDataConnection(false);
-        mapController = map.getController();
-        mapController.setZoom(ZOOM);
-//        mapController.setCenter(new GeoPoint(Double.valueOf(Repository.retrieve(this, Constants.LATITUDE_STARTING_POINT,String.class)),Double.valueOf(Repository.retrieve(this,Constants.LONGITUDE_STARTING_POINT,String.class))));
-
-        //TODO settare il centro della visuale sul PRIMO elemento della lista in dettagli
-        mapController.setCenter(new GeoPoint(arrayOfLocation.get(0).getLatitude(),arrayOfLocation.get(0).getLongitude()));
-        Log.d("miotag", "initial location");
 
 
         //GoogleMapClient implementation
@@ -291,8 +246,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             .addConnectionCallbacks(this)
             .addOnConnectionFailedListener(this)
             .build();
-
-
 
 
 //TODO: DECOMMENTARE a seguire per riattivare il navigatore
@@ -318,9 +271,10 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             final Bundle bundle = new Bundle();
             final LivePagerFragment fragment = new LivePagerFragment();
 //First 3 info of ViewPager
+            Log.d("miotag","livesite: "+liveSites.get(position).id);
             bundle.putString("title", liveSites.get(position).name);
             bundle.putString("description",liveSites.get(position).address);
-            bundle.putString("type",liveSites.get(position).typeOfSite);
+            bundle.putString("id",liveSites.get(position).id);
 
 //Seconds of ViewPager
 //            bundle.putString("distanceCovered",distanceShowTL.get(position));
@@ -468,6 +422,7 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         viewLivePager.setCurrentItem(i);
 
 
+
     }
 
 
@@ -484,10 +439,9 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         org.osmdroid.bonuspack.overlays.Marker mark = new org.osmdroid.bonuspack.overlays.Marker(map);
         mark.setPosition(actualGeoPoint);
         mark.setIcon(getResources().getDrawable(R.drawable.pin_blue));
+        mark.setTitle(getResources().getString(R.string.your_position));
         map.getOverlays().add(mark);
         map.invalidate();
-
-
 
     }
 
@@ -525,6 +479,7 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     @Override
     public void onPause(){
         super.onPause();
+        Log.d("miotag","LIVE on Pause");
         stopLocationUpdates();
         liveGoogleApiClient.disconnect();
         map.getOverlays().remove(overlayEventos);
@@ -537,19 +492,77 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     @Override
     public void onStop(){
         super.onStop();
-//TODO decommentare per rilascio
+        Log.d("miotag", "LIVE on Stop");
         stopLocationUpdates();
-//        if (liveGoogleApiClient != null) {
-//            if (liveGoogleApiClient.isConnected()) {
-//                liveGoogleApiClient.disconnect();
-//            }
-//        }
-        liveGoogleApiClient.disconnect();
+        if (liveGoogleApiClient != null) {
+            if (liveGoogleApiClient.isConnected()) {
+                liveGoogleApiClient.disconnect();
+            }
+        }
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.d("miotag", "on Resume");
+        fillingUpWithPins();
+        if (liveGoogleApiClient != null) {
+            if (!(liveGoogleApiClient.isConnected())) {
+                liveGoogleApiClient.connect();
+            }
+        }
+
+    }
+
+    private void showingOfflineMap() {
+
+        map = (org.osmdroid.views.MapView) findViewById(R.id.mapLive);
+        map.setTileSource(new XYTileSource("MapQuest",
+                ResourceProxy.string.mapquest_osm, 17, 17, 300, ".jpg", new String[]{
+                "http://otile1.mqcdn.com/tiles/1.0.0/map/",
+                "http://otile2.mqcdn.com/tiles/1.0.0/map/",
+                "http://otile3.mqcdn.com/tiles/1.0.0/map/",
+                "http://otile4.mqcdn.com/tiles/1.0.0/map/"}));
+        map.setBuiltInZoomControls(false);
+        map.setMultiTouchControls(false);
+        map.setUseDataConnection(false);
+        mapController = map.getController();
+        mapController.setZoom(ZOOM);
+//        mapController.setCenter(new GeoPoint(Double.valueOf(Repository.retrieve(this, Constants.LATITUDE_STARTING_POINT,String.class)),Double.valueOf(Repository.retrieve(this,Constants.LONGITUDE_STARTING_POINT,String.class))));
+
+        //TODO settare il centro della visuale sul PRIMO elemento della lista in dettagli
+        mapController.setCenter(new GeoPoint(arrayOfLocation.get(0).getLatitude(), arrayOfLocation.get(0).getLongitude()));
+        mapNoEventsReceiver = new MapEventsReceiver() {
+            @Override
+            public boolean singleTapConfirmedHelper(GeoPoint geoPoint) {
+                return false;
+            }
+
+            @Override
+            public boolean longPressHelper(GeoPoint geoPoint) {
+                return false;
+            }
+        };
+
+        overlayNoEventos = new MapEventsOverlay(this, mapNoEventsReceiver);
+        map.getOverlays().add(overlayNoEventos);
     }
 
 
+      private void fillingUpWithPins(){
 
+          for (Site site: liveSites) {
 
+              GeoPoint gp = new GeoPoint(site.latitude, site.longitude);
+              org.osmdroid.bonuspack.overlays.Marker mark = new org.osmdroid.bonuspack.overlays.Marker(map);
+              mark.setPosition(gp);
+              mark.setIcon(getResources().getDrawable(R.drawable.pin_red));
+              mark.setTitle(site.name);
+              map.getOverlays().add(mark);
+              map.invalidate();
+          }
+        }
 }
 
 

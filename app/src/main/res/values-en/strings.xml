@@ -69,7 +69,7 @@
 
     <string name="description_marker">Starting point</string>
 
-    <string name="complete_all_fields">Complete all the requested fields</string>
+    <string name="complete_all_fields">Specify Date and Time</string>
 
     <string name="turn_gps_on">Switch on GPS (high accuracy)</string>
 
@@ -102,6 +102,11 @@
     <string name="detail_sheet">Card Detail</string>
 
     <string name="end_of_tour">End of the Tour</string>
+
+
+    <string name="startingTour">Starting Tour</string>
+
+    <string name="goLiveFloating">Tap on float button to go live on tour!</string>
 
 
 

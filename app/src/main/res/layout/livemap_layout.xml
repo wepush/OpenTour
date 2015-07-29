@@ -37,7 +37,7 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="org.wepush.opentour.fragments_dialogs.LiveMapFragment"
+        android:name="org.wepush.open_tour.fragments_dialogs.LiveMapFragment"
         android:id="@+id/mapDialogFragment"
         android:layout_weight="5"
         />
