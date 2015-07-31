@@ -24,6 +24,7 @@ import com.nineoldandroids.view.ViewHelper;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.wepush.open_tour.structures.Constants;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 import org.wepush.open_tour.structures.Site;
 
@@ -51,10 +52,10 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
     private ImageView imgArrowNavigation;
 
     private String siteTypeOfSite;
+    private Intent intentThatGeneratedThisActivity;
 
 
 
-    private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
 
 
     @Override
@@ -71,9 +72,9 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
         //colore dello sfondo della scheda dettaglio in base al tipo di monumento
         // "amber300" va sostituito con un ciclo SWITCH per ottenere il colore giusto
 
-        Intent intent=getIntent();
+       intentThatGeneratedThisActivity=getIntent();
 
-        Site siteToShow= DB1SqlHelper.getInstance(this).getSite(intent.getStringExtra("siteId"));
+        Site siteToShow= DB1SqlHelper.getInstance(this).getSite(intentThatGeneratedThisActivity.getStringExtra("siteId"));
 
 
 //        chooseThemeColors(siteToShow);
@@ -129,19 +130,15 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
 
 
         txtTitleToolbar.setTextColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.amber400)));
-
         mParallaxImageHeight=100;
-
-
-
 
 
         if(TextUtils.equals(siteToShow.pictureUrl,"placeholder")){
             imagePath="header_milan";
         } else {
-            Log.d("miotag","SiteToShow PICTURE: "+siteToShow.pictureUrl);
+//            Log.d("miotag","SiteToShow PICTURE: "+siteToShow.pictureUrl);
             imagePath = siteToShow.pictureUrl.substring(79, siteToShow.pictureUrl.length()-4);
-            Log.d("miotag","imagePAth: "+imagePath);
+//            Log.d("miotag","imagePAth: "+imagePath);
         }
 
 //        Ottengo la giusta immagine del monumento da impostare nella toolbar
@@ -159,14 +156,22 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
             txtToDisappear1.setText(siteToShow.address+", "+siteToShow.addressCivic);
 
         }
+//acquiring the intent that launched this activity. On intent's action choose what to do
+       intentThatGeneratedThisActivity=getIntent();
 
-
+//TODO is there a better way to confront actions from intent?
         imgArrowNavigation=(ImageView) findViewById(R.id.imageArrowNavigation);
         imgArrowNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                finish();
+                if (TextUtils.equals(intentThatGeneratedThisActivity.getAction(),Constants.INTENT_FROM_LIVEMAP)) {
+                    Intent i = new Intent(getBaseContext(), LiveMapActivity.class);
+                    i.setAction(Constants.INTENT_FROM_SHOWDETAILS);
+                    startActivity(i);
+                    finish();
+                } else {
+                    finish();
+                }
             }
         });
 
@@ -180,12 +185,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
 
        }
 
-
-        Log.d("miotag","TICKETS outside IF "+siteToShow.tickets);
-        Log.d("miotag","TICKETS outside IF with ToString"+ siteToShow.tickets.toString());
-
         if (TextUtils.equals(siteToShow.tickets.toString(),"[]")){
-            Log.d("miotag","No Tickets");
             RelativeLayout rlTickets=(RelativeLayout)findViewById(R.id.rlTickets);
             rlTickets.setVisibility(View.GONE);
 
@@ -199,12 +199,6 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
             pinContact.setVisibility(View.INVISIBLE);
         }
 
-
-//decision based on siteType
-
-// Section for Openings/Contacts/Tickets
-
-
         showOpenings(siteToShow);
         showTickets(siteToShow);
         showContacts(siteToShow);
@@ -212,6 +206,19 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
 
 
     }//fine onCreate
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (TextUtils.equals(intentThatGeneratedThisActivity.getAction(),Constants.INTENT_FROM_LIVEMAP)) {
+            Intent i = new Intent(getBaseContext(), LiveMapActivity.class);
+            i.setAction(Constants.INTENT_FROM_SHOWDETAILS);
+            startActivity(i);
+            finish();
+        } else {
+            finish();
+        }
+    }
 
 
     @Override
@@ -313,7 +320,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
             if (jsonOpenings != null && jsonOpenings.length() > 0){
                 for (int i=0; i<jsonOpenings.length(); i++){
                     singleOpeningFromObject=jsonOpenings.getJSONObject(i);
-                    Log.d("miotag","OPENINGS daysFromArray: "+singleOpeningFromObject);
+//                    Log.d("miotag","OPENINGS daysFromArray: "+singleOpeningFromObject);
                     dateFrom=singleOpeningFromObject.getString("date_from");
                     dateTo=singleOpeningFromObject.getString("date_to");
                     timeFrom=singleOpeningFromObject.getString("time_from");
@@ -321,7 +328,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
                     daysFromOpenings=singleOpeningFromObject.getJSONArray("days");
 
                     for (int j=0; j<daysFromOpenings.length();j++) {
-                            Log.d("miotag","Days fitting in: "+daysFromOpenings.getString(j));
+//                            Log.d("miotag","Days fitting in: "+daysFromOpenings.getString(j));
                             daysArray.add(daysFromOpenings.getString(j));
                         }
 
@@ -383,17 +390,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
                     typeTickets=jsonTick.getString("type");
                     descriptionTickets=jsonTick.getString("description");
                     priceTickets=jsonTick.getString("price");
-//                   recipientsTickets=jsonTick.getString("recipients").toString();
 
-//                    Log.d("miotag", "da tickets: " + recipientsTickets);
-//                    if (TextUtils.equals(typeTickets,"Gratuito")){
-//                        singleTicketsInstance.add(typeTickets);
-//                        singleTicketsInstance.add(descriptionTickets);
-//                    } else {
-//                        singleTicketsInstance.add(typeTickets);
-//                        singleTicketsInstance.add(descriptionTickets);
-//                        singleTicketsInstance.add(priceTickets);
-//                    }
 
                     if (TextUtils.equals(descriptionTickets,"")) {
                         resultTickets = resultTickets + typeTickets  + ": " + priceTickets + "€" + "\n\n";
@@ -405,11 +402,8 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
 
 
                 }//every tickets is in allTickets that is now printed
-//
-//                   Log.d("miotag","ALLTICKETS : "+allTickets.toString());
-//
-//
-//               txtTickets.setText(printTicket(allTickets));
+
+
             }
 
             txtTickets.setText(resultTickets);
@@ -465,7 +459,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
 
     private void chooseThemeColors(Site site){
 
-
+//TODO check if there's a better solution to manage sitesType in languages
         switch(site.typeOfSite){
             case "Teatri":
                 cardBackground=this.getResources().getIdentifier("TeatriLight", "color", this.getPackageName());

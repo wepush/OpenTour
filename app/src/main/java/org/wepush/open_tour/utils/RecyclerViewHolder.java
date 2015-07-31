@@ -14,6 +14,7 @@ import android.widget.TextView;
 import org.wepush.open_tour.LiveMapActivity;
 import org.wepush.open_tour.R;
 import org.wepush.open_tour.ShowDetailsActivity;
+import org.wepush.open_tour.structures.Constants;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 
 
@@ -47,7 +48,6 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     public RecyclerViewHolder(final View parent, CircleImageView newImageToSet,TextView newTimeToSet,TextView newDistanceToSet) {
         super(parent);
 
-       final LiveMapActivity  liveMapActivity=new LiveMapActivity();
 
             imageToSet=newImageToSet;
             timeTextToSet=newTimeToSet;
@@ -60,16 +60,17 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 Intent i=new Intent(context, ShowDetailsActivity.class);
                 i.putExtra("siteId",idToPassFromCLick);
+                i.setAction(Constants.INTENT_FROM_LIVEMAP);
                 context.startActivity(i);
-//                  LiveMapActivity.showingDetailsFromRecycler(idToPassFromCLick);
+
+
             }
         });
 
     }
 
     public void setTextInViewHolder(String id,String time,String distance){
-        //TODO the above textToSet should take the id and through the DB method getPictureSite, set the correct image
-//        textToSet.setText(id);
+
         idToPassFromCLick=id;
        String imagePath= DB1SqlHelper.getInstance(context).getPictureSite(id);
         String imagePathToUse="";
@@ -77,9 +78,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         if(TextUtils.equals(imagePath, "placeholder")){
             imagePathToUse="header_milan";
         } else {
-            Log.d("miotag", "SiteToShow PICTURE: " + imagePath);
             imagePathToUse = imagePath.substring(79, imagePath.length()-4);
-            Log.d("miotag","imagePAth: "+imagePathToUse);
         }
 
 //        Ottengo la giusta immagine del monumento da impostare nella toolbar

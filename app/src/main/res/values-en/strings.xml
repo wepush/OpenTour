@@ -153,28 +153,31 @@
     <string name="all_sites">All Sites</string>
 
 
-    <string name="titleInsufficientInfo">Incomplete informations</string>
-
-    <string name="bodyInsufficientInfo1">Change your settings to create your tour</string>
-
-    <string name="bodyInsufficientInfo2">Switch on GPS (high accuracy)</string>
+    <string name="titleNoGpsInfo">Incomplete informations</string>
+    <string name="bodyNoGpsDialog1">User position cannot be acquired</string>
+    <string name="bodyNoGpsDialog2">Switch on GPS (high accuracy) or wait for a stronger signal</string>
 
 
     <string name="confirmGPSlaunch">Turn ON GPS</string>
-
     <string name="confirmSettingsLaunch">Incomplete settings</string>
-
     <string name="modifyPreferences">Back to Settings</string>
 
-    <string name="and_more">and more</string>
-    <string name="allnothing">All/Nothing</string>
+
+    <string name="titleOutOfBoundsDialog">Warning! The tour couldn\'t be created</string>
+    <string name="bodyOutOfBoundDialog1">Sorry! We couldn’t find any tourist site in the nearby. </string>
+    <string name="bodyOutOfBoundsDialog2">Get closer to downtown to create a tour. The app runs within the city limits!</string>
 
 
 
 
     <string name="titleSettingsMissing">Attention!</string>
+    <string name="bodySettingsMissing1">Chosen settings aren\'t enough to generate a proper tour. "</string>
+    <string name="bodySettingsMissing2">Hint: try to be less restrictive</string>
 
-    <string name="bodySettingsMissing">Chosen settings aren\'t enough to generate a proper tour. Hint: try to be less restrictive</string>
+    <string name="and_more">and more</string>
+    <string name="allnothing">All/Nothing</string>
+    <string name="tooFarAway">Get closer to center of city to visualize its map</string>
+
 
     <string name="tips">Did you know?</string>
 
@@ -184,6 +187,8 @@
     <string name="ticket_types">Tickets</string>
 
     <string name="contact_types">Contacts</string>
+
+    <string name="ok">OK</string>
 
 
 

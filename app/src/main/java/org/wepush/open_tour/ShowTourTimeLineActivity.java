@@ -28,7 +28,8 @@ import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
 import org.osmdroid.bonuspack.overlays.MapEventsReceiver;
 import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
-import org.wepush.open_tour.fragments_dialogs.ErrorDialogFragment;
+
+import org.wepush.open_tour.fragments_dialogs.InsufficientSettingsDialogFragment;
 import org.wepush.open_tour.fragments_dialogs.ListViewTimeLineFragment;
 import org.wepush.open_tour.services.TourAlgorithmTask;
 import org.wepush.open_tour.structures.Constants;
@@ -135,6 +136,7 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent i=new Intent(getBaseContext(),LiveMapActivity.class);
+                i.setAction(Constants.INTENT_FROM_SHOWTOURTL);
 
                 i.putStringArrayListExtra("id",idSitesToShow);
                 i.putStringArrayListExtra("showingTime",showTimeSitesToShow);
@@ -142,14 +144,20 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
 
-
                 }
-            })
-        ;
-
+            });
 
 
     }//fine onCreate
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        HomeActivity.destroyTourPreferences(getBaseContext());
+        siteToStamp.clear();
+        startActivity(new Intent(getBaseContext(), SettingTourActivity.class));
+        finish();
+    }
 
 
 
@@ -188,6 +196,7 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
                 if (position > -1) {
 
                     Intent intentToShowSite = new Intent(getBaseContext(), ShowDetailsActivity.class);
+                    intentToShowSite.setAction(Constants.INTENT_FROM_SHOWTOURTL);
                     intentToShowSite.putExtra("siteId", siteToStamp.get(position).id);
 
 //                    intentToShowSite.putExtra("time",siteToStamp.get(position).showingTime);
@@ -278,9 +287,7 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
         for (Site site: siteToStamp){
 
-            Log.d("miotag","devo mostrare il sito "+site.name+" con coords: "+site.latitude+", "+site.longitude);
             GeoPoint gp=new GeoPoint(site.latitude,site.longitude);
-            Log.d("miotag", "geopoin generato: " + gp.getLatitude() + ", " + gp.getLongitude());
             org.osmdroid.bonuspack.overlays.Marker mark = new org.osmdroid.bonuspack.overlays.Marker(map);
             mark.setPosition(gp);
             mark.setIcon(getResources().getDrawable(R.drawable.pin_red));
@@ -319,7 +326,6 @@ private GeoPoint findTourCenter(ArrayList<Site> a){
             latitude=latitude+s.latitude;
             longitude=longitude+s.longitude;
         }
-//        LatLng lt=new LatLng(latitude/(Double.valueOf(a.size())),longitude/(Double.valueOf(a.size())));
             GeoPoint gp=new GeoPoint(latitude/(Double.valueOf(a.size())),longitude/(Double.valueOf(a.size())));
         Log.d("miotag", "CENTRO: " + gp.getLatitude() + " ," + gp.getLongitude());
         return gp;
@@ -329,41 +335,10 @@ private GeoPoint findTourCenter(ArrayList<Site> a){
     public  void showDummyActivity(){
 
         FragmentManager fm = getSupportFragmentManager();
-        ErrorDialogFragment hf = new ErrorDialogFragment();
+        InsufficientSettingsDialogFragment hf = new InsufficientSettingsDialogFragment();
         hf.show(fm, "badsettings_fragment");
-//
-//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-//                this);
-//
-//        // set title
-//        alertDialogBuilder.setTitle("Impostazioni insufficienti!");
-//
-//        // set dialog message
-//        alertDialogBuilder
-//                .setMessage("Le preferenze impostate per la generazione del tour sono troppo restrittive")
-//                .setCancelable(false)
-//                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog,int id) {
-//                        // if this button is clicked, close
-//                        // current activity
-//                        startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-//                        finish();
-//                    }
-//                })
-//                .setNegativeButton("No",new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog,int id) {
-//                        // if this button is clicked, just close
-//                        // the dialog box and do nothing
-//                        dialog.cancel();
-//                    }
-//                });
-//
-//        AlertDialog alertDialog = alertDialogBuilder.create();
-//        alertDialog.show();
+
     }
-
-
-
 
     private double showPrice(Site site){
 

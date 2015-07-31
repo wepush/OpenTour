@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/titleInsufficientInfo"
-        android:id="@+id/txtTitleGpsDialog"
+        android:text="@string/titleOutOfBoundsDialog"
+        android:id="@+id/txtTitleOutOfBoundsDialog"
         android:fontFamily="sans-serif"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_alignLeft="@+id/txtBodyGpsDialog"
         android:layout_alignStart="@+id/txtBodyGpsDialog" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/bodyInsufficientInfo1"
-        android:id="@+id/txtBodyGpsDialog"
+        android:text="@string/bodyOutOfBoundDialog1"
+        android:id="@+id/txtBodyOutOfBoundsDialog"
         android:fontFamily="sans-serif-light"
         android:gravity="left"
-        android:layout_below="@+id/txtTitleGpsDialog"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp" />
+        android:layout_below="@+id/txtTitleOutOfBoundsDialog"
+        android:layout_alignLeft="@+id/txtTitleOutOfBoundsDialog"
+        android:layout_alignStart="@+id/txtTitleOutOfBoundsDialog" />
 
 
     <TextView
@@ -34,11 +36,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
         android:fontFamily="sans-serif-light"
-        android:text="@string/bodyInsufficientInfo2"
-        android:layout_below="@+id/txtBodyGpsDialog"
-        android:layout_alignLeft="@+id/txtBodyGpsDialog"
-        android:layout_alignStart="@+id/txtBodyGpsDialog" />
+        android:text="@string/bodyOutOfBoundsDialog2"
+        android:layout_below="@+id/txtBodyOutOfBoundsDialog"
+        android:layout_alignLeft="@+id/txtBodyOutOfBoundsDialog"
+        android:layout_alignStart="@+id/txtBodyOutOfBoundsDialog" />
+
 
 
 </RelativeLayout>

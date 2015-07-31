@@ -1,6 +1,6 @@
 package org.wepush.open_tour;
 
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -17,7 +17,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 
 import com.google.android.gms.common.ConnectionResult;
@@ -25,8 +24,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-//import com.mapbox.mapboxsdk.overlay.Marker;
-
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.osmdroid.ResourceProxy;
 import org.osmdroid.api.IMapController;
@@ -36,18 +35,18 @@ import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.wepush.open_tour.fragments_dialogs.LivePagerFragment;
+import org.wepush.open_tour.structures.Constants;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 import org.wepush.open_tour.structures.Site;
 import org.wepush.open_tour.utils.RecyclerAdapter;
+import org.wepush.open_tour.utils.Repository;
 import org.wepush.open_tour.utils.SphericalMercator;
 
 
+import java.lang.reflect.Type;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-import de.hdodenhof.circleimageview.CircleImageView;
-
 /**
  * Created by antoniocoppola on 02/07/15.
  */
@@ -64,8 +63,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
     public static Context context;
 
-//    private com.mapbox.mapboxsdk.views.MapView mv;
-//    private Marker mark;
     private ViewPager viewLivePager;
     private ViewLivePagerAdapter viewLivePagerAdapter;
 
@@ -74,7 +71,7 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     private final static int ZOOM=17;
     private org.osmdroid.views.MapView map;
     private MapEventsOverlay overlayEventos, overlayNoEventos;
-    private MapEventsReceiver mapEventsReceiver, mapNoEventsReceiver;
+    private MapEventsReceiver  mapNoEventsReceiver;
     private IMapController mapController;
     private static Intent intentFromRecycler;
 
@@ -84,21 +81,14 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
 //to avoid conflicts, in "actualUserLocalization" is used a custom GoogleApiCient
 
-   private GoogleApiClient liveGoogleApiClient;
-
-
-//actual Location of the user
-
-//    private Location actualUserLocation;
-
-
+    private GoogleApiClient liveGoogleApiClient;
 
     @Override
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.livemap_layout);
 
+        setContentView(R.layout.livemap_layout);
         context=this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarDiscovery);
         toolbar.setTitle("");
@@ -109,39 +99,59 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startActivity(new Intent(getBaseContext(),SettingTourActivity.class));
+                HomeActivity.destroyTourPreferences(getBaseContext());
+                startActivity(new Intent(getBaseContext(), SettingTourActivity.class));
                 finish();
             }
         });
 
 
 
+
+
         intentFromRecycler=new Intent(this, ShowDetailsActivity.class);
-
-
-
-    //Section RECYCLERVIEW
-        //retrieve ids from intent directly
-        Intent intent=getIntent();
         idsFromShowTL=new ArrayList<>();
         showingTimeShowTL=new ArrayList<>();
         distanceShowTL=new ArrayList<>();
         arrayOfLocation=new ArrayList<>();
-        idsFromShowTL=intent.getStringArrayListExtra("id");
-        showingTimeShowTL=intent.getStringArrayListExtra("showingTime");
+        Intent intent=getIntent();
+
+        if (TextUtils.equals(intent.getAction(),Constants.INTENT_FROM_SHOWTOURTL)) {
+            idsFromShowTL = intent.getStringArrayListExtra("id");
+            showingTimeShowTL = intent.getStringArrayListExtra("showingTime");
+        } else if (TextUtils.equals(intent.getAction(),Constants.INTENT_FROM_SHOWDETAILS)){
+            String json=Repository.retrieve(this, "idsToSave", String.class);
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<String>>() {}.getType();
+            idsFromShowTL= gson.fromJson(json, type);
+
+            String json2=Repository.retrieve(this, "showToSave", String.class);
+            Gson gson2 = new Gson();
+            showingTimeShowTL=gson2.fromJson(json2,type);
+
+        }
+//TODO saving idsFromShowTL and showingTimeShow to relaunch activity after ShowDetails
+        Gson gson=new Gson();
+        String json=gson.toJson(idsFromShowTL);
+        Repository.save(this,"idsToSave",json);
+
+        Gson gson2=new Gson();
+        String json2=gson2.toJson(showingTimeShowTL);
+        Repository.save(this,"showToSave",json2);
+
+
         //ArrayList to keep distances between sites, passing it to recyclerview
         for (int i=0; i<idsFromShowTL.size()-1; i++){
             distanceShowTL.add(showNextDistance(idsFromShowTL.get(i),idsFromShowTL.get(i+1)));
 
         }
-    //this last item in distanceShowTL is added to pair its size with others ArrayList
+        //this last item in distanceShowTL is added to pair its size with others ArrayList
         distanceShowTL.add(getResources().getString(R.string.end_of_tour));
 
         recyclerView=(RecyclerView) findViewById(R.id.recyclerViewDiscovery);
 
         //link to LayoutManager
-       final LinearLayoutManager lManager=new LinearLayoutManager(this);
+        final LinearLayoutManager lManager=new LinearLayoutManager(this);
         lManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(lManager);
 
@@ -236,16 +246,16 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
 
 
-            showingOfflineMap();
+        showingOfflineMap();
 
 
 
         //GoogleMapClient implementation
         liveGoogleApiClient=new GoogleApiClient.Builder(this)
-            .addApi(LocationServices.API)
-            .addConnectionCallbacks(this)
-            .addOnConnectionFailedListener(this)
-            .build();
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
 
 
 //TODO: DECOMMENTARE a seguire per riattivare il navigatore
@@ -253,6 +263,16 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 //        actualUserLocalization();
 
     }//fine onCreate
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        HomeActivity.destroyTourPreferences(getBaseContext());
+        startActivity(new Intent(getBaseContext(), SettingTourActivity.class));
+        finish();;
+    }
+
+
 
     private static class ViewLivePagerAdapter extends FragmentStatePagerAdapter {
 
@@ -275,14 +295,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             bundle.putString("title", liveSites.get(position).name);
             bundle.putString("description",liveSites.get(position).address);
             bundle.putString("id",liveSites.get(position).id);
-
-//Seconds of ViewPager
-//            bundle.putString("distanceCovered",distanceShowTL.get(position));
-//            bundle.putString("picture",liveSites.get(position).pictureUrl);
-//            bundle.putString("time",showingTimeShowTL.get(position));
-//            bundle.putString("siteId",idsFromShowTL.get(position));
-
-
 
             fragment.setArguments(bundle);
             return fragment;
@@ -328,35 +340,33 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
     //methods required by GoogleApiInterfaces
 
-                        public void onConnected(Bundle hintBundle) {
-                            Location previousLocation = LocationServices.FusedLocationApi.getLastLocation(
-                                    liveGoogleApiClient);
+    public void onConnected(Bundle hintBundle) {
+        Location previousLocation = LocationServices.FusedLocationApi.getLastLocation(
+                liveGoogleApiClient);
 
-                            Log.d("miotag","luogo trovato con coordinate: "+previousLocation.getLatitude()+", "+previousLocation.getLongitude()+", "+previousLocation.getAccuracy());
+        Log.d("miotag","luogo trovato con coordinate: "+previousLocation.getLatitude()+", "+previousLocation.getLongitude()+", "+previousLocation.getAccuracy());
 
-                            actualUserLocalization(previousLocation);
-                            mLocationRequest=createLocationRequest();
-                            if (mLocationRequest != null) {
-                                startLocationUpdates();
-                            }
-                        }
+        actualUserLocalization(previousLocation);
+        mLocationRequest=createLocationRequest();
+        if (mLocationRequest != null) {
+            startLocationUpdates();
+        }
+    }
 
-                        public void onConnectionSuspended(int i) {
-
-
-                        }
-
-                        public void onConnectionFailed(ConnectionResult connResult) {
+    public void onConnectionSuspended(int i) {
 
 
-                        }
+    }
+
+    public void onConnectionFailed(ConnectionResult connResult) {
+
+
+    }
 //method that will return actual user location every X seconds
 
     private void actualUserLocalization(Location actualUserLocation){
         double maxDistance=Double.MAX_EXPONENT;
         int nearestSitePosition=0;
-
-        Log.d("miotag","actuaUserLocalization con location:"+" "+actualUserLocation.getLatitude()+", "+actualUserLocation.getLongitude());
 
         //move the map to center userLocation
         updateUI(actualUserLocation);
@@ -365,33 +375,31 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
 
         for (int i=0; i<arrayOfLocation.size(); i++){
-            Log.d("miotag","arrayOFLocation posizione entro cui rientriare: "+arrayOfLocation.get(i).getLatitude()+", "+arrayOfLocation.get(i).getLongitude());
+//            Log.d("miotag","arrayOFLocation posizione entro cui rientriare: "+arrayOfLocation.get(i).getLatitude()+", "+arrayOfLocation.get(i).getLongitude());
             if (
                     (actualUserLocation.getLatitude() > arrayOfLocation.get(i).getLatitude() - RADIUS) &&
-                    (actualUserLocation.getLatitude() < arrayOfLocation.get(i).getLatitude() + RADIUS) &&
+                            (actualUserLocation.getLatitude() < arrayOfLocation.get(i).getLatitude() + RADIUS) &&
 
-                    (actualUserLocation.getLongitude() > arrayOfLocation.get(i).getLongitude() - RADIUS) &&
-                    (actualUserLocation.getLongitude() > arrayOfLocation.get(i).getLongitude() + RADIUS)
-                ) {
+                            (actualUserLocation.getLongitude() > arrayOfLocation.get(i).getLongitude() - RADIUS) &&
+                            (actualUserLocation.getLongitude() > arrayOfLocation.get(i).getLongitude() + RADIUS)
+                    ) {
 
 //if all the conditions are true, then the user is inside a radius's site: to distinguish which site is closer in the events user is inside multiple radius
 //check on the distance between actualPosition and site location
                 double minDistance=SphericalMercator.getDistanceFromLatLonInKm
                         (
-                            actualUserLocation.getLatitude(),actualUserLocation.getLongitude(),
-                            arrayOfLocation.get(i).getLatitude(), arrayOfLocation.get(i).getLongitude()
-                         );
-                Log.d("miotag","distanza attuale: "+minDistance);
+                                actualUserLocation.getLatitude(),actualUserLocation.getLongitude(),
+                                arrayOfLocation.get(i).getLatitude(), arrayOfLocation.get(i).getLongitude()
+                        );
                 if (minDistance<maxDistance){
                     maxDistance=minDistance;
                     nearestSitePosition=i;
-                    Log.d("miotag","NEAREST position+minDistance: "+nearestSitePosition+","+minDistance);
                 }//fine check sulla distanza
             }//fine check if in area or not
         } //fine Fore
 //at the end of the for I'll have nearestSitePosition that point to the site (retrieving it from array's position number) in which area the user is. Move the ViewPager and RecyclerView to match this site
         int positionInRecycler=checkForCorrispondentLocation(arrayOfLocation.get(nearestSitePosition).toString());
-        Log.d("miotag","positionInRecycler: "+positionInRecycler);
+//        Log.d("miotag","positionInRecycler: "+positionInRecycler);
         moveViewPagerAndRecyclerView(positionInRecycler);
 
 
@@ -407,9 +415,9 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 //more: the same position rules on recycler view, so i can return just the position
         Location thisLocation=new Location("gpsprovider");
         for (int i=0; i<arrayOfLocation.size();i++){
-           if ( TextUtils.equals(arrayOfLocation.get(i).toString(), locationInString)){
-               return i;
-           }
+            if ( TextUtils.equals(arrayOfLocation.get(i).toString(), locationInString)){
+                return i;
+            }
 
         }
         return -1;
@@ -479,13 +487,15 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     @Override
     public void onPause(){
         super.onPause();
-        Log.d("miotag","LIVE on Pause");
+        Log.d("miotag", "LIVE on Pause");
         stopLocationUpdates();
         liveGoogleApiClient.disconnect();
         map.getOverlays().remove(overlayEventos);
         map.getOverlays().clear();
         map.getTileProvider().createTileCache();
         map.getTileProvider().detach();
+
+
     }
 
 
@@ -499,6 +509,7 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
                 liveGoogleApiClient.disconnect();
             }
         }
+        finish();
 
     }
 
@@ -511,6 +522,20 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             if (!(liveGoogleApiClient.isConnected())) {
                 liveGoogleApiClient.connect();
             }
+        }
+
+        String json=Repository.retrieve(this, "idsToSave", String.class);
+        if ((json!= null) || (json!="")) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<String>>() {
+            }.getType();
+//                ArrayList<String> myIds = gson.fromJson(json, type);
+            idsFromShowTL= gson.fromJson(json, type);
+
+            String json2=Repository.retrieve(this, "showToSave", String.class);
+            Gson gson2 = new Gson();
+//                ArrayList<String> myShowing = gson2.fromJson(json2, type);
+            showingTimeShowTL=gson2.fromJson(json2,type);
         }
 
     }
@@ -550,19 +575,21 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     }
 
 
-      private void fillingUpWithPins(){
+    private void fillingUpWithPins(){
 
-          for (Site site: liveSites) {
+        for (Site site: liveSites) {
 
-              GeoPoint gp = new GeoPoint(site.latitude, site.longitude);
-              org.osmdroid.bonuspack.overlays.Marker mark = new org.osmdroid.bonuspack.overlays.Marker(map);
-              mark.setPosition(gp);
-              mark.setIcon(getResources().getDrawable(R.drawable.pin_red));
-              mark.setTitle(site.name);
-              map.getOverlays().add(mark);
-              map.invalidate();
-          }
+            GeoPoint gp = new GeoPoint(site.latitude, site.longitude);
+            org.osmdroid.bonuspack.overlays.Marker mark = new org.osmdroid.bonuspack.overlays.Marker(map);
+            mark.setPosition(gp);
+            mark.setIcon(getResources().getDrawable(R.drawable.pin_red));
+            mark.setTitle(site.name);
+            map.getOverlays().add(mark);
+            map.invalidate();
         }
+    }
+
+
 }
 
 

@@ -98,16 +98,7 @@ public class LookUpIntentService extends IntentService {
 
 //            Address address = addresses.get(0);
             ArrayList<String> addressFragments = new ArrayList<String>();
-//
-//            // Fetch the address lines using getAddressLine,
-//            // join them, and send them to the thread.
-//            for(int i = 0; i < address.getMaxAddressLineIndex(); i++) {
-//                addressFragments.add(address.getAddressLine(i));
-//            }
-//
-//            deliverResultToReceiver(Constants.SUCCESS_RESULT,
-//                    TextUtils.join(System.getProperty("line.separator"),
-//                            addressFragments));
+
             Address address = addresses.get(0);
             addressFragments.add(address.getAddressLine(0));
             deliverResultToReceiver(Constants.SUCCESS_RESULT, addressFragments.get(0) );

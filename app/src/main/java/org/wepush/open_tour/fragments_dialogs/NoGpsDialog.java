@@ -10,20 +10,19 @@ import android.support.v4.app.DialogFragment;
 import android.view.View;
 
 import org.wepush.open_tour.R;
-import org.wepush.open_tour.SettingTourActivity;
 
 
 /**
  * Created by antoniocoppola on 22/07/15.
  */
-public class ErrorDialogFragment extends DialogFragment {
+public class NoGpsDialog extends DialogFragment {
 
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_insufficient_gps, null);
+        View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_nogps, null);
 
         builder.setView(view);
 
@@ -37,8 +36,8 @@ public class ErrorDialogFragment extends DialogFragment {
         });
         builder.setNegativeButton(R.string.modifyPreferences, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                startActivity(new Intent(getActivity(), SettingTourActivity.class));
-                getActivity().finish();
+
+                dismiss();
 
             }
         });

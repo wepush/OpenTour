@@ -84,6 +84,7 @@
     <string name="allnothing">Tutti/Nessuno</string>
 
     <string name="startingTour">Inizio Tour</string>
+    <string name="ok">OK</string>
 
 
     <string name="church">Chiese</string>
@@ -110,18 +111,26 @@
 
 
 
-    <string name="titleInsufficientInfo">Informazioni Insufficienti</string>
-    <string name="bodyInsufficientInfo1">Modifica i criteri di vista per generare un Tour completo!</string>
-    <string name="bodyInsufficientInfo2">Attivare connessione GPS (modalità Alta Precisione)</string>
+    <string name="titleNoGpsInfo">Segnale GPS assente</string>
+    <string name="bodyNoGpsDialog1">Impossibile localizzare la posizione corrente!</string>
+    <string name="bodyNoGpsDialog2">Attivare connessione GPS (modalità Alta Precisione) o attendere migliore ricezione segnale</string>
     <string name="confirmGPSlaunch">Attiva GPS</string>
     <string name="confirmSettingsLaunch">Impostazioni insufficienti</string>
     <string name="modifyPreferences">Torna a Preferenze</string>
 
+    <string name="titleOutOfBoundsDialog">Impossibile generare un tour!</string>
+    <string name="bodyOutOfBoundDialog1">Spiacenti, non abbiamo trovato siti turistici nelle vicinanze. </string>
+    <string name="bodyOutOfBoundsDialog2">Avvicinati al centro per creare un tour, l’app funziona entro i confini della città!</string>
+
+
+    <string name="titleSettingsMissing">Informazioni Insufficienti</string>
+    <string name="bodySettingsMissing1">Le impostazioni scelte non sono sufficienti per generare il tour richiesto. </string>
+    <string name="bodySettingsMissing2">"Consiglio: indicare preferenze meno restrittive"</string>
+
+    <string name="tooFarAway">Avvicinarsi al centro città per visualizzarne la mappa</string>
+
     <string name="goLiveFloating">Tap sul pulsante float per il tour Live!</string>
 
-
-    <string name="titleSettingsMissing">Attenzione!</string>
-    <string name="bodySettingsMissing">Le impostazioni scelte non sono sufficienti per generare il tour richiesto. Consiglio: indicare preferenze meno restrittive</string>
 
     <string name="tips">Lo sai che?</string>
     <string name="text_tips">testo tips</string>

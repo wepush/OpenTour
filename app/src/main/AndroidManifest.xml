@@ -111,13 +111,6 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <activity
-            android:name=".NoResultActivity"
-            android:label="NoResultActivity"
-            android:screenOrientation="portrait"/>
-
-
-
 
         <service
             android:name=".services.LookUpIntentService"

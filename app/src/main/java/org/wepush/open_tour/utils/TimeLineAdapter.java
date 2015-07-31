@@ -48,7 +48,6 @@ public class TimeLineAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-//        return listData.size();
         return siteToShowInList.size();
     }
 
@@ -79,9 +78,7 @@ public class TimeLineAdapter extends BaseAdapter{
         if(TextUtils.equals(imagePath, "placeholder")){
             imagePathToUse="header_milan";
         } else {
-            Log.d("miotag", "SiteToShow PICTURE: " + imagePath);
             imagePathToUse = imagePath.substring(79, imagePath.length()-4);
-            Log.d("miotag","imagePAth: "+imagePathToUse);
         }
 
 //        Ottengo la giusta immagine del monumento da impostare nella toolbar

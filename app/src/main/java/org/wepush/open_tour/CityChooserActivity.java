@@ -61,7 +61,6 @@ public class CityChooserActivity extends AppCompatActivity {
 
                 mCityIndex=viewPager.getCurrentItem();
                 if (mCityIndex==0){
-                    Log.d("miotag","city saved: MILANO");
                    Repository.save(getApplicationContext(), Constants.KEY_CURRENT_CITY, "milano");
                     startService(new Intent(getBaseContext(), ReadFromJson.class));
                     startActivity(new Intent(getBaseContext(), SplashActivityTimeLine.class));

@@ -15,43 +15,7 @@ import org.wepush.open_tour.utils.Repository;
 
 public class HomeActivity extends AppCompatActivity {
 
-    static final int CITY_REQUEST = 90;
 
-
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//       destroyTourPreferences(this);
-//
-//
-//        if( !(TextUtils.equals(Repository.retrieve(this, Constants.WALKTHROUGH_SEEN,String.class),"yes"))
-//                )
-//        {
-//            Log.d("miotag","Launch Walkthrough");
-//            startActivity(new Intent(this, WalkthroughActivity.class));
-//            finish();
-//        }else if(
-//                !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY,  String.class),"milano"))&&
-//                !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class),"palermo") )
-//            )
-//        {
-//            Log.d("miotag","CityChooserActivity");
-//            startActivity(new Intent(this,CityChooserActivity.class));
-//            finish();
-//        } else {
-//
-//            startActivity(new Intent(this,SettingTourActivity.class));
-//            finish();
-//        }
-//
-//
-//
-//    }//fine onCreate
-
-
-    //10 luglio 2015
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         if( !(TextUtils.equals(Repository.retrieve(this, Constants.WALKTHROUGH_SEEN, String.class),"yes"))
                 )
         {
-            Log.d("miotag","Launch Walkthrough");
+
             startActivity(new Intent(this, WalkthroughActivity.class));
             finish();
         }else  {

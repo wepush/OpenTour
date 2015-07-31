@@ -40,11 +40,6 @@ public class TourAlgorithmTask extends AsyncTask<Void, Void, ArrayList<Site>> {
 
 
     Context context= SettingTourActivity.context;
-//    Gson gson=new Gson();
-//    Type type=new TypeToken<Site>() {}.getType();
-//    String json= Repository.retrieve(context, Constants.STARTING_SITE, String.class);
-//    Site newSite=gson.fromJson(json,type);
-
 
     Gson gsonCalendar=new Gson();
     Type typeCalendar=new TypeToken<Calendar>(){}.getType();
@@ -56,19 +51,11 @@ public class TourAlgorithmTask extends AsyncTask<Void, Void, ArrayList<Site>> {
         showTourTimeLineActivityWeakReference=new WeakReference<ShowTourTimeLineActivity>(wShowTourTimeLineActivity);
         algToUse=algortithmToUse;
         newSite= new Site();
-
-
-
-        //checking if the result from GPS is valid or not
-//TODO uncomment for release! 27luglio
         newSite.latitude=Double.valueOf(Repository.retrieve(context,Constants.LATITUDE_STARTING_POINT,String.class));
         newSite.longitude=Double.valueOf(Repository.retrieve(context,Constants.LONGITUDE_STARTING_POINT,String.class));
-//TODO debug inhouse
-//        newSite.latitude=45.468994;
-//        newSite.longitude=9.182067;
+
 
         newSite.name="this actual position";
-        Log.d("miotag","Before TourAlgorith, the coordinates are: "+newSite.latitude+", "+newSite.longitude);
 
     }
 
@@ -86,23 +73,16 @@ public class TourAlgorithmTask extends AsyncTask<Void, Void, ArrayList<Site>> {
 
 
             if ((siteReturning.isEmpty()) || (TextUtils.equals(siteReturning.get(0).name,"dummy"))   ){
-                Log.d("miotag","DUMMY! relaunch screen mode: ON!");
                  if (showTourTimeLineActivityInstance != null){
                      showTourTimeLineActivityInstance.showDummyActivity();
                  }
 
             } else if (showTourTimeLineActivityInstance != null){
             showTourTimeLineActivityInstance.siteToStamp=siteReturning;
-
-//            showTourTimeLineActivityInstance.ll1=  (LinearLayout) showTourTimeLineActivityInstance.findViewById(R.id.llShowTimeLine);
-//            showTourTimeLineActivityInstance.ll1.setBackgroundColor(context.getResources().getColor(R.color.white));
-
-
             showTourTimeLineActivityInstance.progressBar=(ProgressBar)  showTourTimeLineActivityInstance.findViewById(R.id.progressBarTourTimeLine);
             showTourTimeLineActivityInstance.progressBar.setVisibility(View.GONE);
             showTourTimeLineActivityInstance.showResultFromAlgorithm();
         }else {
-            Log.d("miotag","wakReference is dead");
             showTourTimeLineActivityWeakReference = new WeakReference<>(showTourTimeLineActivityInstance);
 
         }

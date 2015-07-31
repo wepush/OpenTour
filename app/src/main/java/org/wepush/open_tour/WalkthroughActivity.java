@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -22,7 +23,7 @@ import org.wepush.open_tour.utils.Repository;
 /**
  * Created by Antonio on 10/04/2015.
  */
-public class WalkthroughActivity extends ActionBarActivity {
+public class WalkthroughActivity extends AppCompatActivity {
 
     private static ViewPager introViewPager;
     private View[] mTransitions = new View[5];
@@ -41,7 +42,7 @@ public class WalkthroughActivity extends ActionBarActivity {
 
     private static final int FIFTH_PAGE=4;
 
-
+    private Button nextButton;
 
 
 
@@ -61,7 +62,7 @@ public class WalkthroughActivity extends ActionBarActivity {
         rightBackgroundView.setBackgroundResource(R.color.green300);
 
         final Button skipButton = (Button) findViewById(R.id.btnSkipWalkthrough);
-       Button nextButton = (Button) findViewById(R.id.btnNextWalkthrough);
+//       Button nextButton = (Button) findViewById(R.id.btnNextWalkthrough);
 
 
         mTransitions[0] = findViewById(R.id.view_transition_one);

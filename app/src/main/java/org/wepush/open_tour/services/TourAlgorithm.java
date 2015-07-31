@@ -34,8 +34,6 @@ public class TourAlgorithm {
     //the idea is to shrink at the fastest rate the number of sites to work on. This is done by process subset of sites multiple times:
     //so we dismiss the bad behaviour of working with all DB sites, but we tradeoff that with processing multiple times small subsets of sites
 
-//    private static final int MOVE_BY_WALK=3;
-//    private static final int MOVE_BY_BIKE=6;
     private static Context context;
     private static ArrayList<Site> sitesInRange;
     private  static Calendar timeToStart;
@@ -43,7 +41,6 @@ public class TourAlgorithm {
     private static float maxTravelDistance;
     private static Site userStartingSite;
 
-//    private static final int VISIT_TIME=30; //minutes
     private static int howToMove;
     private static ArrayList<ArrayList<Site>> allPossiblePaths=new ArrayList<ArrayList<Site>>();
 
@@ -51,26 +48,18 @@ public class TourAlgorithm {
 
     public  static ArrayList<Site> showTour (Site startingSite, float timeToSpend,Context ctx, Calendar timeOfDay, String algoritmToUse){
 
-//            Log.d("miotag","startingSite: "+startingSite.name);
-//            Log.d("miotag","timeToSpend: "+timeToSpend);
         int indexToChoose=0;
         int indexActualSize=0;
 
-        //TODO 23 LuglioTO avoid a nasty bug about timeToStart, Initilizing it right now
-//            timeToStart=Calendar.getInstance();
-        Log.d("miotag","entrata all'algoritmo: "+timeOfDay);
-        //TODO 23 fine
+
         timeLeft=timeToSpend;
         timeToStart=timeOfDay;//al momento è solo la data
-//             timeLeftGlobal=timeLeft;//quanto dura il tour
         context=ctx;
 
        if( TextUtils.equals(Repository.retrieve(context, Constants.HOW_SAVE, String.class),"walk"))
         {
-//            Log.d("miotag","HOW TO MOVE: walk");
             howToMove=3;
         } else{
-//           Log.d("miotag","HOW TO MOVE: bike");
            howToMove=6;
        }
 
@@ -81,7 +70,6 @@ public class TourAlgorithm {
            timeToStart.set(Calendar.DAY_OF_WEEK, 1);
            timeToStart.set(Calendar.DAY_OF_MONTH, 1);
        } catch (NullPointerException e ){
-          Log.d("miotag",""+ e.toString());
            timeToStart=new GregorianCalendar(timeOfDay.get(Calendar.YEAR),timeOfDay.get(Calendar.MONTH),timeOfDay.get(Calendar.DAY_OF_WEEK),
                    timeOfDay.get(Calendar.HOUR_OF_DAY),timeOfDay.get(Calendar.MINUTE));
        }
@@ -114,82 +102,18 @@ public class TourAlgorithm {
         timeToStart.set(Calendar.MINUTE,minutes);
         timeToStart.set(Calendar.HOUR_OF_DAY,hours);
 
-//        timeToStart.add(Calendar.MINUTE,timeToStartFromUser.get(Calendar.MINUTE));
-//        timeToStart.add(Calendar.HOUR_OF_DAY,timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
-
-
         //TODO check if sum of minutes from minutes exceeds current day
-
-//        int currentMinute=Calendar.MINUTE + timeToStartFromUser.get(Calendar.MINUTE);
-//        int addingHour=currentMinute/60;
-//        currentMinute=(currentMinute) -(60*addingHour);
-//        int currentHour=Calendar.HOUR_OF_DAY+timeToStartFromUser.get(Calendar.HOUR_OF_DAY) + addingHour;
-//            if (currentHour > 23){
-//                int addingMoreHour=currentHour/24;
-//                currentHour=currentHour - addingMoreHour;
-//            }
-
-//        timeToStart.add(Calendar.HOUR_OF_DAY,currentHour);
-//        timeToStart.add(Calendar.MINUTE,currentMinute);
-
-//        if (currentMinute>59){
-//            currentHour=currentHour+1;
-//             if (currentHour > 23) {
-//                 timeToStart.set(Calendar.HOUR_OF_DAY,(currentHour - 24));
-//                 timeToStart.set(Calendar.MINUTE,(currentMinute - 59));
-//             }
-//        } else {
-//
-//            timeToStart.add(Calendar.HOUR_OF_DAY, timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
-//            timeToStart.add(Calendar.MINUTE, timeToStartFromUser.get(Calendar.MINUTE));
-//        }
-
-//        if ( ((currentMinute > 59) && (currentHour >22))  ){
-//            timeToStart.set(Calendar.HOUR_OF_DAY,(currentHour-24));
-//            timeToStart.set(Calendar.MINUTE,(currentMinute-60));
-//        } else {
-//
-//        Log.d("miotag","onBackground: data: "+timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
-
-//        int minutes=timeToStart.get(Calendar.MINUTE)+timeToStartFromUser.get(Calendar.MINUTE);
-//        int overflowMinutes=minutes/60;
-//
-//        int hours=timeToStart.get(Calendar.HOUR_OF_DAY)+timeToStartFromUser.get(Calendar.HOUR_OF_DAY);
-//
-//        if (hours+overflowMinutes>23){
-//            Log.d("miotag","sono qui con hours: "+hours+"; ovMinutes"+overflowMinutes);
-//            timeToStart.roll(Calendar.MINUTE, timeToStartFromUser.get(Calendar.MINUTE));
-//            timeToStart.roll(Calendar.HOUR_OF_DAY,overflowMinutes);
-//        } else {
-//            Log.d("miotag","non sono qui con hours: "+hours+"; ovMinutes"+overflowMinutes);
-//                timeToStart.add(Calendar.MINUTE, timeToStartFromUser.get(Calendar.MINUTE));
-//                timeToStart.add(Calendar.HOUR_OF_DAY, timeToStartFromUser.get(Calendar.MINUTE));
-//        }
-
-
-//        long timeToStartInMilly=timeToStart.getTimeInMillis();
-//        long timeFromUserInMilly=timeToStartFromUser.getTimeInMillis();
-//        timeToStart.add(Calendar.MILLISECOND,((int)(timeToStartInMilly+timeFromUserInMilly)));
-
-
-//                timeToStart.add(Calendar.MINUTE, timeToStartFromUser.get(Calendar.MINUTE));
-//                timeToStart.roll(Calendar.HOUR_OF_DAY, timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
-
-
-//        }
-
 
         userStartingSite=startingSite;
         //find out how far the user can go knowing timeToSpend and vehicles
         //IF TO BE USED TO CHOOSE THE RIGHT SPEED
         maxTravelDistance=(howToMove*1000f/3600f)*timeLeft;
-//            Log.d("miotag","maxTravelDistance: "+maxTravelDistance);
+
         //divided by 5 to keep the reality of a user moving by walk/bike
         maxTravelDistance=maxTravelDistance/5f;
         //and again divided by 1000 to obtain KMs
         maxTravelDistance=maxTravelDistance/1000f;
 
-//            Log.d("miotag","SHOWTOUR: maxDistance="+maxTravelDistance);
         sitesInRange=new ArrayList<Site>();
         //choose site in range taking actualSite,all sites in db,max travel distance
 
@@ -200,30 +124,15 @@ public class TourAlgorithm {
 
         //localize the nearest site belonging to DB from the coords feeded by user
         Site siteToStart= new Site();
-        //todo se funziona, è da cancellare           siteToStart=findNearestFromDb(startingSite);
         siteToStart=findNearestFromDb(startingSite);
-//            Log.d("miotag","Algoritmo scelto: "+algoritmToUse);
-
-//            if (TextUtils.equals(algoritmToUse,"shortest")) {
-//                Log.d("miotag","l'algoritmo che utilizzo è SHORTEST");
-//             allPossiblePaths.add(getShortestPath(siteToStart));
-//            } else {
-//                Log.d("miotag"," l'algoritmo che utilizzo è RANDOM");
-//                allPossiblePaths.add(getRandomPaths(siteToStart));
-//            }
-
-
 
         allPossiblePaths.clear();
 
 
-//           allPossiblePaths.add(getRandomPaths(siteToStart));
-//TODO riempimento di allpossibilePaths con 10 iterazioni di getRandomPaths
+
         for (int i=0; i<256; i++){
 
-//            Log.d("miotag","NUOVA ITERAZIONE con siteToStart="+siteToStart.toString());
 
-//            Log.d("miotag","NEW ITERATION with siteToStart="+siteToStart.toString());
                 allPossiblePaths.add(getRandomPaths(siteToStart));
 //re inizializzazione di timeToStart dopo ciascun ciclo a partire dalle impostazioni utente
                 timeToStart.set(Calendar.HOUR_OF_DAY, timeToStartFromUser.get(Calendar.HOUR_OF_DAY));
@@ -233,24 +142,11 @@ public class TourAlgorithm {
                 timeLeft = Float.valueOf(Repository.retrieve(context, Constants.TIME_TO_SPEND, String.class));
                 siteToStart = new Site();
 
-//                Log.d("miotag2", "startingSite=" + startingSite.name);
-//                Log.d("miotag2", "startingSite.visitTime=" + startingSite.visitTime);
                 siteToStart = findNearestFromDb(startingSite);
                 siteToStart.visitTime = 0.0f;
-//                Log.d("miotag2", "siteToStart.name=" + siteToStart.name);
-//                Log.d("miotag2", "siteToStart.visitTime=" + siteToStart.visitTime);
-
 
         }
-//            allPossiblePaths.add(getRandomPaths(siteToStart));
-//                    timeLeft=timeLeftGlobal;
-//                    timeToStart=timeToStartGlobal;
-//            allPossiblePaths.add(getRandomPaths(siteToStart));
-//                    timeLeft=timeLeftGlobal;
-//                    timeToStart=timeToStartGlobal;
-//            allPossiblePaths.add(getRandomPaths(siteToStart));
-//                    timeLeft=timeLeftGlobal;
-//                    timeToStart=timeToStartGlobal;
+
 
         //TODO scelta dell'arrayList con maggior numero di hope al suo interno
         for (int i=0; i<allPossiblePaths.size();i++){
@@ -259,15 +155,12 @@ public class TourAlgorithm {
                 indexToChoose=i;
             }
         }
-//            Log.d("miotag","allpossiblePaths ha misura"+allPossiblePaths.size());
-//          Log.d("miotag"," il numero random scelto è : "+ meshRandomPosition);
-
         ArrayList<Site> sitesToShowing=allPossiblePaths.get(indexToChoose);
 
         allPossiblePaths.clear();
-//            sitesInRange.clear();
+
         return sitesToShowing;
-//            return allPossiblePaths.get(indexToChoose);
+
 
     }
 
@@ -292,10 +185,7 @@ public class TourAlgorithm {
     private static ArrayList<Site> chooseSitesInRange(Site siteToStart, ArrayList<Site> siteArray,float d){
         //choose which sites are in range for the user to walk/bike
 
-        //d: maxDistance the user can use based on timeToSpend and vehicle chosen
-        //w: distance between startSite and the i-site of DB
-//        Log.d("miotag"," l'array di tutti i siti dal db ha dimensioni: "+siteArray.size());
-//        Log.d("miotag","siteToStart: "+siteToStart.name);
+
         ArrayList<Site> siteInRangeToReturn=new ArrayList<Site>();
 
 
@@ -303,27 +193,17 @@ public class TourAlgorithm {
         Gson gson2=new Gson();
         ArrayList<String>typeOfSiteChosen=gson2.fromJson(Repository.retrieve(context,Constants.WHAT_SAVE,String.class),type2);
 
-//        Log.d("miotag","max distanza fissata a: "+d);
         for (Site site: siteArray){
             if (
                     (isSiteTypeChosen(site,typeOfSiteChosen))
                 ) {
                 float w = ((float) SphericalMercator.getDistanceFromLatLonInKm(site, siteToStart));
 
-//            Log.d("miotag","distanza attuale tra il sito in lav. "+site.name+", ed il sito iniziale "+siteToStart.name+": "+w);
-
-
                 if (w < d) {
-//                Log.d("miotag","attuale distanza: "+w);
-//                Log.d("miotag","sito in range aggiunto : "+site.name);
                     siteInRangeToReturn.add(site);
                 }
             }
         }
-//        Log.d("miotag","dimensione siti in range: "+siteInRangeToReturn.size());
-
-
-
 
         return siteInRangeToReturn;
     }
@@ -331,21 +211,6 @@ public class TourAlgorithm {
 
     //this method will modify real distance between actualSite and other site through popularity measure belongin to each db site
     //right now is set to 0 so the process can keep going without this parameter
-
-    public int addingPopularity(Site site){
-        return 0;
-    }
-
-    public static void reachingTimeForEverySite(ArrayList <Site> sitesToReach){
-
-        for (Site site: sitesToReach){
-
-
-        }
-
-    }
-
-
 
 
     private static ArrayList<Site> getRandomPaths (Site startSite){
@@ -362,7 +227,6 @@ public class TourAlgorithm {
         timeLeft=timeLeft/60f;
 
        try {
-//        startSite.alreadyTaken = true;
 //this section is only for startSite sake, that is processed as first and give start to the follow method
            if (checkIfSiteIsOpen(startSite, (SphericalMercator.getDistanceFromLatLonInKm(startSite, userStartingSite)) * 1000f)) {
                startSite.alreadyTaken = true;
@@ -373,40 +237,10 @@ public class TourAlgorithm {
 
                chosenRandomPath.add(startSite);
                //following instructions tracking only the movement between actual position and first site found in db
-//               Log.d("miotag", "TimeLeft before being modified(first site outside while): " + timeLeft);
-//               Log.d("miotag", "startSite.visitTime after the sum between visit time and move time " + startSite.visitTime);
-
                timeLeft = timeLeft - startSite.visitTime;
 
-//               Log.d("miotag", "TimeLeft after substract the first site outside while " + timeLeft);
-
-               //DA QUI MODIFICHE DEL 22 GIUGNODA RIVEDERE
-               //TODO: LE DUE VARIABILI QUI CALCOLATE SONO
-
-//            String futureTimeFromSite= ""+siteToAdd.showingTime;
-//            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-//            Date  futureTimeSite=new Date();
-//            try {
-//
-//                futureTimeSite = sdf.parse(futureTimeFromSite);
-//            } catch(ParseException e){
-//                Log.d("miotag", "fail in conversione data di startSite (iniziale)");
-//                e.printStackTrace();
-//            }
-
-
-//            timeToStart.add(Calendar.HOUR_OF_DAY,futureTimeSite.getDate());
-//            timeToStart.add(Calendar.MINUTE,futureTimeSite.getMinutes());
-               //CAMBIAMENTO DI IDEA: IL TEMPO GLOBALE (QUELLO DI OROLOGIO) VIENE PRESO DA site.showingTime
-//               Log.d("miotag", "startSite.showingTime (before While): " + startSite.showingTime);
                timeToStart.set(Calendar.HOUR_OF_DAY, Integer.valueOf(startSite.showingTime.substring(0, 2)));
                timeToStart.set(Calendar.MINUTE, Integer.valueOf(startSite.showingTime.substring(3)));
-//               Log.d("miotag", "startSite.showingTime BEFORE del while: " + startSite.showingTime.substring(0, 2));
-//               Log.d("miotag", "startSite.showingTime BEFORE del while: " + startSite.showingTime.substring(3));
-//               Log.d("miotag", "TimeToStart modified after the first site before while is being processed: " + timeToStart.get(Calendar.HOUR_OF_DAY) + ":" + timeToStart.get(Calendar.MINUTE));
-
-               //FIN QUI MODIFICHE DEL 22 GIUGNO
-//            timeToStart.add(Calendar.MINUTE,((int)startSite.visitTime));
            }
 
 
@@ -436,27 +270,18 @@ public class TourAlgorithm {
                            timeToStart.set(Calendar.HOUR_OF_DAY, Integer.valueOf(siteToAdd.showingTime.substring(0, 2)));
                            timeToStart.set(Calendar.MINUTE, Integer.valueOf(siteToAdd.showingTime.substring(3)));
 
-                           //FIN QUI MODIFICHE DEL 22 GIUGNO
-                           //                            timeToStart.add(Calendar.MINUTE, ((int) siteToAdd.visitTime));
                            startSite = siteToAdd;
                            chosenRandomPath.add(siteToAdd);
                            //                        }
 
 
                        }
-                       //            if(isTimeAlwaysTheSame()){
-                       //                iterations=iterations++;
-                       //                    if(iterations>10){
-                       //                        return chosenRandomPath;
-                       //                    }
-                       //            } else {
-                       //                iterations=0;
+
                    } else {
-                       //                   Log.d("miotag","iterazione numero: "+iterations);
+
                        iterations++;
                        if (iterations > 21) {
 
-//                           Log.d("miotag", "ATTENTION: iterations > 11");
                            return chosenRandomPath;
                        }
                    }
@@ -507,7 +332,6 @@ public class TourAlgorithm {
                 hourOfDay=hourOfDay-24;
             }
         }
-//        site.showingTime=hourOfDay+":"+minuteOfDay;
         if (site.alwaysOpen==1){
             site.visitTime=destinationTime;
             //il valore site.visitTime è dato dal JSON, non da calcoli
@@ -565,10 +389,7 @@ public class TourAlgorithm {
         Date actualTime=new Date();
         Date openTime=new Date();
         Date closeTime=new Date();
-//        Log.d("miotag","(CompareTime) inTime: "+inTime);
-//        Log.d("miotag","(CompareTime) outTime: "+outTime);
         String thisTime=String.valueOf(hour)+":"+String.valueOf(min);
-//        Log.d("miotag","(CompareTime): String thisTime: "+thisTime);
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         try {
 
@@ -586,24 +407,17 @@ public class TourAlgorithm {
         return false;
     }
 
-    //    private static boolean isTimeAlwaysTheSame(){
-//        if(timing==timeLeft){
-//            return true;
-//        }
-//        return false;
-//    }
+
     private static boolean compareDate(String dateIn, String dateOut, Calendar whenDate){
         //Calendar whenDate is from user Settings
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM");
 
         if (TextUtils.equals(dateIn,"")){
-//            Log.d("miotag","(compareDate) DateIN ->torno TRUE");
             return true;
         }
 
         if (TextUtils.equals(dateOut,"")){
-//            Log.d("miotag","(compareDate) DateOUT ->torno TRUE");
             return true;
         }
         try{

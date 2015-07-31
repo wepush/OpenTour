@@ -37,22 +37,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
-//    public RecyclerAdapter(ArrayList<Site> sitesFromShowTour){
-//
-//        timeLive=new ArrayList<>();
-//        ArrayList<Site> sitesForViewHolder=new ArrayList<>();
-//        sitesForViewHolder=sitesFromShowTour;
-////        for (int i=0; i<sitesForViewHolder.size(); i++){
-////            Log.d("miotag","siti in arrivo: "+sitesForViewHolder.get(i).name+" ,con posizione: "+i);
-////        }
-//        for (Site s: sitesForViewHolder){
-//
-//            timeLive.add(s.name);
-//
-//        }
-//    }
-
-
 
 
     @Override
@@ -79,11 +63,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-//        if (myList.size()==0){
-//            return 0;
-//        } else {
-//            return myList.size();
-//        }
+
 
         if (idLive.size()==0){
             return 0;
@@ -92,7 +72,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public CircleImageView getCurrentCircleImageRecycler(int position){
-        return recHolder.returnCircleImageFromHolder();
-    }
+
 }

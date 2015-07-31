@@ -36,21 +36,9 @@ public class ReadFromJson extends IntentService {
 
 
 
-//            if(TextUtils.equals(Repository.retrieve(this,Constants.KEY_CURRENT_CITY,String.class),"milano")) {
-//                Log.d("miotag","Loading Milan");
-//                stringFromJson = jsonToStringFromAssetFolder("milandb", getApplication());
-//            } else {
-//                Log.d("miotag","Loading Palermo");
-//                stringFromJson=jsonToStringFromAssetFolder("palermodb",getApplication());
-//            }
-
-//10 Luglio: since Milan is the only city available, if/else is useless
-//but! choose right json based on system language
-            Log.d("miotag","lingua di sistema: "+Locale.getDefault().getDisplayLanguage());
 
             if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")){
-                //TODO associare il giusto json in lingua inglese
-                Log.d("miotag","INGLESE selezionato");
+
                 stringFromJson = jsonToStringFromAssetFolder("milandb_en", getApplication());
             } else {
 
@@ -75,7 +63,6 @@ public class ReadFromJson extends IntentService {
         DB1SqlHelper.getInstance(this).deleteDb(this);
 
         try {
-            Log.d("miotag"," Parse Result");
             ArrayList<Site> siteToReturn = new ArrayList<Site>();
             JSONArray arrayFromJson = obj.getJSONArray("sites");
 
@@ -88,16 +75,12 @@ public class ReadFromJson extends IntentService {
                 site.name = singleSite.getString("name");
                 site.description = singleSite.getString("description");
                 site.tips = singleSite.getString("tips");
-//                site.alwaysOpen = singleSite.getInt("alwaysOpen");
-
-//                site.priority = singleSite.getInt("priority");
 
                 JSONObject locationInfo = singleSite.getJSONObject("location");
                 site.address = locationInfo.getString("street_name");
                 site.addressCivic = locationInfo.getString("street_number");
                 JSONArray coordinates = locationInfo.getJSONArray("coordinates");
-                // 0 is array position for latitude
-                // 1 is array position for Longitude
+
                 site.latitude = coordinates.getDouble(0);
                 site.longitude = coordinates.getDouble(1);
 
