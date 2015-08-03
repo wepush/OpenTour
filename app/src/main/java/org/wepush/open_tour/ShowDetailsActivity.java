@@ -250,29 +250,37 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
         float alpha = Math.min(1, (float) scrollY / mParallaxImageHeight);
 
         int scrollYY=scrollY-250;
+        Log.d("miotag","setting traslation (-250): "+scrollY);
 //        float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;
-        float beta = Math.min(1, (float) scrollYY / mParallaxImageHeight);
+//        float beta = Math.min(1, (float) scrollYY / mParallaxImageHeight);
+        Log.d("miotag", "beta: " + alpha);
 
-
-        mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, baseColor)); //pre 09/06 = baseColor, post 09/06 toolbarBackground
+//        mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, baseColor)); //pre 09/06 = baseColor, post 09/06 toolbarBackground
         ViewHelper.setPivotX(txtForTitle, txtForTitle.getLeft());
         ViewHelper.setPivotY(txtForTitle, txtForTitle.getTop());
 
 
         //trasparenza per la scheda riassuntiva: parte da scrolly=250
         if (scrollY>250) {
-            llToMove.setBackgroundColor(ScrollUtils.getColorWithAlpha(1 - beta, cardColor));//pre 09/06 = cardColor, post -> cardBackground
+            llToMove.setBackgroundColor(ScrollUtils.getColorWithAlpha(1 - alpha, cardColor));//pre 09/06 = cardColor, post -> cardBackground
+            mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, baseColor)); //pre 09/06 = baseColor, post 09/06 toolbarBackground
 
             if (scrollY >  270){
 
-                txtTitleToolbar.setTextColor(ScrollUtils.getColorWithAlpha(beta-0.3f, getResources().getColor(R.color.white)));
+                txtTitleToolbar.setTextColor(ScrollUtils.getColorWithAlpha(alpha-0.3f, getResources().getColor(R.color.white)));
 
             } else {
                 txtTitleToolbar.setTextColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.white)));
+                mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, baseColor)); //pre 09/06 = baseColor, post 09/06 toolbarBackground
+
             }
 
         } else {
             llToMove.setBackgroundColor(cardColor);//pre 09/06 = cardColor, post -> cardBackground
+            txtTitleToolbar.setTextColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.white)));
+            mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, baseColor)); //pre 09/06 = baseColor, post 09/06 toolbarBackground
+
+
         }
 
 
@@ -316,7 +324,6 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
             if (jsonOpenings != null && jsonOpenings.length() > 0){
                 for (int i=0; i<jsonOpenings.length(); i++){
                     singleOpeningFromObject=jsonOpenings.getJSONObject(i);
-//                    Log.d("miotag","OPENINGS daysFromArray: "+singleOpeningFromObject);
                     dateFrom=singleOpeningFromObject.getString("date_from");
                     dateTo=singleOpeningFromObject.getString("date_to");
                     timeFrom=singleOpeningFromObject.getString("time_from");

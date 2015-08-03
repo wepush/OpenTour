@@ -11,32 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44e36e56-60e6-48e3-a27e-05581bb8f14f" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/structures/Constants.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/Constants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/CityChooserActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/CityChooserActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/structures/DB1SqlHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/structures/DB1SqlHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/HomeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/HomeActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/fragments_dialogs/HowFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/fragments_dialogs/HowFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/fragments_dialogs/IntroPagerFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/fragments_dialogs/IntroPagerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/LiveMapActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/LiveMapActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/services/LookUpIntentService.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/services/LookUpIntentService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/fragments_dialogs/MapDialogFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/fragments_dialogs/MapDialogFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/RecyclerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/RecyclerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/RecyclerViewHolder.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/RecyclerViewHolder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/Repository.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/Repository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/SettingTourActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/SettingTourActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/ShowDetailsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/ShowDetailsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/ShowTourTimeLineActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/ShowTourTimeLineActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/structures/Site.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/structures/Site.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/TimeLineAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/TimeLineAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/services/TourAlgorithm.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/services/TourAlgorithm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/services/TourAlgorithmTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/services/TourAlgorithmTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/WalkthroughActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/WalkthroughActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OpenTourMilano.iws" />
@@ -64,7 +43,18 @@
     <favorites_list name="OpenTourMilano" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="ShowDetailsActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/ShowDetailsActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.41666666">
+              <caret line="260" column="0" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -2543,7 +2533,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/SettingTourActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/ShowTourTimeLineActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/ShowDetailsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/LiveMapActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/TimeLineAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/utils/RecyclerViewHolder.java" />
@@ -2552,6 +2541,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/structures/DB1SqlHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/services/TourAlgorithm.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/services/LookUpIntentService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/ShowDetailsActivity.java" />
       </list>
     </option>
   </component>
@@ -3051,7 +3041,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3064,13 +3054,13 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29528537" sideWeight="0.49427754" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29528537" sideWeight="0.49427754" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24391988" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32754344" sideWeight="0.49427754" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -3455,14 +3445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/ShowDetailsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="621" column="22" selection-start-line="621" selection-start-column="22" selection-end-line="621" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/LiveMapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3571,6 +3553,14 @@
             <element signature="e#1007#1008#0" expanded="true" />
             <element signature="e#1060#1061#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/wepush/open_tour/ShowDetailsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41666666">
+          <caret line="260" column="0" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
