@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.wdullaer/materialdatetimepicker/1.2.2/jars/classes.jar"
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.github.ksoichiro/android-observablescrollview/1.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="357b4539500184e4000ca429dc08d678d15e2129">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-cb1b7f293f351e3e751704c742eaf6edaa7f6093.jar" />
+        sha1="010ee9e87a286afcaeaed368dcf829e42d0aa2a0">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-a2f4267d45cc66890407d859a00b0226faf47593.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-f14deebd0ae2226232be830fad9a5f5470ef912a.jar" />
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/gson-2.3-8abd754a80d33c0d4f7b888c776c756afc988e1c.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/OpenTourMilano/circled-picker-master/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-72fde98ccd64af3118b8a3e9aeda951599a3fffe.jar" />
+        sha1="cc4f2bc43a21029b81a584613f1e677ce3f8c502">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-4f6ebb455649758ea8cc865c481ce5aa1dfa3128.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar"
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-fe4fed0a06431f800001f9bdf2bdf475d632924d.jar" />
+        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-f85d9d4a30faf76eabbf670aa08958611fc3a89a.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-625f82f7e32745d902f14baf2111a532e4056687.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-0fe08f2b3aa23b5d418f643502f03829a6de5145.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d405025c600055237c171a0bbabaa49d69696573">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-fe6f20e4412a5a31aca41587e7305bf553bc185c.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="90a3822c38ec8c996e84c16a3477ef632cbc87a3">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/commons-lang3-3.3.2-f3b6cd66be446aa53b0524ecbfed176a303ea217.jar" />
     </item>
     <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.5.0/jars/classes.jar"
@@ -35,6 +63,55 @@
         revision="22.0.1"
         sha1="8d736fefa22d896e84a268354b3ed48a42663150">
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-cb64aca86e6febc3ca7b8e764464bbdeabc391c8.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-9112aeeddff5f759f9f29064d9f04fa048444e71.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-4ca2f06ff15d1c012a7873bcdd282c281d5080f1.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-db99d90590af3ce057842fb27cde46cec6734759.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-a292c953cb49d1934ff9eaccbcafbfd683772caf.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-857b5f035003e3ca4a81262065b9d5acff07c958.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/osmbonuspack_v5.2/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="cdc22706771de373299b1b91387ba7cb831d6007">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-bcfdb64f18c2e0fb7cb60ef778bcd52428434172.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a78183f30e769a98ab4820794f597763088d3065">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-a798ddf03a6811b30c6a0ca505055ab99952d1d7.jar" />
     </item>
     <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
@@ -51,200 +128,11 @@
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-adcfa69842f29494725778d12bfeeea0d58227f2.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/gson-2.3-8abd754a80d33c0d4f7b888c776c756afc988e1c.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a78183f30e769a98ab4820794f597763088d3065">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-a798ddf03a6811b30c6a0ca505055ab99952d1d7.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.3/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="3013d965c748748ec9c7d0d42102e9abd1c9ed91">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-8e6d9228bb86115a3e8f9ed71e56518d3beeb26e.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-625f82f7e32745d902f14baf2111a532e4056687.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/library-2.4.0-32ad1284d203604bca706fe9dd95d36c0aeb27f4.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-bdd90f5dd704919defccbb56d84da4eda68b18ea.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-4ca2f06ff15d1c012a7873bcdd282c281d5080f1.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-f85d9d4a30faf76eabbf670aa08958611fc3a89a.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-ba328628338c59a124523c62aa296908a1c2742f.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.github.ksoichiro/android-observablescrollview/1.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="010ee9e87a286afcaeaed368dcf829e42d0aa2a0">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-a2f4267d45cc66890407d859a00b0226faf47593.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.osmdroid/osmdroid-android/4.3/2fcf7bc3cb27daa6e67c8990ea418d19f6b5b296/osmdroid-android-4.3.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="2fcf7bc3cb27daa6e67c8990ea418d19f6b5b296">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/osmdroid-android-4.3-c93a31e6b8a7defeab0c3364268d3447908a8754.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-58ce1dadca3778a13694790fb9f83fc1ad00dd80.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.github.bluejamesbond/textjustify-android/2.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="9e3ac75a5e3f8ef059c7766dc9640e0487e32749">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-13dbf4d31e64fcf9bc949180c5b2f686de2f3c0c.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="d405025c600055237c171a0bbabaa49d69696573">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-fe6f20e4412a5a31aca41587e7305bf553bc185c.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-0fe08f2b3aa23b5d418f643502f03829a6de5145.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-e711714c4edb37cbe5fb9db6e6da8035da95cc50.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-27c812780dfaf95519dd7030d4d3527e0957c5c0.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="90a3822c38ec8c996e84c16a3477ef632cbc87a3">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/commons-lang3-3.3.2-f3b6cd66be446aa53b0524ecbfed176a303ea217.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-7391efb861d2d9451d58ca3fa9041b974fc87c0f.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-a9c174d37f11c33027763c5218eb570f6c7f2660.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/osmbonuspack_v5.2/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="cdc22706771de373299b1b91387ba7cb831d6007">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-bcfdb64f18c2e0fb7cb60ef778bcd52428434172.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-eb3043c2500e233ee51acbc851142e1ecc4518b8.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/OpenTourMilano/circled-picker-master/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="473b9844410c7eb6a63452e5dfef4efb3e4faa3c">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-4f6ebb455649758ea8cc865c481ce5aa1dfa3128.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-9112aeeddff5f759f9f29064d9f04fa048444e71.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-db99d90590af3ce057842fb27cde46cec6734759.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="442495d769faa63f8a998fc0abb17ce187a6aa77">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-771d7194813ccdc0dcb37760b74e5ad07a71f9fa.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-5471499c0d1b54f22786c1ea66b50035ecd5327c.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.5/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6e65060ef2ec6ec98365250d2119d7968626fd3f">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-b4a793b361d2e95810c6c985cd4e9fb43e0f039e.jar" />
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-f14deebd0ae2226232be830fad9a5f5470ef912a.jar" />
     </item>
     <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/libs/internal_impl-22.0.0.jar"
@@ -254,25 +142,18 @@
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-c6a8f51a8c017658050782c7e814060a22344309.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.5.0/jars/classes.jar"
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-e274c50b16c6d6b545b502bf9a2741f534b84db8.jar" />
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-58ce1dadca3778a13694790fb9f83fc1ad00dd80.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.1/jars/classes.jar"
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.wdullaer/materialdatetimepicker/1.2.2/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-857b5f035003e3ca4a81262065b9d5acff07c958.jar" />
-    </item>
-    <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-a292c953cb49d1934ff9eaccbcafbfd683772caf.jar" />
+        sha1="357b4539500184e4000ca429dc08d678d15e2129">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-cb1b7f293f351e3e751704c742eaf6edaa7f6093.jar" />
     </item>
     <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.3/jars/classes.jar"
@@ -282,6 +163,34 @@
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-af26675ea1347d8a7648a4aaeb961a426aaa66f3.jar" />
     </item>
     <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/library-2.4.0-32ad1284d203604bca706fe9dd95d36c0aeb27f4.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.5/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6e65060ef2ec6ec98365250d2119d7968626fd3f">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-b4a793b361d2e95810c6c985cd4e9fb43e0f039e.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-e274c50b16c6d6b545b502bf9a2741f534b84db8.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-5471499c0d1b54f22786c1ea66b50035ecd5327c.jar" />
+    </item>
+    <item
         jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-android/1.6.1-RC1/fe76e182946faad493a50968f3344e848b467b42/slf4j-android-1.6.1-RC1.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -289,11 +198,11 @@
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/slf4j-android-1.6.1-RC1-74311fe452a83032ea95d7776384bef9c40161de.jar" />
     </item>
     <item
-        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/fr.avianey.com.viewpagerindicator/library/2.4.1/jars/classes.jar"
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="86f452c126cb92a79e1dcf08efec5404529b698e">
-        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-7b9e5763b4ed96f0848f84558883812855d41a57.jar" />
+        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-eb3043c2500e233ee51acbc851142e1ecc4518b8.jar" />
     </item>
     <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.5.0/jars/classes.jar"
@@ -303,6 +212,27 @@
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-84b7d5f94fc688846e782836e720992aa167d1b5.jar" />
     </item>
     <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="442495d769faa63f8a998fc0abb17ce187a6aa77">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-771d7194813ccdc0dcb37760b74e5ad07a71f9fa.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-27c812780dfaf95519dd7030d4d3527e0957c5c0.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-72fde98ccd64af3118b8a3e9aeda951599a3fffe.jar" />
+    </item>
+    <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -310,11 +240,81 @@
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-f279a514b87ea5add0e25eea1b98838419012273.jar" />
     </item>
     <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/fr.avianey.com.viewpagerindicator/library/2.4.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="86f452c126cb92a79e1dcf08efec5404529b698e">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-7b9e5763b4ed96f0848f84558883812855d41a57.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.3/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3013d965c748748ec9c7d0d42102e9abd1c9ed91">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-8e6d9228bb86115a3e8f9ed71e56518d3beeb26e.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/.gradle/caches/modules-2/files-2.1/org.osmdroid/osmdroid-android/4.3/2fcf7bc3cb27daa6e67c8990ea418d19f6b5b296/osmdroid-android-4.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2fcf7bc3cb27daa6e67c8990ea418d19f6b5b296">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/osmdroid-android-4.3-c93a31e6b8a7defeab0c3364268d3447908a8754.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-bdd90f5dd704919defccbb56d84da4eda68b18ea.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-fe4fed0a06431f800001f9bdf2bdf475d632924d.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-a9c174d37f11c33027763c5218eb570f6c7f2660.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.github.bluejamesbond/textjustify-android/2.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e3ac75a5e3f8ef059c7766dc9640e0487e32749">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-13dbf4d31e64fcf9bc949180c5b2f686de2f3c0c.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-e711714c4edb37cbe5fb9db6e6da8035da95cc50.jar" />
+    </item>
+    <item
         jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/me.grantland/autofittextview/0.2.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="972ca945f0cf5ff0765ab94fa8e1a90661ea197a">
         <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-8177cf3529a2cfcbb4d482322f3952f7cbac7a83.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-ba328628338c59a124523c62aa296908a1c2742f.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
+        <dex dex="/Users/antoniocoppola/AndroidStudioProjects/OpenTourMilano/app/build/intermediates/pre-dexed/debug/classes-7391efb861d2d9451d58ca3fa9041b974fc87c0f.jar" />
     </item>
 
 </items>

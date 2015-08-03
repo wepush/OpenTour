@@ -192,7 +192,8 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                        if(!(serviceGPS.isProviderEnabled(LocationManager.GPS_PROVIDER))){
                                 FragmentManager fm = getSupportFragmentManager();
                                 NoGpsDialog hf = new NoGpsDialog();
-                                hf.show(fm, "nogps_dialog");}
+                                hf.show(fm, "nogps_dialog");
+                       }
                          else {
 
                                     if (isInMapBounds()) {
@@ -295,7 +296,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                                 } else {
                                     FragmentManager fm = getSupportFragmentManager();
                                     OutOfBoundsDialog hf = new OutOfBoundsDialog();
-
+                                    hf.show(fm,"out_ofBonds");
                                     Toast.makeText(context,R.string.tooFarAway,Toast.LENGTH_SHORT).show();
                                 }
                             } else {
@@ -438,47 +439,17 @@ private boolean isAnySettingVoid(){
             Repository.retrieve(context, Constants.TIME_TO_START,String.class)==null||
             TextUtils.equals("", Repository.retrieve(context, Constants.TIME_TO_START,String.class))
 
-
-
-
             )
-    {
-
-        return true;
-    } else{
-
-        return false;
-    }
+        {
+            return true;
+        } else  {
+                return false;
+            }
 
 }
 
-
-    private void actualUserPosition(){
-
-        if (mGoogleApiClient.isConnected()){
-            mGoogleApiClient.disconnect();
-            mGoogleApiClient.connect();
-        } else {
-            mGoogleApiClient.connect();
-        }
-
-
-    }
-        public void onConnected(Bundle hintBundle){
-
-                Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                        mGoogleApiClient);
-               if (mLastLocation != null){
-
-                    Repository.save(this,Constants.LATITUDE_STARTING_POINT,String.valueOf(mLastLocation.getLatitude()) );
-                    Repository.save(this,Constants.LONGITUDE_STARTING_POINT,String.valueOf(mLastLocation.getLongitude()));
-
-//                   Repository.save(this,Constants.LATITUDE_STARTING_POINT,String.valueOf(45.468994) );
-//                    Repository.save(this,Constants.LONGITUDE_STARTING_POINT,String.valueOf(9.182067));
-       }
-
-
-
+    public void onConnected(Bundle hintBundle){
+            acquiringUserPosition();
     }//fine onConnected
 
     public void onConnectionSuspended(int i){
@@ -491,27 +462,82 @@ private boolean isAnySettingVoid(){
     public void onConnectionFailed(ConnectionResult connResult){
         Log.d("miotag","connection to LocalServices lost ");
         Toast.makeText(this, "Lost Connection: No Signal!", Toast.LENGTH_LONG).show();
-            }
+    }
+
+
+    private void actualUserPosition(){
+        establishGoogleConnection();
+    }
 
 
 
     private boolean isInMapBounds(){
-        GeoPoint actualUserPosition=new GeoPoint(Double.valueOf(Repository.retrieve(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.class)),Double.valueOf(Repository.retrieve(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.class)));
-        Log.d("miotag","check ifInBound: "+actualUserPosition.getLatitude()+", "+actualUserPosition.getLongitude());
-        if (
-
-                (actualUserPosition.getLongitude() < Constants.NORTH_EAST.getLongitude()) &&
-                (actualUserPosition.getLongitude()>Constants.NORTH_WEST.getLongitude()) &&
-                (actualUserPosition.getLatitude() > Constants.SOUTH_EAST.getLatitude()) &&
-                (actualUserPosition.getLatitude() < Constants.NORTH_EAST.getLatitude())
-
-
-                ){
-            return true;
-        } else {
-            return false;
+        //acquires user GPS here is necessary because it could had not be done before (some previous weird stop/resume of the activity)
+        establishGoogleConnection();
+        GeoPoint actualUserPosition=null;
+        try {
+             actualUserPosition = new GeoPoint(Double.valueOf(Repository.retrieve(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.class)), Double.valueOf(Repository.retrieve(getBaseContext(), Constants.LONGITUDE_STARTING_POINT, String.class)));
+        } catch (NumberFormatException e){
+            FragmentManager fm = getSupportFragmentManager();
+            NoGpsDialog hf = new NoGpsDialog();
+            hf.show(fm, "nogps_dialog");
         }
+            if (actualUserPosition!=null) {
+                Log.d("miotag", "check ifInBound: " + actualUserPosition.getLatitude() + ", " + actualUserPosition.getLongitude());
+                if (
 
+                        (actualUserPosition.getLongitude() < Constants.NORTH_EAST.getLongitude()) &&
+                                (actualUserPosition.getLongitude() > Constants.NORTH_WEST.getLongitude()) &&
+                                (actualUserPosition.getLatitude() > Constants.SOUTH_EAST.getLatitude()) &&
+                                (actualUserPosition.getLatitude() < Constants.NORTH_EAST.getLatitude())
+
+
+                        ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                FragmentManager fm = getSupportFragmentManager();
+                NoGpsDialog hf = new NoGpsDialog();
+                hf.show(fm, "nogps_dialog");
+            }
+        return false;
+    }
+
+    private void establishGoogleConnection(){
+        if (mGoogleApiClient.isConnected())
+        {
+//            mGoogleApiClient.disconnect();
+//            Log.d("miotag", " GP era connesso, adesso lancio");
+//
+//            mGoogleApiClient.connect();
+            acquiringUserPosition();
+        } else {
+            Log.d("miotag","GP non era connesso, adesso lancio");
+            mGoogleApiClient.connect();
+        }
+    }
+
+    private void acquiringUserPosition(){
+        Log.d("miotag","connessione con GP stabilita");
+        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        if (mLastLocation != null){
+            double mLastLocationLatitude=mLastLocation.getLatitude();
+            double mLastLocationLongitude=mLastLocation.getLongitude();
+            Log.d("miotag", "dopo connessione con Google i valori di mLastLocation: "+mLastLocationLatitude+", "+mLastLocationLongitude);
+            Repository.save(this, Constants.LATITUDE_STARTING_POINT, String.valueOf(mLastLocationLatitude));
+            Repository.save(this, Constants.LONGITUDE_STARTING_POINT, String.valueOf(mLastLocationLongitude));
+
+//                   Repository.save(this,Constants.LATITUDE_STARTING_POINT,String.valueOf(45.468994) );
+//                    Repository.save(this,Constants.LONGITUDE_STARTING_POINT,String.valueOf(9.182067));
+        }
+//        else {
+//            FragmentManager fm = getSupportFragmentManager();
+//            NoGpsDialog hf = new NoGpsDialog();
+//            hf.show(fm, "nogps_dialog");
+//        }
     }
 
 
