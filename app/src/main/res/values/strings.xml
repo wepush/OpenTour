@@ -102,6 +102,10 @@
     <string name="monuments">Monumenti</string>
     <string name="structures">Edifici</string>
     <string name="turn_on_gps">Attivare GPS ad alta precisione</string>
+    <string name="corrupted_installation">Dati applicatione corrotti: Installare nuovamente l\'app</string>
+
+
+
 
     <string name="when">Quando</string>
     <string name="timeclock">Orario</string>

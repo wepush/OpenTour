@@ -1,4 +1,6 @@
-package org.wepush.open_tour.structures;
+package org.wepush.open_tour.utils;
+
+import com.google.android.gms.location.internal.ParcelableGeofence;
 
 import org.osmdroid.util.GeoPoint;
 
@@ -34,6 +36,15 @@ public class Constants {
     public final static GeoPoint NORTH_WEST=new GeoPoint(45.511999, 9.093887);
     public final static GeoPoint NORTH_EAST=new GeoPoint(45.513735, 9.250724);
     public final static GeoPoint SOUTH_EAST=new GeoPoint(45.426890, 9.244499);
+
+    // dialogs names (for SettingActivities)
+
+    public final static String SHOW_WHAT_DIALOG=PACKAGE_NAME+"_WHAT_DIALOG";
+    public final static String SHOW_WHERE_DIALOG=PACKAGE_NAME+"_WHERE_DIALOG";
+    public final static String SHOW_HOW_DIALOG=PACKAGE_NAME+"_HOW_DIALOG";
+    public final static String SHOW_NO_GPS_DIALOG= PACKAGE_NAME+"_NO_DIALOG";
+    public final static String SHOW_OUT_OF_BOUNDS_DIALOG=PACKAGE_NAME+"_OUT_OF_BOUNDS";
+
 
 
 

@@ -18,14 +18,12 @@ public class Site {
     public int alwaysOpen;
     public int priority;
     public String pictureUrl;
-    public Double weight;
     public float visitTime; //this keep track of distance to reach AND the time to visit the site
     public boolean alreadyTaken;
     public String showingTime;
     public String typeOfSite;
 
     public ArrayList<Site> adjacencySite=new ArrayList<Site>(3);
-//    public ArrayList<Opening> openingList=new ArrayList<Opening>();
     public String openings;
     public String tickets;
     public String contacts;

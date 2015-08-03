@@ -9,7 +9,7 @@ import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.Repository;
 
 

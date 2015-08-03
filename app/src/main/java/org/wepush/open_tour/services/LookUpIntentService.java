@@ -11,7 +11,7 @@ import android.os.ResultReceiver;
 import android.util.Log;
 
 
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.Repository;
 
 import java.io.IOException;
@@ -24,10 +24,8 @@ import java.util.Locale;
  * Created by Antonio on 20/04/2015.
  */
 public class LookUpIntentService extends IntentService {
-    private int currentLatitude;
-    private int currentLongitude;
+
     private Geocoder gc;
-    private Location mLocation;
     private List<Address> list;
     public ResultReceiver mReceiver;
 
@@ -62,7 +60,6 @@ public class LookUpIntentService extends IntentService {
                     1);
 
 
-            Log.d("miotag","GEOCODING from Location");
             Repository.save(this, Constants.LATITUDE_STARTING_POINT, String.valueOf(location.getLatitude()));
             Repository.save(this, Constants.LONGITUDE_STARTING_POINT, String.valueOf(location.getLongitude()));
 
@@ -96,7 +93,6 @@ public class LookUpIntentService extends IntentService {
 //            20/07
 
 
-//            Address address = addresses.get(0);
             ArrayList<String> addressFragments = new ArrayList<String>();
 
             Address address = addresses.get(0);

@@ -24,7 +24,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ArrayList<String> distanceLive;
     private static Context context;
     private RecyclerViewHolder recHolder;
-//    private ArrayList<Double> distanceLive;
 
     public RecyclerAdapter(ArrayList<String> oldIdArrayList,ArrayList<String>oldTimeArrayList,ArrayList<String> oldDistanceArrayList,Context ctx){
        idLive=new ArrayList<>();
@@ -52,7 +51,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         //cast between abstract RecyclerView.ViewHolder and ViewHolder
        recHolder=(RecyclerViewHolder) holder;
         //taking array strings identified by "position" and passing them to ViewHolder
-//        String tempString=myList.get(position);
         String tempIdString=idLive.get(position);
         //0807
         String tempTimeString=timeLive.get(position);

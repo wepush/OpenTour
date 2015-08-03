@@ -1,6 +1,5 @@
 package org.wepush.open_tour.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -11,10 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 
 
-import org.wepush.open_tour.LiveMapActivity;
 import org.wepush.open_tour.R;
 import org.wepush.open_tour.ShowDetailsActivity;
-import org.wepush.open_tour.structures.Constants;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 
 
@@ -34,7 +31,6 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
 
     public static RecyclerViewHolder newInstance (View view, Context ctx){
-        //TODO below txtItem should be ImageView
         CircleImageView imageItem=(CircleImageView)view.findViewById(R.id.imgToPut);
         TextView txtTime=(TextView)view.findViewById(R.id.itemTimeToPut);
         TextView txtDistance=(TextView)view.findViewById(R.id.itemDistanceToPut);
@@ -53,8 +49,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
             timeTextToSet=newTimeToSet;
             distanceTextToSet=newDistanceToSet;
 
-        //listener sul click dell'elemento recyclerView
-        //TODO 29luglio disabilita click on recyclerview
+
         parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,8 +76,6 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
             imagePathToUse = imagePath.substring(79, imagePath.length()-4);
         }
 
-//        Ottengo la giusta immagine del monumento da impostare nella toolbar
-
         int drawableResource=context.getResources().getIdentifier(imagePathToUse, "drawable", context.getPackageName());
 
         try {
@@ -103,9 +96,9 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         distanceTextToSet.setText(distance.substring(0,4)+" km");
     }
 
-    public CircleImageView returnCircleImageFromHolder(){
-        return imageToSet;
-    }
+//    public CircleImageView returnCircleImageFromHolder(){
+//        return imageToSet;
+//    }
 
 
 }

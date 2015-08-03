@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import org.wepush.open_tour.fragments_dialogs.CityFragment;
 import org.wepush.open_tour.services.ReadFromJson;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.Repository;
 
 

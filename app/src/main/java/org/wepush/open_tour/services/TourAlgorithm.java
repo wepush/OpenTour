@@ -11,7 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 import org.wepush.open_tour.structures.Site;
 import org.wepush.open_tour.utils.Repository;
@@ -512,7 +512,6 @@ public class TourAlgorithm {
                 return true;
             }
             if(TextUtils.equals(site.typeOfSite,s)){
-                Log.d("miotag","TOS: "+site.typeOfSite+"->"+s);
                 return true;
             }
         }

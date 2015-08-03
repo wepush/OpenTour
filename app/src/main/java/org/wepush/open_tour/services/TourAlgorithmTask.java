@@ -3,7 +3,6 @@ package org.wepush.open_tour.services;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -14,7 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import org.wepush.open_tour.R;
 import org.wepush.open_tour.SettingTourActivity;
 import org.wepush.open_tour.ShowTourTimeLineActivity;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.structures.Site;
 import org.wepush.open_tour.utils.Repository;
 

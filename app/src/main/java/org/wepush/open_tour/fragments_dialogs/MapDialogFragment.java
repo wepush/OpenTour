@@ -2,7 +2,6 @@ package org.wepush.open_tour.fragments_dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.usage.ConfigurationStats;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -17,7 +16,7 @@ import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
 
 import org.wepush.open_tour.R;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.Repository;
 
 

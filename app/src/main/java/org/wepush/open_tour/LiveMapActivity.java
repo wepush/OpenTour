@@ -35,7 +35,7 @@ import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.wepush.open_tour.fragments_dialogs.LivePagerFragment;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 import org.wepush.open_tour.structures.Site;
 import org.wepush.open_tour.utils.RecyclerAdapter;
@@ -57,7 +57,7 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     private static ArrayList<String> idsFromShowTL;
     private static ArrayList<String>showingTimeShowTL;
     private static ArrayList<String> distanceShowTL;
-    private ArrayList<Site> sitesToShow;
+//    private ArrayList<Site> sitesToShow;
     private ArrayList<Location> arrayOfLocation;
     public static ArrayList<Site> liveSites;
 
@@ -70,12 +70,10 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
     private final static int ZOOM=17;
     private org.osmdroid.views.MapView map;
-    private MapEventsOverlay overlayEventos, overlayNoEventos;
+    private MapEventsOverlay overlayEventos;
+    private MapEventsOverlay overlayNoEventos;
     private MapEventsReceiver  mapNoEventsReceiver;
     private IMapController mapController;
-    private static Intent intentFromRecycler;
-
-
 
     private static final double RADIUS=0.002;
 
@@ -109,7 +107,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
 
 
-        intentFromRecycler=new Intent(this, ShowDetailsActivity.class);
         idsFromShowTL=new ArrayList<>();
         showingTimeShowTL=new ArrayList<>();
         distanceShowTL=new ArrayList<>();
@@ -130,7 +127,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             showingTimeShowTL=gson2.fromJson(json2,type);
 
         }
-//TODO saving idsFromShowTL and showingTimeShow to relaunch activity after ShowDetails
         Gson gson=new Gson();
         String json=gson.toJson(idsFromShowTL);
         Repository.save(this,"idsToSave",json);
@@ -211,20 +207,17 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         viewLivePager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                Log.d("miotag","onPageScrolled");
 
             }
 
             @Override
             public void onPageSelected(int position) {
                 viewLivePager.setCurrentItem(position);
-//                Log.d("miotag","onPageSelected");
 
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.d("miotag","onPageScrollStateChanged");
                 recyclerView.smoothScrollToPosition(viewLivePager.getCurrentItem());
 
 
@@ -244,11 +237,7 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             arrayOfLocation.add(l);
         }
 
-
-
         showingOfflineMap();
-
-
 
         //GoogleMapClient implementation
         liveGoogleApiClient=new GoogleApiClient.Builder(this)
@@ -258,9 +247,7 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
                 .build();
 
 
-//TODO: DECOMMENTARE a seguire per riattivare il navigatore
         liveGoogleApiClient.connect();
-//        actualUserLocalization();
 
     }//fine onCreate
 
@@ -344,8 +331,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         Location previousLocation = LocationServices.FusedLocationApi.getLastLocation(
                 liveGoogleApiClient);
 
-        Log.d("miotag","luogo trovato con coordinate: "+previousLocation.getLatitude()+", "+previousLocation.getLongitude()+", "+previousLocation.getAccuracy());
-
         actualUserLocalization(previousLocation);
         mLocationRequest=createLocationRequest();
         if (mLocationRequest != null) {
@@ -375,7 +360,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
 
         for (int i=0; i<arrayOfLocation.size(); i++){
-//            Log.d("miotag","arrayOFLocation posizione entro cui rientriare: "+arrayOfLocation.get(i).getLatitude()+", "+arrayOfLocation.get(i).getLongitude());
             if (
                     (actualUserLocation.getLatitude() > arrayOfLocation.get(i).getLatitude() - RADIUS) &&
                             (actualUserLocation.getLatitude() < arrayOfLocation.get(i).getLatitude() + RADIUS) &&
@@ -399,7 +383,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         } //fine Fore
 //at the end of the for I'll have nearestSitePosition that point to the site (retrieving it from array's position number) in which area the user is. Move the ViewPager and RecyclerView to match this site
         int positionInRecycler=checkForCorrispondentLocation(arrayOfLocation.get(nearestSitePosition).toString());
-//        Log.d("miotag","positionInRecycler: "+positionInRecycler);
         moveViewPagerAndRecyclerView(positionInRecycler);
 
 
@@ -437,7 +420,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     private void updateUI(Location l){
 
 
-        Log.d("miotag", "sposto la mappa in ponew GeoPoint(sizione: " + l.getLatitude() + ", " + l.getLongitude());
         GeoPoint actualGeoPoint=new GeoPoint(l.getLatitude(),l.getLongitude());
         map=(MapView) findViewById(R.id.mapLive);
         mapController = map.getController();
@@ -472,7 +454,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.d("miotag","LOCATION UPDATE Con: "+location.getLatitude()+", "+location.getLongitude());
         actualUserLocalization(location);
     }
 
@@ -487,7 +468,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     @Override
     public void onPause(){
         super.onPause();
-        Log.d("miotag", "LIVE on Pause");
         stopLocationUpdates();
         liveGoogleApiClient.disconnect();
         map.getOverlays().remove(overlayEventos);
@@ -502,7 +482,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     @Override
     public void onStop(){
         super.onStop();
-        Log.d("miotag", "LIVE on Stop");
         stopLocationUpdates();
         if (liveGoogleApiClient != null) {
             if (liveGoogleApiClient.isConnected()) {
@@ -516,7 +495,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     @Override
     public void onResume(){
         super.onResume();
-        Log.d("miotag", "on Resume");
         fillingUpWithPins();
         if (liveGoogleApiClient != null) {
             if (!(liveGoogleApiClient.isConnected())) {
@@ -529,12 +507,10 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             Gson gson = new Gson();
             Type type = new TypeToken<ArrayList<String>>() {
             }.getType();
-//                ArrayList<String> myIds = gson.fromJson(json, type);
             idsFromShowTL= gson.fromJson(json, type);
 
             String json2=Repository.retrieve(this, "showToSave", String.class);
             Gson gson2 = new Gson();
-//                ArrayList<String> myShowing = gson2.fromJson(json2, type);
             showingTimeShowTL=gson2.fromJson(json2,type);
         }
 
@@ -554,7 +530,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         map.setUseDataConnection(false);
         mapController = map.getController();
         mapController.setZoom(ZOOM);
-//        mapController.setCenter(new GeoPoint(Double.valueOf(Repository.retrieve(this, Constants.LATITUDE_STARTING_POINT,String.class)),Double.valueOf(Repository.retrieve(this,Constants.LONGITUDE_STARTING_POINT,String.class))));
 
         //TODO settare il centro della visuale sul PRIMO elemento della lista in dettagli
         mapController.setCenter(new GeoPoint(arrayOfLocation.get(0).getLatitude(), arrayOfLocation.get(0).getLongitude()));

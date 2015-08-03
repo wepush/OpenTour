@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import org.wepush.open_tour.R;
 import org.wepush.open_tour.SettingTourActivity;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.Repository;
 
 /**

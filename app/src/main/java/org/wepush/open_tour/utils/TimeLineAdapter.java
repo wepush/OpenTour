@@ -37,7 +37,6 @@ public class TimeLineAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
-//        return listData.get(position);
         return siteToShowInList.get(position);
     }
 

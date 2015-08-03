@@ -139,6 +139,9 @@
 
     <string name="turn_on_gps">Turn on GPS (high accuracy)</string>
 
+    <string name="corrupted_installation">Application data corrupted. Please, Install Open Tour again</string>
+
+
 
     <string name="when">When</string>
 

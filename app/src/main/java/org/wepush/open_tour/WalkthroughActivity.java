@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,7 @@ import android.widget.Button;
 import org.wepush.open_tour.fragments_dialogs.IntroPagerFragment;
 import org.wepush.open_tour.fragments_dialogs.LaunchingSettingFragment;
 import org.wepush.open_tour.services.ReadFromJson;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.AnimationHelper;
 import org.wepush.open_tour.utils.Repository;
 

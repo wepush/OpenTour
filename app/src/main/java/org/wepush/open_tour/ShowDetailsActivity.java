@@ -24,7 +24,7 @@ import com.nineoldandroids.view.ViewHelper;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 import org.wepush.open_tour.structures.Site;
 
@@ -34,7 +34,6 @@ import java.util.Locale;
 
 public class ShowDetailsActivity extends AppCompatActivity implements ObservableScrollViewCallbacks {
     private ImageView mImageDetail;
-    //    private View mToolbarView;
     private LinearLayout llToMove;
 
 
@@ -69,8 +68,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
         mImageDetail = (ImageView)findViewById(R.id.imageDetails);
 
         llToMove=(LinearLayout)findViewById(R.id.llForText);
-        //colore dello sfondo della scheda dettaglio in base al tipo di monumento
-        // "amber300" va sostituito con un ciclo SWITCH per ottenere il colore giusto
+
 
        intentThatGeneratedThisActivity=getIntent();
 
@@ -136,9 +134,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
         if(TextUtils.equals(siteToShow.pictureUrl,"placeholder")){
             imagePath="header_milan";
         } else {
-//            Log.d("miotag","SiteToShow PICTURE: "+siteToShow.pictureUrl);
             imagePath = siteToShow.pictureUrl.substring(79, siteToShow.pictureUrl.length()-4);
-//            Log.d("miotag","imagePAth: "+imagePath);
         }
 
 //        Ottengo la giusta immagine del monumento da impostare nella toolbar
@@ -179,7 +175,9 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
        if (siteToShow.alwaysOpen==1){
            RelativeLayout rlOpening=(RelativeLayout)findViewById(R.id.rlOpenings);
            rlOpening.setVisibility(View.GONE);
-           View viewOpening=(View)findViewById(R.id.viewOpenings);
+//           View viewOpening=(View)findViewById(R.id.viewOpenings);
+           View viewOpening=findViewById(R.id.viewOpenings);
+
            viewOpening.setVisibility(View.GONE);
            txtToDisappear2.setText("Sempre Aperto");
 
@@ -252,7 +250,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
         float alpha = Math.min(1, (float) scrollY / mParallaxImageHeight);
 
         int scrollYY=scrollY-250;
-        float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;
+//        float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;
         float beta = Math.min(1, (float) scrollYY / mParallaxImageHeight);
 
 
@@ -264,7 +262,6 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
         //trasparenza per la scheda riassuntiva: parte da scrolly=250
         if (scrollY>250) {
             llToMove.setBackgroundColor(ScrollUtils.getColorWithAlpha(1 - beta, cardColor));//pre 09/06 = cardColor, post -> cardBackground
-//            txtTitleToolbar.setTextColor(ScrollUtils.getColorWithAlpha(1-beta, getResources().getColor(R.color.white)));
 
             if (scrollY >  270){
 
@@ -276,7 +273,6 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
 
         } else {
             llToMove.setBackgroundColor(cardColor);//pre 09/06 = cardColor, post -> cardBackground
-//           txtTitleToolbar.setTextColor(ScrollUtils.getColorWithAlpha(0,getResources().getColor(R.color.amber400)));
         }
 
 
@@ -326,9 +322,8 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
                     timeFrom=singleOpeningFromObject.getString("time_from");
                     timeTo=singleOpeningFromObject.getString("time_to");
                     daysFromOpenings=singleOpeningFromObject.getJSONArray("days");
-
+//TODO no management of datafrom / datato
                     for (int j=0; j<daysFromOpenings.length();j++) {
-//                            Log.d("miotag","Days fitting in: "+daysFromOpenings.getString(j));
                             daysArray.add(daysFromOpenings.getString(j));
                         }
 
@@ -340,20 +335,14 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
                             openings = openings + d + " ";
 
                         }
-//                        openings.lastIndexOf("-",0);
-//                            openings=openings.substring(0,openings.length());
-//                        Log.d("miotag"," ed infine i giorni openings: \n"+openings);
+
                             txtOpeningsDays.setText(openings);
-//                        txtOpenings.setText(openings.substring(0,(openings.length()-3)));
                     }
 
                     //da qui gli orari
                     String openingTime=getResources().getString(R.string.open_from)+" "+timeFrom+" "+getResources().getString(R.string.open_to)+" "+timeTo;
                     txtOpeningsTime.setText(openingTime);
                     txtToDisappear2.setText(timeFrom+" - "+timeTo);
-
-
-
 
 
                 }
@@ -638,14 +627,6 @@ public class ShowDetailsActivity extends AppCompatActivity implements Observable
                 break;
 
         }
-
-
-
-
-
-
-
-
 
     }
 

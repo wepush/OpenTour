@@ -32,7 +32,7 @@ import org.osmdroid.util.GeoPoint;
 import org.wepush.open_tour.fragments_dialogs.InsufficientSettingsDialogFragment;
 import org.wepush.open_tour.fragments_dialogs.ListViewTimeLineFragment;
 import org.wepush.open_tour.services.TourAlgorithmTask;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.structures.FloatingActionButton;
 import org.wepush.open_tour.structures.Site;
 import org.wepush.open_tour.utils.Repository;
@@ -57,14 +57,10 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
     public ArrayList<Site> siteToStamp;
     private ArrayList<String> idSitesToShow;
     private ArrayList<String> showTimeSitesToShow;
-    private TextView txtFirstAddress,txtFirstSiteTime;
-//    private Type type;
 
 //17/07 section for osm drod
     private final static int ZOOM=17;
     private org.osmdroid.views.MapView map;
-    private MapEventsOverlay overlayEventos;
-    private  MapEventsReceiver mapEventsReceiver;
     private IMapController mapController;
     private MapEventsOverlay overlayNoEventos;
     private MapEventsReceiver mapNoEventsReceiver;
@@ -101,7 +97,6 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
 
         lw = (ListView) findViewById(R.id.lwShowTimeLine);
-//        lw.setPadding(0,0,0,20);
         inflater= getLayoutInflater();
         ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_header_with_map, lw, false);
         header.setClickable(false);
@@ -126,7 +121,6 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
         FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
                 .withDrawable(getResources().getDrawable(R.mipmap.ic_floating_play))
                 .withButtonColor(getResources().getColor(R.color.orange500))
-
                 .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
                 .withMargins(0, 0, 16, 16)
                 .create();
@@ -137,7 +131,6 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
                 Intent i=new Intent(getBaseContext(),LiveMapActivity.class);
                 i.setAction(Constants.INTENT_FROM_SHOWTOURTL);
-
                 i.putStringArrayListExtra("id",idSitesToShow);
                 i.putStringArrayListExtra("showingTime",showTimeSitesToShow);
                 Log.d("miotag","intent"+i.getStringArrayListExtra("id"));
@@ -170,7 +163,6 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
 //riempimento RecyclerView
 
-        //Primo elemento RecyclerView
 
         TextView firstElement=(TextView) findViewById(R.id.txtTitleFirstElement);
         firstElement.setText(getResources().getString(R.string.startingTour));
@@ -198,14 +190,11 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
                     Intent intentToShowSite = new Intent(getBaseContext(), ShowDetailsActivity.class);
                     intentToShowSite.setAction(Constants.INTENT_FROM_SHOWTOURTL);
                     intentToShowSite.putExtra("siteId", siteToStamp.get(position).id);
-
-//                    intentToShowSite.putExtra("time",siteToStamp.get(position).showingTime);
                     startActivity(intentToShowSite);
 
 
 
                 }
-                //  Toast.makeText(getBaseContext(),"Prossimamente!",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -233,12 +222,6 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
         map = (org.osmdroid.views.MapView) findViewById(R.id.mapSummaryTL);
 
-//        map.setTileSource(new XYTileSource("MapQuest",
-//                ResourceProxy.string.mapquest_osm, 13, 17, 300, ".jpg", new String[]{
-//                "http://otile1.mqcdn.com/tiles/1.0.0/map/",
-//                "http://otile2.mqcdn.com/tiles/1.0.0/map/",
-//                "http://otile3.mqcdn.com/tiles/1.0.0/map/",
-//                "http://otile4.mqcdn.com/tiles/1.0.0/map/"}));
 
         map.setTileSource(mCustomTileSource);
         map.setBuiltInZoomControls(false);
@@ -301,7 +284,6 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
             //price
 
             totalPrice=totalPrice+showPrice(site);
-            Log.d("miotag","TOTALPRICE: "+totalPrice);
 
         }
             txtSummaryMoney.setText(String.valueOf(totalPrice)+" €");
@@ -327,7 +309,6 @@ private GeoPoint findTourCenter(ArrayList<Site> a){
             longitude=longitude+s.longitude;
         }
             GeoPoint gp=new GeoPoint(latitude/(Double.valueOf(a.size())),longitude/(Double.valueOf(a.size())));
-        Log.d("miotag", "CENTRO: " + gp.getLatitude() + " ," + gp.getLongitude());
         return gp;
     }
 
@@ -372,7 +353,6 @@ private GeoPoint findTourCenter(ArrayList<Site> a){
                 }
 
                     final DecimalFormat df = new DecimalFormat();
-//                    df.setMinimumFractionDigits(0);
                     df.setMaximumFractionDigits(2);
                     df.setRoundingMode(RoundingMode.HALF_UP);
                    return df.format(d);
@@ -406,11 +386,6 @@ private GeoPoint findTourCenter(ArrayList<Site> a){
         }
 
     }
-
-
-
-
-
 
 
 }//fine Classe

@@ -3,8 +3,6 @@ package org.wepush.open_tour.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import org.wepush.open_tour.structures.Constants;
-
 
 /**
  * Created by antoniocoppola on 11/06/15.

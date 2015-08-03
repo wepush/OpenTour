@@ -33,7 +33,7 @@ import org.wepush.open_tour.fragments_dialogs.IntroPagerFragment;
 import org.wepush.open_tour.fragments_dialogs.MapDialogFragment;
 import org.wepush.open_tour.fragments_dialogs.NoGpsDialog;
 import org.wepush.open_tour.fragments_dialogs.OutOfBoundsDialog;
-import org.wepush.open_tour.structures.Constants;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.structures.FloatingActionButton;
 import org.wepush.open_tour.utils.Repository;
 
@@ -190,9 +190,8 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                 } else {
 
                        if(!(serviceGPS.isProviderEnabled(LocationManager.GPS_PROVIDER))){
-                                FragmentManager fm = getSupportFragmentManager();
-                                NoGpsDialog hf = new NoGpsDialog();
-                                hf.show(fm, "nogps_dialog");
+
+                           showAppropriateDialog(Constants.SHOW_NO_GPS_DIALOG);
                        }
                          else {
 
@@ -201,9 +200,8 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                                         startActivity(new Intent(getBaseContext(), ShowTourTimeLineActivity.class));
                                         finish();
                                     } else {
-                                        FragmentManager fm = getSupportFragmentManager();
-                                        OutOfBoundsDialog hf = new OutOfBoundsDialog();
-                                        hf.show(fm, "outofbounds_dialog");
+
+                                        showAppropriateDialog(Constants.SHOW_OUT_OF_BOUNDS_DIALOG);
                                     }
 
                             }
@@ -229,8 +227,6 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                         now.get(Calendar.HOUR_OF_DAY),
                         now.get(Calendar.MINUTE),
                         true
-
-
                 );
                 dpd.show(getFragmentManager(), "Timepickerdialog");
 
@@ -260,9 +256,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
             @Override
             public void onClick(View view){
 
-                FragmentManager fm = getSupportFragmentManager();
-                HowFragment hf=new HowFragment();
-                hf.show(fm,"how_fragment");
+                showAppropriateDialog(Constants.SHOW_HOW_DIALOG);
             }
         });
 
@@ -270,9 +264,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
             @Override
             public void onClick(View view){
 
-                FragmentManager fm = getSupportFragmentManager();
-                IntroPagerFragment.WhatFragment wf=new IntroPagerFragment.WhatFragment();
-                wf.show(fm,"what_fragment");
+                showAppropriateDialog(Constants.SHOW_WHAT_DIALOG);
             }
         });
 
@@ -290,21 +282,17 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                         if (!(TextUtils.equals(Repository.retrieve(getBaseContext(),Constants.LATITUDE_STARTING_POINT,String.class),"")))
                             {
                                 if (isInMapBounds()) {
-                                    FragmentManager fm = getSupportFragmentManager();
-                                    MapDialogFragment hf = new MapDialogFragment();
-                                    hf.show(fm, "map_fragment");
+
+                                    showAppropriateDialog(Constants.SHOW_WHERE_DIALOG);
                                 } else {
-                                    FragmentManager fm = getSupportFragmentManager();
-                                    OutOfBoundsDialog hf = new OutOfBoundsDialog();
-                                    hf.show(fm,"out_ofBonds");
-                                    Toast.makeText(context,R.string.tooFarAway,Toast.LENGTH_SHORT).show();
+
+                                    showAppropriateDialog(Constants.SHOW_OUT_OF_BOUNDS_DIALOG);
                                 }
                             } else {
                                     Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(DUMMY_STARTING_LOCATION_LATITUDE));
                                     Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(DUMMY_STARTING_LOCATION_LONGITUDE));
-                                            FragmentManager fm = getSupportFragmentManager();
-                                            MapDialogFragment hf = new MapDialogFragment();
-                                            hf.show(fm, "map_fragment");
+
+                                    showAppropriateDialog(Constants.SHOW_WHERE_DIALOG);
                                 }
                 }
                 else //if GPS is not ON
@@ -454,13 +442,11 @@ private boolean isAnySettingVoid(){
 
     public void onConnectionSuspended(int i){
         mGoogleApiClient.disconnect();
-        Log.d("miotag","client connection: INTERRUPTED");
         Toast.makeText(this, "Client Connection: SUSPENDED!", Toast.LENGTH_LONG).show();
 
     }
 
     public void onConnectionFailed(ConnectionResult connResult){
-        Log.d("miotag","connection to LocalServices lost ");
         Toast.makeText(this, "Lost Connection: No Signal!", Toast.LENGTH_LONG).show();
     }
 
@@ -469,8 +455,6 @@ private boolean isAnySettingVoid(){
         establishGoogleConnection();
     }
 
-
-
     private boolean isInMapBounds(){
         //acquires user GPS here is necessary because it could had not be done before (some previous weird stop/resume of the activity)
         establishGoogleConnection();
@@ -478,12 +462,10 @@ private boolean isAnySettingVoid(){
         try {
              actualUserPosition = new GeoPoint(Double.valueOf(Repository.retrieve(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.class)), Double.valueOf(Repository.retrieve(getBaseContext(), Constants.LONGITUDE_STARTING_POINT, String.class)));
         } catch (NumberFormatException e){
-            FragmentManager fm = getSupportFragmentManager();
-            NoGpsDialog hf = new NoGpsDialog();
-            hf.show(fm, "nogps_dialog");
+
+            showAppropriateDialog(Constants.SHOW_NO_GPS_DIALOG);
         }
             if (actualUserPosition!=null) {
-                Log.d("miotag", "check ifInBound: " + actualUserPosition.getLatitude() + ", " + actualUserPosition.getLongitude());
                 if (
 
                         (actualUserPosition.getLongitude() < Constants.NORTH_EAST.getLongitude()) &&
@@ -498,9 +480,8 @@ private boolean isAnySettingVoid(){
                     return false;
                 }
             } else {
-                FragmentManager fm = getSupportFragmentManager();
-                NoGpsDialog hf = new NoGpsDialog();
-                hf.show(fm, "nogps_dialog");
+
+                showAppropriateDialog(Constants.SHOW_NO_GPS_DIALOG);
             }
         return false;
     }
@@ -508,36 +489,67 @@ private boolean isAnySettingVoid(){
     private void establishGoogleConnection(){
         if (mGoogleApiClient.isConnected())
         {
-//            mGoogleApiClient.disconnect();
-//            Log.d("miotag", " GP era connesso, adesso lancio");
-//
-//            mGoogleApiClient.connect();
+
             acquiringUserPosition();
         } else {
-            Log.d("miotag","GP non era connesso, adesso lancio");
             mGoogleApiClient.connect();
         }
     }
 
     private void acquiringUserPosition(){
-        Log.d("miotag","connessione con GP stabilita");
         Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null){
             double mLastLocationLatitude=mLastLocation.getLatitude();
             double mLastLocationLongitude=mLastLocation.getLongitude();
-            Log.d("miotag", "dopo connessione con Google i valori di mLastLocation: "+mLastLocationLatitude+", "+mLastLocationLongitude);
             Repository.save(this, Constants.LATITUDE_STARTING_POINT, String.valueOf(mLastLocationLatitude));
             Repository.save(this, Constants.LONGITUDE_STARTING_POINT, String.valueOf(mLastLocationLongitude));
 
 //                   Repository.save(this,Constants.LATITUDE_STARTING_POINT,String.valueOf(45.468994) );
 //                    Repository.save(this,Constants.LONGITUDE_STARTING_POINT,String.valueOf(9.182067));
         }
-//        else {
-//            FragmentManager fm = getSupportFragmentManager();
-//            NoGpsDialog hf = new NoGpsDialog();
-//            hf.show(fm, "nogps_dialog");
-//        }
+
+    }
+
+    private void showAppropriateDialog(String s){
+
+        switch(s){
+
+            case Constants.SHOW_NO_GPS_DIALOG:
+                FragmentManager fmNoGps = getSupportFragmentManager();
+                NoGpsDialog hfNoGps = new NoGpsDialog();
+                hfNoGps.show(fmNoGps, "nogps_dialog");
+                break;
+
+            case Constants.SHOW_OUT_OF_BOUNDS_DIALOG:
+                FragmentManager fm = getSupportFragmentManager();
+                OutOfBoundsDialog hf = new OutOfBoundsDialog();
+                hf.show(fm,"out_ofBonds");
+                break;
+
+            case Constants.SHOW_WHERE_DIALOG:
+                FragmentManager fmMap = getSupportFragmentManager();
+                MapDialogFragment hfMap = new MapDialogFragment();
+                hfMap.show(fmMap, "map_fragment");
+                break;
+
+            case Constants.SHOW_WHAT_DIALOG:
+                FragmentManager fmWhat = getSupportFragmentManager();
+                IntroPagerFragment.WhatFragment wfWhat=new IntroPagerFragment.WhatFragment();
+                wfWhat.show(fmWhat,"what_fragment");
+                break;
+
+            case Constants.SHOW_HOW_DIALOG:
+                FragmentManager fmHow = getSupportFragmentManager();
+                HowFragment hfHow=new HowFragment();
+                hfHow.show(fmHow,"how_fragment");
+                break;
+
+            default:
+                Toast.makeText(this, R.string.corrupted_installation, Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
 

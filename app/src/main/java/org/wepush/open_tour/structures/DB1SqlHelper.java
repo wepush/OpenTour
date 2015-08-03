@@ -79,27 +79,6 @@ public class DB1SqlHelper extends SQLiteOpenHelper {
 
 
 
-//    private final static String SITES_NEAREST="nearest_sites";
-//    private final static String CREATE_TABLE_OPENINGS="CREATE TABLE IF NOT EXISTS " +  SITES_NEAREST
-//
-//            + " ("
-//            + " id VARCHAR(30) PRIMARY KEY, "
-//            + " name VARCHAR(255), "
-//            + " latitude REAL,"
-//            + " longitude REAL,"
-//            + " description TEXT,"
-//            + " tips TEXT,"
-//            + " address TEXT,"
-//            + " address_civic TEXT,"
-//            + " always_open INTEGER,"
-//            + " priority TEXT,"
-//            + " picture TEXT,"
-//            + " openings TEXT,"
-//            + " tickets TEXT,"
-//            + " contacts TEXT,"
-//            + " visit_time TEXT,"
-//            + " type TEXT"
-//            + ");";
 
     public DB1SqlHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -193,8 +172,7 @@ public class DB1SqlHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase database = getReadableDatabase();
         Site site = new Site();
-        //commentato il 06/05
-//         Cursor cursor = null, adjacencyCursor = null;
+
 
         Cursor cursor = null;
 
@@ -225,7 +203,6 @@ public class DB1SqlHelper extends SQLiteOpenHelper {
     }
 
     public String getPictureSite(String id){
-        Log.d("miotag", "getPictureSite con id: "+id);
         SQLiteDatabase database = getReadableDatabase();
         Site site = new Site();
         Cursor cursor = null;
@@ -242,7 +219,6 @@ public class DB1SqlHelper extends SQLiteOpenHelper {
         } catch (Exception e){
             e.printStackTrace();
         }
-        Log.d("miotag","ritordando da DB per picture: "+site.pictureUrl);
         return site.pictureUrl;
 
 
