@@ -268,11 +268,11 @@ public class IntroPagerFragment extends Fragment {
 
                 }
             });
-            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    dismiss();
-                }
-            });
+//            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int id) {
+//                    dismiss();
+//                }
+//            });
 
             tb = (Switch) view.findViewById(R.id.whatAll);
 

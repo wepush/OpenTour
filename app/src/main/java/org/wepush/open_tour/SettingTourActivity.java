@@ -276,23 +276,28 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 
                 if (serviceGPS.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
+                    Log.d("miotag","servizio GPS on");
+
 //Activate tap to launch fragment for new start location
 //if LATITUDE_STARTING_POING is NOT null, then go ahead and show map
 //else, if LATITUDE_STARTING_POINT is null (no internet connection)
                         if (!(TextUtils.equals(Repository.retrieve(getBaseContext(),Constants.LATITUDE_STARTING_POINT,String.class),"")))
                             {
+                                Log.d("miotag","LATITUDE_STARTING è diverso da '' ");
                                 if (isInMapBounds()) {
-
+                                    Log.d("miotag","mappa inbounds ");
                                     showAppropriateDialog(Constants.SHOW_WHERE_DIALOG);
                                 } else {
-
+                                    Log.d("miotag","mappa outbounds ");
                                     showAppropriateDialog(Constants.SHOW_OUT_OF_BOUNDS_DIALOG);
                                 }
                             } else {
-                                    Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(DUMMY_STARTING_LOCATION_LATITUDE));
-                                    Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(DUMMY_STARTING_LOCATION_LONGITUDE));
+                            Log.d("miotag","GPS fisicamente attivo, ma non si riceve il segnale ");
+//                                    Repository.save(getBaseContext(), Constants.LATITUDE_STARTING_POINT, String.valueOf(DUMMY_STARTING_LOCATION_LATITUDE));
+//                                    Repository.save(getBaseContext(),Constants.LONGITUDE_STARTING_POINT,String.valueOf(DUMMY_STARTING_LOCATION_LONGITUDE));
 
-                                    showAppropriateDialog(Constants.SHOW_WHERE_DIALOG);
+//                                    showAppropriateDialog(Constants.SHOW_WHERE_DIALOG);
+                                      showAppropriateDialog(Constants.SHOW_NO_GPS_DIALOG);
                                 }
                 }
                 else //if GPS is not ON

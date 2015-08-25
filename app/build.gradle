@@ -22,8 +22,8 @@ android {
         applicationId 'org.wepush.open_tour'
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 12
-        versionName "1.21"
+        versionCode 13
+        versionName "1.22"
     }
     buildTypes {
         release {
