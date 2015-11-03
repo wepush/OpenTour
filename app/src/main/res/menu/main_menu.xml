@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--<item-->
+        <!--android:id="@+id/showTutorial"-->
+        <!--android:title="Rivedi Introduzione"  />-->
+        <!--&lt;!&ndash;app:showAsAction="ifRoom"&ndash;&gt;-->
+
+
+
+    <!--<item-->
+        <!--android:id="@+id/cityChooser"-->
+        <!--android:title="Cambia Città"/>-->
+        <!--&lt;!&ndash;app:showAsAction="ifRoom"&ndash;&gt;-->
+
+    <!--<item-->
+        <!--android:id="@+id/dataTrafficOn"-->
+        <!--android:title="Attivare modalità online">-->
+
+    <!--</item>-->
+
+    <!--<item-->
+        <!--android:id="@+id/dataTrafficOff"-->
+        <!--android:title="Attivare modalità offline">-->
+
+    <!--</item>-->
+
+    <item
+        android:id="@+id/networkOption"
+        android:title="">
+    </item>
+
+    <!--<item-->
+        <!--android:id="@+id/walkthrough"-->
+        <!--android:title="WalkThrough">-->
+
+    <!--</item>-->
+
+    <item
+        android:id="@+id/cityChange"
+        android:title="@string/changeCityMenu"/>
+
+    <item android:id="@+id/discoveryActivity"
+        android:title="@string/discoveryActivityMenu"/>
+
+    <!--<item-->
+        <!--android:id="@+id/showDetails"-->
+        <!--android:title="Show Details"/>-->
+
+    <!--<item android:id="@+id/downloadPackages"-->
+        <!--android:title="Gestione Pacchetti"/>-->
+
+    <!--<item android:id="@+id/dbMilano"-->
+        <!--android:title="Carica db inglese"/>-->
+
+    <!--<item android:id="@+id/dbPalermo"-->
+        <!--android:title="Carica db italiano"/>-->
+
+    <!--<item android:id="@+id/dbDelete"-->
+        <!--android:title="Cancella db"/>-->
+
+    <!--<item android:id="@+id/downloadImages"-->
+        <!--android:title="Download Images"/>-->
+
+    <!--<item android:id="@+id/unzip"-->
+        <!--android:title="Unzip"/>-->
+
+    <!--<item android:id="@+id/downloadMapMilan"-->
+        <!--android:title="DownloadMilanMap"/>-->
+
+
+
+
+</menu>

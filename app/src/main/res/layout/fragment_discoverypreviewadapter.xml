@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/svDiscovery"
+  >
+
+    <!--android:background="@color/gray_background"-->
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="104dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/gray_background"
+        >
+
+        <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbarDiscoveryPreview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/blue400">-->
+
+        <!--</android.support.v7.widget.Toolbar>-->
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:orientation="vertical"
+            android:background="@color/riva_gray"
+            >
+            <!--android:layout_weight="2"-->
+            <ImageView
+                android:id="@+id/discoveryPreviewMainImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:adjustViewBounds="true"
+                android:fitsSystemWindows="true"
+                android:alpha="0.8"
+                />
+
+            <TextView
+                android:id="@+id/txtMainImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
+                android:text="MainShowcaseImage"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="18sp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+        <!-- this LinearLayout is for the 4 images -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <!--android:layout_weight="2"-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:orientation="horizontal"
+                android:background="@color/riva_gray"
+                >
+                <!--android:layout_weight="1"-->
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/discoverPreviewImageNl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:fitsSystemWindows="true"
+                        android:clickable="true"
+                        android:alpha="0.8"/>
+
+                    <TextView
+                        android:id="@+id/txtNlImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="NL"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/discoverPreviewImageNr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:adjustViewBounds="true"
+                        android:fitsSystemWindows="true"
+                        android:alpha="0.8"
+                        />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NR"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:fontFamily="sans-serif-medium"
+                        android:id="@+id/txtNrImage"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:orientation="horizontal"
+                android:background="@color/riva_gray"
+                >
+                <!--android:layout_weight="1"-->
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/discoverPreviewImageSl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:adjustViewBounds="true"
+                        android:fitsSystemWindows="true"
+                        android:alpha="0.8"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtSlImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:text="SL"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/discoverPreviewImageSr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:adjustViewBounds="true"
+                        android:fitsSystemWindows="true"
+                        android:alpha="0.8"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:id="@+id/txtSrImage"
+                        android:text="SR"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+        <!--end of the section for mainsites -->
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:background="@color/gray_background">
+            <!--android:layout_weight="4"-->
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cdTouch0"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:elevation="5dp"
+                android:layout_margin="5dp"
+                android:background="@color/white">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/circleImageDiscoveryPreviewList0"
+                        android:layout_gravity="center_vertical" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Titolo Sito Listato"
+                            android:id="@+id/txtTitleDiscoveryPreviewList0"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Body Sito Listato"
+                            android:id="@+id/txtBodyDiscoveryPreviewList0"/>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cdTouch1"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:elevation="5dp"
+                android:layout_margin="5dp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/circleImageDiscoveryPreviewList1"
+
+                        android:layout_gravity="center_vertical" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Titolo Sito Listato"
+                            android:id="@+id/txtTitleDiscoveryPreviewList1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Body Sito Listato"
+                            android:id="@+id/txtBodyDiscoveryPreviewList1"/>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cdTouch2"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:elevation="5dp"
+                android:layout_margin="5dp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/circleImageDiscoveryPreviewList2"
+
+                        android:layout_gravity="center_vertical" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Titolo Sito Listato"
+                            android:id="@+id/txtTitleDiscoveryPreviewList2"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Body Sito Listato"
+                            android:id="@+id/txtBodyDiscoveryPreviewList2"/>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cdTouch3"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:elevation="5dp"
+                android:layout_margin="5dp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/circleImageDiscoveryPreviewList3"
+
+                        android:layout_gravity="center_vertical" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Titolo Sito Listato"
+                            android:id="@+id/txtTitleDiscoveryPreviewList3"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Body Sito Listato"
+                            android:id="@+id/txtBodyDiscoveryPreviewList3"/>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cdTouch4"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:elevation="5dp"
+                android:layout_margin="5dp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/circleImageDiscoveryPreviewList4"
+                        android:layout_gravity="center_vertical" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Titolo Sito Listato"
+                            android:id="@+id/txtTitleDiscoveryPreviewList4"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Body Sito Listato"
+                            android:id="@+id/txtBodyDiscoveryPreviewList4"
+                            />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <!-- listiview STAVA MESSA PROPRIO QUI-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="112dp"-->
+                <!--android:background="@color/white"></View>-->
+
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum-->
+                <!--loremipsumloremipsumloremipsumloremipsumloremipsum-->
+                <!--loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum-->
+                <!--loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum-->
+                <!--loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum-->
+                <!--loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum"/>-->
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:id="@+id/cdTouch4"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:elevation="5dp"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:background="@color/white">-->
+
+                <!--<LinearLayout-->
+                    <!--android:background="@color/white"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="horizontal">-->
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginStart="10dp"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:id="@+id/circleImageDiscoveryPreviewList4"-->
+
+                        <!--android:layout_gravity="center_vertical" />-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginStart="10dp">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Titolo Sito Listato"-->
+                            <!--android:id="@+id/txtTitleDiscoveryPreviewList4"/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Body Sito Listato"-->
+                            <!--android:id="@+id/txtBodyDiscoveryPreviewList4"/>-->
+
+
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+
+
+            <!--</android.support.v7.widget.CardView>-->
+
+        </LinearLayout>
+
+        <ListView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:divider="@null"
+            android:background="@color/gray_background"
+            android:id="@+id/lwDiscoveryActivity"
+            android:listSelector="@android:color/transparent"
+            />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/gray_background">
+        </View>
+
+    </LinearLayout>
+</ScrollView>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:orientation="vertical"-->
+ <!-->-->
+
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!-->-->
+<!--<LinearLayout-->
+
+    <!--android:layout_marginTop="104dp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+
+    <!--&lt;!&ndash;<android.support.v7.widget.Toolbar&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/toolbarDiscoveryPreview"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:background="@color/blue400">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;</android.support.v7.widget.Toolbar>&ndash;&gt;-->
+
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="210dp"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@color/riva_gray"-->
+        <!-->-->
+        <!--&lt;!&ndash;android:layout_weight="2"&ndash;&gt;-->
+        <!--<ImageView-->
+            <!--android:id="@+id/discoveryPreviewMainImage"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:clickable="true"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:fitsSystemWindows="true"-->
+            <!--android:alpha="0.8"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:layout_marginStart="30dp"-->
+            <!--android:layout_marginRight="30dp"-->
+            <!--android:layout_marginEnd="30dp"-->
+            <!--android:text="Galleria Vittorio Emanuele II"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:gravity="center"-->
+            <!--android:fontFamily="sans-serif-medium"-->
+            <!--android:textSize="18sp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_centerHorizontal="true" />-->
+    <!--</RelativeLayout>-->
+<!--&lt;!&ndash; this LinearLayout is for the 4 images &ndash;&gt;-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!-->-->
+        <!--&lt;!&ndash;android:layout_weight="2"&ndash;&gt;-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="105dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:background="@color/riva_gray"-->
+            <!-->-->
+            <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+            <!--<RelativeLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1">-->
+                        <!--<ImageView-->
+                            <!--android:id="@+id/discoverPreviewImageNl"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:adjustViewBounds="true"-->
+                            <!--android:fitsSystemWindows="true"-->
+                            <!--android:clickable="true"-->
+                            <!--android:alpha="0.8"/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Chiesa della Martorana"-->
+                            <!--android:layout_marginLeft="10dp"-->
+                            <!--android:layout_marginStart="10dp"-->
+                            <!--android:layout_marginRight="10dp"-->
+                            <!--android:layout_marginEnd="10dp"-->
+                            <!--android:textSize="14sp"-->
+                            <!--android:textColor="@color/white"-->
+                            <!--android:fontFamily="sans-serif-medium"-->
+                            <!--android:gravity="center"-->
+                            <!--android:layout_centerVertical="true"-->
+                            <!--android:layout_centerHorizontal="true" />-->
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1">-->
+                        <!--<ImageView-->
+                            <!--android:id="@+id/discoverPreviewImageNr"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:clickable="true"-->
+                            <!--android:adjustViewBounds="true"-->
+                            <!--android:fitsSystemWindows="true"-->
+                            <!--android:alpha="0.8"-->
+                           <!--/>-->
+
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="più schermi scuri per tutti"-->
+                            <!--android:textColor="@color/white"-->
+                            <!--android:fontFamily="sans-serif-medium"-->
+                            <!--android:id="@+id/textView2"-->
+                            <!--android:layout_centerVertical="true"-->
+                            <!--android:layout_centerHorizontal="true" />-->
+            <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="105dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:background="@color/riva_gray"-->
+            <!-->-->
+            <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1">-->
+                <!--<ImageView-->
+                    <!--android:id="@+id/discoverPreviewImageSl"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:clickable="true"-->
+                    <!--android:adjustViewBounds="true"-->
+                    <!--android:fitsSystemWindows="true"-->
+                    <!--android:alpha="0.8"-->
+                    <!--/>-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:fontFamily="sans-serif-medium"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="Le scritte per gli schermi scuri stanno per finire"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:layout_alignParentStart="true" />-->
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/discoverPreviewImageSr"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:clickable="true"-->
+                        <!--android:adjustViewBounds="true"-->
+                        <!--android:fitsSystemWindows="true"-->
+                        <!--android:alpha="0.8"-->
+                        <!--/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:fontFamily="sans-serif-medium"-->
+                    <!--android:gravity="center"-->
+
+                    <!--android:text="Ho anche finito le frasi sceme per provare la lunghezza del testo"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:layout_alignParentStart="true" />-->
+            <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@color/gray_background"-->
+        <!-->-->
+        <!--&lt;!&ndash;android:layout_weight="4"&ndash;&gt;-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:id="@+id/cdTouch0"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:elevation="5dp"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:background="@color/white">-->
+
+            <!--<LinearLayout-->
+
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="horizontal">-->
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:id="@+id/circleImageDiscoveryPreviewList0"-->
+                    <!--android:layout_gravity="center_vertical" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center_vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Titolo Sito Listato"-->
+                        <!--android:id="@+id/txtTitleDiscoveryPreviewList0"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Body Sito Listato"-->
+                        <!--android:id="@+id/txtBodyDiscoveryPreviewList0"/>-->
+
+
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+
+
+        <!--</android.support.v7.widget.CardView>-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:id="@+id/cdTouch1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:elevation="5dp"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:background="@color/white">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="horizontal">-->
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:id="@+id/circleImageDiscoveryPreviewList1"-->
+
+                    <!--android:layout_gravity="center_vertical" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginStart="10dp">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Titolo Sito Listato"-->
+                        <!--android:id="@+id/txtTitleDiscoveryPreviewList1"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Body Sito Listato"-->
+                        <!--android:id="@+id/txtBodyDiscoveryPreviewList1"/>-->
+
+
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+
+
+        <!--</android.support.v7.widget.CardView>-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:id="@+id/cdTouch2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:elevation="5dp"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:background="@color/white">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="horizontal">-->
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:id="@+id/circleImageDiscoveryPreviewList2"-->
+
+                    <!--android:layout_gravity="center_vertical" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginStart="10dp">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Titolo Sito Listato"-->
+                        <!--android:id="@+id/txtTitleDiscoveryPreviewList2"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Body Sito Listato"-->
+                        <!--android:id="@+id/txtBodyDiscoveryPreviewList2"/>-->
+
+
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+
+
+        <!--</android.support.v7.widget.CardView>-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:id="@+id/cdTouch3"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:elevation="5dp"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:background="@color/white">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="horizontal">-->
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:id="@+id/circleImageDiscoveryPreviewList3"-->
+
+                    <!--android:layout_gravity="center_vertical" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginStart="10dp">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Titolo Sito Listato"-->
+                        <!--android:id="@+id/txtTitleDiscoveryPreviewList3"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Body Sito Listato"-->
+                        <!--android:id="@+id/txtBodyDiscoveryPreviewList3"/>-->
+
+
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+
+
+        <!--</android.support.v7.widget.CardView>-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:id="@+id/cdTouch4"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:elevation="5dp"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:background="@color/white">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="horizontal">-->
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:id="@+id/circleImageDiscoveryPreviewList4"-->
+
+                    <!--android:layout_gravity="center_vertical" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginStart="10dp">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Titolo Sito Listato"-->
+                        <!--android:id="@+id/txtTitleDiscoveryPreviewList4"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Body Sito Listato"-->
+                        <!--android:id="@+id/txtBodyDiscoveryPreviewList4"/>-->
+
+
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+
+
+        <!--</android.support.v7.widget.CardView>-->
+
+
+
+
+    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+    <!--&lt;!&ndash;<android.support.v7.widget.RecyclerView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/recyclerDiscovery"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="800dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+
+
+
+<!--</LinearLayout>-->
+
+<!--</LinearLayout>-->
+
+<!--</ScrollView>-->
+
+<!--</LinearLayout>-->
+
+
+

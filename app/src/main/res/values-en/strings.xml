@@ -1,0 +1,283 @@
+<resources>
+    <string name="app_name">OpenTour</string>
+
+    <string name="name">Open Tour</string>
+    <string name="action_settings">Settings</string>
+    <string name="sites_remote_endpoint_palermo">http://192.168.69.108:5005/api/v1/cities/54f6e2d7694d6101bf030000/sites</string>
+    <string name="title_activity_city_chooser">CityChooserActivity</string>
+    <string name="go_ahead">Next</string>
+
+    <string name="firstTitleWalk">Welcome!</string>
+    <string name="firstBodyWalk">Welcome! Open Tour is the best way to discover the cities you are visiting for the first time.</string>
+    <string name="secondTitleWalk">Your custom-made tour</string>
+    <string name="secondBodyWalk">By stating the time you have, your starting point and  what you’d like to see the most, you can create your customized tour. </string>
+    <string name="thirdTitleWalk">One for all, all for one</string>
+    <string name="thirdBodyWalk">A single application  available for infinite cities: anyone can apply to create a dataset contributing to the growth of the project.</string>
+    <string name="fourthTitleWalk">Everything is open, including data</string>
+    <string name="fourthBodyWalk">Thanks to Open Data, freely available to everyone, all datasets can be downloaded for free from our website.</string>
+    <string name="fifthWalk">LoremIpsum 4</string>
+
+
+    <string name="skip">Skip</string>
+    <string name="recapTextTimeLineMain">This is the tour created just for you!</string>
+    <string name="recapTextTimeLineSub">Modify it as you wish before starting your journey</string>
+    <string name="start">Go!</string>
+    <string name="next">Next</string>
+    <string name="intro">Intro</string>
+    <string name="SettingTour">Setting Tour</string>
+    <string name="milan">Milano</string>
+    <string name="palermo">Palermo</string>
+    <string name="city_name">City Name</string>
+
+    <string name="confirm">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="select_how">Select how to move </string>
+    <string name="by_walk">Walk</string>
+    <string name="by_bike">By Bike</string>
+    <string name="setting_date">Choose date </string>
+    <string name="your_position">Your actual position</string>
+    <string name="im_here_marker">You are here</string>
+    <string name="description_marker">Starting point</string>
+    <string name="complete_all_fields">Insert Date, Time, Time to spend</string>
+    <string name="turn_gps_on">Switch on GPS (high accuracy)</string>
+    <string name="open_from">Open:</string>
+    <string name="open_to">-</string>
+    <string name="time_to_spend">How much time you want to spend on your tour?</string>
+    <string name="future_time">Estimated time</string>
+    <string name="price_full_tour">Estimated cost</string>
+    <string name="prices">prices</string>
+    <string name="tour_lasting_time">Tour length</string>
+    <string name="place_to_visit">Places to visit</string>
+    <string name="number_sites">No. of sites</string>
+    <string name="walked_km">Travelled Km</string>
+    <string name="km">Km</string>
+    <string name="start2">Start</string>
+    <string name="time_to_start">Starting time</string>
+    <string name="detail_sheet">Card Detail</string>
+    <string name="end_of_tour">End of the Tour</string>
+    <string name="startingTour">Starting Tour</string>
+    <string name="goLiveFloating">Tap on float button to go live on tour!</string>
+
+
+
+    <string name="church">Churches</string>
+
+    <string name="museums">Museums</string>
+
+    <string name="villasgardens">Villas and Gardens</string>
+
+    <string name="palace_castle">Palaces and Castles</string>
+    <string name="palaces_in_tabs">Palaces</string>
+
+
+    <string name="square_street">Squares and Streets</string>
+
+    <string name="statue_funtains">Statues and Fountains</string>
+
+    <string name="arc">Arches, Ports and Walls</string>
+
+    <string name="theater">Theaters</string>
+
+    <string name="bridges">Bridges</string>
+    <string name="cemetery">Cemeteries</string>
+
+    <string name="market">Fairs and Markets</string>
+
+    <string name="other_monuments">Other monuments</string>
+
+    <string name="monuments">Monuments</string>
+
+    <string name="structures">Buildings</string>
+
+    <string name="turn_on_gps">Turn on GPS (high accuracy)</string>
+
+    <string name="corrupted_installation">Application data corrupted. Please, Install Open Tour again</string>
+
+
+
+    <string name="when">When</string>
+
+    <string name="timeclock">Time</string>
+
+    <string name="from_where">Where from</string>
+
+    <string name="how">How</string>
+
+    <string name="what">What</string>
+
+    <string name="all_sites">All Sites</string>
+
+
+    <string name="titleNoGpsInfo">Incomplete informations</string>
+    <string name="bodyNoGpsDialog1">User position cannot be acquired</string>
+    <string name="bodyNoGpsDialog2">Switch on GPS (high accuracy) or wait for a stronger signal</string>
+
+
+    <string name="confirmGPSlaunch">Turn ON GPS</string>
+    <string name="confirmSettingsLaunch">Incomplete settings</string>
+    <string name="modifyPreferences">Back to Settings</string>
+
+
+    <string name="titleOutOfBoundsDialog">Warning! The tour couldn\'t be created</string>
+    <!--<string name="bodyOutOfBoundsDialog1">Sorry! We couldn’t find any tourist site in the nearby. </string>-->
+    <string name="bodyOutOfBoundsDialog1">Sorry! you are too far away from the mapped area</string>
+    <string name="bodyOutOfBoundsDialog2">Get closer to downtown to create a tour. The app runs within the city limits!</string>
+
+
+
+
+
+    <string name="titleSettingsMissing">Attention!</string>
+    <string name="bodySettingsMissing1">Chosen settings aren\'t enough to generate a proper tour. "</string>
+    <string name="bodySettingsMissing2">Hint: try to be less restrictive</string>
+
+    <string name="and_more">and more</string>
+    <string name="allnothing">All/Nothing</string>
+    <string name="tooFarAway">Get closer to center of city to visualize its map</string>
+
+
+    <string name="tips">Did you know?</string>
+
+    <string name="text_tips">testo tips</string>
+    <string name="opening_days">Opening days</string>
+
+    <string name="ticket_types">Tickets</string>
+
+    <string name="contact_types">Contacts</string>
+
+    <string name="ok">OK</string>
+
+    <string name="connectionFailed">Connection lost: verify signal strength and retry</string>
+    <string name="myPosition">Your actual position</string>
+
+
+
+
+
+
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+
+    <string name="january">January</string>
+    <string name="february">February</string>
+    <string name="march">March</string>
+    <string name="april">April</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">October</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
+    <string name="soon">Soon!</string>
+
+
+
+
+
+    <string name="theaters">Theaters</string>
+    <string name="palaces_and_castels">Palaces and Castles</string>
+    <string name="villas_gardens_parks">Villas, Gardens and Parks</string>
+    <string name="museums_and_art_galleries">Museums and Art galleries</string>
+    <string name="statues_funtains">Statues and Fountains</string>
+    <string name="squares_and_streets">Squares and Streets</string>
+    <string name="arches_gates_walls">Arches, Gates and Walls</string>
+    <string name="fairs_markets">Fairs and Markets</string>
+    <string name="cemeteries_memorials">Cemeteries and Memorials</string>
+    <string name="buildings">Buildings</string>
+    <string name="bridge">Bridges</string>
+    <string name="churchs_oratories_worship">Churches, Oratories and Places of worship</string>
+    <string name="others_monuments">Other monuments and Places of interest</string>
+
+
+
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+
+
+    <string name="changeCityMenu">Change City</string>
+    <string name="discoveryActivityMenu">Discovery Mode</string>
+
+    <string name="titleNoPackages">No city selected</string>
+    <string name="bodyNoPackages1">City packages not found</string>
+    <string name="bodyNoPackages2">Choose a citiy to visit in the selection screen</string>
+    <string name="downloadingMapTitleMilan">OpenTour: Maps of Milano</string>
+    <string name="downloadingMapDescriptionMilan">Download and installation offline maps for Milan</string>
+
+    <string name="downloadingMapTitlePalermo">OpenTour: Maps of Palermo</string>
+    <string name="downloadingMapDescriptionPalermo">Download and installation offline maps Palermo</string>
+
+
+    <string name="downloadingImagesTitleMilan">OpenTour: Images of Milano</string>
+    <string name="downloadingImagesDescriptionMilan">Download and installation of images for Milan</string>
+
+    <string name="downloadingImagesTitlePalermo">OpenTour: Images of Palermo</string>
+    <string name="downloadingImagesDescriptionPalermo">Download and installation of images for Palermo</string>
+
+    <string name="downloadPackage">Download city package</string>
+
+
+    <string name="networkOfflineActivate">Activate Offline navigation</string>
+    <string name="networkOnlineActivate">Activate Online navigation</string>
+
+    <string name="waitingForPackages1">Downloading packages for the city of</string>
+    <string name="waitingForPackages2">Installing datas for the city of </string>
+    <string name="waitingForPackages3">Loading</string>
+
+    <string name="titleCheckBoxDownloadImages">Download Images</string>
+    <string name="lastUpdateCheckBoxStaticImages">last update</string>
+    <string name="lastUpdateCheckBoxActualAnnounceImages">21 October 2015</string>
+
+
+    <string name="titleCheckBoxDownloadMaps">Download offline map</string>
+    <string name="lastUpdateCheckBoxStaticMaps">last update</string>
+    <string name="lastUpdateCheckBoxActualAnnounceMaps">21 October 2015</string>
+
+
+    <string name="placeholderTheaters">theaters</string>
+    <string name="placeholderOtherSites">altri_luoghi_di_interesse</string>
+    <string name="placeholderArcs">archi_porte_mura</string>
+    <string name="placeholderChurches">chiese_oratori_e_luoghi_di_culto</string>
+    <string name="placeholderCemeteries">cimiteri_e_monumenti_funebri</string>
+    <string name="placeholderBuildings">edifici</string>
+    <string name="placeholderMarkets">fiere_e_mercati</string>
+    <string name="placeholderMuseums">musei_e_gallerie_darte</string>
+    <string name="placeholderCastles">palazzi_e_castelli</string>
+    <string name="placeholderSquares">piazze_e_strade</string>
+    <string name="placeholderBridges">ponti</string>
+    <string name="placeholderStatues">statue_e_fontane</string>
+    <string name="placeholderVillas">ville_giardini_e_parchi</string>
+
+
+    <string name="cityChooserIntroductionMilan">Milan  the second-most populous city in Italy, serves as the capital of Lombardy.
+        It is the main industrial, commercial, and financial centre of Italy. The city is a major world fashion and design capital.
+        Milan\'s museums, theatres and landmarks attract over 8 million visitors annually.</string>
+    <string name="cityChooserIntroductionPalermo">Palermo is a city in Insular Italy, the capital of the region of Sicily.
+    It is noted for its history, culture, architecture and gastronomy, playing an important role throughout much of its existence;
+    ùit is over 2,700 years old. It is located in the northwest of the island of Sicily.</string>
+
+
+    <string name="textDiscoveryModeRevealMenu"></string>
+    <string name="textChangeCityRevealMenu"></string>
+
+    <string name="internetOnLineOn">Online mode: Activated</string>
+    <string name="internetOnLineOff">Offline mode: Activated</string>
+    <string name="onlineToActivate">Online</string>
+    <string name="offlineToActivate">Offline</string>
+
+    <string name="chooseYourCity">Choose the city to visit</string>
+
+
+    <string name="tabParks">Parks</string>
+    <string name="transition_album_cover">recyclerview_chooser_animation</string>
+
+
+
+
+</resources>

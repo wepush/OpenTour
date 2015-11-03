@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.wepush.open_tour" >
+
+    <!-- Guess what? -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Needed by the Google Play services (the map, precisely) -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
+
+    <uses-permission android:name="org.wepush.open_tour.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launch"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:name="android.support.multidex.MultiDexApplication"
+        >
+
+        <!--android:name="android.support.multidex.MultiDexApplication">-->
+
+
+        <!-- Used for Google Map widget -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="YOUR_GOOGLE_MAPS_KEY_HERE" />
+
+        <!-- Used also for Map widget -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="org.wepush.open_tour.services.ReadFromJson"
+            android:exported="false" />
+
+        <!--<activity-->
+            <!--android:name=".CityChooserActivity"-->
+            <!--android:label="@string/title_activity_city_chooser"-->
+            <!--android:screenOrientation="portrait">-->
+        <!--</activity>-->
+
+        <activity
+            android:name=".WalkthroughActivity"
+            android:label="WalkthroughActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".SettingTourActivity"
+            android:label="SettingTour"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".ShowTourTimeLineActivity"
+            android:label="SettingTour"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--<activity-->
+            <!--android:name=".LoadingCityBundle"-->
+            <!--android:label="SettingTour"-->
+            <!--android:screenOrientation="portrait">-->
+        <!--</activity>-->
+
+        <activity android:name=".LoadingCityPackages"
+            android:label=""
+            android:screenOrientation="portrait"/>
+
+
+
+<activity android:name=".DetailsActivity"
+    android:label="ShowDetailsActivity"
+    android:screenOrientation="portrait"
+    android:theme="@style/AppTheme.Details"></activity>
+
+
+
+
+        <activity
+            android:name=".SplashActivityTimeLine"
+            android:label="SplashActivityTimeLine"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".LiveMapActivity"
+            android:label="LiveMapActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".SelectPackagesToDownloadActivity"
+            android:label="Select Package"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".DiscoveryPreviewPagerActivity"
+            android:label=""
+            android:screenOrientation="portrait"/>
+
+
+        <!--<activity-->
+            <!--android:name=".DiscoveryActivity"-->
+            <!--android:label=""-->
+            <!--android:screenOrientation="portrait"/>-->
+
+        <activity
+            android:name=".ChooseCityActivity"
+            android:label=""
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".CityShowcaserActivity"
+            android:label=""
+            android:screenOrientation="portrait"/>
+
+
+        <service
+            android:name=".services.LookUpIntentService"
+            android:exported="false"/>
+
+        <service android:name=".services.DownloadingCitiesService"
+            android:exported="false"/>
+
+        <service android:name=".services.DownloadingService"
+            android:exported="false"/>
+
+        <service android:name=".services.UnzipService"
+            android:exported="false"/>
+
+
+    </application>
+
+</manifest>

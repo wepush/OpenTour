@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/rlLayoutCityShowcaserActivity"-->
+            <!--android:visibility="invisible"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarCityShowcaserActivity"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+                android:id="@+id/llBody"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:layout_below="@+id/toolbarCityShowcaserActivity"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+            <!--android:visibility="invisible"-->
+
+
+
+            <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="24dp"
+                         android:layout_marginStart="24dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/iinfo"/>
+
+                        <TextView
+                            android:id="@+id/textIntroductionCity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/riva_gray"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginStart="24dp"/>
+
+                    </LinearLayout>
+
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp"
+                        >
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@mipmap/ic_pin"
+                                android:id="@+id/imageView9"
+                                 />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_toRightOf="@+id/imageView9"
+                                    android:layout_toEndOf="@+id/imageView9"
+                                    android:layout_marginLeft="16dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif"
+                                        android:textColor="@color/riva_gray"
+
+                                        android:text="@string/titleCheckBoxDownloadMaps"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-light"
+                                        android:textSize="14sp"
+                                        android:textColor="@color/riva_gray"
+
+                                        android:text="@string/lastUpdateCheckBoxStaticMaps"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-light"
+                                        android:textColor="@color/riva_gray"
+
+                                        android:text="@string/lastUpdateCheckBoxActualAnnounceMaps"/>
+
+
+                                </LinearLayout>
+
+                                <CheckBox
+                                    android:id="@+id/cbxDownloadMaps"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    style="@style/BlueCheckBox"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true" />
+
+                    </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+
+                    android:src="@mipmap/ic_image"
+                    android:id="@+id/imageView8"
+                     />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/imageView8"
+                    android:layout_toEndOf="@+id/imageView8"
+                    android:id="@+id/linearLayout7"
+                    android:layout_marginLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/riva_gray"
+
+                        android:text="@string/titleCheckBoxDownloadImages"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:textColor="@color/riva_gray"
+
+                        android:textSize="14sp"
+                        android:text="@string/lastUpdateCheckBoxStaticImages"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:textColor="@color/riva_gray"
+
+                        android:text="@string/lastUpdateCheckBoxActualAnnounceImages"/>
+
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/cbxDownloadImages"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:gravity="end"
+                    android:layout_gravity="end"
+                    style="@style/BlueCheckBox"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarCityShowcaserActivity"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="invisible"
+        >
+
+
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rlFabCityShowcaseActivity"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatButtonInCityShowcaseActivity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:backgroundTint="@color/blue400"
+        android:src="@mipmap/ic_download"
+        app:fabSize="normal"
+        android:layout_above="@+id/rlFabCityShowcaseActivity"
+        android:layout_toLeftOf="@+id/rlFabCityShowcaseActivity"
+        android:layout_toStartOf="@+id/rlFabCityShowcaseActivity" />
+
+
+
+
+    <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/rlToolbarShadowing"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#4d4d4d4d">
+    <TextView
+        android:id="@+id/txtToolbarShowcaser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageArrowNavigationShowcaserActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"/>
+
+
+    <!--</RelativeLayout>-->
+</RelativeLayout>

@@ -1,0 +1,318 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="true">
+
+            <!--app:contentScrim="@color/black"-->
+            <!--app:expandedTitleMarginStart="48dp"-->
+            <!--app:expandedTitleMarginEnd="64dp"-->
+
+
+            <ImageView
+                android:id="@+id/imageDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax" />
+
+            <!--android:fitsSystemWindows="true"-->
+            <!--android:adjustViewBounds="true"-->
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <ImageView
+                    android:id="@+id/imageArrowNavigation"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha" />
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <!--android:scaleType="centerCrop"-->
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:paddingTop="@dimen/paddingBetweenTextualElements"
+                    android:id="@+id/llForText">
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:id="@+id/txtToDisappear1"/>
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtToDisappear2"/>
+
+
+                </LinearLayout>
+
+
+            <LinearLayout
+                android:paddingTop="@dimen/paddingBetweenTextualElements"
+                android:layout_marginLeft="@dimen/paddingBetweenTextualElements"
+                android:layout_marginStart="@dimen/paddingBetweenTextualElements"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/paddingBetweenTextualElements">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/iinfo"/>
+
+                        <com.bluejamesbond.text.DocumentView
+                            xmlns:ext="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/txtShowDetailsDescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginStart="20sp"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="10sp"
+                            android:text="Description"
+                            android:textColor="@color/gray800"
+                            android:textSize="16sp"
+                            ext:documentView_textAlignment="justified" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="60dp"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@color/gray800"
+
+                    />
+
+                <LinearLayout
+                    android:id="@+id/llInternalTips"
+                    android:paddingTop="@dimen/paddingBetweenTextualElements"
+                    android:paddingBottom="@dimen/paddingBetweenTextualElements"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ykw"/>
+
+                        <com.bluejamesbond.text.DocumentView
+                            xmlns:ext="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/txtShowDetailsTips"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginStart="20sp"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="10sp"
+                            android:text="Description"
+                            android:textColor="@color/gray800"
+                            android:textSize="16sp"
+                            ext:documentView_textAlignment="justified" />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:paddingTop="@dimen/paddingBetweenTextualElements"
+                android:layout_marginLeft="@dimen/paddingBetweenTextualElements"
+                android:layout_marginStart="@dimen/paddingBetweenTextualElements"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/viewOpenings"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="60dp"
+                    android:background="@android:color/darker_gray"
+                    android:paddingTop="@dimen/paddingBetweenTextualElements"
+                    android:textColor="@color/gray800" />
+
+                <LinearLayout
+                    android:id="@+id/llOpenings"
+                    android:paddingTop="@dimen/paddingBetweenTextualElements"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/time"/>
+
+                    <LinearLayout
+                        android:id="@+id/llToAddOpenings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="20sp"
+                        android:layout_marginLeft="20sp"
+                        >
+
+                            <TextView
+                                android:text="testoOpenings1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtOpeningsDays"/>
+                            <TextView
+                                android:text="testoOpenings2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtOpeningsTime"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llTickets"
+                    android:paddingTop="@dimen/paddingBetweenTextualElements"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ticket"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="20sp"
+                        android:layout_marginLeft="20sp">
+
+                            <TextView
+                                android:text="textTickets1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtTicketsDetails1"/>
+                            <!--<TextView-->
+                                <!--android:text="textTickets2"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:id="@+id/txtTicketsDetails2"/>-->
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/llContacts"
+                    android:paddingTop="@dimen/paddingBetweenTextualElements"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/pinMail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mail"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="20sp"
+                        android:layout_marginLeft="20sp">
+
+                        <TextView
+                            android:text="textTickets1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtContactsDetails1"/>
+                        <!--<TextView-->
+                            <!--android:text="textTickets2"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/txtContactsDetails2"/>-->
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

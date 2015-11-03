@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frameLayoutParent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbarSettingTour"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@color/blue400"
+                android:titleTextAppearance="@color/white">
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgMenuFromToolbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_menu_white_24dp"
+                        android:padding="10dp"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/imageArrowNavigationSettings"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>-->
+
+
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_marginEnd="10dp"-->
+                <!--android:layout_marginTop="5dp"-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    android:id="@+id/txtTitleToolbar"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="50dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+                </RelativeLayout>
+
+                </android.support.v7.widget.Toolbar>
+
+
+        <!--<android.support.v4.widget.DrawerLayout-->
+
+            <!--android:id="@+id/drawer_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+
+
+
+
+
+             <LinearLayout
+                android:id="@+id/llToBlur"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                 >
+
+                    <fragment
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/circleSelectorFragment"
+                        android:layout_weight="7"
+                        android:name="org.wepush.open_tour.fragments_dialogs.CircleSelectorFragment"/>
+
+                    <fragment
+                        android:id="@+id/rectSelectorFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:name="org.wepush.open_tour.fragments_dialogs.RectSelectorFragment"
+                        android:layout_gravity="center_horizontal|bottom" />
+               </LinearLayout>
+
+            <!--&lt;!&ndash;<include layout="@layout/drawer_menu_layout" />&ndash;&gt;-->
+            <!--<include layout="@layout/drawer_reveal_layout" />-->
+        <!--</android.support.v4.widget.DrawerLayout>-->
+
+        <!--<include layout="@layout/drawer_reveal_layout" />-->
+
+    </LinearLayout>
+
+    <!-- sezione per il cicleReveal -->
+
+    <io.codetail.widget.RevealFrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginTop="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:alpha="0.98"
+        >
+        <!--android:alpha="0.10"-->
+
+
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:id="@+id/reveal_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <!--android:background="@color/white"-->
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout8">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:gravity="center_vertical|center_horizontal">-->
+                    <!--<ImageButton-->
+                        <!--android:id="@+id/imageViewRevealIconChangeNetwork"-->
+                        <!--android:layout_width="70dp"-->
+                        <!--android:layout_height="70dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--/>-->
+                    <!--&lt;!&ndash;android:background="@mipmap/ic_offline"&ndash;&gt;-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/textChangeNetwork"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:text="Offline/Online" />-->
+                <!--</LinearLayout>-->
+                <!-- Other 2 icons here-->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconHome"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:alpha="0.5"
+                        android:background="@mipmap/ic_home" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Home" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconChangeCity"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@mipmap/ic_cities" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Città" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconDiscoveryMode"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@mipmap/ic_discover" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Discovery" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="25dp"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconExplorer"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:alpha="0.5"
+                        android:background="@mipmap/ic_explorer" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Explorer" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconChangeNetwork"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        />
+                    <!--android:background="@mipmap/ic_offline"-->
+                    <TextView
+                        android:id="@+id/textChangeNetwork"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Offline/Online" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconCredits"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:alpha="0.5"
+                        android:background="@mipmap/ic_credits" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Credits" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+        </RelativeLayout>
+
+
+    </io.codetail.widget.RevealFrameLayout>
+
+
+
+
+</FrameLayout>

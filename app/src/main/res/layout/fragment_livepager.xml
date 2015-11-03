@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+
+    android:id="@+id/pinMapHolder"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:src="@drawable/pin_acqua"
+
+    android:layout_marginLeft="20dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+        app:border_color="@color/white"
+    />
+
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="LiveTitleSite"
+    android:id="@+id/liveTitleSite"
+    android:layout_alignTop="@+id/pinMapHolder"
+    android:layout_toRightOf="@+id/pinMapHolder"
+    android:layout_toEndOf="@+id/pinMapHolder" />
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="LiveAddressSite"
+    android:id="@+id/liveAddressSite"
+    android:layout_below="@+id/liveTitleSite"
+    android:layout_alignLeft="@+id/liveTitleSite"
+    android:layout_alignStart="@+id/liveTitleSite" />
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_below="@+id/pinMapHolder"
+    android:layout_alignRight="@+id/liveTitleSite"
+    android:layout_alignEnd="@+id/liveTitleSite"
+    android:id="@+id/linearLayout4"
+    android:visibility="gone">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distanza Percorsa"
+        android:id="@+id/distanceViewPager0"
+        android:layout_below="@+id/pinMapHolder"
+        android:layout_alignLeft="@+id/pinMapHolder"
+        android:layout_alignStart="@+id/pinMapHolder"
+        android:layout_marginTop="10dp"/>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/distanceViewPager0"
+        android:layout_alignLeft="@+id/distanceViewPager0"
+        android:layout_alignStart="@+id/distanceViewPager0"
+        android:id="@+id/viewCirclePicture0" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Orario Arrivo"
+        android:id="@+id/timeViewPager0"
+        android:layout_below="@+id/viewCirclePicture0"
+        android:layout_alignLeft="@+id/viewCirclePicture0"
+        android:layout_alignStart="@+id/viewCirclePicture0" />
+
+
+</LinearLayout>
+
+<!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_alignTop="@+id/linearLayout4"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:id="@+id/linearLayout6">-->
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Distanza Percorsa"-->
+        <!--android:id="@+id/distanceViewPager1"-->
+        <!--android:layout_below="@+id/pinMapHolder"-->
+        <!--android:layout_alignLeft="@+id/pinMapHolder"-->
+        <!--android:layout_alignStart="@+id/pinMapHolder"-->
+        <!--android:layout_marginTop="10dp"/>-->
+
+
+    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_below="@+id/distanceViewPager1"-->
+        <!--android:layout_alignLeft="@+id/distanceViewPager1"-->
+        <!--android:layout_alignStart="@+id/distanceViewPager1"-->
+        <!--android:id="@+id/viewCirclePicture1" />-->
+
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Orario Arrivo"-->
+        <!--android:id="@+id/timeViewPager1"-->
+        <!--android:layout_below="@+id/viewCirclePicture1"-->
+        <!--android:layout_alignLeft="@+id/viewCirclePicture1"-->
+        <!--android:layout_alignStart="@+id/viewCirclePicture1" />-->
+
+
+<!--</LinearLayout>-->
+
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+
+        <!--android:layout_alignTop="@+id/linearLayout6"-->
+        <!--android:layout_toRightOf="@+id/linearLayout6"-->
+        <!--android:layout_toEndOf="@+id/linearLayout6">-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Distanza Percorsa"-->
+            <!--android:id="@+id/distanceViewPager2"-->
+
+            <!--android:layout_marginTop="10dp"/>-->
+
+
+        <!--<de.hdodenhof.circleimageview.CircleImageView-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_below="@+id/distanceViewPager2"-->
+            <!--android:layout_alignLeft="@+id/distanceViewPager2"-->
+            <!--android:layout_alignStart="@+id/distanceViewPager2"-->
+            <!--android:id="@+id/viewCirclePicture2" />-->
+
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Orario Arrivo"-->
+            <!--android:id="@+id/timeViewPager3"-->
+            <!--android:layout_below="@+id/viewCirclePicture3"-->
+            <!--android:layout_alignLeft="@+id/viewCirclePicture3"-->
+            <!--android:layout_alignStart="@+id/viewCirclePicture3" />-->
+
+
+    <!--</LinearLayout>-->
+
+
+
+</RelativeLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+                   <android.support.v7.widget.Toolbar
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/toolDiscoveryPreviewPager">
+
+                            <ImageView
+                                android:id="@+id/imageArrowDiscoveryPreviewActivity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtTitleToolbarDiscoveryPreviewPager"
+                                android:layout_marginLeft="30dp"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"/>
+
+                        </android.support.v7.widget.Toolbar>
+
+                <android.support.design.widget.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tabs"
+                    app:tabIndicatorColor="#ffff8d"
+                    app:tabIndicatorHeight="4dp"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextColor="#c6e4fc"
+                    app:layout_scrollFlags="scroll|enterAlways"/>
+
+
+
+
+
+</android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerDiscoveryPreviewPagerAdapter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        />
+
+
+
+</RelativeLayout>

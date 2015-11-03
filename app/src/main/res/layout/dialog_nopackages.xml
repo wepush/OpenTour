@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titleNoPackages"
+        android:id="@+id/txtTitleNoPackages"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+      />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bodyNoPackages1"
+        android:id="@+id/txtBodyNoPackages1"
+        android:fontFamily="sans-serif-light"
+        android:gravity="left"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/txtTitleNoPackages"
+        android:layout_alignLeft="@+id/txtTitleNoPackages"
+        android:layout_alignStart="@+id/txtTitleNoPackages" />
+
+
+    <TextView
+
+        android:gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/bodyNoPackages2"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/txtBodyNoPackages1"
+        android:layout_alignLeft="@+id/txtBodyNoPackages1"
+        android:layout_alignStart="@+id/txtBodyNoPackages1" />
+
+
+
+</RelativeLayout>

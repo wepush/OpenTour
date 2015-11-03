@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#64b5f6">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@anim/gif_loading"
+        android:id="@+id/splashGifAnimation"/>
+    <!--<TextView-->
+        <!--android:id="@+id/textWaiting1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/waitingForPackages1"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="14dp"-->
+        <!--android:layout_below="@+id/progressLoadingPackages"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="46dp" />-->
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/textWaiting2"-->
+        <!--android:textSize="14dp"-->
+
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/waitingForPackages2"-->
+        <!--android:layout_below="@+id/textWaiting1"-->
+        <!--android:layout_alignLeft="@+id/textWaiting1"-->
+        <!--android:layout_alignStart="@+id/textWaiting1" />-->
+
+<!--<ProgressBar-->
+    <!--android:layout_width="70dp"-->
+    <!--android:layout_height="70dp"-->
+    <!--android:id="@+id/progressLoadingPackages"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_centerHorizontal="true" />-->
+
+
+
+
+
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:orientation="vertical" android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:text="Stiamo caricando i dati della città che hai scelto. Pazienza."-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_gravity="center_horizontal" />-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Questa schermata si chiuderà automaticamente quando tutto sarà compiuto"-->
+        <!--android:id="@+id/textView3"-->
+        <!--android:layout_gravity="center_horizontal" />-->
+<!--</LinearLayout>-->
+
+</RelativeLayout>

@@ -1,0 +1,255 @@
+<resources>
+    <string name="app_name">OpenTour</string>
+
+    <string name="name">Open Tour</string>
+    <string name="action_settings">Settings</string>
+    <string name="sites_remote_endpoint_palermo">http://192.168.69.108:5005/api/v1/cities/54f6e2d7694d6101bf030000/sites</string>
+    <string name="title_activity_city_chooser">CityChooserActivity</string>
+    <string name="go_ahead">Avanti</string>
+
+    <string name="firstTitleWalk">Benvenuto!</string>
+    <string name="firstBodyWalk">Open Tour è il modo ideale per scoprire le città in cui ti trovi per la prima volta.</string>
+    <!--<string name="seconTitleWalk">Quanto Tempo hai a disposizione?</string>-->
+    <string name="secondTitleWalk">Il tuo tour personalizzato</string>
+    <string name="secondBodyWalk">Indicando il tempo che hai a disposizione, il punto di partenza e ciò che più ti interessa potrai creare il tour fatto su misura per te.</string>
+    <string name="thirdTitleWalk">Una per tutte, tutte per una</string>
+    <string name="thirdBodyWalk">Un’unica applicazione disponibile per infinite città: chiunque può candidarsi per realizzare un dataset e collaborare al progetto.  </string>
+    <string name="fourthTitleWalk">Tutto è open, dati compresi</string>
+    <string name="fourthBodyWalk">Grazie agli Open Data, dati liberamente accessibili e fruibili da tutti, i dataset delle città saranno scaricabili gratuitamente dal nostro sito.</string>
+    <string name="fifthWalk">LoremIpsum 4</string>
+
+
+    <string name="skip">Salta</string>
+    <string name="recapTextTimeLineMain">Questo è il tour pensato solo per te!</string>
+    <string name="recapTextTimeLineSub">Puoi fare tutte le modifiche che vuoi prima di partire</string>
+    <string name="start">Parti!</string>
+    <string name="next">Continua</string>
+    <string name="intro">Intro</string>
+    <string name="SettingTour">Setting Tour</string>
+    <string name="milan">Milano</string>
+    <string name="palermo">Palermo</string>
+    <string name="city_name">Nome Città</string>
+
+    <string name="confirm">Ok</string>
+    <string name="cancel">Annulla</string>
+    <string name="select_how">Seleziona una modalità!</string>
+    <string name="by_walk">A piedi</string>
+    <string name="by_bike">In Bici</string>
+    <string name="setting_date">Scegli data e orario</string>
+
+    <string name="im_here_marker">Sono qui</string>
+    <string name="description_marker">Punto di Partenza</string>
+    <string name="complete_all_fields">Inserire Data, Ora, Tempo disponibile</string>
+    <string name="turn_gps_on">Attivare GPS (alta precisione)</string>
+    <string name="open_from">Aperto:</string>
+    <string name="open_to">-</string>
+    <string name="time_to_spend">Quanto tempo hai a disposizione?</string>
+    <string name="future_time">Orario previsto</string>
+    <string name="price_full_tour">Spesa stimata</string>
+    <string name="prices">prezzi</string>
+    <string name="tour_lasting_time">Durata del tour</string>
+    <string name="place_to_visit">Luoghi da visitare</string>
+    <string name="number_sites">n. siti</string>
+    <string name="walked_km">Chilometri percorsi</string>
+    <string name="km">Km</string>
+    <string name="start2">Partenza</string>
+    <string name="time_to_start">Orario di partenza</string>
+    <string name="detail_sheet">Dettaglio Scheda</string>
+    <string name="end_of_tour">Fine del Tour</string>
+    <string name="your_position">La tua posizione</string>
+    <string name="all_sites">Tutti i siti</string>
+
+    <string name="and_more">e altri</string>
+    <string name="allnothing">Tutti/Nessuno</string>
+
+    <string name="startingTour">Inizio Tour</string>
+    <string name="ok">OK</string>
+    <string name="myPosition">La tua posizione</string>
+
+    <string name="connectionFailed">Connessione interrotta: verificare la copertura del segnale</string>
+
+
+    <string name="church">Chiese</string>
+    <string name="museums">Musei</string>
+    <string name="villasgardens">Ville e Giardini</string>
+    <string name="palace_castle">Palazzi e Castelli</string>
+    <string name="square_street">Piazze e Strade</string>
+    <string name="statue_funtains">Statue e Fontane</string>
+    <string name="arc">Archi, Porte e Mura</string>
+    <string name="theater">Teatri</string>
+    <string name="bridges">Ponti</string>
+    <string name="cemetery">Cimiteri</string>
+    <string name="market">Fiere e Mercati</string>
+    <string name="other_monuments">Altri monumenti</string>
+    <string name="monuments">Monumenti</string>
+    <string name="structures">Edifici</string>
+    <string name="turn_on_gps">Attivare GPS ad alta precisione</string>
+    <string name="corrupted_installation">Dati applicazione corrotti: Installare nuovamente l\'app</string>
+    <string name="internetOnLineOn">Modalità Online attivata</string>
+    <string name="internetOnLineOff">Modalità Online disattivata</string>
+
+
+
+
+
+    <string name="when">Quando</string>
+    <string name="timeclock">Orario</string>
+    <string name="from_where">Da dove</string>
+    <string name="how">Come</string>
+    <string name="what">Cosa</string>
+
+
+
+    <string name="titleNoGpsInfo">Segnale GPS assente</string>
+    <string name="bodyNoGpsDialog1">Impossibile localizzare la posizione corrente!</string>
+    <string name="bodyNoGpsDialog2">Attivare connessione GPS (modalità Alta Precisione) o attendere migliore ricezione segnale</string>
+    <string name="confirmGPSlaunch">Attiva GPS</string>
+    <string name="confirmSettingsLaunch">Impostazioni insufficienti</string>
+    <string name="modifyPreferences">Torna a Preferenze</string>
+
+    <string name="titleOutOfBoundsDialog">Impossibile generare un tour!</string>
+    <!--<string name="bodyOutOfBoundDialog1">Spiacenti, non abbiamo trovato siti turistici nelle vicinanze. </string>-->
+    <string name="bodyOutOfBoundsDialog1">Spiacente, ti trovi decentrato rispetto alla mappa della città considerata</string>
+    <string name="bodyOutOfBoundsDialog2">Avvicinati al centro per creare un tour, l’app funziona entro i confini della città!</string>
+
+
+    <string name="titleSettingsMissing">Informazioni Insufficienti</string>
+    <string name="bodySettingsMissing1">Le impostazioni scelte non sono sufficienti per generare il tour richiesto. </string>
+    <string name="bodySettingsMissing2">"Consiglio: indicare preferenze meno restrittive"</string>
+
+
+    <string name="titleNoPackages">Nessuna città selezionata</string>
+    <string name="bodyNoPackages1">Pacchetto Città non rilevato</string>
+    <string name="bodyNoPackages2">Scegliere una città da visitare nella schermata di selezione</string>
+
+    <string name="tooFarAway">Avvicinarsi al centro città per visualizzarne la mappa</string>
+
+    <string name="goLiveFloating">Tap sul pulsante float per il tour Live!</string>
+
+
+    <string name="tips">Lo sai che?</string>
+    <string name="text_tips">testo tips</string>
+    <string name="opening_days">Giorni di Apertura</string>
+    <string name="ticket_types">Tipi di Tickets</string>
+    <string name="contact_types">Tipi di Contatti</string>
+
+
+
+    <string name="monday">Lunedì</string>
+    <string name="tuesday">Martedì</string>
+    <string name="wednesday">Mercoledì</string>
+    <string name="thursday">Giovedì</string>
+    <string name="friday">Venerdì</string>
+    <string name="saturday">Sabato</string>
+    <string name="sunday">Domenica</string>
+
+    <string name="january">Gennaio</string>
+    <string name="february">Febbraio</string>
+    <string name="march">Marzo</string>
+    <string name="april">Aprile</string>
+    <string name="may">Maggio</string>
+    <string name="june">Giugno</string>
+    <string name="july">Luglio</string>
+    <string name="august">Agosto</string>
+    <string name="september">Settembre</string>
+    <string name="october">Ottobre</string>
+    <string name="november">Novembre</string>
+    <string name="december">Dicembre</string>
+    <string name="soon">Prossimamente!</string>
+
+
+
+    <string name="theaters">Teatri</string>
+    <string name="palaces_and_castels">Palazzi e Castelli</string>
+    <string name="palaces_in_tabs">Palazzi</string>
+    <string name="villas_gardens_parks">Ville, Giardini e Parchi</string>
+    <string name="museums_and_art_galleries">Musei e Gallerie d\'arte</string>
+    <string name="statues_funtains">Statue e Fontane</string>
+    <string name="squares_and_streets">Piazze e Strade</string>
+    <string name="arches_gates_walls">Archi, Porte e Mura</string>
+    <string name="fairs_markets">Fiere e Mercati</string>
+    <string name="cemeteries_memorials">Cimiteri e Memoriali</string>
+    <string name="buildings">Edifici</string>
+    <string name="bridge">Ponti</string>
+    <string name="churchs_oratories_worship">Chiese, Oratori e Luoghi di culto</string>
+    <string name="others_monuments">Altri monumenti e Luoghi di interesse</string>
+
+
+    <string name="downloadingMapTitleMilan">OpenTour: Mappe Milano</string>
+    <string name="downloadingMapDescriptionMilan">Download ed installazione mappe offline Milano</string>
+
+    <string name="downloadingMapTitlePalermo">OpenTour: Mappe Palermo</string>
+    <string name="downloadingMapDescriptionPalermo">Download ed installazione mappe offline Palermo</string>
+
+
+    <string name="downloadingImagesTitleMilan">OpenTour: Immagini Milano</string>
+    <string name="downloadingImagesDescriptionMilan">Download ed installazione immagini Milano</string>
+
+    <string name="downloadingImagesTitlePalermo">OpenTour: Immagini Palermo</string>
+    <string name="downloadingImagesDescriptionPalermo">Download ed installazione immagini Palermo</string>
+
+    <string name="downloadPackage">Scarica Pacchetto Città</string>
+
+    <string name="waitingForPackages1">Sto scaricando i dati scelti per la città di</string>
+    <string name="waitingForPackages2">Installazione dei dati per la città di </string>
+    <string name="waitingForPackages3">Attendere prego</string>
+
+
+    <string name="titleCheckBoxDownloadImages">Scarica le Immagini</string>
+    <string name="lastUpdateCheckBoxStaticImages">Ultimo aggiornamento</string>
+    <string name="lastUpdateCheckBoxActualAnnounceImages">21 Ottobre 2015</string>
+
+
+    <string name="titleCheckBoxDownloadMaps">Scarica la mappa offline</string>
+    <string name="lastUpdateCheckBoxStaticMaps">Ultimo aggiornamento</string>
+    <string name="lastUpdateCheckBoxActualAnnounceMaps">21 Ottobre 2015</string>
+
+
+
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+
+    <string name="networkOfflineActivate">Attivare Navigazione Offline</string>
+    <string name="networkOnlineActivate">Attivare Navigazione Online</string>
+
+    <string name="placeholderTheaters">teatri</string>
+    <string name="placeholderOtherSites">altri_luoghi_di_interesse</string>
+    <string name="placeholderArcs">archi_porte_mura</string>
+    <string name="placeholderChurches">chiese_oratori_e_luoghi_di_culto</string>
+    <string name="placeholderCemeteries">cimiteri_e_monumenti_funebri</string>
+    <string name="placeholderBuildings">edifici</string>
+    <string name="placeholderMarkets">fiere_e_mercati</string>
+    <string name="placeholderMuseums">musei_e_gallerie_darte</string>
+    <string name="placeholderCastles">palazzi_e_castelli</string>
+    <string name="placeholderSquares">piazze_e_strade</string>
+    <string name="placeholderBridges">ponti</string>
+    <string name="placeholderStatues">statue_e_fontane</string>
+    <string name="placeholderVillas">ville_giardini_e_parchi</string>
+
+    <string name="changeCityMenu">Cambia città</string>
+    <string name="discoveryActivityMenu">Modalità Discovery</string>
+
+    <string name="cityChooserIntroductionMilan">Milano, capoluogo della Lombardia, è il secondo comune italiano per popolazione.
+        È il principale centro industriale, commerciale e finanziario in Italia, nonché un’importante capitale della moda e del design mondiale.
+        I suoi musei, teatri e monumenti attraggono più di otto milioni di visitatori all’anno.</string>
+    <string name="cityChooserIntroductionPalermo">Palermo, capoluogo della Regione Siciliana, con la sua storia di oltre 2700 anni è una
+        città nota per la sua cultura, architettura e gastronomia.
+        È il quinto comune italiano per popolazione dopo Roma, Milano, Napoli e Torino, e venticinquesimo a livello europeo.</string>
+
+
+    <string name="transition_album_cover">recyclerview_chooser_animation</string>
+
+    <string name="textDiscoveryModeRevealMenu"></string>
+    <string name="textChangeCityRevealMenu"></string>
+
+    <string name="onlineToActivate">Online</string>
+    <string name="offlineToActivate">Offline</string>
+
+    <string name="chooseYourCity">Scegli la città da visitare</string>
+
+    <string name="tabParks">Parchi</string>
+
+
+
+
+</resources>

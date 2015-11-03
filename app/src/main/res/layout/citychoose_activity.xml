@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolCityChooseActivity"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/blue400"
+        android:elevation="5dp"
+        android:titleTextAppearance="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageArrowCityChooser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+                android:visibility="invisible"
+                android:clickable="false"
+                android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:id="@+id/txtTitleToolbar"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="18sp"
+            android:textColor="@color/white" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_city"
+                android:id="@+id/imageView7"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/textView"
+                android:layout_toStartOf="@+id/textView"
+                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="45dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-light"
+                android:textSize="14sp"
+                android:id="@+id/textView"
+                android:text="@string/chooseYourCity"
+                android:layout_alignBottom="@+id/imageView7"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <!--<android.support.v4.widget.NestedScrollView-->
+        <!--android:id="@+id/scroll"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:clipToPadding="false"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerViewCityChooserActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        />
+
+
+
+
+
+    <!--</android.support.v4.widget.NestedScrollView>-->
+
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/lorem"/>-->
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flRecyclerCityChooserParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="15dp"
+    android:paddingLeft="5dp"
+    android:paddingStart="5dp"
+    android:paddingRight="5dp"
+    android:paddingEnd="5dp">
+
+
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:id="@+id/imgShowcaseChooseCity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <!--<View-->
+        <!--android:id="@+id/viewRecyclerCityChooser"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:background="#4d4d4d4d"-->
+        <!-- -->
+        <!--/>-->
+
+
+    <TextView
+        android:id="@+id/textCityOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:textColor="@color/white"
+        android:background="#4d4d4d4d"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center" />
+
+
+
+
+    <!--android:scaleType="centerInside"
+    android:fitsSystemWindows="true"
+    android:adjustViewBounds="true"
+
+      android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"-->
+
+
+
+
+
+
+
+</RelativeLayout>
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:orientation="vertical" android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:paddingTop="15dp"-->
+    <!--android:paddingLeft="5dp"-->
+    <!--android:paddingStart="5dp"-->
+    <!--android:paddingRight="5dp"-->
+    <!--android:paddingEnd="5dp">-->
+
+
+
+
+
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:elevation="5dp"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:id="@+id/imgShowcaseChooseCity"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true" />-->
+
+    <!--<View-->
+        <!--android:id="@+id/viewRecyclerCityChooser"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:background="#4d4d4d4d"-->
+        <!--/>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/textCityOverlay"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Ciaop"-->
+        <!--android:layout_alignTop="@+id/viewRecyclerCityChooser"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="89dp"-->
+        <!--android:textColor="@color/white"/>-->
+
+    <!--&lt;!&ndash;android:scaleType="centerInside"-->
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:adjustViewBounds="true"-->
+
+      <!--android:layout_marginLeft="5dp"-->
+        <!--android:layout_marginStart="5dp"-->
+        <!--android:layout_marginEnd="5dp"-->
+        <!--android:layout_marginRight="5dp"&ndash;&gt;-->
+
+
+
+
+
+
+
+<!--</RelativeLayout>-->
