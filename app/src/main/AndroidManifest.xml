@@ -29,7 +29,7 @@
         <!-- Used for Google Map widget -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAqyh20d44orPTqhdZExmnColsip_8vEAI" />
+            android:value="YOUR_API_GOOGLE_MAPS_KEY_HERE" />
 
         <!-- Used also for Map widget -->
         <meta-data
