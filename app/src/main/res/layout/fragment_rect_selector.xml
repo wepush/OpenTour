@@ -30,9 +30,12 @@ android:layout_height="match_parent">
                 android:orientation="vertical"
                 android:id="@+id/linearLayoutSectorToSlide">
 
+
+                <!--android:visibility="invisible"-->
+
                 <LinearLayout
-                    android:visibility="invisible"
                     android:id="@+id/whenLayout"
+                    android:visibility="invisible"
                     android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -108,9 +111,12 @@ android:layout_height="match_parent">
                             android:fontFamily="sans-serif"
                             android:id="@+id/txtSetTime"
                             android:paddingLeft="15dp"
-                            android:layout_below="@+id/txtQuando"
                             android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true" />
+                            android:layout_alignParentEnd="true"
+                            android:gravity="center_vertical|right"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_alignParentTop="true" />
 
 
                     </RelativeLayout>
@@ -380,7 +386,8 @@ android:layout_height="match_parent">
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="16dp"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"/>
 
         <!--android:layout_gravity="bottom"-->
     <!--</RelativeLayout>-->

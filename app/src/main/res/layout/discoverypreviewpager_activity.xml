@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/rlDiscovery">
+
 
 
 
@@ -12,18 +14,27 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        >
 
                    <android.support.v7.widget.Toolbar
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/toolDiscoveryPreviewPager">
 
-                            <ImageView
-                                android:id="@+id/imageArrowDiscoveryPreviewActivity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>
+                       <ImageView
+                           android:id="@+id/imgMenuFromToolbarDiscovery"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:src="@mipmap/ic_menu_white_24dp"
+                           android:clickable="true"
+                           android:padding="10dp"/>
+
+                            <!--<ImageView-->
+                                <!--android:id="@+id/imageArrowDiscoveryPreviewActivity"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>-->
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -45,19 +56,241 @@
                     app:tabTextColor="#c6e4fc"
                     app:layout_scrollFlags="scroll|enterAlways"/>
 
-
-
-
-
 </android.support.design.widget.AppBarLayout>
+
+
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPagerDiscoveryPreviewPagerAdapter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
+
         />
 
 
+
+
+
+    <io.codetail.widget.RevealFrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginTop="95dp"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+
+        >
+
+        <!--android:layout_marginTop="56dp"
+         android:alpha="0.98"-->
+
+        <RelativeLayout
+            android:background="@color/blue400"
+            android:id="@+id/revealDiscovery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <!--android:background="@color/white"-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayoutRevealDiscovery">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconHomeDiscovery"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@mipmap/ic_home" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Home" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconChangeCityDiscovery"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@mipmap/ic_cities"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Città" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconDiscoveryModeDiscovery"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:clickable="false"
+                        android:background="@drawable/ic_discover_white" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Discovery" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="25dp"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconExplorerDiscovery"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@mipmap/ic_explorer" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Explorer" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconChangeNetworkDiscovery"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        />
+                    <!--android:background="@mipmap/ic_offline"-->
+                    <TextView
+                        android:id="@+id/textChangeNetworkDiscovery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Offline/Online" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/imageViewRevealIconCreditsDiscovery"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:alpha="0.5"
+                        android:background="@mipmap/ic_credits"
+                        android:clickable="false"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Credits" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+        </RelativeLayout>
+
+
+    </io.codetail.widget.RevealFrameLayout>
+
+
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/toolDiscoveryPreviewPager">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imgMenuFromToolbarDiscovery"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@mipmap/ic_menu_white_24dp"-->
+            <!--android:padding="10dp"/>-->
+
+        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/imageArrowDiscoveryPreviewActivity"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>&ndash;&gt;-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/txtTitleToolbarDiscoveryPreviewPager"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textColor="@color/white"/>-->
+
+    <!--</android.support.v7.widget.Toolbar>-->
 
 </RelativeLayout>

@@ -187,15 +187,10 @@ public class DiscoveryPreviewPagerAdapter extends FragmentStatePagerAdapter {
 
     private Context context;
     private Image mainImage,nlImage,nrImage,slImage,srImage;
-//    private ArrayList<Site>  museums,churches,villas,palaces;
 
     public DiscoveryPreviewPagerAdapter(FragmentManager fragmentManager, Context ctx){
         super(fragmentManager);
         context=ctx;
-
-
-
-
 
     }
 
@@ -206,36 +201,15 @@ public class DiscoveryPreviewPagerAdapter extends FragmentStatePagerAdapter {
         switch(position){
 
             case FIRST_PAGE:
-//                activateImageListeners(FIRST_PAGE);
-
                 return DiscoveryPreviewPagerFragment.newInstance(context,Constants.CATEGORY_VIEW_PAGER_CHURCH, FIRST_PAGE);
-
-//                return DiscoveryFragment.newInstance(context, SettingTourActivity.churches);
-
             case SECOND_PAGE:
-//                activateImageListeners(SECOND_PAGE);
                 return DiscoveryPreviewPagerFragment.newInstance(context,Constants.CATEGORY_VIEW_PAGER_MUSEUM,SECOND_PAGE);
-
-//                return DiscoveryFragment.newInstance(context, SettingTourActivity.museums);
-
             case THIRD_PAGE:
-//                activateImageListeners(THIRD_PAGE);
                 return DiscoveryPreviewPagerFragment.newInstance(context,Constants.CATEGORY_VIEW_PAGER_CASTLES,THIRD_PAGE);
-//                return DiscoveryFragment.newInstance(context, SettingTourActivity.palaces);
-
-
             case FOURTH_PAGE:
-//                activateImageListeners(FOURTH_PAGE);
                 return DiscoveryPreviewPagerFragment.newInstance(context,Constants.CATEGORY_VIEW_PAGER_VILLAS,FOURTH_PAGE);
-//                return DiscoveryFragment.newInstance(context, SettingTourActivity.villas);
-
-
-
         }
 
-
-
-//        return new DiscoveryPreviewPagerFragment();
         return new DiscoveryFragment();
     }
 
@@ -268,30 +242,8 @@ public class DiscoveryPreviewPagerAdapter extends FragmentStatePagerAdapter {
 
         return title;
 
-//        return "OBJECT " + (position + 1);
     }
 
-
-//    private void activateImageListeners(int page){
-//
-//        switch(page){
-//
-//            case FIRST_PAGE:
-//                break;
-//            case SECOND_PAGE:
-//                break;
-//
-//            case THIRD_PAGE:
-//                break;
-//
-//            case FOURTH_PAGE:
-//                break;
-//
-//
-//
-//        }
-//
-//    }
 }
 
 

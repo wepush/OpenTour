@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -20,7 +21,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -38,16 +38,18 @@ import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.PathOverlay;
+import org.wepush.open_tour.fragments_dialogs.AreYouSureFragment;
 import org.wepush.open_tour.fragments_dialogs.LivePagerFragment;
+import org.wepush.open_tour.fragments_dialogs.LiveTutorialFragment;
 import org.wepush.open_tour.fragments_dialogs.NoGpsDialog;
-import org.wepush.open_tour.utils.Constants;
+import org.wepush.open_tour.services.SiteNotificationService;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 import org.wepush.open_tour.structures.Site;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.RecyclerAdapter;
+import org.wepush.open_tour.utils.RecyclerViewHolder;
 import org.wepush.open_tour.utils.Repository;
 import org.wepush.open_tour.utils.SphericalMercator;
-
 
 import java.lang.reflect.Type;
 import java.math.RoundingMode;
@@ -56,14 +58,15 @@ import java.util.ArrayList;
 /**
  * Created by antoniocoppola on 02/07/15.
  */
-public class LiveMapActivity extends AppCompatActivity implements LocationListener,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener {
+public class LiveMapActivity extends AppCompatActivity implements LocationListener,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener,AreYouSureFragment.OnCompleteListener {
 
 
     private RecyclerView recyclerView;
     private static ArrayList<String> idsFromShowTL;
     private static ArrayList<String>showingTimeShowTL;
     private static ArrayList<String> distanceShowTL;
-//    private ArrayList<Site> sitesToShow;
+    private static ArrayList<Boolean> arrayOfNotificationSent;
+
     private ArrayList<Location> arrayOfLocation;
     public static ArrayList<Site> liveSites;
 
@@ -82,6 +85,9 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     private IMapController mapController;
 
     private GeoPoint actualGeoPoint;
+
+    private boolean sure=false;
+
 
 
 
@@ -109,9 +115,13 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeActivity.destroyTourPreferences(getBaseContext());
-                startActivity(new Intent(getBaseContext(), SettingTourActivity.class));
-                finish();
+
+
+//                    HomeActivity.destroyTourPreferences(getBaseContext());
+//                    startActivity(new Intent(getBaseContext(), SettingTourActivity.class));
+//                    finish();
+                areYouSure();
+
             }
         });
 
@@ -124,6 +134,7 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
         showingTimeShowTL=new ArrayList<>();
         distanceShowTL=new ArrayList<>();
         arrayOfLocation=new ArrayList<>();
+        arrayOfNotificationSent=new ArrayList<>();
         Intent intent=getIntent();
 
         if (TextUtils.equals(intent.getAction(),Constants.INTENT_FROM_SHOWTOURTL)) {
@@ -195,10 +206,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             }});
 
 
-//     //TODO settare il centro della visuale sul PRIMO elemento della lista in dettagli
-//       mapController.setCenter(new GeoPoint(45.4699939,9.1809641));
-//        Log.d("miotag", "initial location");
-
 
 
         //ViewPager for LiveSiteDetail
@@ -259,17 +266,22 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
                 .addOnConnectionFailedListener(this)
                 .build();
 
-
         liveGoogleApiClient.connect();
+
+        for (int i=0; i<idsFromShowTL.size(); i++){
+            arrayOfNotificationSent.add(false);
+        }
 
     }//fine onCreate
 
+
+
+
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        HomeActivity.destroyTourPreferences(getBaseContext());
-        startActivity(new Intent(getBaseContext(), SettingTourActivity.class));
-        finish();
+    public void onBackPressed(){
+
+        areYouSure();
+
     }
 
 
@@ -281,9 +293,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
 
         }
 
-
-
-
         @Override
         public Fragment getItem(int position) {
 
@@ -291,7 +300,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             final Bundle bundle = new Bundle();
             final LivePagerFragment fragment = new LivePagerFragment();
 //First 3 info of ViewPager
-            Log.d("miotag","livesite: "+liveSites.get(position).id);
             bundle.putString("title", liveSites.get(position).name);
             bundle.putString("description",liveSites.get(position).address);
             bundle.putString("id",liveSites.get(position).id);
@@ -432,11 +440,28 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
     }
 
 
-    private void moveViewPagerAndRecyclerView(int i){
+    private void moveViewPagerAndRecyclerView(final int i){
+        Log.d("miotag","LIVE posizione: "+i);
 
         recyclerView.smoothScrollToPosition(i);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+
+        RecyclerViewHolder rVh=(RecyclerViewHolder)recyclerView.findViewHolderForLayoutPosition(i);
+        rVh.setBackgroundAsHighlighted();
+
+            }
+        }, 500);
+
+
         viewLivePager.setCurrentItem(i);
 
+        //here the logic for notification
+
+        showNotificationFor(i);
 
 
     }
@@ -514,8 +539,6 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
                 liveGoogleApiClient.disconnect();
             }
         }
-//        finish();
-
     }
 
     @Override
@@ -541,6 +564,20 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             showingTimeShowTL=gson2.fromJson(json2,type);
         }
         fillingUpWithPins();
+
+        //section for tutorial
+
+
+        boolean tutorialNotSeen=Repository.retrieve(this, Constants.TUTORIAL_LIVE_ACTIVITY_NOT_SEEN,Boolean.class);
+//        boolean tutorialNotSeen=true;
+        if (tutorialNotSeen) {
+
+            FragmentManager fmLiveTutorial=getSupportFragmentManager();
+            LiveTutorialFragment sLive=new LiveTutorialFragment();
+            sLive.show(fmLiveTutorial,"setting_tutorial_fragment");
+
+            Repository.save(this, Constants.TUTORIAL_LIVE_ACTIVITY_NOT_SEEN, false);
+        }
 
     }
 
@@ -611,6 +648,48 @@ public class LiveMapActivity extends AppCompatActivity implements LocationListen
             map.invalidate();
 
     }
+
+    private void showNotificationFor(int positionSiteToNotify){
+
+        if (!arrayOfNotificationSent.get(positionSiteToNotify)) {
+
+            Site site = DB1SqlHelper.getInstance(this).getSite(idsFromShowTL.get(positionSiteToNotify));
+            arrayOfNotificationSent.set(positionSiteToNotify,true);
+            Intent intent = new Intent(this, SiteNotificationService.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("idNotification",site.id);
+            bundle.putString("titleNotification", site.name);
+            bundle.putString("addressNotification", site.address + ", " + site.addressCivic);
+            bundle.putString("categoryNotification",site.typeOfSite);
+            bundle.putString("pictureUrlNotification",site.pictureUrl);
+
+            intent.putExtras(bundle);
+            startService(intent);
+
+        }  else {
+
+        }
+
+
+    }
+
+    private void areYouSure(){
+        FragmentManager asFrag=getSupportFragmentManager();
+        AreYouSureFragment sureFragment=new AreYouSureFragment();
+        sureFragment.show(asFrag, "areyousure_fragment");
+    }
+
+    public void onComplete(boolean sure) {
+       this.sure=sure;
+
+        if (sure){
+            HomeActivity.destroyTourPreferences(getBaseContext());
+            startActivity(new Intent(getBaseContext(), SettingTourActivity.class));
+            finish();
+        }
+
+    }
+
 
 
 }

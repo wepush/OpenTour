@@ -2,25 +2,19 @@ package org.wepush.open_tour.utils;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 
 import org.wepush.open_tour.DetailsActivity;
 import org.wepush.open_tour.R;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 import org.wepush.open_tour.structures.Site;
-
 
 import java.util.Locale;
 
@@ -35,27 +29,31 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     private TextView timeTextToSet;
     private TextView distanceTextToSet;
     private Bitmap bitmap;
+    private OpenTourUtils openTourUtils;
 
-    private String idToPassFromCLick,currentCity,placeholderName;
+    private String idToPassFromCLick,currentCity,placeholderName,language;
     private static Context context;
 
     private boolean placeholderEverywhere=false;
 
 
-    public static RecyclerViewHolder newInstance (View view, Context ctx){
+    public static RecyclerViewHolder newInstance (View view, Context ctx, OpenTourUtils opUtls,String lan){
         CircleImageView imageItem=(CircleImageView)view.findViewById(R.id.imgToPut);
         TextView txtTime=(TextView)view.findViewById(R.id.itemTimeToPut);
         TextView txtDistance=(TextView)view.findViewById(R.id.itemDistanceToPut);
         context=ctx;
-        return new RecyclerViewHolder(view,imageItem,txtTime,txtDistance);
+
+        return new RecyclerViewHolder(view,imageItem,txtTime,txtDistance, opUtls,lan);
 
 
     }
 
 
-    public RecyclerViewHolder(final View parent, CircleImageView newImageToSet,TextView newTimeToSet,TextView newDistanceToSet) {
+    public RecyclerViewHolder(final View parent, CircleImageView newImageToSet,TextView newTimeToSet,TextView newDistanceToSet,OpenTourUtils opUt,String lan) {
         super(parent);
 
+        openTourUtils=opUt;
+        language=lan;
         String packagesChosen=Repository.retrieve(context, Constants.WHAT_I_WANT_TO_DOWNLOAD,String.class);
         if (packagesChosen.equals(Constants.DOWNLOADING_MAPS_ONLY)){
             placeholderEverywhere=true;
@@ -70,8 +68,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i=new Intent(context, ShowDetailsActivity.class);
-                Log.d("miotag","click dalla recycler di Live");
+
                 Intent i=new Intent(context, DetailsActivity.class);
                 i.putExtra("siteId",idToPassFromCLick);
                 i.setAction(Constants.INTENT_FROM_LIVEMAP);
@@ -86,62 +83,24 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     public void setTextInViewHolder(String id,String time,String distance){
 
         idToPassFromCLick=id;
-//       String imagePath= DB1SqlHelper.getInstance(context).getPictureSite(id);
-//        String imagePathToUse="";
-//
-////TODO dal 16 settembre commentato per caricare da sd card
-////        if(TextUtils.equals(imagePath, "placeholder")){
-////            imagePathToUse="header_milan";
-////        } else {
-////            imagePathToUse = imagePath.substring(79, imagePath.length()-4);
-////        }
-////
-////        int drawableResource=context.getResources().getIdentifier(imagePathToUse, "drawable", context.getPackageName());
-////
-////        try {
-////            imageToSet.setImageDrawable(context.getResources().getDrawable(drawableResource));
-////        } catch (Resources.NotFoundException e){
-////            Log.d("miotag","eccezione!!!!! immagine mancante: "+imagePathToUse);
-////            imagePathToUse="header_milan";
-////            int drawableResourceNoPicture=context.getResources().getIdentifier(imagePathToUse, "drawable", context.getPackageName());
-////            imageToSet.setImageDrawable(context.getResources().getDrawable(drawableResourceNoPicture));
-////
-////        }
-//
-//        if(TextUtils.equals(imagePath, "placeholder")){
-//            imagePathToUse="header_milan";
-//        } else {
-//            imagePathToUse = imagePath.substring(79, imagePath.length()-4);
-//        }
-//
-//
-//        imagePathToUse="milano_images/"+imagePathToUse+".jpg";
-//        Log.d("miotag", "TimeLine imagePath= " + imagePathToUse);
-//        Bitmap bitmap = BitmapFactory.decodeFile(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePathToUse);
-//        Drawable mDrawable = new BitmapDrawable(context.getResources(), bitmap);
-//        try {
-//            imageToSet.setImageDrawable(mDrawable);
-//        } catch (Resources.NotFoundException e){
-//            Log.d("miotag","eccezione!!!!! immagine mancante: "+imagePathToUse);
-//            imagePathToUse="header_milan.jpg";
-//            Bitmap bitmapToUse = BitmapFactory.decodeFile(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePathToUse);
-//            Drawable mDrawableToUse = new BitmapDrawable(context.getResources(), bitmapToUse);
-//            imageToSet.setImageDrawable(mDrawableToUse);
-//            imageToSet.setScaleType(ImageView.ScaleType.FIT_XY);
-//        }
-
-
 
 
         Site site=DB1SqlHelper.getInstance(context).getSite(idToPassFromCLick);
         String imagePath=site.pictureUrl;
 
         currentCity=Repository.retrieve(context,Constants.KEY_CURRENT_CITY,String.class);
-        Log.d("miotag","currentCity: "+currentCity);
+
+//TODO 30 novembre: modifiche per introduzione OpenTourUtils
+
+//        openTourUtils.setImage(site.pictureUrl,language,imageToSet,site.typeOfSite,false);
+//            OpenTourUtils.setImage(site.pictureUrl,language,imageToSet,site.typeOfSite,false);
 
 
 
-        if (currentCity.equals(Constants.CITY_MILAN)) {
+        switch (currentCity){
+
+
+            case Constants.CITY_MILAN:
 
             if ((TextUtils.equals(imagePath, "placeholder"))|| (placeholderEverywhere)) {
 
@@ -152,62 +111,145 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
                 }
                 imagePath=placeholderName;
                 int drawableResource=context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
-                imageToSet.setImageResource(drawableResource);
-//                bitmap = BitmapFactory.decodeFile(imagePath);
-//                Drawable mDrawable = new BitmapDrawable(context.getResources(), bitmap);
-//                imageToSet.setImageDrawable(mDrawable);
-//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
+//                imageToSet.setImageResource(drawableResource);
+                Glide.with(context)
+                        .load(drawableResource)
+                        .into(imageToSet);
+
 
             } else {
                 imagePath = imagePath.substring(79, imagePath.length() - 4);
                 imagePath = "milano_images/" + imagePath + ".jpg";
-                bitmap = BitmapFactory.decodeFile(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
-                Drawable mDrawable = new BitmapDrawable(context.getResources(), bitmap);
-                imageToSet.setImageDrawable(mDrawable);
-//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
+                     Glide.with(context)
+                        .load(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath)
+                        .into(imageToSet);
             }
-        } else {
-            if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
 
-                if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
-                    convertLanguageTypeOfSite(site);
+                break;
+
+            case Constants.CITY_PALERMO:
+
+                        if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
+
+                        if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+                            convertLanguageTypeOfSite(site);
+                        } else {
+                            chooseThemeColors(site);
+                        }
+
+                        imagePath=placeholderName;
+
+                        int drawableResource=context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
+                        Glide.with(context)
+                                .load(drawableResource)
+                                .into(imageToSet);
+                    } else {
+                        imagePath =imagePath.substring(79, imagePath.length() - 4);
+                        imagePath="palermo_images/"+imagePath+".jpg";
+                        Glide.with(context)
+                                .load(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath)
+                                .into(imageToSet);
+                    }
+
+            break;
+
+
+            case Constants.CITY_TURIN:
+
+                if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
+
+                    if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+                        convertLanguageTypeOfSite(site);
+                    } else {
+                        chooseThemeColors(site);
+                    }
+
+                    imagePath=placeholderName;
+
+                    int drawableResource=context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
+                    Glide.with(context)
+                            .load(drawableResource)
+                            .into(imageToSet);
                 } else {
-                    chooseThemeColors(site);
+                    imagePath =imagePath.substring(79, imagePath.length() - 4);
+                    imagePath="turin_images/"+imagePath+".jpg";
+                    Glide.with(context)
+                            .load(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath)
+                            .into(imageToSet);
                 }
 
-                imagePath=placeholderName;
-                Log.d("miotag","in TimeLine: imagepath: "+imagePath);
-//                bitmap = BitmapFactory.decodeFile(imagePath);
-                int drawableResource=context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
-                 imageToSet.setImageResource(drawableResource);
-//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            } else {
-                imagePath =imagePath.substring(79, imagePath.length() - 4);
-                imagePath="palermo_images/"+imagePath+".jpg";
-                bitmap = BitmapFactory.decodeFile(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
-                Drawable mDrawable = new BitmapDrawable(context.getResources(), bitmap);
-//                holder.vPlaceHolder.setImageDrawable(mDrawable);
-                imageToSet.setImageDrawable(mDrawable);
-            }
+                break;
+
+
+
+
+
 
         }
 
 
-
+//        if (currentCity.equals(Constants.CITY_MILAN)) {
+//
+//            if ((TextUtils.equals(imagePath, "placeholder"))|| (placeholderEverywhere)) {
+//
+//                if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+//                    convertLanguageTypeOfSite(site);
+//                } else {
+//                    chooseThemeColors(site);
+//                }
+//                imagePath=placeholderName;
+//                int drawableResource=context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
+////                imageToSet.setImageResource(drawableResource);
+//                Glide.with(context)
+//                        .load(drawableResource)
+//                        .into(imageToSet);
+//
+//
+//            } else {
+//                imagePath = imagePath.substring(79, imagePath.length() - 4);
+//                imagePath = "milano_images/" + imagePath + ".jpg";
+//                     Glide.with(context)
+//                        .load(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath)
+//                        .into(imageToSet);
+//            }
+//        } else {
+//            if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
+//
+//                if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+//                    convertLanguageTypeOfSite(site);
+//                } else {
+//                    chooseThemeColors(site);
+//                }
+//
+//                imagePath=placeholderName;
+//
+//                int drawableResource=context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
+//                Glide.with(context)
+//                        .load(drawableResource)
+//                        .into(imageToSet);
+//            } else {
+//                imagePath =imagePath.substring(79, imagePath.length() - 4);
+//                imagePath="palermo_images/"+imagePath+".jpg";
+//                Glide.with(context)
+//                        .load(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath)
+//                        .into(imageToSet);
+//            }
+//
+//        }
+    //TODO fine
 
         timeTextToSet.setText(time);
-
-
         distanceTextToSet.setText(distance.substring(0,4)+" km");
     }
 
-//    public CircleImageView returnCircleImageFromHolder(){
-//        return imageToSet;
-//    }
+
+    public void setBackgroundAsHighlighted(){
+        imageToSet.setBackground(context.getResources().getDrawable(R.drawable.highlighted_placeholders));
+    }
+
 
 
     private void chooseThemeColors(Site site) {
-        Log.d("miotag","TimeLine ChooseTheme: "+site.typeOfSite);
 
 //TODO check if there's a better solution to manage sitesType in languages
         switch (site.typeOfSite) {

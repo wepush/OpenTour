@@ -25,8 +25,9 @@
     <string name="next">Next</string>
     <string name="intro">Intro</string>
     <string name="SettingTour">Setting Tour</string>
-    <string name="milan">Milano</string>
+    <string name="milan">Milan</string>
     <string name="palermo">Palermo</string>
+    <string name="turin">Turin</string>
     <string name="city_name">City Name</string>
 
     <string name="confirm">Ok</string>
@@ -61,34 +62,20 @@
 
 
     <string name="church">Churches</string>
-
     <string name="museums">Museums</string>
-
     <string name="villasgardens">Villas and Gardens</string>
-
     <string name="palace_castle">Palaces and Castles</string>
     <string name="palaces_in_tabs">Palaces</string>
-
-
     <string name="square_street">Squares and Streets</string>
-
     <string name="statue_funtains">Statues and Fountains</string>
-
     <string name="arc">Arches, Ports and Walls</string>
-
     <string name="theater">Theaters</string>
-
     <string name="bridges">Bridges</string>
     <string name="cemetery">Cemeteries</string>
-
     <string name="market">Fairs and Markets</string>
-
     <string name="other_monuments">Other monuments</string>
-
     <string name="monuments">Monuments</string>
-
     <string name="structures">Buildings</string>
-
     <string name="turn_on_gps">Turn on GPS (high accuracy)</string>
 
     <string name="corrupted_installation">Application data corrupted. Please, Install Open Tour again</string>
@@ -213,12 +200,18 @@
     <string name="downloadingMapTitlePalermo">OpenTour: Maps of Palermo</string>
     <string name="downloadingMapDescriptionPalermo">Download and installation offline maps Palermo</string>
 
+    <string name="downloadingMapTitleTurin">OpenTour: Maps of Turin</string>
+    <string name="downloadingMapDescriptionTurin">Download and installation offline maps Turin</string>
+
 
     <string name="downloadingImagesTitleMilan">OpenTour: Images of Milano</string>
     <string name="downloadingImagesDescriptionMilan">Download and installation of images for Milan</string>
 
     <string name="downloadingImagesTitlePalermo">OpenTour: Images of Palermo</string>
     <string name="downloadingImagesDescriptionPalermo">Download and installation of images for Palermo</string>
+
+    <string name="downloadingImagesTitleTurin">OpenTour: Images of Turin</string>
+    <string name="downloadingImagesDescriptionTurin">Download and installation of images for Turin</string>
 
     <string name="downloadPackage">Download city package</string>
 
@@ -232,12 +225,12 @@
 
     <string name="titleCheckBoxDownloadImages">Download Images</string>
     <string name="lastUpdateCheckBoxStaticImages">last update</string>
-    <string name="lastUpdateCheckBoxActualAnnounceImages">21 October 2015</string>
+    <string name="lastUpdateCheckBoxActualAnnounceImages">12 February 2016</string>
 
 
     <string name="titleCheckBoxDownloadMaps">Download offline map</string>
     <string name="lastUpdateCheckBoxStaticMaps">last update</string>
-    <string name="lastUpdateCheckBoxActualAnnounceMaps">21 October 2015</string>
+    <string name="lastUpdateCheckBoxActualAnnounceMaps">12 February 2016</string>
 
 
     <string name="placeholderTheaters">theaters</string>
@@ -262,6 +255,8 @@
     It is noted for its history, culture, architecture and gastronomy, playing an important role throughout much of its existence;
     ùit is over 2,700 years old. It is located in the northwest of the island of Sicily.</string>
 
+    <string name="cityChooserIntroductionTurin">Turin is a city and an important business and cultural centre in northern Italy,capital of the Piedmont region. It has a rich culture and history, and is known for its numerous art galleries, restaurants, churches, piazzas, parks, theatres, museums and other venues. Turin is well known for its renaissance, baroque, rococo, neo-classical, and art nouveau architecture.</string>
+
 
     <string name="textDiscoveryModeRevealMenu"></string>
     <string name="textChangeCityRevealMenu"></string>
@@ -272,10 +267,48 @@
     <string name="offlineToActivate">Offline</string>
 
     <string name="chooseYourCity">Choose the city to visit</string>
+    <string name="chooseAtLeastOnePackage">Choose one package</string>
+
 
 
     <string name="tabParks">Parks</string>
     <string name="transition_album_cover">recyclerview_chooser_animation</string>
+
+    <string name="textActionSnackbar">Show details</string>
+
+    <string name="txtRevealMenuChangeCity">Cities</string>
+    <string name="txtRevealMenuExplorer">Explorer</string>
+    <string name="txtRevealMenuDiscovery">Discovery</string>
+    <string name="txtRevealMenuHome">Home</string>
+    <string name="txtRevealMenuCredits">Credits</string>
+    <string name="txtRevealMenuChangeNetwork">Offline/Online</string>
+
+    <string name="downloadAndUnzipImages">Download and installation of images </string>
+
+
+    <string name="txtSettingTutorial">Swipe your finger on the edge of the clock to set the duration of your tour
+        </string>
+
+    <string name="settingTutorialDialog">SET TIME TO SPEND</string>
+    <string name="explorerTutorialDialog">SHAKIN\'IT!</string>
+    <string name="liveTutorialDialog">LOCALIZATION</string>
+    <string name="titleAreYouSureDialog">CONTINUE?</string>
+
+
+    <string name="txtExplorerTutorial">Shake your device to select a random touristic site among the most interesting ones</string>
+
+    <string name="txtLiveTutorial">With the offline GPS you can follow your move in real time, keep track of the distances and the nearest monuments</string>
+
+
+    <string name="are_you_sure1">Stop your touristic guide?</string>
+    <string name="summaryTour">SUMMARIZE</string>
+
+    <string name="downloadAndInstallation">Download and installation of images</string>
+    <string name="configurationCity">Configuration of the city</string>
+
+
+
+
 
 
 

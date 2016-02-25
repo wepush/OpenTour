@@ -1,11 +1,8 @@
 package org.wepush.open_tour.fragments_dialogs;
 
 
-import android.content.res.Resources;
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -17,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.wepush.open_tour.R;
 import org.wepush.open_tour.structures.DB1SqlHelper;
@@ -31,16 +30,18 @@ import java.util.Locale;
  * Created by antoniocoppola on 07/07/15.
  */
 public class LivePagerFragment extends Fragment {
-    private String placeholderName;
+    private String placeholderName,language;
     private Bitmap bitmap;
     private boolean placeholderEverywhere=false;
+    private Context context;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,@Nullable Bundle savedInstanceState){
 
-       Log.d("miotag","nuovo fragment");
         View view=inflater.inflate(R.layout.fragment_livepager,null);
+
+        language=Repository.retrieve(getContext(),Constants.USER_LANGUAGE,String.class);
 
 
         final TextView bodyView=(TextView) view.findViewById(R.id.liveAddressSite);
@@ -60,67 +61,177 @@ public class LivePagerFragment extends Fragment {
         String idOfTheImageToRetrieve=args.getString("id");
 
         Site site=DB1SqlHelper.getInstance(getActivity()).getSite(idOfTheImageToRetrieve);
+
+
+
+
+        //TODO 01dicembre2015
+
+//        OpenTourUtils.setImage(site.pictureUrl,language,placeHolder,site.typeOfSite,false);
+
+
         String imagePath=site.pictureUrl;
 
         String currentCity= Repository.retrieve(getActivity(), Constants.KEY_CURRENT_CITY, String.class);
-        Log.d("miotag","currentCity: "+currentCity);
 
 
+        switch(currentCity){
 
-        if (currentCity.equals(Constants.CITY_MILAN)) {
+            case Constants.CITY_MILAN:
+                    if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
 
-            if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
+                        if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+                            convertLanguageTypeOfSite(site);
+                        } else {
+                            chooseThemeColors(site);
+                        }
+                        imagePath=placeholderName;
+                        int drawableResource=getActivity().getResources().getIdentifier(imagePath, "drawable", getActivity().getPackageName());
 
-                if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
-                    convertLanguageTypeOfSite(site);
+                        Glide.with(getContext())
+                                .load(drawableResource)
+                                .into(placeHolder);
+
+                    } else {
+                        imagePath = imagePath.substring(79, imagePath.length() - 4);
+                        imagePath = "milano_images/" + imagePath + ".jpg";
+
+
+                        Glide.with(getContext())
+                                .load(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath)
+                                .into(placeHolder);
+                    }
+
+            break;
+
+
+            case Constants.CITY_PALERMO:
+
+                if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
+
+                    if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+                        convertLanguageTypeOfSite(site);
+                    } else {
+                        chooseThemeColors(site);
+                    }
+
+                    imagePath=placeholderName;
+                    int drawableResource=getActivity().getResources().getIdentifier(imagePath, "drawable", getActivity().getPackageName());
+
+                    Glide.with(getContext())
+                            .load(drawableResource)
+                            .into(placeHolder);
                 } else {
-                    chooseThemeColors(site);
+                    imagePath =imagePath.substring(79, imagePath.length() - 4);
+                    imagePath="palermo_images/"+imagePath+".jpg";
+                    Glide.with(getContext())
+                            .load(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath)
+                            .into(placeHolder);
+
                 }
-                imagePath=placeholderName;
-                int drawableResource=getActivity().getResources().getIdentifier(imagePath, "drawable", getActivity().getPackageName());
-                placeHolder.setImageResource(drawableResource);
-//                bitmap = BitmapFactory.decodeFile(imagePath);
-//                Drawable mDrawable = new BitmapDrawable(getActivity().getResources(), bitmap);
-//                placeHolder.setImageDrawable(mDrawable);
-//                holder.vPlaceHolder.setImageDrawable(mDrawable);
-//                mImageDetail.setImageDrawable(mDrawable);
-//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
+            break;
 
-            } else {
-                imagePath = imagePath.substring(79, imagePath.length() - 4);
-                imagePath = "milano_images/" + imagePath + ".jpg";
-                bitmap = BitmapFactory.decodeFile(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
-                Drawable mDrawable = new BitmapDrawable(getActivity().getResources(), bitmap);
-                placeHolder.setImageDrawable(mDrawable);
-//                mImageDetail.setImageDrawable(mDrawable);
-//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
-            }
-        } else {
-            if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
 
-                if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
-                    convertLanguageTypeOfSite(site);
+            case Constants.CITY_TURIN:
+
+                if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
+
+                    if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+                        convertLanguageTypeOfSite(site);
+                    } else {
+                        chooseThemeColors(site);
+                    }
+
+                    imagePath=placeholderName;
+                    int drawableResource=getActivity().getResources().getIdentifier(imagePath, "drawable", getActivity().getPackageName());
+
+                    Glide.with(getContext())
+                            .load(drawableResource)
+                            .into(placeHolder);
                 } else {
-                    chooseThemeColors(site);
+                    imagePath =imagePath.substring(79, imagePath.length() - 4);
+                    imagePath="turin_images/"+imagePath+".jpg";
+                    Glide.with(getContext())
+                            .load(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath)
+                            .into(placeHolder);
+
                 }
+                break;
 
-                imagePath=placeholderName;
-                Log.d("miotag","in TimeLine: imagepath: "+imagePath);
-//                bitmap = BitmapFactory.decodeFile(imagePath);
-                int drawableResource=getActivity().getResources().getIdentifier(imagePath, "drawable", getActivity().getPackageName());
-                placeHolder.setImageResource(drawableResource);
-//                mImageDetail.setImageResource(drawableResource);
-//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            } else {
-                imagePath =imagePath.substring(79, imagePath.length() - 4);
-                imagePath="palermo_images/"+imagePath+".jpg";
-                bitmap = BitmapFactory.decodeFile(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
-                Drawable mDrawable = new BitmapDrawable(getActivity().getResources(), bitmap);
-                placeHolder.setImageDrawable(mDrawable);
 
-            }
 
         }
+
+
+
+//TODO ELIMINARE DA QUI
+
+//        if (currentCity.equals(Constants.CITY_MILAN)) {
+//
+//            if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
+//
+//                if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+//                    convertLanguageTypeOfSite(site);
+//                } else {
+//                    chooseThemeColors(site);
+//                }
+//                imagePath=placeholderName;
+//                int drawableResource=getActivity().getResources().getIdentifier(imagePath, "drawable", getActivity().getPackageName());
+////                placeHolder.setImageResource(drawableResource);
+//
+//                Glide.with(getContext())
+//                        .load(drawableResource)
+//                        .into(placeHolder);
+//
+//            } else {
+//                imagePath = imagePath.substring(79, imagePath.length() - 4);
+//                imagePath = "milano_images/" + imagePath + ".jpg";
+//
+//
+//                Glide.with(getContext())
+//                        .load(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath)
+//                        .into(placeHolder);
+//            }
+//        } else {
+//            if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
+//
+//                if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+//                    convertLanguageTypeOfSite(site);
+//                } else {
+//                    chooseThemeColors(site);
+//                }
+//
+//                imagePath=placeholderName;
+//                Log.d("miotag","in TimeLine: imagepath: "+imagePath);
+////                bitmap = BitmapFactory.decodeFile(imagePath);
+//                int drawableResource=getActivity().getResources().getIdentifier(imagePath, "drawable", getActivity().getPackageName());
+////                placeHolder.setImageResource(drawableResource);
+////                mImageDetail.setImageResource(drawableResource);
+////                mImageDetail.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//                Glide.with(getContext())
+//                        .load(drawableResource)
+//                        .into(placeHolder);
+//            } else {
+//                imagePath =imagePath.substring(79, imagePath.length() - 4);
+//                imagePath="palermo_images/"+imagePath+".jpg";
+////                bitmap = BitmapFactory.decodeFile(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
+////                Drawable mDrawable = new BitmapDrawable(getActivity().getResources(), bitmap);
+////                placeHolder.setImageDrawable(mDrawable);
+//                Glide.with(getContext())
+//                        .load(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath)
+////                        .placeholder(R.drawable.placeholder_glide)
+//                        .into(placeHolder);
+//
+//            }
+//
+//        }
+//
+
+        //TODO fine 01dicembre
+
+
+
+
         //TODO 1 ottobre 2015
 //        String imagePath= DB1SqlHelper.getInstance(getActivity()).getPictureSite(args.getString("id"));
 //        String imagePathToUse="";

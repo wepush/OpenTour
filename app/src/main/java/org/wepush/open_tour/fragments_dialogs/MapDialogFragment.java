@@ -11,6 +11,7 @@ import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import org.osmdroid.ResourceProxy;
 import org.osmdroid.api.IMapController;
@@ -18,8 +19,6 @@ import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
 import org.osmdroid.bonuspack.overlays.MapEventsReceiver;
 import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
-
-import org.w3c.dom.Text;
 import org.wepush.open_tour.R;
 import org.wepush.open_tour.SettingTourActivity;
 import org.wepush.open_tour.services.LookUpIntentService;
@@ -39,6 +38,8 @@ public class MapDialogFragment extends DialogFragment {
     private MapEventsOverlay overlayEventos;
     private  MapEventsReceiver mapEventsReceiver;
     private IMapController mapController;
+    private GeoPoint myCurrentGeopoint,startPoint;
+    private ImageView btnActualPosition;
 
 
 
@@ -57,7 +58,7 @@ public class MapDialogFragment extends DialogFragment {
                 SettingTourActivity.customPositionIsSet=true;
 
 //TODO 24Luglio: Since no LookUpService, LAT/LON on the map taken from user interaction, are all is needed
-                Log.d("miotag", "from Dialog, torno la location : " + Repository.retrieve(getActivity(), Constants.LATITUDE_STARTING_POINT, String.class) + "," + Repository.retrieve(getActivity(), Constants.LONGITUDE_STARTING_POINT, String.class));
+//                Log.d("miotag", "from Dialog, torno la location : " + Repository.retrieve(getActivity(), Constants.LATITUDE_STARTING_POINT, String.class) + "," + Repository.retrieve(getActivity(), Constants.LONGITUDE_STARTING_POINT, String.class));
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -71,11 +72,24 @@ public class MapDialogFragment extends DialogFragment {
 
         map = (org.osmdroid.views.MapView) view.findViewById(R.id.mapview);
 
+        btnActualPosition=(ImageView) view.findViewById(R.id.btnActualPosition);
+        btnActualPosition.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+//                putMarker(myCurrentGeopoint);
+                moveMapToActualLocation(startPoint);
+                Log.d("miotag", "back to my location");
+
+            }
+        });
+
+
         //TODO 1settembre
 
         if (TextUtils.equals(Repository.retrieve(getActivity(), Constants.ACTIVATE_ONLINE_CONNECTION, String.class), Constants.ONLINE_CONNECTION_OFF)) {
 
-            Log.d("miotag","mostra mappa offline");
             map.setTileSource(new XYTileSource("MapQuest",
                     ResourceProxy.string.mapquest_osm, 17, 17, 300, ".jpg", new String[]{
                     "http://otile1.mqcdn.com/tiles/1.0.0/map/",
@@ -83,32 +97,36 @@ public class MapDialogFragment extends DialogFragment {
                     "http://otile3.mqcdn.com/tiles/1.0.0/map/",
                     "http://otile4.mqcdn.com/tiles/1.0.0/map/"}));
             map.setBuiltInZoomControls(false);
-            map.setMultiTouchControls(true);
+            map.setMultiTouchControls(false);
             map.setUseDataConnection(false);
+
         }
+//        map.setBuiltInZoomControls(false);
+        map.setBuiltInZoomControls(false);
+        map.setMultiTouchControls(true);
+        map.setUseDataConnection(true);
 
 
         mapController = map.getController();
         mapController.setZoom(ZOOM);
-// TODO decommentare per consentire l'acquisizione dell'attuale (fisica) posizione
- GeoPoint startPoint = new GeoPoint(Double.valueOf(Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class)),Double.valueOf(Repository.retrieve(getActivity(),Constants.LONGITUDE_STARTING_POINT,String.class)));
-//        GeoPoint startPoint = new GeoPoint(Double.valueOf(Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class)),Double.valueOf(Repository.retrieve(getActivity(),Constants.LONGITUDE_STARTING_POINT,String.class)));
+        startPoint = new GeoPoint(Double.valueOf(Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class)),Double.valueOf(Repository.retrieve(getActivity(),Constants.LONGITUDE_STARTING_POINT,String.class)));
 
         mapController.setCenter(startPoint);
 
 
-        org.osmdroid.bonuspack.overlays.Marker startMarker=new org.osmdroid.bonuspack.overlays.Marker(map);
-        startMarker.setIcon(getResources().getDrawable(R.drawable.pin_acqua));
-        startMarker.setPosition(startPoint);
-        startMarker.setTitle(getResources().getString(R.string.myPosition));
-        startMarker.showInfoWindow();
-        map.getOverlays().add(startMarker);
+//        org.osmdroid.bonuspack.overlays.Marker startMarker=new org.osmdroid.bonuspack.overlays.Marker(map);
+//        startMarker.setIcon(getResources().getDrawable(R.drawable.pin_acqua));
+//        startMarker.setPosition(startPoint);
+//        startMarker.setTitle(getResources().getString(R.string.myPosition));
+//        startMarker.showInfoWindow();
+//        map.getOverlays().add(startMarker);
 
 
 
         mapEventsReceiver=new MapEventsReceiver() {
             @Override
             public boolean singleTapConfirmedHelper(GeoPoint geoPoint) {
+                myCurrentGeopoint=geoPoint.clone();
                 return false;
             }
 
@@ -119,8 +137,10 @@ public class MapDialogFragment extends DialogFragment {
             }
         };
 
-        overlayEventos = new MapEventsOverlay(getActivity(), mapEventsReceiver);
-        map.getOverlays().add(overlayEventos);
+        moveMapToActualLocation(startPoint);
+
+//        overlayEventos = new MapEventsOverlay(getActivity(), mapEventsReceiver);
+//        map.getOverlays().add(overlayEventos);
 
 
 
@@ -134,7 +154,7 @@ public class MapDialogFragment extends DialogFragment {
 
         overlayEventos = new MapEventsOverlay(getActivity(), mapEventsReceiver);
         map.getOverlays().add(overlayEventos);
-        Log.d("miotagw","metto mark con posizione: "+geoPoint.getLatitude()+", "+geoPoint.getLongitude());
+//        Log.d("miotagw","metto mark con posizione: "+geoPoint.getLatitude()+", "+geoPoint.getLongitude());
         org.osmdroid.bonuspack.overlays.Marker startMarker=new org.osmdroid.bonuspack.overlays.Marker(map);
         startMarker.setIcon(getResources().getDrawable(R.drawable.pin_acqua));
         startMarker.setPosition(geoPoint);
@@ -147,7 +167,7 @@ public class MapDialogFragment extends DialogFragment {
         Repository.save(getActivity(), Constants.LATITUDE_STARTING_POINT, String.valueOf(geoPoint.getLatitude()));
         Repository.save(getActivity(), Constants.LONGITUDE_STARTING_POINT, String.valueOf(geoPoint.getLongitude()));
 
-        Log.d("miotag","coordinate salvate da MapFragment di Where: "+Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class)+", "+Repository.retrieve(getActivity(),Constants.LONGITUDE_STARTING_POINT,String.class));
+//        Log.d("miotag","coordinate salvate da MapFragment di Where: "+Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class)+", "+Repository.retrieve(getActivity(),Constants.LONGITUDE_STARTING_POINT,String.class));
 
 
 
@@ -156,13 +176,13 @@ public class MapDialogFragment extends DialogFragment {
     @Override
     public void onStop(){
         super.onStop();
-        Log.d("miotag", "onStop from MapDialogFragment");
+//        Log.d("miotag", "onStop from MapDialogFragment");
         map.getOverlays().remove(overlayEventos);
         map.getOverlays().clear();
         map.getTileProvider().createTileCache();
         map.getTileProvider().detach();
         Location mapLocation=new Location("LOCATION_SERVICE");
-        mapLocation.setLatitude(Double.valueOf((Repository.retrieve(getActivity(),Constants.LATITUDE_STARTING_POINT,String.class))));
+        mapLocation.setLatitude(Double.valueOf((Repository.retrieve(getActivity(), Constants.LATITUDE_STARTING_POINT, String.class))));
         mapLocation.setLongitude(Double.valueOf((Repository.retrieve(getActivity(), Constants.LONGITUDE_STARTING_POINT, String.class))));
 
 
@@ -175,7 +195,7 @@ public class MapDialogFragment extends DialogFragment {
 
 
 
-                        Log.d("miotag", "connessione on da Fragment");
+//                        Log.d("miotag", "connessione on da Fragment");
                         Intent i=new Intent(getActivity(), LookUpIntentService.class);
                         SettingTourActivity.AddressResultReceiver mResultReceiver=new SettingTourActivity.AddressResultReceiver(new Handler());
                         i.putExtra(Constants.RECEIVER,mResultReceiver);
@@ -185,6 +205,20 @@ public class MapDialogFragment extends DialogFragment {
 
 
 
+    }
+
+    private void moveMapToActualLocation(GeoPoint actualPoint){
+        map.invalidate();
+        map.getOverlays().clear();
+        org.osmdroid.bonuspack.overlays.Marker startMarker=new org.osmdroid.bonuspack.overlays.Marker(map);
+        startMarker.setIcon(getResources().getDrawable(R.drawable.pin_acqua));
+        startMarker.setPosition(actualPoint);
+        startMarker.setTitle(getResources().getString(R.string.myPosition));
+        startMarker.showInfoWindow();
+        overlayEventos = new MapEventsOverlay(getActivity(), mapEventsReceiver);
+        map.getOverlays().add(overlayEventos);
+        mapController.setCenter(actualPoint);
+        map.getOverlays().add(startMarker);
     }
 
 

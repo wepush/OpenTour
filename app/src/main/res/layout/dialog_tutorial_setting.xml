@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue400">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue600"
+        android:gravity="center"
+        android:text="@string/settingTutorialDialog"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:layout_marginTop="64dp"
+        android:layout_width="280dp"
+        android:layout_height="180dp"
+        android:background="@anim/roggio_anim"
+        android:id="@+id/settingRoggioAnimation"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settingRoggioAnimation"
+        android:gravity="center"
+        android:text="@string/txtSettingTutorial"
+        android:fontFamily="sans-serif-regular"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginEnd="48dp"
+        android:id="@+id/textView3" />
+
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/txtSettingTutorial2"-->
+        <!--android:fontFamily="sans-serif-regular"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="13sp"-->
+        <!--android:layout_below="@+id/textView3"-->
+        <!--android:layout_alignLeft="@+id/textView3"-->
+        <!--android:layout_alignStart="@+id/textView3"-->
+        <!--android:layout_marginTop="28dp" />-->
+
+
+
+</RelativeLayout>

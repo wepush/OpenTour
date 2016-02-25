@@ -10,9 +10,8 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.wepush.open_tour.services.DownloadingCitiesService;
@@ -25,41 +24,29 @@ import org.wepush.open_tour.utils.Repository;
  */
 public class LoadingCityPackages extends AppCompatActivity {
 
-    private Intent intentFromCityShowcaserActivity;
     private Intent intentToDownloadImages,intentToUnzipImages;
     private DownloadManager dm;
     private BroadcastReceiver receiver;
     private String actualCity;
     private IntentFilter intentFilter;
     private boolean mapAlreadyDownloaded=false;
-
-    private TextView txtDownloadData,txtInstallData;
-
+    private TextView txtSplashScreen1,txtSplashScreen2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
       super.onCreate(savedInstanceState);
       setContentView(R.layout.loading_citybundle);
 
+        txtSplashScreen1=(TextView)findViewById(R.id.txtSplashScreen1);
+        txtSplashScreen2=(TextView) findViewById(R.id.txtSplashScreen2);
+
         ImageView gifLoading=(ImageView)findViewById(R.id.splashGifAnimation);
         AnimationDrawable animDrawable=(AnimationDrawable) gifLoading.getBackground();
         animDrawable.start();
 
-//        txtDownloadData=(TextView)findViewById(R.id.textWaiting1);
-//        txtInstallData=(TextView)findViewById(R.id.textWaiting2);
 
       actualCity= Repository.retrieve(this,Constants.KEY_CURRENT_CITY,String.class);
 
-      //TODO AZZERARE il layout relativo a LoadingCityBundle
-//      ProgressBar progressBar=(ProgressBar) findViewById(R.id.progressLoadingPackages);
-//      progressBar.getIndeterminateDrawable().setColorFilter(
-//              getResources().getColor(R.color.white),
-//              android.graphics.PorterDuff.Mode.SRC_IN);
-
-
-//      intentFromCityShowcaserActivity=getIntent();
-//      final String packagesPreferences=intentFromCityShowcaserActivity.getStringExtra(Constants.DOWNLOADING_BUNDLE_INTENT);
-//        Log.d("miotag","intent from showcaserActivity: "+packagesPreferences);
         final String packagesPreferences=Repository.retrieve(this, Constants.WHAT_I_WANT_TO_DOWNLOAD,String.class);
 
         intentToDownloadImages=new Intent(this, DownloadingCitiesService.class);
@@ -72,10 +59,8 @@ public class LoadingCityPackages extends AppCompatActivity {
           @Override
           public void onReceive(Context context, Intent intent) {
 
-              Log.d("miotag","onReceive di LoadingCityPackages");
               dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
               String action = intent.getAction();
-              Log.d("mitoag", "in onReceive, l'action è: "+action);
               if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
                   long downloadId = intent.getLongExtra(
                           DownloadManager.EXTRA_DOWNLOAD_ID, 0);
@@ -91,15 +76,16 @@ public class LoadingCityPackages extends AppCompatActivity {
                               case Constants.DOWNLOADING_MAPS_IMAGES :
 
                                   if (!mapAlreadyDownloaded){
-                                      //l'intent arrivato è il primo, le mappe sono presenti quindi devo lanciare l'intent per scaricare le immagini
                                       mapAlreadyDownloaded=true;
                                       startService(intentToDownloadImages);
 
                                   } else {
 
+                                    txtSplashScreen2.setText(R.string.downloadAndUnzipImages);
+                                    txtSplashScreen2.setVisibility(View.VISIBLE);
+
                                       switch(actualCity){
                                           case Constants.CITY_MILAN:
-                                              Log.d("miotag", "Unzip immagini città di milano");
                                               intentToUnzipImages.putExtra("zipFileName",Constants.ZIPPED_IMAGES_MILANO_DOWNLOAD);
                                           break;
 
@@ -107,6 +93,10 @@ public class LoadingCityPackages extends AppCompatActivity {
                                           case Constants.CITY_PALERMO:
                                               intentToUnzipImages.putExtra("zipFileName",Constants.ZIPPED_IMAGES_PALERMO_DOWNLOAD);
                                           break;
+
+
+                                          case Constants.CITY_TURIN:
+                                              intentToUnzipImages.putExtra("zipFileName",Constants.ZIPPED_IMAGES_TURIN_DOWNLOAD);
 
                                       }
                                          intentToUnzipImages.putExtra("targetDirectory",context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath());
@@ -125,17 +115,24 @@ public class LoadingCityPackages extends AppCompatActivity {
                               case Constants.DOWNLOADING_IMAGES_ONLY:
                                   Intent intentToUnzipImagesOnly=new Intent(context, UnzipService.class);
                                   intentToUnzipImagesOnly.putExtra("zipFilePath", context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath());
-//                                if (Constants.KEY_CURRENT_CITY.equals(Constants.CITY_MILAN)){
+
+                                  txtSplashScreen2.setText(R.string.downloadAndUnzipImages);
+                                  txtSplashScreen2.setVisibility(View.VISIBLE);
+
 
                                   switch(actualCity){
                                       case Constants.CITY_MILAN:
-                                          Log.d("miotag", "Unzip immagini città di milano");
                                           intentToUnzipImagesOnly.putExtra("zipFileName",Constants.ZIPPED_IMAGES_MILANO_DOWNLOAD);
                                           break;
 
 
                                       case Constants.CITY_PALERMO:
                                           intentToUnzipImagesOnly.putExtra("zipFileName",Constants.ZIPPED_IMAGES_PALERMO_DOWNLOAD);
+                                          break;
+
+
+                                      case Constants.CITY_TURIN:
+                                          intentToUnzipImagesOnly.putExtra("zipFileName",Constants.ZIPPED_IMAGES_TURIN_DOWNLOAD);
                                           break;
 
                                   }
@@ -172,8 +169,6 @@ public class LoadingCityPackages extends AppCompatActivity {
         intentFilter.addAction(Constants.UNZIP_DONE);
 
         registerReceiver(receiver, intentFilter);
-
-
 
 
     }

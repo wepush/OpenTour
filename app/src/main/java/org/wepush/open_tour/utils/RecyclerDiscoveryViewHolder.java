@@ -43,8 +43,6 @@ public class RecyclerDiscoveryViewHolder extends RecyclerView.ViewHolder {
 
     public RecyclerDiscoveryViewHolder(final View parent,CircleImageView image,TextView ttl,TextView addr) {
         super(parent);
-
-        Log.d("miotag","costruttore RecyclerDiscoveryViewHolder");
         String packagesChosen=Repository.retrieve(context, Constants.WHAT_I_WANT_TO_DOWNLOAD,String.class);
         if (packagesChosen.equals(Constants.DOWNLOADING_MAPS_ONLY)){
             placeholderEverywhere=true;
@@ -71,8 +69,6 @@ public class RecyclerDiscoveryViewHolder extends RecyclerView.ViewHolder {
                 imageToShow = placeholderName;
                 int drawableResource = context.getResources().getIdentifier(imageToShow, "drawable", context.getPackageName());
                 circleImageView.setImageResource(drawableResource);
-//                circleImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-
 
             } else {
                 imageToShow = imageToShow.substring(79, imageToShow.length() - 4);
@@ -80,8 +76,6 @@ public class RecyclerDiscoveryViewHolder extends RecyclerView.ViewHolder {
                 bitmap = BitmapFactory.decodeFile(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imageToShow);
                 Drawable mDrawable = new BitmapDrawable(context.getResources(), bitmap);
                 circleImageView.setImageDrawable(mDrawable);
-//                circleImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-
             }
         } else {
             if ((TextUtils.equals(imageToShow, "placeholder")) || (placeholderEverywhere)) {
@@ -95,8 +89,6 @@ public class RecyclerDiscoveryViewHolder extends RecyclerView.ViewHolder {
                 imageToShow = placeholderName;
                 int drawableResource = context.getResources().getIdentifier(imageToShow, "drawable", context.getPackageName());
                 circleImageView.setImageResource(drawableResource);
-//                circleImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-
 
             } else {
 
@@ -111,7 +103,6 @@ public class RecyclerDiscoveryViewHolder extends RecyclerView.ViewHolder {
                 bitmap = BitmapFactory.decodeFile(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imageToShow);
                 Drawable mDrawable = new BitmapDrawable(context.getResources(), bitmap);
                 circleImageView.setImageDrawable(mDrawable);
-//                circleImageView.setScaleType(ImageView.ScaleType.FIT_XY);
             }
 
 
@@ -195,8 +186,6 @@ public class RecyclerDiscoveryViewHolder extends RecyclerView.ViewHolder {
 
 
     }
-
-
 
 
 }

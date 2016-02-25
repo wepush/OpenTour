@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue400">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue600"
+        android:gravity="center"
+        android:text="@string/explorerTutorialDialog"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:layout_marginTop="64dp"
+        android:layout_width="280dp"
+        android:layout_height="180dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@anim/shake_anim"
+        android:id="@+id/settingExplorerAnimation"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtExplorerTutorial"
+        android:fontFamily="sans-serif-regular"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_below="@id/settingExplorerAnimation"
+      />
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:fontFamily="sans-serif-regular"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="13sp"-->
+        <!--android:text="@string/txtExplorerTutorial2"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_alignLeft="@+id/textView2"-->
+        <!--android:layout_alignStart="@+id/textView2" />-->
+
+</RelativeLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+
+
+    <item android:drawable="@drawable/shake1" android:duration="40" />
+    <item android:drawable="@drawable/shake2" android:duration="40" />
+    <item android:drawable="@drawable/shake3" android:duration="40" />
+    <item android:drawable="@drawable/shake4" android:duration="40" />
+    <item android:drawable="@drawable/shake5" android:duration="40" />
+    <item android:drawable="@drawable/shake6" android:duration="40" />
+    <item android:drawable="@drawable/shake7" android:duration="40" />
+    <item android:drawable="@drawable/shake8" android:duration="40" />
+    <item android:drawable="@drawable/shake9" android:duration="40" />
+    <item android:drawable="@drawable/shake10" android:duration="40" />
+    <item android:drawable="@drawable/shake11" android:duration="40" />
+    <item android:drawable="@drawable/shake12" android:duration="40" />
+    <item android:drawable="@drawable/shake13" android:duration="40" />
+    <item android:drawable="@drawable/shake14" android:duration="40" />
+    <item android:drawable="@drawable/shake15" android:duration="40" />
+    <item android:drawable="@drawable/shake16" android:duration="40" />
+    <item android:drawable="@drawable/shake17" android:duration="40" />
+    <item android:drawable="@drawable/shake18" android:duration="40" />
+    <item android:drawable="@drawable/shake19" android:duration="40" />
+    <item android:drawable="@drawable/shake20" android:duration="40" />
+    <item android:drawable="@drawable/shake21" android:duration="40" />
+    <item android:drawable="@drawable/shake22" android:duration="40" />
+    <item android:drawable="@drawable/shake23" android:duration="40" />
+    <item android:drawable="@drawable/shake24" android:duration="40" />
+    <item android:drawable="@drawable/shake25" android:duration="40" />
+    <item android:drawable="@drawable/shake26" android:duration="40" />
+    <item android:drawable="@drawable/shake27" android:duration="40" />
+    <item android:drawable="@drawable/shake28" android:duration="40" />
+    <item android:drawable="@drawable/shake29" android:duration="40" />
+    <item android:drawable="@drawable/shake30" android:duration="40" />
+    <item android:drawable="@drawable/shake31" android:duration="40" />
+    <item android:drawable="@drawable/shake32" android:duration="40" />
+    <item android:drawable="@drawable/shake33" android:duration="40" />
+    <item android:drawable="@drawable/shake34" android:duration="40" />
+    <item android:drawable="@drawable/shake35" android:duration="40" />
+    <item android:drawable="@drawable/shake36" android:duration="40" />
+    <item android:drawable="@drawable/shake37" android:duration="40" />
+    <item android:drawable="@drawable/shake38" android:duration="40" />
+    <item android:drawable="@drawable/shake39" android:duration="40" />
+    <item android:drawable="@drawable/shake40" android:duration="40" />
+    <item android:drawable="@drawable/shake41" android:duration="40" />
+    <item android:drawable="@drawable/shake42" android:duration="40" />
+    <item android:drawable="@drawable/shake43" android:duration="40" />
+    <item android:drawable="@drawable/shake44" android:duration="40" />
+    <item android:drawable="@drawable/shake45" android:duration="40" />
+    <item android:drawable="@drawable/shake46" android:duration="40" />
+    <item android:drawable="@drawable/shake47" android:duration="40" />
+    <item android:drawable="@drawable/shake48" android:duration="40" />
+    <item android:drawable="@drawable/shake49" android:duration="40" />
+    <item android:drawable="@drawable/shake50" android:duration="40" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</animation-list>

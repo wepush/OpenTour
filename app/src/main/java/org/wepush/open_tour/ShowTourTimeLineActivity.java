@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,25 +28,20 @@ import org.osmdroid.bonuspack.overlays.MapEventsReceiver;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
-
-import org.osmdroid.views.MapView;
 import org.wepush.open_tour.fragments_dialogs.InsufficientSettingsDialogFragment;
 import org.wepush.open_tour.fragments_dialogs.ListViewTimeLineFragment;
 import org.wepush.open_tour.services.TourAlgorithmTask;
-import org.wepush.open_tour.utils.Constants;
-import org.wepush.open_tour.structures.FloatingActionButton;
 import org.wepush.open_tour.structures.Site;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.Repository;
 import org.wepush.open_tour.utils.SphericalMercator;
 import org.wepush.open_tour.utils.TimeLineAdapter;
-
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import java.util.TimeZone;
 
 public class ShowTourTimeLineActivity extends AppCompatActivity {
@@ -61,14 +54,14 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
     private ArrayList<String> idSitesToShow;
     private ArrayList<String> showTimeSitesToShow;
 
-//17/07 section for osm drod
     private final static int ZOOM=17;
     private static org.osmdroid.views.MapView map;
     private IMapController mapController;
     private MapEventsOverlay overlayNoEventos;
     private MapEventsReceiver mapNoEventsReceiver;
 
-//todo 09/10 passaggio a variabile static di geoPointMarkers per ricostruire la mappa ed i marker nel caso di lancio di DetailsActivity
+    private boolean disableFab;
+
     private static ArrayList<org.osmdroid.bonuspack.overlays.Marker> geoPointMarkers;
 
 
@@ -108,7 +101,11 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 HomeActivity.destroyTourPreferences(getBaseContext());
-                siteToStamp.clear();
+
+                if (siteToStamp!=null) {
+                    siteToStamp.clear();
+                    disableFab=true;
+                }
 
                 startActivity(new Intent(getBaseContext(), SettingTourActivity.class));
                 finish();
@@ -124,26 +121,37 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                     if (disableFab) {
+                         HomeActivity.destroyTourPreferences(getBaseContext());
+                         startActivity(new Intent(getBaseContext(), SettingTourActivity.class));
+                         finish();
 
-                Intent i=new Intent(getBaseContext(),LiveMapActivity.class);
-                i.setAction(Constants.INTENT_FROM_SHOWTOURTL);
-                i.putStringArrayListExtra("id",idSitesToShow);
-                i.putStringArrayListExtra("showingTime",showTimeSitesToShow);
-                Log.d("miotag","intent"+i.getStringArrayListExtra("id"));
-                startActivity(i);
-                finish();
+
+                     } else {
+
+                         Intent i = new Intent(getBaseContext(), LiveMapActivity.class);
+                         i.setAction(Constants.INTENT_FROM_SHOWTOURTL);
+                         i.putStringArrayListExtra("id", idSitesToShow);
+                         i.putStringArrayListExtra("showingTime", showTimeSitesToShow);
+
+                         startActivity(i);
+                         finish();
+                     }
 
                 }
             });
 
 
-    }//fine onCreate
+    }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         HomeActivity.destroyTourPreferences(getBaseContext());
-        siteToStamp.clear();
+        if (siteToStamp!=null) {
+            siteToStamp.clear();
+            disableFab=true;
+        }
         startActivity(new Intent(getBaseContext(), SettingTourActivity.class));
         finish();
     }
@@ -164,8 +172,6 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
         llView.setBackgroundColor(this.getResources().getColor(R.color.white));
 
 
-//riempimento RecyclerView
-
 
         TextView firstElement=(TextView) findViewById(R.id.txtTitleFirstElement);
         firstElement.setText(getResources().getString(R.string.startingTour));
@@ -176,11 +182,8 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
         TextView timeElement=(TextView) findViewById(R.id.txtStartingTimeTimeLine);
         timeElement.setText(Repository.retrieve(this,Constants.STARTING_TIME_READABLE_FORMAT,String.class));
 
-        //altri elementi
         listViewTimeLineFragment = new ListViewTimeLineFragment();
 
-//        for (int i = 0; i < siteToStamp.size(); i++) {
-//        }
         lw.setAdapter(new TimeLineAdapter(this, siteToStamp));
 
         lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -190,7 +193,6 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
 
                 if (position > -1) {
 
-//                    Intent intentToShowSite = new Intent(getBaseContext(), ShowDetailsActivity.class);
                   Intent intentToShowSite=new Intent(getBaseContext(),DetailsActivity.class);
                     intentToShowSite.setAction(Constants.INTENT_FROM_SHOWTOURTL);
                     intentToShowSite.putExtra("siteId", siteToStamp.get(position).id);
@@ -202,8 +204,6 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
             }
         });
 
-
-        //preparazione dell'array di id e showingTime da passare a LiveMapActivity per la visualizzazione/interazione
 
         idSitesToShow = new ArrayList<>();
         for (Site site : siteToStamp) {
@@ -254,20 +254,16 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
         map.getOverlays().add(overlayNoEventos);
 
 
-//taking advantage of this for, it'll also complete statistic fields
-        //price
+
         double totalPrice=0.0;
         TextView txtSummaryMoney=(TextView)findViewById(R.id.txtMoneySummary);
 
-        //tour duration
         TextView txtTourLasting=(TextView) findViewById(R.id.txtTimeSummary);
         txtTourLasting.setText(Repository.retrieve(this,Constants.TIME_TO_SPEND,String.class));
 
-        //n. visiting site
         TextView txtNumberSites=(TextView) findViewById(R.id.txtNumberSiteSummary);
         txtNumberSites.setText(String.valueOf(siteToStamp.size()));
 
-        //total km
         double totalKM=0.0;
         TextView txtDistance=(TextView) findViewById(R.id.txtKmSummary);
 
@@ -288,25 +284,21 @@ public class ShowTourTimeLineActivity extends AppCompatActivity {
                 map.invalidate();
                 geoPointMarkers.add(mark);
 
-                //statistics:
 
-                //price
 
                 totalPrice = totalPrice + showPrice(site);
 
             }
             txtSummaryMoney.setText(String.valueOf(totalPrice) + " €");
 
-            //km
             txtDistance.setText(String.valueOf(showDistance()) + " km");
 
-            //time spent
             txtTourLasting.setText(convertSecondToHHMMString(Double.valueOf(Repository.retrieve(this, Constants.TIME_TO_SPEND, String.class))));
 
 
 
 
-    }//fine showResultTimeLine
+    }
 
 
 
@@ -323,7 +315,7 @@ private GeoPoint findTourCenter(ArrayList<Site> a){
 
 
     public  void showDummyActivity(){
-
+        disableFab=true;
         FragmentManager fm = getSupportFragmentManager();
         InsufficientSettingsDialogFragment hf = new InsufficientSettingsDialogFragment();
         hf.show(fm, "badsettings_fragment");
@@ -400,46 +392,6 @@ private GeoPoint findTourCenter(ArrayList<Site> a){
 
         if (geoArray!=null){
 
-//            map.invalidate();
-////            map=null;
-//           MapView map2 = (org.osmdroid.views.MapView) findViewById(R.id.mapSummaryTL);
-//            map2.invalidate();
-//
-//            if (TextUtils.equals(Repository.retrieve(this, Constants.ACTIVATE_ONLINE_CONNECTION, String.class), Constants.ONLINE_CONNECTION_OFF)) {
-//                Log.d("miotag","no internet connection");
-//                XYTileSource mCustomTileSource2 = new XYTileSource("MapQuest",
-//                        ResourceProxy.string.mapquest_osm, 17, 17, 300, ".jpg", new String[]{
-//                        "http://otile1.mqcdn.com/tiles/1.0.0/map/",
-//                        "http://otile2.mqcdn.com/tiles/1.0.0/map/",
-//                        "http://otile3.mqcdn.com/tiles/1.0.0/map/",
-//                        "http://otile4.mqcdn.com/tiles/1.0.0/map/"});
-//                map2.setTileSource(mCustomTileSource2);
-//                map2.setBuiltInZoomControls(false);
-//                map2.setMultiTouchControls(false);
-//                map2.setUseDataConnection(false);
-//            }
-//
-//
-//            mapController = map2.getController();
-//            mapController.setZoom(ZOOM);
-//            mapController.setCenter(findTourCenterAgain(geoArray));
-//
-//            mapNoEventsReceiver=new MapEventsReceiver() {
-//                @Override
-//                public boolean singleTapConfirmedHelper(GeoPoint geoPoint) {
-//                    Toast.makeText(getBaseContext(), R.string.goLiveFloating,Toast.LENGTH_SHORT).show();
-//                    return false;
-//                }
-//
-//                @Override
-//                public boolean longPressHelper(GeoPoint geoPoint) {
-//                    Toast.makeText(getBaseContext(), R.string.goLiveFloating,Toast.LENGTH_SHORT).show();
-//                    return false;
-//                }
-//            };
-//
-//            overlayNoEventos = new MapEventsOverlay(this, mapNoEventsReceiver);
-//            map2.getOverlays().add(overlayNoEventos);
 
             for (Marker mark: geoPointMarkers){
 
@@ -458,15 +410,5 @@ private GeoPoint findTourCenter(ArrayList<Site> a){
             return false;
     }
 
-    private GeoPoint findTourCenterAgain(ArrayList<Marker> a){
-        double latitude = 0.0;
-        double longitude = 0.0;
-        for (Marker s : a){
-            latitude=latitude+s.getPosition().getLatitude();
-            longitude=longitude+s.getPosition().getLongitude();
-        }
-        GeoPoint gp=new GeoPoint(latitude/(Double.valueOf(a.size())),longitude/(Double.valueOf(a.size())));
-        return gp;
-    }
 
-}//fine Classe
+}

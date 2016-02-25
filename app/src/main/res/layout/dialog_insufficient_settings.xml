@@ -3,13 +3,18 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
+
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/titleSettingsMissing"
         android:id="@+id/txtTitleSettingsDialog"
         android:fontFamily="sans-serif"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="56dp"
         android:layout_alignLeft="@+id/txtBodyInsufficientSettingsDialog1"
         android:layout_alignStart="@+id/txtBodyInsufficientSettingsDialog1" />
 
@@ -39,5 +44,7 @@
         android:layout_below="@+id/txtBodyInsufficientSettingsDialog1"
         android:layout_alignLeft="@+id/txtBodyInsufficientSettingsDialog1"
         android:layout_alignStart="@+id/txtBodyInsufficientSettingsDialog1" />
+
+
 
 </RelativeLayout>

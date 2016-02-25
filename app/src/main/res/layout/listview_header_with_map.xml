@@ -246,16 +246,45 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
         android:id="@+id/shapingLayout"
         android:layout_below="@+id/rlMapSummary"
         android:background="@drawable/rectangle_rounded_corners"
-        android:layout_margin="10dp"
-        android:padding="20dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="36dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="48dp"
         >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/summaryImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_receipt"
+                android:background="@color/blue400"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/summaryImage"
+                android:layout_centerHorizontal="true"
+                android:text="@string/summaryTour"/>
+
+
+        </RelativeLayout>
 
 
         <!--totale spese-->
@@ -263,20 +292,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            >
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="8dp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-
-
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="11dp"
-                android:layout_marginStart="11dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/relativeLayout1">
 
                 <ImageView
@@ -286,10 +312,12 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"/>
 
+
+
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@mipmap/ic_time"
+                    android:src="@mipmap/ic_credit_card"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
 
@@ -300,23 +328,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/price_full_tour"
-
-
-                android:textSize="17dp"
+                android:textSize="14dp"
+                android:fontFamily="sans-serif-light"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_toRightOf="@+id/relativeLayout1"
+                android:layout_toEndOf="@+id/relativeLayout1"
+                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtMoneySummary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-light"
                 android:text="@string/prices"
                 android:layout_alignBottom="@+id/relativeLayout1"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp"/>
+                android:layout_marginLeft="240dp"
+                android:layout_marginStart="240dp"
+                />
         </RelativeLayout>
 
 
@@ -329,20 +360,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            >
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+     >
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-
-
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="11dp"
-                android:layout_marginStart="11dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/relativeLayout2">
 
                 <ImageView
@@ -366,11 +395,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tour_lasting_time"
-
-
-                android:textSize="17dp"
+                android:textSize="14sp"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_toRightOf="@+id/relativeLayout2"
+                android:layout_toEndOf="@+id/relativeLayout2"
+                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="sans-serif-light"
+                />
 
 
             <TextView
@@ -379,10 +411,10 @@
                 android:id="@+id/txtTimeSummary"
                 android:text="@string/timeclock"
                 android:layout_alignBottom="@+id/relativeLayout2"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp"/>
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-light"
+                android:layout_marginLeft="240dp"
+                android:layout_marginStart="240dp"/>
         </RelativeLayout>
 
         <!-- Luoghi da visitare -->
@@ -391,19 +423,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+           >
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-
-
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="11dp"
-                android:layout_marginStart="11dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/relativeLayout">
 
                 <ImageView
@@ -427,12 +458,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/place_to_visit"
-
-
-                android:textSize="17dp"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-light"
                 android:gravity="center"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_alignBottom="@+id/txtNumberSiteSummary"
+                android:layout_toRightOf="@+id/relativeLayout"
+                android:layout_toEndOf="@+id/relativeLayout" />
 
 
             <TextView
@@ -440,11 +473,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtNumberSiteSummary"
                 android:text="@string/number_sites"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-light"
                 android:layout_alignBottom="@+id/relativeLayout"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp"/>
+                android:layout_marginLeft="240dp"
+                android:layout_marginStart="240dp"/>
 
         </RelativeLayout>
 
@@ -456,19 +489,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            >
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-
-
-                android:layout_alignParentTop="true"
+                   android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="11dp"
-                android:layout_marginStart="11dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/relativeLayout3">
 
                 <ImageView
@@ -492,12 +524,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/walked_km"
-
-
-                android:textSize="17dp"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-light"
                 android:gravity="center"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_alignBottom="@+id/txtKmSummary"
+                android:layout_toRightOf="@+id/relativeLayout3"
+                android:layout_toEndOf="@+id/relativeLayout3"
+                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp" />
 
 
             <TextView
@@ -505,11 +539,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtKmSummary"
                 android:text="@string/km"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-light"
                 android:layout_alignBottom="@+id/relativeLayout3"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp"/>
+                android:layout_marginLeft="240dp"
+                android:layout_marginStart="240dp"/>
 
         </RelativeLayout>
     </LinearLayout>
@@ -545,6 +579,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/txtTitleFirstElement"
+
                     android:text="@string/start2"/>
 
                 <TextView

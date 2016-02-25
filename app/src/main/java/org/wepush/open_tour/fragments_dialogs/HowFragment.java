@@ -29,6 +29,7 @@ public class HowFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_how, null);
 
+
         builder.setView(view);
 
        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -55,12 +56,23 @@ public class HowFragment extends DialogFragment {
                     cbWalk.setChecked(true);
                 }
                 if (cbBike.isChecked()){
-                    Log.d("miotag","cbWalk IS checked quindi lo metto falso");
                     cbBike.setChecked(false);
 
                 }
             }
         });
+        howSelected=Repository.retrieve(getActivity(),Constants.HOW_SAVE,String.class);
+
+        if (howSelected!=null){
+            if (howSelected.equals(getResources().getString(R.string.by_walk))){
+                cbWalk.setChecked(true);
+                cbBike.setChecked(false);
+            } else {
+                cbWalk.setChecked(false);
+                cbBike.setChecked(true);
+
+            }
+        }
 
 
 
@@ -73,7 +85,6 @@ public class HowFragment extends DialogFragment {
                 }
 
                 if (cbWalk.isChecked()){
-                    Log.d("miotag","cbWalk IS checked quindi lo metto falso");
                     cbWalk.setChecked(false);
 
                 }
@@ -93,18 +104,14 @@ public class HowFragment extends DialogFragment {
         } else if (
                   (cbBike.isChecked())
                 ){
-            Log.d("miotag","sto entrando in bike");
-            Repository.save(getActivity(), Constants.HOW_SAVE, R.string.by_bike);
+
+            Repository.save(getActivity(), Constants.HOW_SAVE, getResources().getString(R.string.by_bike));
             SettingTourActivity.txtHow.setText(R.string.by_bike);
-            Log.d("miotag", "how: " + Repository.retrieve(getActivity(), Constants.HOW_SAVE, String.class));
         } else if (
                 (cbWalk.isChecked())
                 ){
-            Log.d("miotag","sto entrando in walk");
-            Repository.save(getActivity(), Constants.HOW_SAVE, R.string.by_walk);
+            Repository.save(getActivity(), Constants.HOW_SAVE, getResources().getString(R.string.by_walk));
             SettingTourActivity.txtHow.setText(R.string.by_walk);
-            Log.d("miotag", "how: " + Repository.retrieve(getActivity(), Constants.HOW_SAVE, String.class));
-
 
         }
     }

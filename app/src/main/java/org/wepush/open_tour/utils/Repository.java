@@ -44,17 +44,17 @@ public class Repository {
         return null;
     }
 
-    public static void removeEverything (Context context){
-        SharedPreferences mPref = context.getSharedPreferences(Constants.SHARED_PREFERENCES_ROOT, Context.MODE_PRIVATE);
-//        mPref.edit().clear().commit();
-        mPref.edit().remove(Constants.TIME_TO_START).commit();
-        mPref.edit().remove(Constants.TIME_TO_SPEND).commit();
-        mPref.edit().remove(Constants.HOW_SAVE).commit();
-        mPref.edit().remove(Constants.WHAT_SAVE).commit();
-        mPref.edit().remove(Constants.WHEN_SAVE).commit();
-        mPref.edit().remove(Constants.WHERE_SAVE).commit();
-        mPref.edit().remove(Constants.LATITUDE_STARTING_POINT).commit();
-        mPref.edit().remove(Constants.LONGITUDE_STARTING_POINT).commit();
-    }
+//    public static void removeEverything (Context context){
+//        SharedPreferences mPref = context.getSharedPreferences(Constants.SHARED_PREFERENCES_ROOT, Context.MODE_PRIVATE);
+////        mPref.edit().clear().commit();
+//        mPref.edit().remove(Constants.TIME_TO_START).commit();
+//        mPref.edit().remove(Constants.TIME_TO_SPEND).commit();
+//        mPref.edit().remove(Constants.HOW_SAVE).commit();
+//        mPref.edit().remove(Constants.WHAT_SAVE).commit();
+//        mPref.edit().remove(Constants.WHEN_SAVE).commit();
+//        mPref.edit().remove(Constants.WHERE_SAVE).commit();
+//        mPref.edit().remove(Constants.LATITUDE_STARTING_POINT).commit();
+//        mPref.edit().remove(Constants.LONGITUDE_STARTING_POINT).commit();
+//    }
 
 }

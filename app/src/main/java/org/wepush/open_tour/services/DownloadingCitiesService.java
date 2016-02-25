@@ -47,6 +47,11 @@ public class DownloadingCitiesService extends IntentService{
                         downloadMapsAndImages(Constants.CITY_PALERMO);
                         break;
 
+
+                    case Constants.CITY_TURIN:
+                        downloadMapsAndImages(Constants.CITY_TURIN);
+                        break;
+
                 }
                 break;
 
@@ -64,6 +69,10 @@ public class DownloadingCitiesService extends IntentService{
                         Log.d("miotag","downloading service deve SCARICARE SOLO IMMAGINI"+", per la città di Palermo");
                         break;
 
+                    case Constants.CITY_TURIN:
+                        downloadImagesOnly(Constants.CITY_TURIN);
+                        break;
+
                 }
                 break;
 
@@ -79,6 +88,11 @@ public class DownloadingCitiesService extends IntentService{
                     case Constants.CITY_PALERMO:
                         downloadMapsOnly(Constants.CITY_PALERMO);
                         Log.d("miotag","downloading service deve SCARICARE SOLO MAPPE"+", per la città di Palermo");
+                        break;
+
+
+                    case Constants.CITY_TURIN:
+                        downloadMapsOnly(Constants.CITY_TURIN);
                         break;
 
                 }
@@ -141,6 +155,30 @@ public class DownloadingCitiesService extends IntentService{
                 reqPalermoImages.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_PICTURES, Constants.ZIPPED_IMAGES_PALERMO_DOWNLOAD);
                 dmPalermo.enqueue(reqPalermoImages);
             break;
+
+            case Constants.CITY_TURIN:
+
+                Log.d("miotag","download città di torino");
+
+                DownloadManager dmTurin = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                DownloadManager.Request reqTurinMap = new DownloadManager.Request(Uri.parse(Constants.URL_ZIPPED_MAP_TURIN));
+                reqTurinMap.setTitle(getResources().getString(R.string.downloadingMapTitleTurin));
+                reqTurinMap.setDescription(getResources().getString(R.string.downloadingMapDescriptionTurin));
+                File dirTorinoMap = new File(Environment.getExternalStorageDirectory(), "osmdroid");
+                dirTorinoMap.mkdirs();
+                reqTurinMap.setDestinationInExternalPublicDir("osmdroid", Constants.ZIPPED_MAP_TURIN);
+                dmTurin.enqueue(reqTurinMap);
+
+                //download images
+                DownloadManager.Request reqTurinImages = new DownloadManager.Request(Uri.parse(Constants.URL_ZIPPED_IMAGES_TURIN));
+                reqTurinImages.setTitle(getResources().getString(R.string.downloadingImagesTitleTurin));
+                reqTurinImages.setDescription(getResources().getString(R.string.downloadingImagesDescriptionTurin));
+                reqTurinImages.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_PICTURES, Constants.ZIPPED_IMAGES_TURIN_DOWNLOAD);
+                dmTurin.enqueue(reqTurinImages);
+                break;
+
+
+
         }
 
 
@@ -173,6 +211,18 @@ public class DownloadingCitiesService extends IntentService{
                 dmPalermoMap.enqueue(reqPalermoMap);
                 break;
 
+
+            case Constants.CITY_TURIN:
+                DownloadManager dmTurinMap = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                DownloadManager.Request reqTurinMap = new DownloadManager.Request(Uri.parse(Constants.URL_ZIPPED_MAP_TURIN));
+                reqTurinMap.setTitle(getResources().getString(R.string.downloadingMapTitleTurin));
+                reqTurinMap.setDescription(getResources().getString(R.string.downloadingMapDescriptionTurin));
+                File dirTurinMap = new File(Environment.getExternalStorageDirectory(), "osmdroid");
+                dirTurinMap.mkdirs();
+                reqTurinMap.setDestinationInExternalPublicDir("osmdroid", Constants.ZIPPED_MAP_TURIN);
+                dmTurinMap.enqueue(reqTurinMap);
+                break;
+
         }
     } //fine downloadMapOnly
 
@@ -203,6 +253,18 @@ public class DownloadingCitiesService extends IntentService{
                 dmPalermoImages.enqueue(reqPalermoImages);
 
             break;
+
+
+            case Constants.CITY_TURIN:
+
+                DownloadManager dmTurinImages = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                DownloadManager.Request reqTurinImages = new DownloadManager.Request(Uri.parse(Constants.URL_ZIPPED_IMAGES_TURIN));
+                reqTurinImages.setTitle(getResources().getString(R.string.downloadingImagesTitleTurin));
+                reqTurinImages.setDescription(getResources().getString(R.string.downloadingImagesDescriptionPalermo));
+                reqTurinImages.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_PICTURES, Constants.ZIPPED_IMAGES_TURIN_DOWNLOAD);
+                dmTurinImages.enqueue(reqTurinImages);
+
+                break;
 
         }
 

@@ -53,8 +53,6 @@ public class TourAlgorithmTask extends AsyncTask<Void, Void, ArrayList<Site>> {
         newSite= new Site();
         newSite.latitude=Double.valueOf(Repository.retrieve(context,Constants.LATITUDE_STARTING_POINT,String.class));
         newSite.longitude=Double.valueOf(Repository.retrieve(context,Constants.LONGITUDE_STARTING_POINT,String.class));
-        Log.d("miotag","lat/long passate all'algoritmo sono: "+newSite.latitude+", "+newSite.longitude);
-
         newSite.name="this actual position";
 
     }
@@ -77,11 +75,8 @@ public class TourAlgorithmTask extends AsyncTask<Void, Void, ArrayList<Site>> {
 
 
             if (showTourTimeLineActivityInstance != null){
-                     Log.d("miotag", "siteReturning is dummy");
                      showTourTimeLineActivityInstance.showDummyActivity();
                  }
-                Log.d("miotag","siteReturning IS empty");
-
             } else if (showTourTimeLineActivityInstance != null){
             showTourTimeLineActivityInstance.siteToStamp=siteReturning;
             showTourTimeLineActivityInstance.progressBar=(ProgressBar)  showTourTimeLineActivityInstance.findViewById(R.id.progressBarTourTimeLine);

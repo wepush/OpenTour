@@ -11,13 +11,11 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 import org.wepush.open_tour.structures.Site;
 import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.Repository;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -37,71 +35,124 @@ public class ReadFromJson extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
+        //TODO 30 novembre 2015 da eliminare dopo le prove
+
+            if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(),"English")){
+                Repository.save(this, Constants.USER_LANGUAGE,Constants.EN_LANGUAGE);
+            } else {
+                Repository.save(this, Constants.USER_LANGUAGE,Constants.ITA_LANGUAGE);
+            }
+
+        //TODO fine
+
         updatingDb=intent.getBooleanExtra("updatingPackage",false);
         String cityToLoad = Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class);
+//        try {
+//
+//
+//            if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+//
+//                Repository.save(this, Constants.USER_LANGUAGE,Constants.EN_LANGUAGE);
+//
+//                if (TextUtils.equals(Constants.CITY_MILAN, cityToLoad)) {
+//
+//                    SQLiteDatabase sql=DB1SqlHelper.getInstance(this).getWritableDatabase();
+//                    sql.execSQL("DROP TABLE IF EXISTS " + DB1SqlHelper.SITES_TABLE);
+//                    sql.execSQL(DB1SqlHelper.CREATE_TABLE_SITES);
+//
+//                    stringFromJson = jsonToStringFromAssetFolder("milandb_en", getApplication());
+////                    Log.d("miotag","PARSING milan_en");
+//                } else {
+//
+//                    SQLiteDatabase sql=DB1SqlHelper.getInstance(this).getWritableDatabase();
+//                    sql.execSQL("DROP TABLE IF EXISTS " + DB1SqlHelper.SITES_TABLE);
+//                    sql.execSQL(DB1SqlHelper.CREATE_TABLE_SITES);
+//
+//
+//                    stringFromJson = jsonToStringFromAssetFolder("palermodb_eng", getApplication());
+////                    Log.d("miotag","PARSING palermo_eng");
+//                }
+//            }  else if (TextUtils.equals(Constants.CITY_MILAN, cityToLoad)) {
+//
+//                SQLiteDatabase sql=DB1SqlHelper.getInstance(this).getWritableDatabase();
+//                sql.execSQL("DROP TABLE IF EXISTS " + DB1SqlHelper.SITES_TABLE);
+//                sql.execSQL(DB1SqlHelper.CREATE_TABLE_SITES);
+//
+//                stringFromJson = jsonToStringFromAssetFolder("milandb_ita", getApplication());
+////                Log.d("miotag","PARSING milandb_ita");
+//            } else {
+//
+//                SQLiteDatabase sql=DB1SqlHelper.getInstance(this).getWritableDatabase();
+//                sql.execSQL("DROP TABLE IF EXISTS " + DB1SqlHelper.SITES_TABLE);
+//                sql.execSQL(DB1SqlHelper.CREATE_TABLE_SITES);
+//
+//
+//                stringFromJson = jsonToStringFromAssetFolder("palermodb_ita", getApplication());
+////                Log.d("miotag","PARSING palermodb_ita");
+//
+//            }
+//
+//
+//
+//            parseResult(new JSONObject(stringFromJson));
+//
+//        } catch (IOException | JSONException e) {
+//            e.printStackTrace();
+//            System.out.println(e.toString());
+//
+//        }
+
+
+        instantiateDb();
+
+
         try {
+            switch (cityToLoad) {
 
 
-            if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+                case Constants.CITY_MILAN:
 
-                if (TextUtils.equals(Constants.CITY_MILAN, cityToLoad)) {
+                    if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+                        Repository.save(this, Constants.USER_LANGUAGE, Constants.EN_LANGUAGE);
+                        stringFromJson = jsonToStringFromAssetFolder("milandb_en", getApplication());
+                    } else {
+                        Repository.save(this, Constants.USER_LANGUAGE, Constants.ITA_LANGUAGE);
+                        stringFromJson = jsonToStringFromAssetFolder("milandb_ita", getApplication());
+                    }
 
-                    SQLiteDatabase sql=DB1SqlHelper.getInstance(this).getWritableDatabase();
-                    sql.execSQL("DROP TABLE IF EXISTS " + DB1SqlHelper.SITES_TABLE);
-                    sql.execSQL(DB1SqlHelper.CREATE_TABLE_SITES);
+                    break;
 
-                    stringFromJson = jsonToStringFromAssetFolder("milandb_en", getApplication());
-//                    Log.d("miotag","PARSING milan_en");
-                } else {
+                case Constants.CITY_PALERMO:
 
-                    SQLiteDatabase sql=DB1SqlHelper.getInstance(this).getWritableDatabase();
-                    sql.execSQL("DROP TABLE IF EXISTS " + DB1SqlHelper.SITES_TABLE);
-                    sql.execSQL(DB1SqlHelper.CREATE_TABLE_SITES);
+                    if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+                        Repository.save(this, Constants.USER_LANGUAGE, Constants.EN_LANGUAGE);
+                        stringFromJson = jsonToStringFromAssetFolder("palermodb_eng", getApplication());
+                    } else {
+                        Repository.save(this, Constants.USER_LANGUAGE, Constants.ITA_LANGUAGE);
+                        stringFromJson = jsonToStringFromAssetFolder("palermodb_ita", getApplication());
+                    }
 
-
-                    stringFromJson = jsonToStringFromAssetFolder("palermodb_eng", getApplication());
-//                    Log.d("miotag","PARSING palermo_eng");
-                }
-            }  else if (TextUtils.equals(Constants.CITY_MILAN, cityToLoad)) {
-
-                SQLiteDatabase sql=DB1SqlHelper.getInstance(this).getWritableDatabase();
-                sql.execSQL("DROP TABLE IF EXISTS " + DB1SqlHelper.SITES_TABLE);
-                sql.execSQL(DB1SqlHelper.CREATE_TABLE_SITES);
-
-                stringFromJson = jsonToStringFromAssetFolder("milandb_ita", getApplication());
-//                Log.d("miotag","PARSING milandb_ita");
-            } else {
-
-                SQLiteDatabase sql=DB1SqlHelper.getInstance(this).getWritableDatabase();
-                sql.execSQL("DROP TABLE IF EXISTS " + DB1SqlHelper.SITES_TABLE);
-                sql.execSQL(DB1SqlHelper.CREATE_TABLE_SITES);
+                    break;
 
 
-                stringFromJson = jsonToStringFromAssetFolder("palermodb_ita", getApplication());
-//                Log.d("miotag","PARSING palermodb_ita");
+                case Constants.CITY_TURIN:
+
+
+                    if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
+                        Repository.save(this, Constants.USER_LANGUAGE, Constants.EN_LANGUAGE);
+                    stringFromJson = jsonToStringFromAssetFolder("torinodb_eng", getApplication());
+//                        Log.d("miotag", "TORINO DA INSERIRE IN ENG!");
+                    } else {
+                        Repository.save(this, Constants.USER_LANGUAGE, Constants.ITA_LANGUAGE);
+                        stringFromJson = jsonToStringFromAssetFolder("torinodb_ita", getApplication());
+                    }
+
 
             }
 
-
-//            if (TextUtils.equals(intent.getStringExtra("languages"), "english")) {
-//                Log.d("miotag","intent è inglese");
-//                stringFromJson = jsonToStringFromAssetFolder("milandb_en", getApplication());
-//
-//            } else if (TextUtils.equals(intent.getStringExtra("languages"), "italian")) {
-//                stringFromJson = jsonToStringFromAssetFolder("milandb_ita", getApplication());
-//                Log.d("miotag","intent è italiano");
-//            } else {
-//                stringFromJson = jsonToStringFromAssetFolder("milandb_ita", getApplication());
-//                Log.d("miotag","intent è predefinito");
-//            }
-
-
             parseResult(new JSONObject(stringFromJson));
-
-        } catch (IOException | JSONException e) {
+        } catch (JSONException | IOException e){
             e.printStackTrace();
-            System.out.println(e.toString());
-
         }
 
 
@@ -144,16 +195,6 @@ public class ReadFromJson extends IntentService {
                 site.latitude = coordinates.getDouble(0);
                 site.longitude = coordinates.getDouble(1);
 
-//                //adjacency
-//                JSONArray adjacentsArray=singleSite.getJSONArray("nearest_sites");
-////                for (int j=0; j< adjacentsArray.length(); j++){
-////                    JSONObject singleAdjacency=adjacentsArray.getJSONObject(j);
-////                    site.allAdjacency.add(singleAdjacency.getString("id"));
-////                    Log.d("miotag", "adiacenze acquisita per  " + site.name + " -> "+ singleAdjacency.getString("id") );
-////                }
-//
-//                site.allAdjacency=adjacentsArray.toString();
-//                Log.d("miotag","allAdjacency: "+site.allAdjacency);
 
                 //PICTURES
                 JSONArray jsonArrayPicture=singleSite.getJSONArray("pictures");
@@ -167,6 +208,7 @@ public class ReadFromJson extends IntentService {
                     site.pictureUrl=pictureJson.getString("picture");
                 }else {
                     site.pictureUrl="placeholder";
+                    Log.d("miotag","ho inserito un placeHolder per il sito: "+site.name);
                 }
 
                 //sezione tickets
@@ -245,175 +287,182 @@ public class ReadFromJson extends IntentService {
         return new String(data);
     }
 
-
-
-    private String convertFromAppTypeToDBType(String s){
-        String stringToReturn="";
-
-        if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")){
-
-            switch (s) {
-                case "Theaters":
-
-                    stringToReturn="theaters";
-
-                    break;
-
-                case "Palaces and Castles":
-
-                    stringToReturn="palaces";
-                    break;
-
-                case "Villas, Gardens and Parks":
-
-                    stringToReturn="villas";
-                    break;
-
-                case "Museums and Art galleries":
-
-                    stringToReturn="museums";
-                    break;
-
-                case "Statues and Fountains":
-
-                    stringToReturn="statues";
-                    break;
-
-                case "Squares and Streets":
-
-                    stringToReturn="squares";
-
-                    break;
-
-                case "Arches, Gates and Walls":
-
-                    stringToReturn="arches";
-                    break;
-
-                case "Fairs and Markets":
-
-                    stringToReturn="fairs";
-                    break;
-
-                case "Cemeteries and Memorials":
-
-                    stringToReturn="cemeteries";
-                    break;
-
-                case "Buildings":
-
-                    stringToReturn="buildings";
-                    break;
-
-                case "Bridges":
-
-                    stringToReturn="bridges";
-                    break;
-
-                case "Churches, Oratories and Places of worship":
-
-                    stringToReturn="churches";
-                    break;
-
-                case "Other monuments and Places of interest":
-
-                    stringToReturn="other";
-                    break;
-
-            }
-
-            return stringToReturn;
-
-
-
-        } else {
-            switch (s) {
-
-                case "Teatri":
-
-                    stringToReturn="teatri";
-                    break;
-
-                case "Palazzi e Castelli":
-
-                    stringToReturn="palazzi";
-
-                    break;
-
-                case "Ville, Giardini e Parchi":
-
-                    stringToReturn="ville";
-
-                    break;
-
-                case "Musei e Gallerie d'arte":
-
-                    stringToReturn="musei";
-
-                    break;
-
-                case "Statue e Fontane":
-
-
-                    stringToReturn="statue";
-
-                    break;
-
-                case "Piazze e Strade":
-
-                    stringToReturn="piazze";
-
-
-                    break;
-
-                case "Archi, Porte e Mura":
-
-                    stringToReturn="archi";
-
-                    break;
-
-                case "Fiere e Mercati":
-
-                    stringToReturn="fiere";
-
-                    break;
-
-                case "Cimiteri e Memoriali":
-
-                    stringToReturn="cimiteri";
-
-                    break;
-
-
-                case "Edifici":
-
-                    stringToReturn="edifici";
-
-                    break;
-
-                case "Ponti":
-
-                    stringToReturn="ponti";
-
-                    break;
-
-                case "Chiese, Oratori e Luoghi di culto":
-
-                    stringToReturn="chiese";
-
-                    break;
-
-                case "Altri monumenti e Luoghi di interesse":
-
-                    stringToReturn="altri";
-                    break;
-
-            }
-        }
-
-
-        return stringToReturn;
-
+    private void instantiateDb(){
+
+        SQLiteDatabase sql=DB1SqlHelper.getInstance(this).getWritableDatabase();
+            sql.execSQL("DROP TABLE IF EXISTS " + DB1SqlHelper.SITES_TABLE);
+            sql.execSQL(DB1SqlHelper.CREATE_TABLE_SITES);
     }
+
+
+
+//    private String convertFromAppTypeToDBType(String s){
+//        String stringToReturn="";
+//
+//        if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")){
+//
+//            switch (s) {
+//                case "Theaters":
+//
+//                    stringToReturn="theaters";
+//
+//                    break;
+//
+//                case "Palaces and Castles":
+//
+//                    stringToReturn="palaces";
+//                    break;
+//
+//                case "Villas, Gardens and Parks":
+//
+//                    stringToReturn="villas";
+//                    break;
+//
+//                case "Museums and Art galleries":
+//
+//                    stringToReturn="museums";
+//                    break;
+//
+//                case "Statues and Fountains":
+//
+//                    stringToReturn="statues";
+//                    break;
+//
+//                case "Squares and Streets":
+//
+//                    stringToReturn="squares";
+//
+//                    break;
+//
+//                case "Arches, Gates and Walls":
+//
+//                    stringToReturn="arches";
+//                    break;
+//
+//                case "Fairs and Markets":
+//
+//                    stringToReturn="fairs";
+//                    break;
+//
+//                case "Cemeteries and Memorials":
+//
+//                    stringToReturn="cemeteries";
+//                    break;
+//
+//                case "Buildings":
+//
+//                    stringToReturn="buildings";
+//                    break;
+//
+//                case "Bridges":
+//
+//                    stringToReturn="bridges";
+//                    break;
+//
+//                case "Churches, Oratories and Places of worship":
+//
+//                    stringToReturn="churches";
+//                    break;
+//
+//                case "Other monuments and Places of interest":
+//
+//                    stringToReturn="other";
+//                    break;
+//
+//            }
+//
+//            return stringToReturn;
+//
+//
+//
+//        } else {
+//            switch (s) {
+//
+//                case "Teatri":
+//
+//                    stringToReturn="teatri";
+//                    break;
+//
+//                case "Palazzi e Castelli":
+//
+//                    stringToReturn="palazzi";
+//
+//                    break;
+//
+//                case "Ville, Giardini e Parchi":
+//
+//                    stringToReturn="ville";
+//
+//                    break;
+//
+//                case "Musei e Gallerie d'arte":
+//
+//                    stringToReturn="musei";
+//
+//                    break;
+//
+//                case "Statue e Fontane":
+//
+//
+//                    stringToReturn="statue";
+//
+//                    break;
+//
+//                case "Piazze e Strade":
+//
+//                    stringToReturn="piazze";
+//
+//
+//                    break;
+//
+//                case "Archi, Porte e Mura":
+//
+//                    stringToReturn="archi";
+//
+//                    break;
+//
+//                case "Fiere e Mercati":
+//
+//                    stringToReturn="fiere";
+//
+//                    break;
+//
+//                case "Cimiteri e Memoriali":
+//
+//                    stringToReturn="cimiteri";
+//
+//                    break;
+//
+//
+//                case "Edifici":
+//
+//                    stringToReturn="edifici";
+//
+//                    break;
+//
+//                case "Ponti":
+//
+//                    stringToReturn="ponti";
+//
+//                    break;
+//
+//                case "Chiese, Oratori e Luoghi di culto":
+//
+//                    stringToReturn="chiese";
+//
+//                    break;
+//
+//                case "Altri monumenti e Luoghi di interesse":
+//
+//                    stringToReturn="altri";
+//                    break;
+//
+//            }
+//        }
+//
+//
+//        return stringToReturn;
+//
+//    }
 
 }

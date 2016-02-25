@@ -108,14 +108,14 @@
         android:layout_marginTop="56dp"
         android:layout_width="match_parent"
         android:layout_height="270dp"
-        android:alpha="0.98"
         >
-        <!--android:alpha="0.10"-->
+        <!--android:alpha="0.10"
+         android:alpha="0.98"-->
 
 
 
         <RelativeLayout
-            android:background="@color/white"
+            android:background="@color/blue400"
             android:id="@+id/reveal_items"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -170,13 +170,12 @@
                         android:id="@+id/imageViewRevealIconHome"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:alpha="0.5"
-                        android:background="@mipmap/ic_home" />
+                        android:background="@drawable/ic_home_white" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Home" />
+                        android:text="@string/txtRevealMenuHome" />
                 </LinearLayout>
 
 
@@ -196,7 +195,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Città" />
+                        android:text="@string/txtRevealMenuChangeCity" />
                 </LinearLayout>
 
 
@@ -216,7 +215,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Discovery" />
+                        android:text="@string/txtRevealMenuDiscovery" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -249,13 +248,12 @@
                         android:id="@+id/imageViewRevealIconExplorer"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:alpha="0.5"
                         android:background="@mipmap/ic_explorer" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Explorer" />
+                        android:text="@string/txtRevealMenuExplorer" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -277,7 +275,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Offline/Online" />
+                        android:text="" />
                 </LinearLayout>
 
 
@@ -298,7 +296,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Credits" />
+                        android:text="@string/txtRevealMenuCredits" />
                 </LinearLayout>
 
             </LinearLayout>

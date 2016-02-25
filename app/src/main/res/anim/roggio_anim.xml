@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+
+
+    <item android:drawable="@drawable/roggio1" android:duration="40" />
+    <item android:drawable="@drawable/roggio2" android:duration="40" />
+    <item android:drawable="@drawable/roggio3" android:duration="40" />
+    <item android:drawable="@drawable/roggio4" android:duration="40" />
+    <item android:drawable="@drawable/roggio5" android:duration="40" />
+    <item android:drawable="@drawable/roggio6" android:duration="40" />
+    <item android:drawable="@drawable/roggio7" android:duration="40" />
+    <item android:drawable="@drawable/roggio8" android:duration="40" />
+    <item android:drawable="@drawable/roggio9" android:duration="40" />
+    <item android:drawable="@drawable/roggio10" android:duration="40" />
+    <item android:drawable="@drawable/roggio11" android:duration="40" />
+    <item android:drawable="@drawable/roggio12" android:duration="40" />
+    <item android:drawable="@drawable/roggio13" android:duration="40" />
+    <item android:drawable="@drawable/roggio14" android:duration="40" />
+    <item android:drawable="@drawable/roggio15" android:duration="40" />
+    <item android:drawable="@drawable/roggio16" android:duration="40" />
+    <item android:drawable="@drawable/roggio17" android:duration="40" />
+    <item android:drawable="@drawable/roggio18" android:duration="40" />
+    <item android:drawable="@drawable/roggio19" android:duration="40" />
+    <item android:drawable="@drawable/roggio20" android:duration="40" />
+    <item android:drawable="@drawable/roggio21" android:duration="40" />
+    <item android:drawable="@drawable/roggio22" android:duration="40" />
+    <item android:drawable="@drawable/roggio23" android:duration="40" />
+    <item android:drawable="@drawable/roggio24" android:duration="40" />
+    <item android:drawable="@drawable/roggio25" android:duration="40" />
+    <item android:drawable="@drawable/roggio26" android:duration="40" />
+    <item android:drawable="@drawable/roggio27" android:duration="40" />
+    <item android:drawable="@drawable/roggio28" android:duration="40" />
+    <item android:drawable="@drawable/roggio29" android:duration="40" />
+    <item android:drawable="@drawable/roggio30" android:duration="40" />
+    <item android:drawable="@drawable/roggio31" android:duration="40" />
+    <item android:drawable="@drawable/roggio32" android:duration="40" />
+    <item android:drawable="@drawable/roggio33" android:duration="40" />
+    <item android:drawable="@drawable/roggio34" android:duration="40" />
+    <item android:drawable="@drawable/roggio35" android:duration="40" />
+    <item android:drawable="@drawable/roggio36" android:duration="40" />
+    <item android:drawable="@drawable/roggio37" android:duration="40" />
+    <item android:drawable="@drawable/roggio38" android:duration="40" />
+    <item android:drawable="@drawable/roggio39" android:duration="40" />
+    <item android:drawable="@drawable/roggio40" android:duration="40" />
+    <item android:drawable="@drawable/roggio41" android:duration="40" />
+    <item android:drawable="@drawable/roggio42" android:duration="40" />
+    <item android:drawable="@drawable/roggio43" android:duration="40" />
+    <item android:drawable="@drawable/roggio44" android:duration="40" />
+    <item android:drawable="@drawable/roggio45" android:duration="40" />
+    <item android:drawable="@drawable/roggio46" android:duration="40" />
+    <item android:drawable="@drawable/roggio47" android:duration="40" />
+    <item android:drawable="@drawable/roggio48" android:duration="40" />
+    <item android:drawable="@drawable/roggio49" android:duration="40" />
+    <item android:drawable="@drawable/roggio50" android:duration="40" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</animation-list>

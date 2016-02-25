@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -34,9 +32,6 @@ public class ChooseCityActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.citychoose_activity);
-
-
-
         i=getIntent();
 
         if(i.getBooleanExtra("fromSettingTourActivity",false)) {
@@ -56,9 +51,15 @@ public class ChooseCityActivity extends AppCompatActivity {
 
 
         ArrayList<String> s=new ArrayList<String>();
-//TODO le stringhe saranno gli URL delle immagini delle città da mostrare
         s.add(Constants.CITY_MILAN);
         s.add(Constants.CITY_PALERMO);
+
+        //TORINO 10/02
+
+        s.add(Constants.CITY_TURIN);
+
+
+
 
         recycler=(RecyclerView)findViewById(R.id.recyclerViewCityChooserActivity);
 
@@ -87,12 +88,6 @@ public class ChooseCityActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         recycler.setAdapter(adapter);
-
-    }
-
-    @Override
-    public void onPause(){
-        super.onPause();
 
     }
 

@@ -4,6 +4,32 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="#64b5f6">
+    
+    
+    <TextView
+        android:text="@string/configurationCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtSplashScreen1"
+        android:textColor="@color/white"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-regular"
+        android:textSize="16sp"
+        android:layout_above="@+id/txtSplashScreen2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+
+        android:text="@string/downloadAndInstallation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtSplashScreen2"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-light"
+        android:textSize="14sp"
+        android:layout_above="@+id/splashGifAnimation"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
 
     <ImageView
         android:layout_width="wrap_content"

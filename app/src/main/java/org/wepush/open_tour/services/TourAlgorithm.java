@@ -1,7 +1,6 @@
 
 package org.wepush.open_tour.services;
 
-import android.app.usage.ConfigurationStats;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,10 +11,10 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
-import org.wepush.open_tour.utils.Constants;
+import org.wepush.open_tour.R;
 import org.wepush.open_tour.structures.DB1SqlHelper;
 import org.wepush.open_tour.structures.Site;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.Repository;
 import org.wepush.open_tour.utils.SphericalMercator;
 
@@ -56,12 +55,14 @@ public class TourAlgorithm {
         int indexToChoose=0;
         int indexActualSize=0;
 
-        Log.d("miotag"," starting site DENTRO l'algoritmo: "+startingSite.latitude+", "+startingSite.longitude);
+//        Log.d("miotag"," starting site DENTRO l'algoritmo: "+startingSite.latitude+", "+startingSite.longitude);
         timeLeft=timeToSpend;
         timeToStart=timeOfDay;//al momento è solo la data
         context=ctx;
-
-       if( TextUtils.equals(Repository.retrieve(context, Constants.HOW_SAVE, String.class),"walk"))
+        Log.d("miotag","TOUR how: "+Repository.retrieve(context, Constants.HOW_SAVE, String.class));
+        Log.d("miotag","prova di stringhe walk: "+context.getResources().getString(R.string.by_walk));
+        Log.d("miotag","prova di stringhe bike: "+context.getResources().getString(R.string.by_bike));
+       if( Repository.retrieve(context, Constants.HOW_SAVE, String.class).equals(context.getResources().getString(R.string.by_walk)))
         {
             Log.d("miotag","tour by walk");
             howToMove=3;
@@ -73,7 +74,6 @@ public class TourAlgorithm {
 
        try {
            timeToStart.set(Calendar.DAY_OF_WEEK_IN_MONTH, 1);
-
            timeToStart.set(Calendar.DAY_OF_WEEK, 1);
            timeToStart.set(Calendar.DAY_OF_MONTH, 1);
        } catch (NullPointerException e ){
@@ -193,7 +193,7 @@ public class TourAlgorithm {
             }
             actualPopolarity=0;
         }
-        Log.d("miotag","l'indice scelto è: "+indexToChoose+", corrispondente a priorità: "+totalPopolarity);
+//        Log.d("miotag","l'indice scelto è: "+indexToChoose+", corrispondente a priorità: "+totalPopolarity);
         return indexToChoose;
     }
 
@@ -224,7 +224,7 @@ public class TourAlgorithm {
 
         Type type2=new TypeToken<ArrayList<String>>() {}.getType();
         Gson gson2=new Gson();
-        ArrayList<String>typeOfSiteChosen=gson2.fromJson(Repository.retrieve(context,Constants.WHAT_SAVE,String.class),type2);
+        ArrayList<String> typeOfSiteChosen =gson2.fromJson(Repository.retrieve(context,Constants.WHAT_SAVE,String.class),type2);
 
         for (Site site: siteArray){
             if (
@@ -553,6 +553,11 @@ public class TourAlgorithm {
 
 
     private static boolean isSiteTypeChosen(Site site, ArrayList<String> sList){
+
+        //TODO 20 novembre for di controllo sulle categorie dei siti da visitare
+        for(String s: sList ){
+//            Log.d("miotag","TOURTASK: sito - "+site.typeOfSite+" \n "+" categoria - "+s+"\n");
+        }
 
         for (String s: sList){
             if (TextUtils.equals(s,"all")){

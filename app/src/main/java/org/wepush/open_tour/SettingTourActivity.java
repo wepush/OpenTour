@@ -7,13 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.ResultReceiver;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,10 +20,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -34,15 +30,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.vision.Frame;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.nineoldandroids.view.ViewHelper;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -50,18 +42,15 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import org.angmarch.circledpicker.CircledPicker;
 import org.osmdroid.util.GeoPoint;
 import org.wepush.open_tour.fragments_dialogs.HowFragment;
-import org.wepush.open_tour.fragments_dialogs.IntroPagerFragment;
 import org.wepush.open_tour.fragments_dialogs.MapDialogFragment;
 import org.wepush.open_tour.fragments_dialogs.NoGpsDialog;
 import org.wepush.open_tour.fragments_dialogs.NoPackageFragment;
 import org.wepush.open_tour.fragments_dialogs.OutOfBoundsDialog;
+import org.wepush.open_tour.fragments_dialogs.SettingTutorialFragment;
+import org.wepush.open_tour.fragments_dialogs.WhatFragment;
 import org.wepush.open_tour.services.LookUpIntentService;
-import org.wepush.open_tour.structures.DB1SqlHelper;
-import org.wepush.open_tour.structures.Site;
 import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.Repository;
-
-
 
 import java.io.File;
 import java.lang.reflect.Type;
@@ -102,15 +91,23 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     private int cx,cy,radius;
     private SupportAnimator animator_reverse;
     private boolean mapNotFound=false;
+    private boolean backCloseCircularMenu=false;
     public static boolean customPositionIsSet=false;
     private LocationManager serviceGPS;
+    private ImageView btnCircularOptions;
 
-    public static ArrayList<Site> museums,churches,palaces,villas;
+//    public static ArrayList<Site> museums,churches,palaces,villas;
+    private  File dirOsmDroid,dirMACOSX,dirMilanImages,dirPalermoImages, dirTurinImages;
+
+
 
     //for lookup purpouse (online mode only)
     public static GoogleApiClient mGoogleApiClient;
     private  static String mAddressOutput,actualMode;
     public SettingTourActivity.AddressResultReceiver mResultReceiver;
+
+    String city;
+
 
 
 
@@ -119,15 +116,19 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.d("miotag","onCreate");
 
+        city=Repository.retrieve(this, Constants.KEY_CURRENT_CITY,String.class);
+
+        dirOsmDroid = new File(Environment.getExternalStorageDirectory().getPath() + "/osmdroid");
+        dirMACOSX = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath() + "/_MACOSX");
+        dirMilanImages = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath() + "/" + Constants.UNZIPPED_IMAGES_MILAN_DOWNLOAD);
+        dirPalermoImages = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath() + "/" + Constants.UNZIPPED_IMAGES_PALERMO_DOWNLOAD);
+        dirTurinImages = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath() + "/" + Constants.UNZIPPED_IMAGES_TURIN_DOWNLOAD);
 
         if (Repository.retrieve(this, Constants.WHAT_I_WANT_TO_DOWNLOAD,String.class).equals(Constants.DOWNLOADING_IMAGES_ONLY)){
             mapNotFound=true;
         }
-
-
-
-
 
         monthNames=new String []{"", getResources().getString(R.string.january),
                 getResources().getString(R.string.february),
@@ -147,15 +148,12 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         setContentView(R.layout.setting_tour_activity);
 
 
-
         txtWhen=(TextView)findViewById(R.id.txtWhen);
         txtWhere=(TextView)findViewById(R.id.txtWhere);
         txtWhatToSee=(TextView)findViewById(R.id.txtWhatToVisit);
         txtHow=(TextView)findViewById(R.id.txtHow);
         tSetTime=(TextView)findViewById(R.id.txtSetTime);
 
-//        txtDrawerNetwork=(TextView)findViewById(R.id.txtDrawerNetwork);
-//        txtManagePackage=(TextView)findViewById(R.id.txtDrawerManagePackage);
         txtChangeNetwork=(TextView)findViewById(R.id.textChangeNetwork);
         actualMode= Repository.retrieve(getBaseContext(), Constants.ACTIVATE_ONLINE_CONNECTION, String.class);
 
@@ -175,13 +173,6 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         setSupportActionBar(toolbar);
 
 
-        if (mapNotFound){
-            imgCircleChangeNetworkMenu.setClickable(false);
-            imgCircleChangeNetworkMenu.setAlpha(0.5f);
-        }
-
-
-
         //animation Menu
         //TODO 12 Settembre
 
@@ -192,30 +183,21 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         //set the right label for imgCircleChangeNetworkMenu
         setActualNetworkTextInRevealMenu();
 
-        ImageView btnCircularOptions=(ImageView) findViewById(R.id.imgMenuFromToolbar);
+        btnCircularOptions=(ImageView) findViewById(R.id.imgMenuFromToolbar);
         btnCircularOptions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                flParent=(FrameLayout)findViewById(R.id.frameLayoutParent);
+        flParent=(FrameLayout)findViewById(R.id.frameLayoutParent);
 
-                llBlur=(LinearLayout)findViewById(R.id.llToBlur);
-//                llBlur.setAlpha(0.5f);
-//                llBlur.setBackgroundColor(getResources().getColor(R.color.alfaBlack));
-//                llBlur.setBackgroundColor(getResources().getColor(R.color.black));
-//                llBlur.setAlpha(0.5f);
-
-//                int cx = (mRevealView.getLeft() + mRevealView.getRight());
-                    cx=0;
-//                int cy = (mRevealView.getTop() + mRevealView.getBottom())/2;
-               cy = mRevealView.getTop();
-
-               radius = Math.max(mRevealView.getWidth(), mRevealView.getHeight());
+        llBlur=(LinearLayout)findViewById(R.id.llToBlur);
+        cx=0;
+        cy = mRevealView.getTop();
+        radius = Math.max(mRevealView.getWidth(), mRevealView.getHeight());
 
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
 
-                    SupportAnimator animator =
-                            ViewAnimationUtils.createCircularReveal(mRevealView, cx, cy, 0, radius);
+                    SupportAnimator animator = ViewAnimationUtils.createCircularReveal(mRevealView, cx, cy, 0, radius);
                     animator.setInterpolator(new AccelerateDecelerateInterpolator());
                     animator.setDuration(800);
 
@@ -229,8 +211,6 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                         flParent.setBackgroundColor(getResources().getColor(R.color.black));
 
                         touchModeWithCircularMenu(false);
-//                        mRevealView.setElevation(25f);
-
                         hidden = false;
                     } else {
                         animator_reverse.addListener(new SupportAnimator.AnimatorListener() {
@@ -260,11 +240,8 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                         llBlur.setAlpha(1f);
                         flParent.setBackgroundColor(getResources().getColor(R.color.white));
                         touchModeWithCircularMenu(true);
-
-
-
                     }
-                } else {
+                } else {        // <=LOLLIPOP
                     if (hidden) {
                         Animator anim = android.view.ViewAnimationUtils.createCircularReveal(mRevealView, cx, cy, 0, radius);
                         mRevealView.setVisibility(View.VISIBLE);
@@ -273,7 +250,6 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
                         llBlur.setBackgroundColor(getResources().getColor(R.color.white));
                         flParent.setBackgroundColor(getResources().getColor(R.color.black));
                         touchModeWithCircularMenu(false);
-//                        mRevealView.setElevation(25f);
                         hidden = false;
 
                     } else {
@@ -370,13 +346,17 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         showCurrentTime(now.get(Calendar.HOUR_OF_DAY),now.get(Calendar.MINUTE));
 
          fabButton=(android.support.design.widget.FloatingActionButton)findViewById(R.id.floatButton);
-//        fabButton.setRippleColor(getResources().getColor(R.color.orange500));
 
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (isAnySettingVoid()) {
+                if (backCloseCircularMenu){
+                    btnCircularOptions.performClick();
+                    backCloseCircularMenu=false;
+                }
+
+                else if (isAnySettingVoid()) {
                     Toast.makeText(context, R.string.complete_all_fields, Toast.LENGTH_SHORT).show();
                 } else {
 
@@ -415,16 +395,22 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
             @Override
             public void onClick(View v) {
 
+                if (backCloseCircularMenu) {
+                    btnCircularOptions.performClick();
+                    backCloseCircularMenu = false;
+                } else {
 
-                Calendar now=Calendar.getInstance();
-                TimePickerDialog dpd = TimePickerDialog.newInstance(
-                        SettingTourActivity.this,
-                        now.get(Calendar.HOUR_OF_DAY),
-                        now.get(Calendar.MINUTE),
-                        true
-                );
-                dpd.show(getFragmentManager(), "Timepickerdialog");
 
+                    Calendar now = Calendar.getInstance();
+                    TimePickerDialog dpd = TimePickerDialog.newInstance(
+                            SettingTourActivity.this,
+                            now.get(Calendar.HOUR_OF_DAY),
+                            now.get(Calendar.MINUTE),
+                            true
+                    );
+                    dpd.show(getFragmentManager(), "Timepickerdialog");
+
+                }
             }
         });
 
@@ -432,17 +418,25 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         llClickWhen.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Calendar now=Calendar.getInstance();
-                DatePickerDialog dpd = DatePickerDialog.newInstance(
-                        SettingTourActivity.this,
-                        now.get(Calendar.YEAR),
-                        now.get(Calendar.MONTH),
-                        now.get(Calendar.DAY_OF_MONTH)
 
-                );
+                if (backCloseCircularMenu){
+                    btnCircularOptions.performClick();
+                    backCloseCircularMenu=false;
+                }
 
-                dpd.setMinDate(now);//this instruction let calendar to exclude past dates
-                dpd.show(getFragmentManager(), "Datepickerdialog");
+                else {
+                    Calendar now = Calendar.getInstance();
+                    DatePickerDialog dpd = DatePickerDialog.newInstance(
+                            SettingTourActivity.this,
+                            now.get(Calendar.YEAR),
+                            now.get(Calendar.MONTH),
+                            now.get(Calendar.DAY_OF_MONTH)
+
+                    );
+
+                    dpd.setMinDate(now);//this instruction let calendar to exclude past dates
+                    dpd.show(getFragmentManager(), "Datepickerdialog");
+                }
 
             }
 
@@ -451,22 +445,43 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         llClickHow.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                if (backCloseCircularMenu){
+                    btnCircularOptions.performClick();
+                    backCloseCircularMenu=false;
+                }
 
-                showAppropriateDialog(Constants.SHOW_HOW_DIALOG);
+                else {
+
+                    showAppropriateDialog(Constants.SHOW_HOW_DIALOG);
+                }
             }
         });
 
         llClickWhat.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                if (backCloseCircularMenu){
+                    btnCircularOptions.performClick();
+                    backCloseCircularMenu=false;
+                }
 
-                showAppropriateDialog(Constants.SHOW_WHAT_DIALOG);
+                else {
+
+                    showAppropriateDialog(Constants.SHOW_WHAT_DIALOG);
+                }
             }
         });
 
         llClickWhere.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+
+                if (backCloseCircularMenu){
+                    btnCircularOptions.performClick();
+                    backCloseCircularMenu=false;
+                }
+
+                else
 
                 if (serviceGPS.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
@@ -604,48 +619,52 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 
             } //versione > Lollipop
 
-                Animator anim = android.view.ViewAnimationUtils.createCircularReveal(mRevealView, cx, cy, radius, 0);
-                anim.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        mRevealView.setVisibility(View.INVISIBLE);
-                        hidden = true;
-                    }
-                });
-                anim.start();
-                llBlur.setAlpha(1f);
-                touchModeWithCircularMenu(true);
+            else {
+                    Animator anim = android.view.ViewAnimationUtils.createCircularReveal(mRevealView, cx, cy, radius, 0);
+                    anim.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            mRevealView.setVisibility(View.INVISIBLE);
+                            hidden = true;
+                        }
+                    });
+                    anim.start();
+                    llBlur.setAlpha(1f);
+                    touchModeWithCircularMenu(true);
 
-                if (TextUtils.equals(txtChangeNetwork.getText(),getResources().getString(R.string.onlineToActivate))) {
-                    Log.d("miotag", "online connection: ON");
-                    Repository.save(getBaseContext(), Constants.ACTIVATE_ONLINE_CONNECTION, Constants.ONLINE_CONNECTION_ON);
-                    txtChangeNetwork.setText(R.string.offlineToActivate);
-                    imgIconChangeNetwork.setBackground(getResources().getDrawable(R.mipmap.ic_offline));
-                    Toast.makeText(getBaseContext(), R.string.internetOnLineOn, Toast.LENGTH_SHORT).show();
-                } else {
-                    Log.d("miotag","online connection: ON");
-                    Repository.save(getBaseContext(), Constants.ACTIVATE_ONLINE_CONNECTION, Constants.ONLINE_CONNECTION_OFF);
-                    txtChangeNetwork.setText(R.string.onlineToActivate);
-                    imgIconChangeNetwork.setBackground(getResources().getDrawable(R.mipmap.ic_online));
-                    Toast.makeText(getBaseContext(),R.string.internetOnLineOff,Toast.LENGTH_SHORT).show();
+                    if (TextUtils.equals(txtChangeNetwork.getText(), getResources().getString(R.string.onlineToActivate))) {
+//                        Log.d("miotag", "online connection: ON");
+                        Repository.save(getBaseContext(), Constants.ACTIVATE_ONLINE_CONNECTION, Constants.ONLINE_CONNECTION_ON);
+                        txtChangeNetwork.setText(R.string.offlineToActivate);
+                        imgIconChangeNetwork.setBackground(getResources().getDrawable(R.mipmap.ic_offline));
+                        Toast.makeText(getBaseContext(), R.string.internetOnLineOn, Toast.LENGTH_SHORT).show();
+                    } else {
+//                        Log.d("miotag", "online connection: ON");
+                        Repository.save(getBaseContext(), Constants.ACTIVATE_ONLINE_CONNECTION, Constants.ONLINE_CONNECTION_OFF);
+                        txtChangeNetwork.setText(R.string.onlineToActivate);
+                        imgIconChangeNetwork.setBackground(getResources().getDrawable(R.mipmap.ic_online));
+                        Toast.makeText(getBaseContext(), R.string.internetOnLineOff, Toast.LENGTH_SHORT).show();
+                    }
                 }
 
 
         }});
 
 
-        imgCircleHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getBaseContext(),R.string.soon, Toast.LENGTH_SHORT).show();
-            }
-        });
+
+//        imgCircleHome.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getBaseContext(),R.string.soon, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         imgCircleExplorerMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(),R.string.soon, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getBaseContext(), ExplorerActivity.class));
+                finish();
             }
         });
 
@@ -657,17 +676,7 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
         });
 
 
-
-        museums=new ArrayList<>();
-        churches=new ArrayList<>();
-        villas=new ArrayList<>();
-        palaces=new ArrayList<>();
-
-        museums= DB1SqlHelper.getInstance(this).getSameCategorySite(this.getResources().getString(R.string.museums_and_art_galleries));
-        churches=DB1SqlHelper.getInstance(this).getSameCategorySite(this.getResources().getString(R.string.churchs_oratories_worship));
-        villas=DB1SqlHelper.getInstance(this).getSameCategorySite(this.getString(R.string.villas_gardens_parks));
-        palaces = DB1SqlHelper.getInstance(this).getSameCategorySite(this.getResources().getString(R.string.palaces_and_castels));
-
+        HomeActivity.initAllaArraysForDiscovery(city);
 
 
 
@@ -678,15 +687,59 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     @Override
     public void onResume(){
         super.onResume();
-
-//        registerReceiver(receiver, new IntentFilter(
-//                DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        Log.d("miotag","onResume");
 
         if (serviceGPS!= null) {
             if (!(serviceGPS.isProviderEnabled(LocationManager.GPS_PROVIDER))) {
+
                 Toast.makeText(context, R.string.turn_gps_on, Toast.LENGTH_SHORT).show();
             }
         }
+
+//       mGoogleApiClient.connect();
+        acquiringUserPosition();
+
+        //TODO disabled for 13-11 release
+        // section for alertdialog-tutorial
+        boolean tutorialNotSeen=Repository.retrieve(this, Constants.TUTORIAL_SETTING_ACTIVITY_NOT_SEEN,Boolean.class);
+//        boolean tutorialNotSeen=true;
+        if (tutorialNotSeen) {
+
+            //decommentare per riattivare
+
+            showAppropriateDialog(Constants.SHOW_TUTORIAL_SETTING_DIALOG);
+            Repository.save(this, Constants.TUTORIAL_SETTING_ACTIVITY_NOT_SEEN, false);
+        }
+
+        //TODO fine
+
+//check to show/hide functions based on the presence/absence of images/map packages
+        if (mapNotFound){
+            imgCircleChangeNetworkMenu.setClickable(false);
+            imgCircleChangeNetworkMenu.setAlpha(0.5f);
+        }
+
+        if (!(isMapPresent()) && TextUtils.equals(txtChangeNetwork.getText(),getResources().getString(R.string.offlineToActivate))){
+            imgCircleExplorerMode.setClickable(false);
+            imgCircleExplorerMode.setAlpha(0.5f);
+            //this is the case when map ISNOT present, AND connection is OFFLINE
+        }
+
+        if (!(arePicturesPresent())){
+            imgCircleDiscoveryMode.setClickable(false);
+            imgCircleDiscoveryMode.setAlpha(0.5f);
+        }
+
+
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        Log.d("miotag", "onStop");
+//        mGoogleApiClient.disconnect();
+        LocationServices.FusedLocationApi.flushLocations(mGoogleApiClient);
+//        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,)
 
     }
 
@@ -722,7 +775,6 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayWeekMonth) {
        Calendar calendarToSave = new GregorianCalendar(year, monthOfYear, dayWeekMonth); // Note that Month value is 0-based. e.g., 0 for January.
-//        showCurrentData(calendarToSave);
 
         int result = calendarToSave.get(Calendar.DAY_OF_WEEK);
 
@@ -772,15 +824,6 @@ public class SettingTourActivity extends AppCompatActivity implements DatePicker
 
 
     }
-
-    @Override
-    public void onPause(){
-        super.onPause();
-//        unregisterReceiver(null);
-
-//        unregisterReceiver(receiver);
-    }
-
 
 
 
@@ -840,27 +883,74 @@ private boolean isAnySettingVoid(){
             showAppropriateDialog(Constants.SHOW_NO_GPS_DIALOG);
         }
             if (actualUserPosition!=null) {
-                if (
 
-                        ((actualUserPosition.getLongitude() < Constants.MILAN_NORTH_EAST.getLongitude()) &&
+
+                switch (Repository.retrieve(this,Constants.KEY_CURRENT_CITY,String.class)){
+
+                    case Constants.CITY_MILAN:
+
+                        if ( ((actualUserPosition.getLongitude() < Constants.MILAN_NORTH_EAST.getLongitude()) &&
                                 (actualUserPosition.getLongitude() > Constants.MILAN_NORTH_WEST.getLongitude()) &&
                                 (actualUserPosition.getLatitude() > Constants.MILAN_SOUTH_EAST.getLatitude()) &&
-                                (actualUserPosition.getLatitude() < Constants.MILAN_NORTH_EAST.getLatitude()))
-                    ||
+                                (actualUserPosition.getLatitude() < Constants.MILAN_NORTH_EAST.getLatitude())))
+                        {
+                            return true;
+                        } else {
+                            return false;
+                        }
 
-                                ((actualUserPosition.getLongitude() < Constants.PALERMO_NORTH_EAST.getLongitude()) &&
+
+                    case Constants.CITY_PALERMO:
+
+                        if ((actualUserPosition.getLongitude() < Constants.PALERMO_NORTH_EAST.getLongitude()) &&
                                         (actualUserPosition.getLongitude() > Constants.PALERMO_NORTH_WEST.getLongitude()) &&
                                         (actualUserPosition.getLatitude() > Constants.PALERMO_SOUTH_EAST.getLatitude()) &&
                                         (actualUserPosition.getLatitude() < Constants.PALERMO_NORTH_EAST.getLatitude()))
+                        {
+                            return true;
+                        }
+                         else {
+                            return false;
+                        }
+
+                    case Constants.CITY_TURIN:
+
+                        if ((actualUserPosition.getLongitude() < Constants.TURIN_NORTH_EAST.getLongitude()) &&
+                                (actualUserPosition.getLongitude() > Constants.TURIN_NORTH_WEST.getLongitude()) &&
+                                (actualUserPosition.getLatitude() > Constants.TURIN_SOUTH_EAST.getLatitude()) &&
+                                (actualUserPosition.getLatitude() < Constants.TURIN_NORTH_EAST.getLatitude()))
+                        {
+                            return true;
+                        }
+                        else {
+                            return false;
+                        }
 
 
-
-
-                        ) {
-                    return true;
-                } else {
-                    return false;
                 }
+
+
+//                if (
+//
+//                        ((actualUserPosition.getLongitude() < Constants.MILAN_NORTH_EAST.getLongitude()) &&
+//                                (actualUserPosition.getLongitude() > Constants.MILAN_NORTH_WEST.getLongitude()) &&
+//                                (actualUserPosition.getLatitude() > Constants.MILAN_SOUTH_EAST.getLatitude()) &&
+//                                (actualUserPosition.getLatitude() < Constants.MILAN_NORTH_EAST.getLatitude()))
+//                    ||
+//
+//                                ((actualUserPosition.getLongitude() < Constants.PALERMO_NORTH_EAST.getLongitude()) &&
+//                                        (actualUserPosition.getLongitude() > Constants.PALERMO_NORTH_WEST.getLongitude()) &&
+//                                        (actualUserPosition.getLatitude() > Constants.PALERMO_SOUTH_EAST.getLatitude()) &&
+//                                        (actualUserPosition.getLatitude() < Constants.PALERMO_NORTH_EAST.getLatitude()))
+//
+//
+//
+//
+//                        ) {
+//                    return true;
+//                } else {
+//                    return false;
+//                }
             } else {
 
                 showAppropriateDialog(Constants.SHOW_NO_GPS_DIALOG);
@@ -871,24 +961,20 @@ private boolean isAnySettingVoid(){
     private void establishGoogleConnection(){
         if (mGoogleApiClient.isConnected())
         {
-//            Log.d("miotag","establishGoogleConnection");
             acquiringUserPosition();
         } else {
             mGoogleApiClient.connect();
         }
+
     }
 
     private void acquiringUserPosition(){
-//        Log.d("miotag"," acquiring user position");
         Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null){
             //this is need to be done only if LATITUDE_STARTING_POINT /LONGITUDE_STARTING_POINT aren't set
 
-//            if (!(TextUtils.equals(Repository.retrieve(getBaseContext(),Constants.LATITUDE_STARTING_POINT,String.class),""))) {
-
                 if (!(customPositionIsSet)){
-//                    Log.d("miotag","customPosition IS FALSE");
                 double mLastLocationLatitude = mLastLocation.getLatitude();
                 double mLastLocationLongitude = mLastLocation.getLongitude();
 
@@ -897,7 +983,6 @@ private boolean isAnySettingVoid(){
                                     ( Repository.retrieve(this,Constants.ACTIVATE_ONLINE_CONNECTION,String.class).equals("")) ||
                                     (Repository.retrieve(this,Constants.ACTIVATE_ONLINE_CONNECTION,String.class) == null)
                             ){
-//                        Log.d("miotag", "connessione on");
                         Intent i=new Intent(this, LookUpIntentService.class);
                         mResultReceiver=new SettingTourActivity.AddressResultReceiver(new Handler());
                         i.putExtra(Constants.RECEIVER,mResultReceiver);
@@ -940,7 +1025,7 @@ private boolean isAnySettingVoid(){
 
             case Constants.SHOW_WHAT_DIALOG:
                 FragmentManager fmWhat = getSupportFragmentManager();
-                IntroPagerFragment.WhatFragment wfWhat=new IntroPagerFragment.WhatFragment();
+                WhatFragment wfWhat=new WhatFragment();
                 wfWhat.show(fmWhat,"what_fragment");
                 break;
 
@@ -955,153 +1040,23 @@ private boolean isAnySettingVoid(){
                 NoPackageFragment nPackage=new NoPackageFragment();
                 nPackage.show(fmMissingPackages,"nopackage_fragment");
 
-            default:
-//                Toast.makeText(this, R.string.corrupted_installation, Toast.LENGTH_SHORT).show();
+            case Constants.SHOW_TUTORIAL_SETTING_DIALOG:
+                FragmentManager fmSettingTutorial=getSupportFragmentManager();
+                SettingTutorialFragment sTutorial=new SettingTutorialFragment();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+
+                    e.printStackTrace();
+                }
+                sTutorial.show(fmSettingTutorial,"setting_tutorial_fragment");
+            break;
 
         }
 
     }
 
 
-    //options
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-////        getMenuInflater().inflate(R.menu.main_menu, menu);
-//        getMenuInflater().inflate(R.menu.reveal_menu,menu);
-////        this.menu=menu;
-//        return true;
-//    }
-
-//    public boolean onPrepareOptionsMenu (Menu menu){
-//
-//       String actualMode= Repository.retrieve(this, Constants.ACTIVATE_ONLINE_CONNECTION, String.class);
-//        if (TextUtils.equals(actualMode,Constants.ONLINE_CONNECTION_OFF))
-//        {
-//            MenuItem itMenu=menu.findItem(R.id.networkOption);
-//            itMenu.setTitle(R.string.onlineToActivate);
-//        } else
-//
-//        {
-//            MenuItem itMenu=menu.findItem(R.id.networkOption);
-//            itMenu.setTitle(R.string.offlineToActivate);
-//        }
-//
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//
-////        switch(item.getItemId())
-////        {
-////            case R.id.networkOption:
-////                if (TextUtils.equals(item.getTitle(),getResources().getString(R.string.onlineToActivate))) {
-////                    Repository.save(this, Constants.ACTIVATE_ONLINE_CONNECTION, Constants.ONLINE_CONNECTION_ON);
-////                    Toast.makeText(this, R.string.internetOnLineOn, Toast.LENGTH_SHORT).show();
-////                } else {
-////                    Repository.save(this,Constants.ACTIVATE_ONLINE_CONNECTION,Constants.ONLINE_CONNECTION_OFF);
-////                     Toast.makeText(this,R.string.internetOnLineOff,Toast.LENGTH_SHORT).show();
-////                }
-////                break;
-////
-////            case R.id.cityChange:
-////                startActivity(new Intent(this,CityChooserActivity.class));
-////                finish();
-////                break;
-////
-////            case R.id.discoveryActivity:
-////                startActivity(new Intent(this,DiscoveryPreviewPagerActivity.class));
-////                finish();
-////                break;
-////
-//////
-////        }
-////TODO da qui in poi è circularReveal
-//
-//        switch (item.getItemId()) {
-//            case R.id.action_clip:
-//                int cx = (mRevealView.getLeft() + mRevealView.getRight());
-////                int cy = (mRevealView.getTop() + mRevealView.getBottom())/2;
-//                int cy = mRevealView.getTop()+toolbar.getHeight();
-//
-//                int radius = Math.max(mRevealView.getWidth(), mRevealView.getHeight());
-//
-//                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-//
-//
-//                    SupportAnimator animator =
-//                            ViewAnimationUtils.createCircularReveal(mRevealView, cx, cy, 0, radius);
-//                    animator.setInterpolator(new AccelerateDecelerateInterpolator());
-//                    animator.setDuration(800);
-//
-//                    SupportAnimator animator_reverse = animator.reverse();
-//
-//                    if (hidden) {
-//                        mRevealView.setVisibility(View.VISIBLE);
-//                        animator.start();
-//                        hidden = false;
-//                    } else {
-//                        animator_reverse.addListener(new SupportAnimator.AnimatorListener() {
-//                            @Override
-//                            public void onAnimationStart() {
-//
-//                            }
-//
-//                            @Override
-//                            public void onAnimationEnd() {
-//                                mRevealView.setVisibility(View.INVISIBLE);
-//                                hidden = true;
-//
-//                            }
-//
-//                            @Override
-//                            public void onAnimationCancel() {
-//
-//                            }
-//
-//                            @Override
-//                            public void onAnimationRepeat() {
-//
-//                            }
-//                        });
-//                        animator_reverse.start();
-//
-//                    }
-//                } else {
-//                    if (hidden) {
-//                        Animator anim = android.view.ViewAnimationUtils.createCircularReveal(mRevealView, cx, cy, 0, radius);
-//                        mRevealView.setVisibility(View.VISIBLE);
-//                        anim.start();
-//                        hidden = false;
-//
-//                    } else {
-//                        Animator anim = android.view.ViewAnimationUtils.createCircularReveal(mRevealView, cx, cy, radius, 0);
-//                        anim.addListener(new AnimatorListenerAdapter() {
-//                            @Override
-//                            public void onAnimationEnd(Animator animation) {
-//                                super.onAnimationEnd(animation);
-//                                mRevealView.setVisibility(View.INVISIBLE);
-//                                hidden = true;
-//                            }
-//                        });
-//                        anim.start();
-//
-//                    }
-//                }
-//
-//                return true;
-//
-//            case android.R.id.home:
-//                supportFinishAfterTransition();
-//                return true;
-//        }
-//
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
 
     private void showCurrentDate(Calendar calendar){
@@ -1190,7 +1145,6 @@ private boolean isAnySettingVoid(){
         }
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
-//            Log.d("miotag","Address result for LookUp");
             // Display the address string
             // or an error message sent from the intent service.
             mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
@@ -1209,75 +1163,88 @@ private boolean isAnySettingVoid(){
 
     private boolean checkIfPackagesArePresent() {
 
-        File dirOsmDroid = new File(Environment.getExternalStorageDirectory().getPath() + "/osmdroid");
-        File dirMACOSX = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath() + "/_MACOSX");
-        File dirMilanImages = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath() + "/" + Constants.UNZIPPED_IMAGES_MILAN_DOWNLOAD);
-        File dirPalermoImages = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath() + "/" + Constants.UNZIPPED_IMAGES_PALERMO_DOWNLOAD);
 
 
         String packagePreferences = Repository.retrieve(this, Constants.WHAT_I_WANT_TO_DOWNLOAD, String.class);
-        String city = Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class);
+
 
         switch (packagePreferences) {
 
             case Constants.DOWNLOADING_MAPS_IMAGES:
-                Log.d("miotag", "controllo pacchetti per mappe+immagini");
 
-                if (city.equals(Constants.CITY_PALERMO)) {
 
-                    Log.d("miotag", "controllo pacchetti per mappe+immagini per Palermo");
+                switch(city){
+                        case Constants.CITY_PALERMO:
+                            if ((!(dirOsmDroid.isDirectory())) || (!(dirPalermoImages.isDirectory()))) {
+                                return false;
+                                } else {
+                                    return true;
+                                }
 
-                    if ((!(dirOsmDroid.isDirectory())) || (!(dirPalermoImages.isDirectory()))) {
-                        Log.d("miotag", "controllo pacchetti per mappe+immagini per Palermo : non esiste una delle due");
-                        return false;
-                    } else {
-                        Log.d("miotag", "controllo pacchetti per mappe+immagini per Palermo entrambi i pacchetti sono presenti");
-                        return true;
-                    }
-                } else //per Milano
-                    Log.d("miotag", "controllo pacchetti per mappe+immagini per Milano");
-                {
-                    if ((!(dirOsmDroid.isDirectory())) || (!(dirMilanImages.isDirectory()))) {
-                        Log.d("miotag", "controllo pacchetti per mappe+immagini per Milano : non esiste una delle due");
-                        return false;
-                    } else {
-                        Log.d("miotag", "controllo pacchetti per mappe+immagini per Milano : entrambi i pacchetti sono presenti");
-                        return true;
-                    }
+                    case Constants.CITY_MILAN:
+
+                        if ((!(dirOsmDroid.isDirectory())) || (!(dirMilanImages.isDirectory()))) {
+                             return false;
+                            } else {
+                                return true;
+                            }
+
+
+                    case Constants.CITY_TURIN:
+
+                        if ((!(dirOsmDroid.isDirectory())) || (!(dirTurinImages.isDirectory()))) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+
+
+
                 }
 
 
             case Constants.DOWNLOADING_IMAGES_ONLY:
 
-                if (city.equals(Constants.CITY_MILAN)) {
 
-                    if (!(dirMilanImages.isDirectory())) {
-                        Log.d("miotag","controllo pacchetti per immagini di milano: NON presenti");
-                        return false;
-                    } else {
-                        Log.d("miotag","controllo pacchetti per immagini di milano:presenti");
-                        return true;
-                    }
-                } else //immagini per palermo
-                {
-                    if (!(dirPalermoImages.isDirectory())) {
-                        Log.d("miotag","controllo pacchetti per immagini di Palermo: NON presenti");
-                        return false;
-                    } else {
-                        Log.d("miotag","controllo pacchetti per immagini di Palermo: presenti");
-                        return true;
-                    }
+
+
+                switch(city){
+
+                    case Constants.CITY_PALERMO:
+
+                        if (!(dirPalermoImages.isDirectory())) {
+                                    return false;
+                                } else {
+                                    return true;
+                            }
+
+                    case Constants.CITY_MILAN:
+                        if (!(dirMilanImages.isDirectory())) {
+                            return false;
+                                } else {
+                                return true;
+                            }
+
+
+
+                    case Constants.CITY_TURIN:
+
+                        if (!(dirTurinImages.isDirectory())) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+
+
+
                 }
-
 
             case Constants.DOWNLOADING_MAPS_ONLY:
 
 
                 if (!(dirOsmDroid.isDirectory())) {
-                    Log.d("miotag","controllo pacchetti per mappa: NON presenti");
                     return false;
                 } else {
-                    Log.d("miotag","controllo pacchetti per mappa:  presenti");
 
                     return true;
 
@@ -1287,27 +1254,10 @@ private boolean isAnySettingVoid(){
             default:
                 return false;
 
-//TODO 20ottobre
-//        if (Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class).equals(Constants.CITY_PALERMO)) {
-//
-//            if ((!(dirOsmDroid.isDirectory()))  || (!(dirPalermoImages.isDirectory()))) {
-//                return false;
-//            } else {
-//                return true;
-//            }
-//        } else {
-//
-//            if ((!(dirOsmDroid.isDirectory())) ||
-//
-//                    (!(dirMilanImages.isDirectory()))) {
-//
-//                return false;
-//            } else {
-//                return true;
-//            }
-//        }
         }
     }
+
+
 
     private void touchModeWithCircularMenu(boolean flag){
         if (flag){
@@ -1317,15 +1267,19 @@ private boolean isAnySettingVoid(){
             llClickWhen.setClickable(true);
             tSetTime.setClickable(true);
             fabButton.setClickable(true);
+            backCloseCircularMenu=false;
 
         } else {
 
-            llClickHow.setClickable(false);
-            llClickWhat.setClickable(false);
-            llClickWhere.setClickable(false);
-            llClickWhen.setClickable(false);
-            tSetTime.setClickable(false);
-            fabButton.setClickable(false);
+//            llClickHow.setClickable(false);
+//            llClickWhat.setClickable(false);
+//            llClickWhere.setClickable(false);
+//            llClickWhen.setClickable(false);
+//            tSetTime.setClickable(false);
+//            fabButton.setClickable(false);
+
+            backCloseCircularMenu=true;
+
         }
 
     }
@@ -1336,20 +1290,11 @@ private boolean isAnySettingVoid(){
         if (TextUtils.equals(actualMode,Constants.ONLINE_CONNECTION_OFF))
         {
             txtChangeNetwork.setText(R.string.onlineToActivate);
-            Log.d("miotag", "online!");
-//            imgIconChangeNetwork.setImageDrawable(getResources().getDrawable(R.drawable.ic_online));
-//            imgIconChangeNetwork.setImageDrawable(getResources().getDrawable(getResources().getIdentifier("ic_online", "mipmap", getPackageName())));
-//            imgIconChangeNetwork.setScaleType(ImageView.ScaleType.FIT_XY);
             imgIconChangeNetwork.setBackground(getResources().getDrawable(R.mipmap.ic_online));
         } else
 
         {
             txtChangeNetwork.setText(R.string.offlineToActivate);
-            Log.d("miotag", "offline!");
-//            imgIconChangeNetwork.setImageDrawable(getResources().getDrawable(R.drawable.ic_offline));
-
-//            imgIconChangeNetwork.setImageDrawable(getResources().getDrawable(getResources().getIdentifier("ic_offline", "mipmap", getPackageName())));
-//            imgIconChangeNetwork.setScaleType(ImageView.ScaleType.);
             imgIconChangeNetwork.setBackground(getResources().getDrawable(R.mipmap.ic_offline));
 
 
@@ -1358,30 +1303,33 @@ private boolean isAnySettingVoid(){
     }
 
 
-private boolean isDiscoverySafe(){
+private boolean isDiscoverySafe() {
     File dirMilanImages = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath() + "/" + Constants.UNZIPPED_IMAGES_MILAN_DOWNLOAD);
     File dirPalermoImages = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath() + "/" + Constants.UNZIPPED_IMAGES_PALERMO_DOWNLOAD);
+    File dirTurinImages = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath() + "/" + Constants.UNZIPPED_IMAGES_TURIN_DOWNLOAD);
 
-
-    String city=Repository.retrieve(this, Constants.KEY_CURRENT_CITY,String.class);
-    switch (city){
+    switch (city) {
 
         case Constants.CITY_MILAN:
             if (!(dirMilanImages.isDirectory())) {
-                Log.d("miotag","controllo pacchetti per immagini di milano: NON presenti");
                 return false;
             } else {
-                Log.d("miotag","controllo pacchetti per immagini di milano:presenti");
                 return true;
             }
 
 
         case Constants.CITY_PALERMO:
             if (!(dirPalermoImages.isDirectory())) {
-                Log.d("miotag","controllo pacchetti per immagini di Palermo: NON presenti");
                 return false;
             } else {
-                Log.d("miotag","controllo pacchetti per immagini di Palermo: presenti");
+                return true;
+            }
+
+
+        case Constants.CITY_TURIN:
+            if (!(dirTurinImages.isDirectory())) {
+                return false;
+            } else {
                 return true;
             }
 
@@ -1389,7 +1337,60 @@ private boolean isDiscoverySafe(){
     return false;
 }
 
+    private boolean isMapPresent(){
 
-}//fine classe
+        if (dirOsmDroid.isDirectory()){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    private boolean arePicturesPresent(){
+        boolean flag=false;
+        switch (city){
+            case Constants.CITY_MILAN:
+                if (dirMilanImages.isDirectory()){
+                    flag= true;
+                } else {
+                    flag= false;
+                }
+         break;
+
+            case Constants.CITY_PALERMO:
+                if (dirPalermoImages.isDirectory()){
+                    flag= true;
+                } else {
+                    flag= false;
+                }
+            break;
+
+            case Constants.CITY_TURIN:
+                if (dirTurinImages.isDirectory()){
+                    flag= true;
+                } else {
+                    flag= false;
+                }
+
+        }
+
+        return flag;
+    }
+
+    @Override
+    public void onBackPressed(){
+        if (backCloseCircularMenu){
+            btnCircularOptions.performClick();
+            backCloseCircularMenu=false;
+        }else {
+           finish();
+        }
+
+    }
+
+
+
+}
 
 

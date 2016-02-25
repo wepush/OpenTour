@@ -1,9 +1,7 @@
 package org.wepush.open_tour;
 
-import android.app.usage.ConfigurationStats;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,17 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 import org.wepush.open_tour.services.DownloadingCitiesService;
 import org.wepush.open_tour.services.ReadFromJson;
 import org.wepush.open_tour.utils.Constants;
@@ -43,8 +38,12 @@ public class CityShowcaserActivity extends AppCompatActivity implements  View.On
     private TextView txtToolbar,txtIntroductionCity;
     private FloatingActionButton fab;
     private Intent intentForDownloading;
-    private String packagesToDownload;
+    private String packagesToDownload, city,cityToShow;
+    private  String milanToDownload,palermoToDownload,turinToDownload;
     private RelativeLayout rlShadowingToolbar;
+    private File dirMACOSX,dirOsmDroid,dirMilanImages,dirPalermoImages,milanImagesZip,palermoImagesZip,dirTurinImages,turinImagesZip;
+    private boolean mapIsNotPresent=true;
+    private boolean imagesAreNotPresent=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -52,9 +51,17 @@ public class CityShowcaserActivity extends AppCompatActivity implements  View.On
         setContentView(R.layout.cityshowcaser_activity);
 
 
+        city=Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class);
 
         Intent i=getIntent();
-        String cityToShow=i.getStringExtra("city");
+        cityToShow=i.getStringExtra("city");
+
+//TODO CAMBIAMENTI 10/02
+        milanToDownload = getResources().getString(R.string.milan);
+        palermoToDownload=getResources().getString(R.string.palermo);
+        //TORINO 10/02
+        turinToDownload=getResources().getString(R.string.turin);
+
 
 
         cbxImages=(CheckBox)findViewById(R.id.cbxDownloadImages);
@@ -73,45 +80,38 @@ public class CityShowcaserActivity extends AppCompatActivity implements  View.On
 
         txtToolbar=(TextView)findViewById(R.id.txtToolbarShowcaser);
 
-
-//        rlMain=(ViewGroup)findViewById(R.id.rlLayoutCityShowcaserActivity);
         llBody=(ViewGroup) findViewById(R.id.llBody);
         rlFab=(ViewGroup)findViewById(R.id.rlFabCityShowcaseActivity);
         intentForDownloading=new Intent(this, DownloadingCitiesService.class);
         txtIntroductionCity=(TextView)findViewById(R.id.textIntroductionCity);
 
 
-//        ImageView img=(ImageView)findViewById(R.id.imgShowcaseDetail);
-
         switch (cityToShow){
             case Constants.CITY_MILAN:
-//                img.setImageDrawable(getResources().getDrawable(R.drawable.duomo));
                 toolbar.setBackground(getResources().getDrawable(R.drawable.milano));
-                txtToolbar.setText("Milano");
+                txtToolbar.setText(getResources().getString(R.string.milan));
                 txtIntroductionCity.setText(R.string.cityChooserIntroductionMilan);
 
-                //saving current city as city chosen by the user
-                Repository.save(getBaseContext(),Constants.KEY_CURRENT_CITY,Constants.CITY_MILAN);
-//                packagesToDownload=Constants.CITY_MILAN;
+
                 break;
 
             case Constants.CITY_PALERMO:
-//                img.setImageDrawable(getResources().getDrawable(R.drawable.palermo_overview));
                 toolbar.setBackground(getResources().getDrawable(R.drawable.palermo2));
-                txtToolbar.setText("Palermo");
+                txtToolbar.setText(getResources().getString(R.string.palermo));
                 txtIntroductionCity.setText(R.string.cityChooserIntroductionPalermo);
 
-                Repository.save(getBaseContext(), Constants.KEY_CURRENT_CITY, Constants.CITY_PALERMO);
-//                packagesToDownload=Constants.CITY_PALERMO;
+                break;
+
+            //TORINO 10/02
+
+            case Constants.CITY_TURIN:
+                toolbar.setBackground(getResources().getDrawable(R.drawable.piazza_san_carlo));
+                txtToolbar.setText(getResources().getString(R.string.turin));
+                txtIntroductionCity.setText(R.string.cityChooserIntroductionTurin);
+
                 break;
 
         }
-
-
-//        img.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-
-
 
 
 
@@ -179,8 +179,24 @@ public class CityShowcaserActivity extends AppCompatActivity implements  View.On
 
         }
 
+        dirOsmDroid = new File(Environment.getExternalStorageDirectory().getPath()+"/osmdroid");
+        dirMACOSX=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/_MACOSX");
+        dirMilanImages=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/"+Constants.UNZIPPED_IMAGES_MILAN_DOWNLOAD);
+        dirPalermoImages=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/"+Constants.UNZIPPED_IMAGES_PALERMO_DOWNLOAD);
+        dirTurinImages=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/"+Constants.UNZIPPED_IMAGES_TURIN_DOWNLOAD);
+
+        milanImagesZip=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/"+Constants.ZIPPED_IMAGES_MILANO_DOWNLOAD);
+        palermoImagesZip=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/"+Constants.ZIPPED_IMAGES_PALERMO_DOWNLOAD);
+        turinImagesZip=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/"+Constants.ZIPPED_IMAGES_TURIN_DOWNLOAD);
+
+
+        checkIfAnyPackageIsPresent();
 
     }//fine onCreate
+
+
+
+
 
 
     @Override
@@ -210,51 +226,98 @@ public class CityShowcaserActivity extends AppCompatActivity implements  View.On
 
             case R.id.floatButtonInCityShowcaseActivity:
 
+
                 if (cbxMap.isChecked() && cbxImages.isChecked()){
                     deleteMapsAndImages();
-//                    intentForDownloading.putExtra(Constants.DOWNLOADING_BUNDLE_INTENT, Constants.DOWNLOADING_MAPS_IMAGES);
-//                    Log.d("miotag","in Showcaser, putExtra per intentForDownloading: "+intentForDownloading.getStringExtra(Constants.DOWNLOADING_BUNDLE_INTENT));
-                    intentForDownloading.putExtra(Constants.DOWNLOADING_BUNDLE_INTENT,Constants.DOWNLOADING_MAPS_ONLY);
+                    intentForDownloading.putExtra(Constants.DOWNLOADING_BUNDLE_INTENT, Constants.DOWNLOADING_MAPS_ONLY);
                     Repository.save(this, Constants.WHAT_I_WANT_TO_DOWNLOAD,Constants.DOWNLOADING_MAPS_IMAGES);
-                    startService(intentForDownloading);
-                    startActivity(new Intent(this, LoadingCityPackages.class));
-                    finish();
+                    //TODO cambiamenti 10/02
+                    String txtToolbarInString=txtToolbar.getText().toString();
+//                    //TORINO 10/02
+                                if (txtToolbarInString.equals(milanToDownload)) {
+                                    Repository.save(this, Constants.KEY_CURRENT_CITY, Constants.CITY_MILAN);
+                                } else if (txtToolbarInString.equals(palermoToDownload)){
+                                        Repository.save(this, Constants.KEY_CURRENT_CITY, Constants.CITY_PALERMO);
 
-//                    Log.d("miotag","scarica mappa ed immagini");
+                                } else if (txtToolbarInString.equals(turinToDownload)){
+                                    Repository.save(this, Constants.KEY_CURRENT_CITY, Constants.CITY_TURIN);
+
+                                }
+
+                                startService(intentForDownloading);
+                                startActivity(new Intent(this, LoadingCityPackages.class));
+                                finish();
+
 
 
                 } else if (!(cbxMap.isChecked()) && !(cbxImages.isChecked())){
-//                    Log.d("miotag", "seleziona almeno un pacchetto da scaricare con campo intent: "+Constants.DOWNLOADING_BUNDLE_INTENT+", e contenuto:"+packagesToDownload);
-                    Toast.makeText(this, "Seleziona almeno un pacchetto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.chooseAtLeastOnePackage, Toast.LENGTH_SHORT).show();
 
 
                 } else if ( cbxMap.isChecked() && (!(cbxImages.isChecked())) ){
-//                    Log.d("miotag","scarica solo le mappe");
-                    deleteMapsAndImages();
-                    intentForDownloading.putExtra(Constants.DOWNLOADING_BUNDLE_INTENT, Constants.DOWNLOADING_MAPS_ONLY);
-                    Repository.save(this, Constants.WHAT_I_WANT_TO_DOWNLOAD,Constants.DOWNLOADING_MAPS_ONLY);
-                    startService(intentForDownloading);
-                    startActivity(new Intent(this, LoadingCityPackages.class));
-                    finish();
-                } else if ( !(cbxMap.isChecked() && (cbxImages.isChecked()))){
-                    deleteMapsAndImages();
-                    intentForDownloading.putExtra(Constants.DOWNLOADING_BUNDLE_INTENT, Constants.DOWNLOADING_IMAGES_ONLY);
-                    Repository.save(this, Constants.WHAT_I_WANT_TO_DOWNLOAD,Constants.DOWNLOADING_IMAGES_ONLY);
-                    startService(intentForDownloading);
-                    startActivity(new Intent(this, LoadingCityPackages.class));
-                    finish();
-//                    Log.d("miotag","scarica solo le immagini");
 
+//                    deleteMapsAndImages();
+
+                    if (!(city.equals(cityToShow))){
+
+                        deleteMapsAndImages();
+                    } // ELSE : user selected the same city he already choose, thus he want to download another package (map) thus no need to delete the other package
+
+
+                    //TODO 19novembre
+//                    if (mapIsNotPresent) {
+                        intentForDownloading.putExtra(Constants.DOWNLOADING_BUNDLE_INTENT, Constants.DOWNLOADING_MAPS_ONLY);
+                        Repository.save(this, Constants.WHAT_I_WANT_TO_DOWNLOAD, Constants.DOWNLOADING_MAPS_ONLY);
+                        String txtToolbarInString = txtToolbar.getText().toString();
+                        if (txtToolbarInString.equals(milanToDownload)) {
+                            Repository.save(this, Constants.KEY_CURRENT_CITY, Constants.CITY_MILAN);
+                        } else if (txtToolbarInString.equals(palermoToDownload)) {
+                            Repository.save(this, Constants.KEY_CURRENT_CITY, Constants.CITY_PALERMO);
+
+                        } else if (txtToolbarInString.equals(turinToDownload)) {
+                            Repository.save(this, Constants.KEY_CURRENT_CITY, Constants.CITY_TURIN);
+
+                        }
+                        startService(intentForDownloading);
+                        startActivity(new Intent(this, LoadingCityPackages.class));
+                        finish();
+
+                } else if ( !(cbxMap.isChecked() && (cbxImages.isChecked()))){
+
+//                    deleteMapsAndImages();
+
+                    if (!(city.equals(cityToShow))){
+
+                        deleteMapsAndImages();
+                    }// ELSE : as previous if
+
+//                    if (imagesAreNotPresent) {
+                        intentForDownloading.putExtra(Constants.DOWNLOADING_BUNDLE_INTENT, Constants.DOWNLOADING_IMAGES_ONLY);
+                        Repository.save(this, Constants.WHAT_I_WANT_TO_DOWNLOAD, Constants.DOWNLOADING_IMAGES_ONLY);
+                        switch (txtToolbar.getText().toString()) {
+                            case "Milano":
+                                Repository.save(this, Constants.KEY_CURRENT_CITY, Constants.CITY_MILAN);
+                                break;
+
+                            case "Palermo":
+                                Repository.save(this, Constants.KEY_CURRENT_CITY, Constants.CITY_PALERMO);
+                            break;
+
+                            case "Torino":
+                                Repository.save(this, Constants.KEY_CURRENT_CITY, Constants.CITY_TURIN);
+                            break;
+
+                        }
+                        startService(intentForDownloading);
+                        startActivity(new Intent(this, LoadingCityPackages.class));
+                        finish();
                 }
 
                 startService(new Intent(this, ReadFromJson.class));
             break;
 
 
-
         }
-//        startActivity(new Intent(this, LoadingCityBundle.class));
-
     }
 
 
@@ -267,25 +330,8 @@ public class CityShowcaserActivity extends AppCompatActivity implements  View.On
     }
 
 
-//    private void showLayouts(LinearLayout... llViews){
-//        for (LinearLayout llView: llViews){
-//            if (llView.getVisibility()== View.VISIBLE){
-//                llView.setVisibility(View.INVISIBLE);
-//            } else {
-//
-//                llView.setVisibility(View.VISIBLE);
-//            }
-//
-//        }
-//    }
-
-
 
     private void deleteMapsAndImages(){
-
-        Log.d("miotag","STO CANCELLANDO TUTTI I PACCHETTI!");
-
-        File dirOsmDroid = new File(Environment.getExternalStorageDirectory().getPath()+"/osmdroid");
         if (dirOsmDroid.isDirectory())
         {
 
@@ -296,7 +342,6 @@ public class CityShowcaserActivity extends AppCompatActivity implements  View.On
             }
         }
 
-        File dirMACOSX=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/_MACOSX");
         if (dirMACOSX.isDirectory())
         {
 
@@ -307,7 +352,6 @@ public class CityShowcaserActivity extends AppCompatActivity implements  View.On
             }
         }
 
-        File dirMilanImages=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/"+Constants.UNZIPPED_IMAGES_MILAN_DOWNLOAD);
         if (dirMilanImages.isDirectory())
         {
             String[] children = dirMilanImages.list();
@@ -318,8 +362,6 @@ public class CityShowcaserActivity extends AppCompatActivity implements  View.On
         }
 
 
-        File dirPalermoImages=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/"+Constants.UNZIPPED_IMAGES_PALERMO_DOWNLOAD);
-
         if (dirPalermoImages.isDirectory())
         {
             String[] children = dirPalermoImages.list();
@@ -329,18 +371,70 @@ public class CityShowcaserActivity extends AppCompatActivity implements  View.On
             }
         }
 
-
-
-
-        File milanImagesZip=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/"+Constants.ZIPPED_IMAGES_MILANO_DOWNLOAD);
-        File palermoImagesZip=new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath()+"/"+Constants.ZIPPED_IMAGES_PALERMO_DOWNLOAD);
+        if (dirTurinImages.isDirectory())
+        {
+            String[] children = dirTurinImages.list();
+            for (int i = 0; i < children.length; i++)
+            {
+                new File(dirTurinImages, children[i]).delete();
+            }
+        }
 
         dirMACOSX.delete();
         dirOsmDroid.delete();
         dirMilanImages.delete();
         dirPalermoImages.delete();
+        dirTurinImages.delete();
         milanImagesZip.delete();
         palermoImagesZip.delete();
+        turinImagesZip.delete();
+    }
+
+    private void checkIfAnyPackageIsPresent(){
+
+        if (city.equals(cityToShow)){
+            switch(city){
+
+                case Constants.CITY_MILAN:
+                    if (dirMilanImages.isDirectory()){
+                        cbxImages.setChecked(true);
+                        imagesAreNotPresent=false;
+                    }
+
+                    if (dirOsmDroid.isDirectory()){
+                        cbxMap.setChecked(true);
+                        mapIsNotPresent=false;
+                    }
+                break;
+
+                case Constants.CITY_PALERMO:
+                    if (dirPalermoImages.isDirectory()){
+                        cbxImages.setChecked(true);
+                        imagesAreNotPresent=false;
+                    }
+
+                    if (dirOsmDroid.isDirectory()){
+                        cbxMap.setChecked(true);
+                        mapIsNotPresent=false;
+                    }
+                break;
+
+
+                case Constants.CITY_TURIN:
+                    if (dirTurinImages.isDirectory()){
+                        cbxImages.setChecked(true);
+                        imagesAreNotPresent=false;
+                    }
+
+                    if (dirOsmDroid.isDirectory()){
+                        cbxMap.setChecked(true);
+                        mapIsNotPresent=false;
+                    }
+                    break;
+
+            }
+        }
+
     }
 
 }

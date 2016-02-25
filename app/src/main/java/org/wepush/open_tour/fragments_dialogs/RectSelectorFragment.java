@@ -33,17 +33,10 @@ public class RectSelectorFragment extends Fragment {
         ll1 = (LinearLayout) view.findViewById(R.id.whereLayout);
         ll2 = (LinearLayout) view.findViewById(R.id.whatLayout);
         ll3 = (LinearLayout) view.findViewById(R.id.howLayout);
-//        rlFloating = (RelativeLayout) view.findViewById(R.id.floatRelativeLayout);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             viewGroup = (ViewGroup) view.findViewById(R.id.linearLayoutSectorToSlide);
-
-//            ll0 = (LinearLayout) view.findViewById(R.id.whenLayout);
-//            ll1 = (LinearLayout) view.findViewById(R.id.whereLayout);
-//            ll2 = (LinearLayout) view.findViewById(R.id.whatLayout);
-//            ll3 = (LinearLayout) view.findViewById(R.id.howLayout);
-
 
 
 //handler to animate setting records
@@ -59,21 +52,11 @@ public class RectSelectorFragment extends Fragment {
             }, 700);
 
 
-//handler to animate floatingButton
-//            new Handler().postDelayed(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//
-//                    TransitionManager.beginDelayedTransition(rlFloating,new Slide());
-//                    showFloat(rlFloating);
-//                }
-//            }, 1200);
+
 
 
         } else {
             showLayouts(ll0,ll1,ll2,ll3);
-//            rlFloating.setVisibility(View.VISIBLE);
         }
 
 

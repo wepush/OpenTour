@@ -1,6 +1,5 @@
 package org.wepush.open_tour;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -47,7 +46,6 @@ public class DetailsActivity extends AppCompatActivity {
     private DocumentView txtDescription,txtTips;
     private ImageView mImageDetail,imgArrowNavigation;
     private LinearLayout llForText,llInternalTips,llTickets,llContacts,llOpenings,llOpeningsToAdd;
-//    private RelativeLayout rlTickets, rlContacts, rlOpening;
     private Bitmap bitmap;
     private boolean placeholderEverywhere=false;
 
@@ -111,9 +109,6 @@ public class DetailsActivity extends AppCompatActivity {
         llOpenings = (LinearLayout) findViewById(R.id.llOpenings);
         llOpeningsToAdd=(LinearLayout)findViewById(R.id.llToAddOpenings);
 
-
-
-
         llForText.setBackgroundColor(getResources().getColor(toolbarBackground));
 
         imgArrowNavigation = (ImageView) findViewById(R.id.imageArrowNavigation);
@@ -132,22 +127,14 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+        switch(currentCity){
 
-        if (currentCity.equals(Constants.CITY_MILAN)) {
-//            Log.d("miotag","sito da mostrare: "+siteToShow.name);
-
-            if ((TextUtils.equals(siteToShow.pictureUrl, "placeholder")) || (placeholderEverywhere) ){
+            case Constants.CITY_MILAN:
+                if ((TextUtils.equals(siteToShow.pictureUrl, "placeholder")) || (placeholderEverywhere) ){
 
                 imagePath=placeholderName;
-//                Log.d("miotag","placeholder richiesto: "+imagePath);
-//                bitmap = BitmapFactory.decodeFile(imagePath);
-//                Drawable mDrawable = new BitmapDrawable(getResources(), bitmap);
-//                mImageDetail.setImageDrawable(mDrawable);
-//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
-
                 int drawableResource=this.getResources().getIdentifier(imagePath, "drawable", this.getPackageName());
                 mImageDetail.setImageResource(drawableResource);
-//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
 
             } else {
@@ -158,41 +145,103 @@ public class DetailsActivity extends AppCompatActivity {
                 mImageDetail.setImageDrawable(mDrawable);
                 mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
             }
-        } else { //palermo
-//            Log.d("miotag","sito da mostrare: "+siteToShow.name);
 
-            if ((TextUtils.equals(siteToShow.pictureUrl, "placeholder")) || (placeholderEverywhere)) {
+            break;
+
+
+            case Constants.CITY_PALERMO:
+                if ((TextUtils.equals(siteToShow.pictureUrl, "placeholder")) || (placeholderEverywhere)) {
 
                 imagePath=placeholderName;
-//                Log.d("miotag","placeholder richiesto: "+imagePath);
-
-//                bitmap = BitmapFactory.decodeFile(imagePath);
                 int drawableResource=this.getResources().getIdentifier(imagePath, "drawable", this.getPackageName());
                 mImageDetail.setImageResource(drawableResource);
-//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
 
             } else {
                 imagePath = siteToShow.pictureUrl.substring(79, siteToShow.pictureUrl.length() - 4);
                 imagePath="palermo_images/"+imagePath+".jpg";
-//                Log.d("miotag","in DETAILS, immagine "+imagePath);
                 bitmap = BitmapFactory.decodeFile(getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
                 Drawable mDrawable = new BitmapDrawable(getResources(), bitmap);
                 mImageDetail.setImageDrawable(mDrawable);
                 mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
             }
 
+            break;
+
+
+            case Constants.CITY_TURIN:
+                if ((TextUtils.equals(siteToShow.pictureUrl, "placeholder")) || (placeholderEverywhere)) {
+
+                    imagePath=placeholderName;
+                    int drawableResource=this.getResources().getIdentifier(imagePath, "drawable", this.getPackageName());
+                    mImageDetail.setImageResource(drawableResource);
+                    mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
+
+                } else {
+                    imagePath = siteToShow.pictureUrl.substring(79, siteToShow.pictureUrl.length() - 4);
+                    imagePath="turin_images/"+imagePath+".jpg";
+                    bitmap = BitmapFactory.decodeFile(getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
+                    Drawable mDrawable = new BitmapDrawable(getResources(), bitmap);
+                    mImageDetail.setImageDrawable(mDrawable);
+                    mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
+                }
+
+                break;
+
+
+
+
+
+
         }
+
+//        if (currentCity.equals(Constants.CITY_MILAN)) {
+//
+//            if ((TextUtils.equals(siteToShow.pictureUrl, "placeholder")) || (placeholderEverywhere) ){
+//
+//                imagePath=placeholderName;
+//                int drawableResource=this.getResources().getIdentifier(imagePath, "drawable", this.getPackageName());
+//                mImageDetail.setImageResource(drawableResource);
+//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
+//
+//            } else {
+//                imagePath = siteToShow.pictureUrl.substring(79, siteToShow.pictureUrl.length() - 4);
+//                imagePath = "milano_images/" + imagePath + ".jpg";
+//                bitmap = BitmapFactory.decodeFile(getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
+//                Drawable mDrawable = new BitmapDrawable(getResources(), bitmap);
+//                mImageDetail.setImageDrawable(mDrawable);
+//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
+//            }
+//        } else { //palermo
+//
+//            if ((TextUtils.equals(siteToShow.pictureUrl, "placeholder")) || (placeholderEverywhere)) {
+//
+//                imagePath=placeholderName;
+//                int drawableResource=this.getResources().getIdentifier(imagePath, "drawable", this.getPackageName());
+//                mImageDetail.setImageResource(drawableResource);
+//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
+//
+//            } else {
+//                imagePath = siteToShow.pictureUrl.substring(79, siteToShow.pictureUrl.length() - 4);
+//                imagePath="palermo_images/"+imagePath+".jpg";
+//                bitmap = BitmapFactory.decodeFile(getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
+//                Drawable mDrawable = new BitmapDrawable(getResources(), bitmap);
+//                mImageDetail.setImageDrawable(mDrawable);
+//                mImageDetail.setScaleType(ImageView.ScaleType.FIT_XY);
+//            }
+//
+//        }
+
+
+
 
         //scheda riassuntiva
 
         if (siteToShow.alwaysOpen == 1) {
 
             llOpenings.setVisibility(View.GONE);
-
             View viewOpening = findViewById(R.id.viewOpenings);
             viewOpening.setVisibility(View.GONE);
-
             txtToDisappear2.setText("Sempre Aperto");
 
         }
@@ -214,7 +263,6 @@ public class DetailsActivity extends AppCompatActivity {
         //openings, tickets, contacts
 
         if(TextUtils.equals(siteToShow.tips.toString(),"")){
-//            Log.d("miotag","tips assenti, infatti: "+siteToShow.tips.toString());
             llInternalTips.setVisibility(View.GONE);
         }
 
@@ -518,9 +566,7 @@ public class DetailsActivity extends AppCompatActivity {
                         timeFrom = singleOpeningFromObject.getString("time_from");
                         timeTo = singleOpeningFromObject.getString("time_to")+"\n";
                         daysFromOpenings = singleOpeningFromObject.getJSONArray("days");
-                        Log.d("miotag", "dimensione daysFromOpenings: " + daysFromOpenings.length());
                         for (int j = 0; j < daysFromOpenings.length(); j++) {
-                            Log.d("miotag", "aggiungendo giorni: " + daysFromOpenings.get(j));
                             daysArray.add(daysFromOpenings.getString(j));
                         }
 
@@ -544,24 +590,15 @@ public class DetailsActivity extends AppCompatActivity {
                         txtOpeningsTime.setText(openingTime);
                         txtToDisappear2.setText(timeFrom + " - " + timeTo);
                     } else {
-                        Log.d("miotag","more then 1 opening");
                         daysArray.clear();
                         //more then 1 opening
                         TextView txtViewToAddForMoreOpening=new TextView(this);
                         TextView txtViewToAddForMoreOpeningTime=new TextView(this);
-//                        TextView txtViewToAddMoreOpeningTimeFromTo=new TextView(this);
-
-
                         singleOpeningFromObject = jsonOpenings.getJSONObject(i);
-//                        dateFrom = singleOpeningFromObject.getString("date_from");
-//                        dateTo = singleOpeningFromObject.getString("date_to");
                         timeFrom = singleOpeningFromObject.getString("time_from");
                         timeTo = singleOpeningFromObject.getString("time_to")+"\n";
-                        Log.d("miotag","more then 1 opening timeFrom: "+timeFrom+", timeTo: "+timeTo);
                         daysFromOpenings = singleOpeningFromObject.getJSONArray("days");
-                        Log.d("miotag", "dimensione daysFromOpenings: " + daysFromOpenings.length());
                         for (int j = 0; j < daysFromOpenings.length(); j++) {
-                            Log.d("miotag", "aggiungendo giorni: " + daysFromOpenings.get(j));
                             daysArray.add(daysFromOpenings.getString(j));
                         }
 
@@ -585,21 +622,9 @@ public class DetailsActivity extends AppCompatActivity {
 
                         //da qui gli orari
                         String openingTime = getResources().getString(R.string.open_from) + " " + timeFrom + " " + getResources().getString(R.string.open_to) + " " + timeTo;
-//                        String openingTime="Aperto: "+timeFrom+" alle "+timeTo;
-                        Log.d("miotag","openingTime per 1 more openings"+" "+openingTime+" , con timeTo="+timeTo);
-//                        txtOpeningsTime.setText(openingTime);
-//                        txtToDisappear2.setText(timeFrom + " - " + timeTo);
                         txtViewToAddForMoreOpeningTime.setText(openingTime);
-
-//                        txtViewToAddMoreOpeningTimeFromTo.setText(timeFrom + " - " + timeTo);
                         llOpeningsToAdd.addView(txtViewToAddForMoreOpeningTime);
                         txtViewToAddForMoreOpeningTime.getLayoutParams().width= ViewGroup.LayoutParams.MATCH_PARENT;
-
-//                        llOpeningsToAdd.addView(txtViewToAddMoreOpeningTimeFromTo);
-
-
-
-
 
                     }// fine more then 1 opening
 

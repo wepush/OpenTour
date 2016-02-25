@@ -2,18 +2,9 @@ package org.wepush.open_tour.fragments_dialogs;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,21 +12,22 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.wepush.open_tour.DetailsActivity;
-import org.wepush.open_tour.DiscoveryPreviewPagerActivity;
+import org.wepush.open_tour.HomeActivity;
 import org.wepush.open_tour.R;
-import org.wepush.open_tour.SettingTourActivity;
-import org.wepush.open_tour.structures.DB1SqlHelper;
 import org.wepush.open_tour.structures.Site;
 import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.DiscoveryListViewAdapter;
+import org.wepush.open_tour.utils.OpenTourUtils;
 import org.wepush.open_tour.utils.Repository;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Created by antoniocoppola on 05/10/15.
@@ -44,34 +36,33 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
 
     private ImageView previewMainImage,previewNlImage,previewNrImage,previewSlImage,previewSrImage,circleImage0,circleImage1,circleImage2,circleImage3,circleImage4;
     private TextView txtMain,txtNl,txtNr,txtSl,txtSr;
-    private ArrayList<Site> arrayList;
-//    private static ArrayList<Site> elementsOfList;
+    private ArrayList<Site> arrayList,arra;
     private ArrayList<ImageView>arrayImageReferencesList,arrayCircleList;
     private ArrayList<TextView> arrayTextViewList,arrayTextBodyList;
-//    private ArrayList<String>arraySiteNames;
     private static Context context;
     private String placeholderName="";
     private String city="";
     private String tabTypeOfSiteSelected="";
     private Intent i;
     private static int tabPosition;
-    private CardView cd0,cd1,cd2,cd3,cd4;
+//    private CardView cd0,cd1,cd2,cd3,cd4;
     private boolean placeholderEverywhere=false;
-    private String categoryForListView;
+    private String categoryForListView,language;
 
     private  Intent intent;
 
     private ListView lwDiscovery;
 
+    private ArrayList<Site> museumsForList,churchesForList,villasForList,palacesForList,arrayListVillas,arrayListMuseums,arrayListChurches,arrayListPalaces;
+
 
 
     public static DiscoveryPreviewPagerFragment newInstance(Context ctx,String  category, int position) {
         context=ctx;
-//        elementsOfList=sites;
-//        Log.d("miotag","FRAGMENT elementsList: "+elementsOfList.size());
         DiscoveryPreviewPagerFragment fragment = new DiscoveryPreviewPagerFragment();
         Bundle bundle = new Bundle();
         tabPosition=position;
+
         switch (category){
             case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
                 bundle.putString("category",Constants.CATEGORY_VIEW_PAGER_MUSEUM);
@@ -103,37 +94,60 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
         View view = inflater.inflate(R.layout.fragment_discoverypreviewadapter, null);
         city=Repository.retrieve(context,Constants.KEY_CURRENT_CITY,String.class);
 
-        String packagesChosen=Repository.retrieve(context, Constants.WHAT_I_WANT_TO_DOWNLOAD,String.class);
-        if (packagesChosen.equals(Constants.DOWNLOADING_MAPS_ONLY)){
-            placeholderEverywhere=true;
-        }
 
-        //section for ListView
+        language=Repository.retrieve(context,Constants.USER_LANGUAGE,String.class);
 
-        //TODO DUMMY arraylist<site>
-//        ArrayList<Site> arrayListDummy=new ArrayList<>();
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31ae0000"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b319d0200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31960000"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31b90200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31980200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31b90200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31980200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31b90200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31980200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31b90200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31980200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31b90200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31980200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31b90200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31980200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31b90200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31980200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31b90200"));
-//        arrayListDummy.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31980200"));
+
+        //TODO 04novembre section for ListView
+        museumsForList=new ArrayList<>();
+        palacesForList=new ArrayList<>();
+        villasForList=new ArrayList<>();
+        churchesForList=new ArrayList<>();
+
+        Gson gson=new Gson();
+        Type type = new TypeToken<ArrayList<Site>>() {}.getType();
+        String jsonMuseums=Repository.retrieve(context, Constants.JSON_MUSEUMS, String.class);
+        museumsForList=gson.fromJson(jsonMuseums, type);
+
+        gson=new Gson();
+        String jsonChurches=Repository.retrieve(context, Constants.JSON_CHURCHES, String.class);
+        churchesForList=gson.fromJson(jsonChurches, type);
+
+        gson=new Gson();
+        String jsonPalaces=Repository.retrieve(context, Constants.JSON_PALACE, String.class);
+        palacesForList=gson.fromJson(jsonPalaces, type);
+
+        gson=new Gson();
+        String jsonVillas=Repository.retrieve(context, Constants.JSON_VILLAS, String.class);
+        villasForList=gson.fromJson(jsonVillas, type);
+
+        //TODO fine
+
+        //Deserialization for showcaserPictures
+
+        gson=new Gson();
+        String jsonArrayVillas=Repository.retrieve(context, Constants.JSON_ARRAYLIST_VILLAS, String.class);
+        arrayListVillas=gson.fromJson(jsonArrayVillas, type);
+
+        gson=new Gson();
+        String jsonArrayMuseums=Repository.retrieve(context, Constants.JSON_ARRAYLIST_MUSEUMS, String.class);
+        arrayListMuseums=gson.fromJson(jsonArrayMuseums, type);
+
+        gson=new Gson();
+        String jsonArrayChurches=Repository.retrieve(context, Constants.JSON_ARRAYLIST_CHURCHES, String.class);
+        arrayListChurches=gson.fromJson(jsonArrayChurches, type);
+
+        gson=new Gson();
+        String jsonArrayPalaces=Repository.retrieve(context, Constants.JSON_ARRAYLIST_PALACES, String.class);
+        arrayListPalaces=gson.fromJson(jsonArrayPalaces, type);
+
+
+
+
+
 
         lwDiscovery=(ListView) view.findViewById(R.id.lwDiscoveryActivity);
-        lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, SettingTourActivity.churches));
+        lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, HomeActivity.churches));
         setListViewHeightBasedOnChildren(lwDiscovery);
         lwDiscovery.setFocusable(false);
 //        lwDiscovery.setOnItemClickListener(this);
@@ -147,25 +161,29 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
                 if (categoryForListView != null){
                     switch (categoryForListView){
                         case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-                            intent.putExtra("siteId",SettingTourActivity.museums.get(position).id);
+//                            intent.putExtra("siteId",SettingTourActivity.museums.get(position).id);
+                            intent.putExtra("siteId",museumsForList.get(position).id);
                             startActivity(intent);
                         break;
 
 
                         case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-                            intent.putExtra("siteId", SettingTourActivity.villas.get(position).id);
+//                            intent.putExtra("siteId", SettingTourActivity.villas.get(position).id);
+                            intent.putExtra("siteId",villasForList.get(position).id);
                             startActivity(intent);
                             break;
 
 
                         case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-                            intent.putExtra("siteId",SettingTourActivity.churches.get(position).id);
+//                            intent.putExtra("siteId",SettingTourActivity.churches.get(position).id);
+                            intent.putExtra("siteId",churchesForList.get(position).id);
                             startActivity(intent);
                             break;
 
 
                         case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-                            intent.putExtra("siteId",SettingTourActivity.palaces.get(position).id);
+//                            intent.putExtra("siteId",SettingTourActivity.palaces.get(position).id);
+                            intent.putExtra("siteId",palacesForList.get(position).id);
                             startActivity(intent);
                             break;
                     }
@@ -183,12 +201,7 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
         arrayList=new ArrayList<>();
         arrayImageReferencesList=new ArrayList<ImageView>();
         arrayTextViewList=new ArrayList<>();
-//        arraySiteNames=new ArrayList<>();
-//        arrayCircleList=new ArrayList<ImageView>();
-//        arrayTextTitleList=new ArrayList<TextView>();
-//        arrayTextBodyList=new ArrayList<TextView>();
-//
-//
+
         previewMainImage=(ImageView) view.findViewById(R.id.discoveryPreviewMainImage);
         previewNlImage=(ImageView) view.findViewById(R.id.discoverPreviewImageNl);
         previewNrImage=(ImageView) view.findViewById(R.id.discoverPreviewImageNr);
@@ -201,43 +214,7 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
         txtSl=(TextView) view.findViewById(R.id.txtSlImage);
         txtSr=(TextView) view.findViewById(R.id.txtSrImage);
 
-//        circleImage0=(ImageView) view.findViewById(R.id.circleImageDiscoveryPreviewList0);
-//        circleImage1=(ImageView) view.findViewById(R.id.circleImageDiscoveryPreviewList1);
-//        circleImage2=(ImageView) view.findViewById(R.id.circleImageDiscoveryPreviewList2);
-//        circleImage3=(ImageView) view.findViewById(R.id.circleImageDiscoveryPreviewList3);
-//        circleImage4=(ImageView) view.findViewById(R.id.circleImageDiscoveryPreviewList4);
-//
-//        txtTitle0=(TextView) view.findViewById(R.id.txtTitleDiscoveryPreviewList0);
-//        txtTitle1=(TextView) view.findViewById(R.id.txtTitleDiscoveryPreviewList1);
-//        txtTitle2=(TextView) view.findViewById(R.id.txtTitleDiscoveryPreviewList2);
-//        txtTitle3=(TextView) view.findViewById(R.id.txtTitleDiscoveryPreviewList3);
-//        txtTitle4=(TextView) view.findViewById(R.id.txtTitleDiscoveryPreviewList4);
-//
-//        txtBody0=(TextView) view.findViewById(R.id.txtBodyDiscoveryPreviewList0);
-//        txtBody1=(TextView) view.findViewById(R.id.txtBodyDiscoveryPreviewList1);
-//        txtBody2=(TextView) view.findViewById(R.id.txtBodyDiscoveryPreviewList2);
-//        txtBody3=(TextView) view.findViewById(R.id.txtBodyDiscoveryPreviewList3);
-//        txtBody4=(TextView) view.findViewById(R.id.txtBodyDiscoveryPreviewList4);
-//
-//        cd0=(CardView)view.findViewById(R.id.cdTouch0);
-//        cd1=(CardView)view.findViewById(R.id.cdTouch1);
-//        cd2=(CardView)view.findViewById(R.id.cdTouch2);
-//        cd3=(CardView)view.findViewById(R.id.cdTouch3);
-//        cd4=(CardView)view.findViewById(R.id.cdTouch4);
-//
-//        cd0.setOnClickListener(this);
-//        cd1.setOnClickListener(this);
-//        cd2.setOnClickListener(this);
-//        cd3.setOnClickListener(this);
-//        cd4.setOnClickListener(this);
-//
-//
-//
-//
-//
-//
-//
-//
+
         arrayImageReferencesList.add(previewMainImage);
         arrayImageReferencesList.add(previewNlImage);
         arrayImageReferencesList.add(previewNrImage);
@@ -249,24 +226,6 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
         arrayTextViewList.add(txtNr);
         arrayTextViewList.add(txtSl);
         arrayTextViewList.add(txtSr);
-//        arrayCircleList.add(circleImage0);
-//        arrayCircleList.add(circleImage1);
-//        arrayCircleList.add(circleImage2);
-//        arrayCircleList.add(circleImage3);
-//        arrayCircleList.add(circleImage4);
-//
-//        arrayTextTitleList.add(txtTitle0);
-//        arrayTextTitleList.add(txtTitle1);
-//        arrayTextTitleList.add(txtTitle2);
-//        arrayTextTitleList.add(txtTitle3);
-//        arrayTextTitleList.add(txtTitle4);
-//
-//        arrayTextBodyList.add(txtBody0);
-//        arrayTextBodyList.add(txtBody1);
-//        arrayTextBodyList.add(txtBody2);
-//        arrayTextBodyList.add(txtBody3);
-//        arrayTextBodyList.add(txtBody4);
-//
 
         Bundle bundle=getArguments();
         categoryForListView=bundle.getString("category");
@@ -276,21 +235,21 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
             case Constants.CATEGORY_VIEW_PAGER_VILLAS:
                 tabTypeOfSiteSelected=Constants.CATEGORY_VIEW_PAGER_VILLAS;
                 selectAppropriateSite(Constants.CATEGORY_VIEW_PAGER_VILLAS);
-                lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, SettingTourActivity.villas));
+                lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, HomeActivity.villas));
 
                 break;
 
             case Constants.CATEGORY_VIEW_PAGER_CHURCH:
                 tabTypeOfSiteSelected=Constants.CATEGORY_VIEW_PAGER_CHURCH;
                 selectAppropriateSite(Constants.CATEGORY_VIEW_PAGER_CHURCH);
-                lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, SettingTourActivity.churches));
+                lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, HomeActivity.churches));
 
                 break;
 
             case Constants.CATEGORY_VIEW_PAGER_CASTLES:
                 tabTypeOfSiteSelected=Constants.CATEGORY_VIEW_PAGER_CASTLES;
                 selectAppropriateSite(Constants.CATEGORY_VIEW_PAGER_CASTLES);
-                lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, SettingTourActivity.palaces));
+                lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, HomeActivity.palaces));
 
 
                 break;
@@ -298,7 +257,7 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
             case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
                 tabTypeOfSiteSelected=Constants.CATEGORY_VIEW_PAGER_MUSEUM;
                 selectAppropriateSite(Constants.CATEGORY_VIEW_PAGER_MUSEUM);
-                lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, SettingTourActivity.museums));
+                lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, HomeActivity.museums));
 
 
                 break;
@@ -310,416 +269,62 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
 
 
     private void selectAppropriateSite(String s){
-        String cityToChoose=Repository.retrieve(context,Constants.KEY_CURRENT_CITY,String.class);
 
+        switch (s){
 
-        if (cityToChoose.equals(Constants.CITY_PALERMO)) {
-//            Log.d("miotag", "dal fragment la città selezionata è PALERMO");
-            switch (s) {
+            case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
+                setLayoutInPlace(arrayListMuseums);
+            break;
 
-                case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-                    //First site is always the main one
+            case Constants.CATEGORY_VIEW_PAGER_CASTLES:
+                setLayoutInPlace(arrayListPalaces);
+            break;
 
-                    arrayList.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31ae0000"));
-                    arrayList.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b319d0200"));
-                    arrayList.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31960000"));
-                    arrayList.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31b90200"));
-                    arrayList.add(DB1SqlHelper.getInstance(getContext()).getSite("5506ae76694d610b31980200"));
+            case Constants.CATEGORY_VIEW_PAGER_CHURCH:
+                setLayoutInPlace(arrayListChurches);
+            break;
 
-//                    arraySiteNames.add(arrayList.get(0).name);
-//                    arraySiteNames.add(arrayList.get(1).name);
-//                    arraySiteNames.add(arrayList.get(2).name);
-//                    arraySiteNames.add(arrayList.get(3).name);
-//                    arraySiteNames.add(arrayList.get(4).name);
-//                    lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, DiscoveryPreviewPagerActivity.museums));
-//                    fillList(arrayList);
+            case Constants.CATEGORY_VIEW_PAGER_VILLAS:
+                setLayoutInPlace(arrayListVillas);
+            break;
 
-
-//                    Log.d("miotag", "fragment MUSEUM: arrayList.get(3" + arrayList.get(3).name);
-
-                    break;
-
-                case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5506ae76694d610b31560000"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5506ae76694d610b31060100"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5506ae76694d610b31920000"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5506ae76694d610b31230100"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5506ae76694d610b31f50000"));
-
-
-//                    arraySiteNames.add(arrayList.get(0).name);
-//                    arraySiteNames.add(arrayList.get(1).name);
-//                    arraySiteNames.add(arrayList.get(2).name);
-//                    arraySiteNames.add(arrayList.get(3).name);
-//                    arraySiteNames.add(arrayList.get(4).name);
-//                    lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, DiscoveryPreviewPagerActivity.villas));
-
-//                    fillList(arrayList);
-                    break;
-
-
-                case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5506ae76694d610b31760000"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5506ae76694d610b31140000"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5506ae76694d610b31660000"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5506ae76694d610b31a50000"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5506ae77694d610b31b10300"));
-
-//                    arraySiteNames.add("PALAZZO DEI NORMANNI");
-//                    arraySiteNames.add("CASTELLO DELLA ZISA");
-//                    arraySiteNames.add("VILLA GARIBALDI");
-//                    arraySiteNames.add("PARCO D'ORLEANS");
-//                    arraySiteNames.add("VILLA GIULIA");
-//                    lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, DiscoveryPreviewPagerActivity.palaces));
-
-
-//                    fillList(arrayList);
-                    break;
-
-
-                case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-                    arrayList.add(DB1SqlHelper.getInstance(getActivity()).getSite("5506ae76694d610b31220000"));
-                    arrayList.add(DB1SqlHelper.getInstance(getActivity()).getSite("5506ae76694d610b31820000"));
-                    arrayList.add(DB1SqlHelper.getInstance(getActivity()).getSite("5506ae76694d610b31ed0000"));
-                    arrayList.add(DB1SqlHelper.getInstance(getActivity()).getSite("5506ae76694d610b313c0000"));
-                    arrayList.add(DB1SqlHelper.getInstance(getActivity()).getSite("5506ae76694d610b315b0100"));
-//                    lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, DiscoveryPreviewPagerActivity.churches));
-
-
-//                    fillList(arrayList);
-
-//                    Log.d("miotag", "fragment CHURCH: arrayList.get(3" + arrayList.get(3).name);
-                    break;
-
-
-            }
-        } else
-        {
-            //Milan
-
-//            Log.d("miotag","dal fragment la città scelta è : MILANO");
-
-            switch (s) {
-
-                case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-                    //First site is always the main one
-
-                    arrayList.add(DB1SqlHelper.getInstance(getContext()).getSite("5551cf11694d6103fa040100"));
-                    arrayList.add(DB1SqlHelper.getInstance(getContext()).getSite("5551fe27694d6103fa2b0100"));
-                    arrayList.add(DB1SqlHelper.getInstance(getContext()).getSite("55530f60694d6103fac80100"));
-                    arrayList.add(DB1SqlHelper.getInstance(getContext()).getSite("5551cc00694d6103faf10000"));
-                    arrayList.add(DB1SqlHelper.getInstance(getContext()).getSite("5550be56694d6103fa020000"));
-
-//                    lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, SettingTourActivity.museums));
-
-//                    fillList(arrayList);
-
-
-                    Log.d("miotag", "fragment MUSEUM: arrayList.get(3" + arrayList.get(3).name);
-
-                    break;
-
-                case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5550cbaa694d6103fa4c0000"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5552156f694d6103faa30100"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("55531d6c694d6103faff0100"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5552208e694d6103fabd0100"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("554b2c3a694d61267ec90000"));
-//                    lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, SettingTourActivity.villas));
-
-
-//                    fillList(arrayList);
-                    break;
-
-
-                case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("554b7461694d61267e9b0100"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5549f352694d61267e880000"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("554b3360694d61267ef90000"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("554b3a3e694d61267e020100"));
-                    arrayList.add(DB1SqlHelper.getInstance(context).getSite("5549e224694d61267e2b0000"));
-//                    lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, SettingTourActivity.palaces));
-
-
-//                    fillList(arrayList);
-                    break;
-
-
-                case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-                    arrayList.add(DB1SqlHelper.getInstance(getActivity()).getSite("554b78f9694d61267ea70100"));
-                    arrayList.add(DB1SqlHelper.getInstance(getActivity()).getSite("554b6d88694d61267e5f0100"));
-                    arrayList.add(DB1SqlHelper.getInstance(getActivity()).getSite("554b8a6a694d6147f85e0000"));
-                    arrayList.add(DB1SqlHelper.getInstance(getActivity()).getSite("555c9def694d6103faf70200"));
-                    arrayList.add(DB1SqlHelper.getInstance(getActivity()).getSite("554b8b24694d6147f8670000"));
-//                    lwDiscovery.setAdapter(new DiscoveryListViewAdapter(context, SettingTourActivity.churches));
-
-//                    fillList(arrayList);
-
-                    Log.d("miotag", "fragment CHURCH: arrayList.get(3" + arrayList.get(3).name);
-                    break;
-
-
-            }
         }
-        setLayoutInPlace(arrayList);
+
 
 
     }
 
     private void setLayoutInPlace(ArrayList<Site> arrayList) {
-        String currentCity = "";
+//        String city=Repository.retrieve(context, Constants.KEY_CURRENT_CITY, String.class);
+        OpenTourUtils mOpenTourUtils=new OpenTourUtils(context,city);
+//        String currentCity = "";
 
-        Bitmap bitmap;
+//        Bitmap bitmap;
         for (int i=0; i<arrayList.size();i++) {
 
-
             Site site=arrayList.get(i);
-            String imagePath = site.pictureUrl;
             ImageView imageToSet=arrayImageReferencesList.get(i);
+
+            mOpenTourUtils.setImage(site.pictureUrl,language,imageToSet,site.typeOfSite,true);
             TextView textOver=arrayTextViewList.get(i);
             textOver.setText(arrayList.get(i).name);
             textOver.setAllCaps(true);
             imageToSet.setOnClickListener(this);
 
-            currentCity = Repository.retrieve(context, Constants.KEY_CURRENT_CITY, String.class);
-//            Log.d("miotag", "currentCity: " + currentCity);
-
-
-            if (currentCity.equals(Constants.CITY_MILAN)) {
-
-                if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
-
-                    if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
-                        convertLanguageTypeOfSite(site);
-                    } else {
-                        chooseThemeColors(site);
-                    }
-                    imagePath = placeholderName;
-                    int drawableResource = context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
-                    imageToSet.setImageResource(drawableResource);
-                    imageToSet.setScaleType(ImageView.ScaleType.FIT_XY);
-
-
-                } else {
-                    imagePath = imagePath.substring(79, imagePath.length() - 4);
-                    imagePath = "milano_images/" + imagePath + ".jpg";
-                    bitmap = BitmapFactory.decodeFile(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
-                    Drawable mDrawable = new BitmapDrawable(context.getResources(), bitmap);
-                    imageToSet.setImageDrawable(mDrawable);
-                    imageToSet.setScaleType(ImageView.ScaleType.FIT_XY);
-
-                }
-            } else {
-                if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
-
-                    if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
-                        convertLanguageTypeOfSite(site);
-                    } else {
-                        chooseThemeColors(site);
-                    }
-
-                    imagePath = placeholderName;
-                    int drawableResource = context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
-                    imageToSet.setImageResource(drawableResource);
-                    imageToSet.setScaleType(ImageView.ScaleType.FIT_XY);
-
-
-                } else {
-
-                    if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
-                        convertLanguageTypeOfSite(site);
-                    } else {
-                        chooseThemeColors(site);
-                    }
-
-                    imagePath = imagePath.substring(79, imagePath.length() - 4);
-                    imagePath = "palermo_images/" + imagePath + ".jpg";
-                    bitmap = BitmapFactory.decodeFile(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
-                    Drawable mDrawable = new BitmapDrawable(context.getResources(), bitmap);
-                    imageToSet.setImageDrawable(mDrawable);
-                    imageToSet.setScaleType(ImageView.ScaleType.FIT_XY);
-                }
-
-
-            }
 
         }//Fine for
     }//Fine setLayout
 
-
-
-    private void chooseThemeColors(Site site) {
-//        Log.d("miotag","TimeLine ChooseTheme: "+site.typeOfSite);
-
-//TODO check if there's a better solution to manage sitesType in languages
-        switch (site.typeOfSite) {
-            case "Teatri":
-                placeholderName=context.getResources().getString(R.string.placeholderTheaters);
-                break;
-
-            case "Palazzi e Castelli":
-                placeholderName=context.getResources().getString(R.string.placeholderCastles);
-
-                break;
-
-            case "Ville, Giardini e Parchi":
-                placeholderName=context.getResources().getString(R.string.placeholderVillas);
-
-                break;
-
-            case "Musei e Gallerie d'arte":
-                placeholderName=context.getResources().getString(R.string.placeholderMuseums);
-
-                break;
-
-            case "Statue e Fontane":
-                placeholderName=context.getResources().getString(R.string.placeholderStatues);
-
-                break;
-
-            case "Piazze e Strade":
-                placeholderName=context.getString(R.string.placeholderSquares);
-
-
-                break;
-
-            case "Archi, Porte e Mura":
-                placeholderName=context.getResources().getString(R.string.placeholderArcs);
-
-                break;
-
-            case "Fiere e Mercati":
-                placeholderName=context.getResources().getString(R.string.placeholderArcs);
-
-                break;
-
-            case "Cimiteri e Memoriali":
-                placeholderName=context.getResources().getString(R.string.placeholderCemeteries);
-
-                break;
-
-
-            case "Edifici":
-                placeholderName=context.getResources().getString(R.string.placeholderBuildings);
-
-                break;
-
-            case "Ponti":
-                placeholderName=context.getResources().getString(R.string.placeholderBridges);
-
-                break;
-
-            case "Chiese, Oratori e Luoghi di culto":
-                placeholderName=context.getResources().getString(R.string.placeholderChurches);
-
-                break;
-
-            case "Altri monumenti e Luoghi di interesse":
-                placeholderName=context.getResources().getString(R.string.placeholderOtherSites);
-                break;
-
-        }
-
-    }
-
-
-    private void convertLanguageTypeOfSite(Site site) {
-
-
-        switch (site.typeOfSite) {
-            case "Theaters":
-
-                placeholderName=context.getResources().getString(R.string.placeholderTheaters);
-
-                break;
-
-            case "Palaces and Castles":
-
-                placeholderName=context.getResources().getString(R.string.placeholderCastles);
-
-                break;
-
-            case "Villas, Gardens and Parks":
-
-                placeholderName=context.getResources().getString(R.string.placeholderVillas);
-
-                break;
-
-            case "Museums and Art galleries":
-
-                placeholderName=context.getResources().getString(R.string.placeholderMuseums);
-
-                break;
-
-            case "Statues and Fountains":
-
-                placeholderName=context.getResources().getString(R.string.placeholderStatues);
-
-                break;
-
-            case "Squares and Streets":
-
-                placeholderName=context.getResources().getString(R.string.placeholderSquares);
-
-
-                break;
-
-            case "Arches, Gates and Walls":
-
-                placeholderName=context.getResources().getString(R.string.placeholderArcs);
-
-                break;
-
-            case "Fairs and Markets":
-
-                placeholderName=context.getResources().getString(R.string.placeholderArcs);
-
-                break;
-
-            case "Cemeteries and Memorials":
-
-                placeholderName=context.getResources().getString(R.string.placeholderCemeteries);
-                break;
-
-            case "Buildings":
-
-                placeholderName=context.getResources().getString(R.string.placeholderBuildings);
-
-                break;
-
-            case "Bridges":
-
-                placeholderName=context.getResources().getString(R.string.placeholderBridges);
-
-                break;
-
-            case "Churches, Oratories and Places of worship":
-
-                placeholderName=context.getResources().getString(R.string.placeholderChurches);
-
-                break;
-
-            case "Other monuments and Places of interest":
-
-                placeholderName=context.getResources().getString(R.string.placeholderOtherSites);
-
-                break;
-
-        }
-
-
-    }
-
     @Override
     public void onClick(View v){
-        Log.d("miotag", "ON CLICK");
 
-        if (city.equals(Constants.CITY_PALERMO)) {
+        switch(city){
 
+            case Constants.CITY_PALERMO:
+                switch (v.getId()){
 
-            switch (v.getId()){
+                    case R.id.discoveryPreviewMainImage:
 
-                case R.id.discoveryPreviewMainImage:
                     switch (tabTypeOfSiteSelected) {
                         case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
                             i = new Intent(context, DetailsActivity.class);
@@ -866,164 +471,13 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
                     }
                     break;
 
-
-                //section for list
-
-
-//                case R.id.cdTouch0:
-//                    switch (tabTypeOfSiteSelected) {
-//                        case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31ae0000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31760000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31220000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31560000");
-//                            startActivity(i);
-//                            break;
-//                    }
-//                    break;
-//
-//                case R.id.cdTouch1:
-//                    switch (tabTypeOfSiteSelected) {
-//                        case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b319d0200");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31140000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31820000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31060100");
-//                            startActivity(i);
-//                            break;
-//
-//                    }
-//                    break;
-//
-//                case R.id.cdTouch2:
-//
-//                    switch (tabTypeOfSiteSelected) {
-//                        case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31960000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31660000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31ed0000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31920000");
-//                            startActivity(i);
-//                            break;
-//
-//                    }
-//                    break;
-//
-//                case R.id.cdTouch3:
-//                    switch (tabTypeOfSiteSelected) {
-//                        case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31b90200");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31a50000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b313c0000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31230100");
-//                            startActivity(i);
-//                            break;
-//
-//                    }
-//                    break;
-//
-//
-//                case R.id.cdTouch4:
-//
-//                    switch (tabTypeOfSiteSelected) {
-//                        case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31980200");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae77694d610b31b10300");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b315b0100");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5506ae76694d610b31f50000");
-//                            startActivity(i);
-//                            break;
-//
-//                    }
-//                    break;
+                }
+            break;
 
 
+            case Constants.CITY_MILAN:
 
-
-            }
-        } else {
-            //milan
-            switch (v.getId()){
+            switch (v.getId()) {
 
 
                 case R.id.discoveryPreviewMainImage:
@@ -1173,264 +627,173 @@ public class DiscoveryPreviewPagerFragment extends Fragment implements View.OnCl
 
                     }
                     break;
+             }
+            break;
 
 
-                //section for list
+            case Constants.CITY_TURIN:
+
+                switch (v.getId()) {
 
 
+                    case R.id.discoveryPreviewMainImage:
 
-//                case R.id.cdTouch0:
-//
-//                    switch (tabTypeOfSiteSelected) {
-//                        case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5551cf11694d6103fa040100");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "554b7461694d61267e9b0100");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "554b78f9694d61267ea70100");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5550cbaa694d6103fa4c0000");
-//                            startActivity(i);
-//                            break;
-//                    }
-//                    break;
-//
-//                case R.id.cdTouch1:
-//                    switch (tabTypeOfSiteSelected) {
-//                        case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5551fe27694d6103fa2b0100");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5549f352694d61267e880000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "554b6d88694d61267e5f0100");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5552156f694d6103faa30100");
-//                            startActivity(i);
-//                            break;
-//
-//                    }
-//                    break;
-//
-//                case R.id.cdTouch2:
-//
-//                    switch (tabTypeOfSiteSelected) {
-//                        case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "55530f60694d6103fac80100");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "554b3360694d61267ef90000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "554b8a6a694d6147f85e0000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "55531d6c694d6103faff0100");
-//                            startActivity(i);
-//                            break;
-//
-//                    }
-//                    break;
-//
-//                case R.id.cdTouch3:
-//                    switch (tabTypeOfSiteSelected) {
-//                        case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5551cc00694d6103faf10000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "554b3a3e694d61267e020100");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "555c9def694d6103faf70200");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5552208e694d6103fabd0100");
-//                            startActivity(i);
-//                            break;
-//
-//                    }
-//                    break;
-//
-//
-//                case R.id.cdTouch4:
-//
-//                    switch (tabTypeOfSiteSelected) {
-//                        case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5550be56694d6103fa020000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CASTLES:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "5549e224694d61267e2b0000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_CHURCH:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "554b8b24694d6147f8670000");
-//                            startActivity(i);
-//                            break;
-//
-//                        case Constants.CATEGORY_VIEW_PAGER_VILLAS:
-//                            i = new Intent(context, DetailsActivity.class);
-//                            i.putExtra("siteId", "554b2c3a694d61267ec90000");
-//                            startActivity(i);
-//                            break;
-//
-//                    }
-//                    break;
-//
-//
-            }
-//
-//
-        }//fine else su Milano
+                        switch (tabTypeOfSiteSelected) {
+                            case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "565dd3ef32733015650001a4");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_CASTLES:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "565dbe1b3273301565000166");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_CHURCH:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "565ed2c132733015650001eb");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_VILLAS:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "5693bbdc32733015650004ed");
+                                startActivity(i);
+                                break;
+                        }
+                        break;
+
+                    case R.id.discoverPreviewImageNl:
+                        switch (tabTypeOfSiteSelected) {
+                            case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "565f0a9a3273301565000216");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_CASTLES:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "565ebba332733015650001b2");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_CHURCH:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "56977b663273301565000617");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_VILLAS:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "569616c832733015650005e6");
+                                startActivity(i);
+                                break;
+
+                        }
+                        break;
+
+                    case R.id.discoverPreviewImageNr:
+
+                        switch (tabTypeOfSiteSelected) {
+                            case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "565f11203273301565000224");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_CASTLES:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "565daed03273301565000136");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_CHURCH:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "5694def93273301565000592");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_VILLAS:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "566832aa3273301565000295");
+                                startActivity(i);
+                                break;
+
+                        }
+                        break;
+
+                    case R.id.discoverPreviewImageSl:
+                        switch (tabTypeOfSiteSelected) {
+                            case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "565da6d33273301565000123");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_CASTLES:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "565dcec83273301565000193");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_CHURCH:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "56682ecf3273301565000285");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_VILLAS:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "5697d78c3273301565000644");
+                                startActivity(i);
+                                break;
+
+                        }
+                        break;
+
+
+                    case R.id.discoverPreviewImageSr:
+
+                        switch (tabTypeOfSiteSelected) {
+                            case Constants.CATEGORY_VIEW_PAGER_MUSEUM:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "56938dee32733015650004b6");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_CASTLES:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "56991e4e327330156500069e");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_CHURCH:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "5673ec20327330156500033e");
+                                startActivity(i);
+                                break;
+
+                            case Constants.CATEGORY_VIEW_PAGER_VILLAS:
+                                i = new Intent(context, DetailsActivity.class);
+                                i.putExtra("siteId", "565f151a3273301565000230");
+                                startActivity(i);
+                                break;
+
+                        }
+                        break;
+                }
 
 
 
 
 
+        }
 
 
     }
 
-
-//    private void fillList(ArrayList<Site> array){
-//
-//        for (int i=0; i<array.size();i++){
-//
-//            setCircleList(array.get(i),i);
-//            setTitleTextList(array.get(i).name, i);
-//            setBodyTextList(array.get(i).address + ", " + array.get(i).addressCivic, i);
-//        }
-//    }
-
-//    private void setTitleTextList(String s,int position){
-//        arrayTextTitleList.get(position).setText(s);
-//    }
-//
-//    private void setBodyTextList(String s,int position){
-//        arrayTextBodyList.get(position).setText(s);
-//    }
-//
-//    private void setCircleList(Site site, int position){
-//
-//        Bitmap bitmap;
-//        String imagePath = site.pictureUrl;
-//        ImageView imageToSet=arrayCircleList.get(position);
-//
-//        String currentCity = Repository.retrieve(context, Constants.KEY_CURRENT_CITY, String.class);
-//        Log.d("miotag", "currentCity: " + currentCity);
-//
-//
-//        if (currentCity.equals(Constants.CITY_MILAN)) {
-//
-//            if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)) {
-//
-//                if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
-//                    convertLanguageTypeOfSite(site);
-//                } else {
-//                    chooseThemeColors(site);
-//                }
-//                imagePath = placeholderName;
-//                int drawableResource = context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
-//                imageToSet.setImageResource(drawableResource);
-////                imageToSet.setScaleType(ImageView.ScaleType.FIT_XY);
-//
-//
-//            } else {
-//                imagePath = imagePath.substring(79, imagePath.length() - 4);
-//                imagePath = "milano_images/" + imagePath + ".jpg";
-//                bitmap = BitmapFactory.decodeFile(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
-//                Drawable mDrawable = new BitmapDrawable(context.getResources(), bitmap);
-//                imageToSet.setImageDrawable(mDrawable);
-////                imageToSet.setScaleType(ImageView.ScaleType.FIT_XY);
-//
-//            }
-//        } else {
-//            if ((TextUtils.equals(imagePath, "placeholder")) || (placeholderEverywhere)){
-//
-//                if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
-//                    convertLanguageTypeOfSite(site);
-//                } else {
-//                    chooseThemeColors(site);
-//                }
-//
-//                imagePath = placeholderName;
-//                int drawableResource = context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
-//                imageToSet.setImageResource(drawableResource);
-////                imageToSet.setScaleType(ImageView.ScaleType.FIT_XY);
-//
-//
-//            } else {
-//
-//                if (TextUtils.equals(Locale.getDefault().getDisplayLanguage(), "English")) {
-//                    convertLanguageTypeOfSite(site);
-//                } else {
-//                    chooseThemeColors(site);
-//                }
-//
-//                imagePath = imagePath.substring(79, imagePath.length() - 4);
-//                imagePath = "palermo_images/" + imagePath + ".jpg";
-//                bitmap = BitmapFactory.decodeFile(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + imagePath);
-//                Drawable mDrawable = new BitmapDrawable(context.getResources(), bitmap);
-//                imageToSet.setImageDrawable(mDrawable);
-////                imageToSet.setScaleType(ImageView.ScaleType.FIT_XY);
-//            }
-//
-//
-//        }
-//
-//
-//
-//    }
 
 
 

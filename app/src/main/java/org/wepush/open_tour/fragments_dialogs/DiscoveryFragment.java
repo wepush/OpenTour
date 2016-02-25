@@ -71,7 +71,6 @@ public class DiscoveryFragment extends Fragment {
         lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("miotag","posizione di click: "+position);
                 i.putExtra("siteId",elements.get(position).id);
                 startActivity(i);
             }

@@ -12,9 +12,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-
-
     <uses-permission android:name="org.wepush.open_tour.permission.MAPS_RECEIVE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
@@ -32,7 +29,7 @@
         <!-- Used for Google Map widget -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="YOUR_GOOGLE_MAPS_KEY_HERE" />
+            android:value="AIzaSyAqyh20d44orPTqhdZExmnColsip_8vEAI" />
 
         <!-- Used also for Map widget -->
         <meta-data
@@ -72,10 +69,10 @@
         </activity>
 
         <activity
-            android:name=".ShowTourTimeLineActivity"
-            android:label="SettingTour"
-            android:screenOrientation="portrait">
-        </activity>
+        android:name=".ShowTourTimeLineActivity"
+        android:label="SettingTour"
+        android:screenOrientation="portrait">
+    </activity>
 
         <!--<activity-->
             <!--android:name=".LoadingCityBundle"-->
@@ -89,10 +86,17 @@
 
 
 
-<activity android:name=".DetailsActivity"
-    android:label="ShowDetailsActivity"
-    android:screenOrientation="portrait"
-    android:theme="@style/AppTheme.Details"></activity>
+    <activity android:name=".DetailsActivity"
+        android:label="ShowDetailsActivity"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme.Details">
+
+    </activity>
+
+
+        <activity android:name=".ExplorerActivity"
+            android:label=""
+            android:screenOrientation="portrait"></activity>
 
 
 
@@ -109,12 +113,11 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <activity
-            android:name=".SelectPackagesToDownloadActivity"
-            android:label="Select Package"
-            android:screenOrientation="portrait">
-
-        </activity>
+        <!--<activity-->
+            <!--android:name=".SelectPackagesToDownloadActivity"-->
+            <!--android:label="Select Package"-->
+            <!--android:screenOrientation="portrait">-->
+        <!--</activity>-->
 
         <activity
             android:name=".DiscoveryPreviewPagerActivity"
@@ -145,10 +148,13 @@
         <service android:name=".services.DownloadingCitiesService"
             android:exported="false"/>
 
-        <service android:name=".services.DownloadingService"
-            android:exported="false"/>
+        <!--<service android:name=".services.DownloadingService"-->
+            <!--android:exported="false"/>-->
 
         <service android:name=".services.UnzipService"
+            android:exported="false"/>
+
+        <service android:name=".services.SiteNotificationService"
             android:exported="false"/>
 
 

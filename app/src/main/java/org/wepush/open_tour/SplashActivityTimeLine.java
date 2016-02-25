@@ -8,9 +8,7 @@ import android.widget.ProgressBar;
 
 
 
-///**
-// * Created by Antonio on 13/05/2015.
-// */
+
 public class SplashActivityTimeLine extends Activity {
 
     private static int SPLASH_TIME_OUT = 4000;
@@ -36,32 +34,38 @@ public class SplashActivityTimeLine extends Activity {
 
             @Override
             public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
                 Intent i = new Intent(SplashActivityTimeLine.this, SettingTourActivity.class);
                 startActivity(i);
-
-                // close this activity
                 finish();
             }
         }, SPLASH_TIME_OUT);
 
-    }//fine onCreate
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        finish();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        finish();
+    }
 
     @Override
     public void onBackPressed() {
-
             super.onBackPressed();
             HomeActivity.destroyTourPreferences(this);
             startActivity(new Intent(this,SettingTourActivity.class));
             finish();
-
     }
 
 
 
 
-    }//fine classe
+}
 
 
 

@@ -13,9 +13,8 @@ import android.widget.Button;
 
 import org.wepush.open_tour.fragments_dialogs.IntroPagerFragment;
 import org.wepush.open_tour.fragments_dialogs.LaunchingSettingFragment;
-import org.wepush.open_tour.services.ReadFromJson;
-import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.AnimationHelper;
+import org.wepush.open_tour.utils.Constants;
 import org.wepush.open_tour.utils.Repository;
 
 
@@ -52,6 +51,10 @@ public class WalkthroughActivity extends AppCompatActivity {
 
         Repository.save(this, Constants.WALKTHROUGH_SEEN, "yes");
 
+        Repository.save(this, Constants.TUTORIAL_SETTING_ACTIVITY_NOT_SEEN,true);
+        Repository.save(this, Constants.TUTORIAL_EXPLORER_ACTIVITY_NOT_SEEN,true);
+        Repository.save(this, Constants.TUTORIAL_LIVE_ACTIVITY_NOT_SEEN,true);
+
 
         final View centerBackgroundView = findViewById(R.id.view_activity_intro_center_background);
         final View leftBackgroundView = findViewById(R.id.view_activity_intro_left_background);
@@ -61,8 +64,6 @@ public class WalkthroughActivity extends AppCompatActivity {
         rightBackgroundView.setBackgroundResource(R.color.green300);
 
         final Button skipButton = (Button) findViewById(R.id.btnSkipWalkthrough);
-//       Button nextButton = (Button) findViewById(R.id.btnNextWalkthrough);
-
 
         mTransitions[0] = findViewById(R.id.view_transition_one);
         mTransitions[1] = findViewById(R.id.view_transition_two);
@@ -141,34 +142,8 @@ public class WalkthroughActivity extends AppCompatActivity {
                 }
 
                 if (mLastPosition == FIFTH_PAGE) {
-//
-//                    if(
-//                            !(TextUtils.equals(Repository.retrieve(getBaseContext(), Constants.KEY_CURRENT_CITY, String.class), "milano"))&&
-//                                    !(TextUtils.equals(Repository.retrieve(getBaseContext(), Constants.KEY_CURRENT_CITY, String.class),"palermo") )
-//                            )
-//                    {
-//                        startActivity(new Intent(getBaseContext(),CityChooserActivity.class));
-//                        finish();
-//                    }else {
-//                        startService(new Intent(getBaseContext(),ReadFromJson.class));
-//                        Intent intent = new Intent(getBaseContext(), SettingTourActivity.class);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-
-    // 10 Luglio 2015
-// Since Milan is the only city, at the end of the walkthrough the only thing left to do is launch SplashScreenActivity (that in turns will launch SettingActivity AND ReadJson
-//TODO 21 Settembre 2015
-                    //CityChooser is back in game, after walkthrough
                     startActivity(new Intent(getBaseContext(),ChooseCityActivity.class));
                     finish();
-
-
-//                    startService(new Intent(getBaseContext(), ReadFromJson.class));
-//                    startActivity(new Intent(getBaseContext(), SplashActivityTimeLine.class));
-//                    finish();
-
-
                 }
 
 
@@ -184,17 +159,14 @@ public class WalkthroughActivity extends AppCompatActivity {
             }
         });
 
-    }//fine onCreate
+    }
 
 
     @Override
     public void onBackPressed() {
         if (introViewPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();
         } else {
-            // Otherwise, select the previous step.
             introViewPager.setCurrentItem(introViewPager.getCurrentItem() - 1);
         }
     }
@@ -250,36 +222,9 @@ public class WalkthroughActivity extends AppCompatActivity {
     }
 
     public void onSettingActivity (View v){
-
-//        if(
-//                !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY,String.class), "milano"))&&
-//                        !(TextUtils.equals(Repository.retrieve(this, Constants.KEY_CURRENT_CITY, String.class),"palermo") )
-//                )
-//        {
-//            startActivity(new Intent(this,CityChooserActivity.class));
-//            finish();
-//        }else {
-//            startService(new Intent(getBaseContext(),ReadFromJson.class));
-//            Intent intent = new Intent(this, SettingTourActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-
-
-// 10 Luglio 2015:
-//since Milan is the oncly city availabele, etc
-
-        //TODO 21 settembre: CityChooser is back in game
         startActivity(new Intent(getBaseContext(),ChooseCityActivity.class));
         finish();
-//        startService(new Intent(getBaseContext(),ReadFromJson.class));
-//            Intent intent = new Intent(this, SplashActivityTimeLine.class);
-//        startActivity(intent);
-//            finish();
+
     }
 
-
-
-
-
-}//fine Classe
+}

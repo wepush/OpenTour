@@ -28,6 +28,7 @@
     <string name="SettingTour">Setting Tour</string>
     <string name="milan">Milano</string>
     <string name="palermo">Palermo</string>
+    <string name="turin">Torino</string>
     <string name="city_name">Nome Città</string>
 
     <string name="confirm">Ok</string>
@@ -46,7 +47,7 @@
     <string name="time_to_spend">Quanto tempo hai a disposizione?</string>
     <string name="future_time">Orario previsto</string>
     <string name="price_full_tour">Spesa stimata</string>
-    <string name="prices">prezzi</string>
+    <string name="prices">Prezzi</string>
     <string name="tour_lasting_time">Durata del tour</string>
     <string name="place_to_visit">Luoghi da visitare</string>
     <string name="number_sites">n. siti</string>
@@ -181,12 +182,18 @@
     <string name="downloadingMapTitlePalermo">OpenTour: Mappe Palermo</string>
     <string name="downloadingMapDescriptionPalermo">Download ed installazione mappe offline Palermo</string>
 
+    <string name="downloadingMapTitleTurin">OpenTour: Mappe Torino</string>
+    <string name="downloadingMapDescriptionTurin">Download ed installazione mappe offline Torino</string>
+
 
     <string name="downloadingImagesTitleMilan">OpenTour: Immagini Milano</string>
     <string name="downloadingImagesDescriptionMilan">Download ed installazione immagini Milano</string>
 
     <string name="downloadingImagesTitlePalermo">OpenTour: Immagini Palermo</string>
     <string name="downloadingImagesDescriptionPalermo">Download ed installazione immagini Palermo</string>
+
+    <string name="downloadingImagesTitleTurin">OpenTour: Immagini Torino</string>
+    <string name="downloadingImagesDescriptionTurin">Download ed installazione immagini Torino</string>
 
     <string name="downloadPackage">Scarica Pacchetto Città</string>
 
@@ -197,12 +204,12 @@
 
     <string name="titleCheckBoxDownloadImages">Scarica le Immagini</string>
     <string name="lastUpdateCheckBoxStaticImages">Ultimo aggiornamento</string>
-    <string name="lastUpdateCheckBoxActualAnnounceImages">21 Ottobre 2015</string>
+    <string name="lastUpdateCheckBoxActualAnnounceImages">12 Febbraio 2016</string>
 
 
     <string name="titleCheckBoxDownloadMaps">Scarica la mappa offline</string>
     <string name="lastUpdateCheckBoxStaticMaps">Ultimo aggiornamento</string>
-    <string name="lastUpdateCheckBoxActualAnnounceMaps">21 Ottobre 2015</string>
+    <string name="lastUpdateCheckBoxActualAnnounceMaps">12 Febbraio 2016</string>
 
 
 
@@ -237,6 +244,8 @@
         È il quinto comune italiano per popolazione dopo Roma, Milano, Napoli e Torino, e venticinquesimo a livello europeo.</string>
 
 
+ <string name="cityChooserIntroductionTurin">Torino è il quarto comune italiano per popolazione e costituisce il terzo complesso economico-produttivo del Paese. Città dalla storia bimillenaria, è oggi uno dei maggiori poli universitari, artistici, turistici, culturali e scientifici della Repubblica, nonché il fulcro dell\'industria automobilistica italiana.</string>
+
     <string name="transition_album_cover">recyclerview_chooser_animation</string>
 
     <string name="textDiscoveryModeRevealMenu"></string>
@@ -246,9 +255,45 @@
     <string name="offlineToActivate">Offline</string>
 
     <string name="chooseYourCity">Scegli la città da visitare</string>
+    <string name="chooseAtLeastOnePackage">Scegli almeno un pacchetto</string>
 
     <string name="tabParks">Parchi</string>
+    <string name="textActionSnackbar">Vai alla scheda</string>
 
+
+    <string name="txtRevealMenuChangeCity">Città</string>
+    <string name="txtRevealMenuExplorer">Explorer</string>
+    <string name="txtRevealMenuDiscovery">Discovery</string>
+    <string name="txtRevealMenuHome">Home</string>
+    <string name="txtRevealMenuCredits">Credits</string>
+    <string name="txtRevealMenuChangeNetwork">Offline/Online</string>
+
+    <string name="downloadAndUnzipImages">Download ed installazione pacchetto immagini</string>
+
+
+
+    <string name="txtSettingTutorial">Scorri con il dito sul bordo dell\'orologio per impostare il tempo di durata del tuo tour.
+        </string>
+
+
+    <string name="txtExplorerTutorial">Agita il tuo dispositivo per selezionare un sito turistico casuale tra quelli più interessanti.
+     </string>
+
+
+    <string name="txtLiveTutorial">Con il navigatore offline potrai seguire in tempo reale i tuoi spostamenti,
+        tenere traccia delle distanze e di quali siano i monumenti più vicini.</string>
+
+    <string name="are_you_sure1">Vuoi interrompere il tour guidato?</string>
+    <!--<string name="are_you_sure2"></string>-->
+
+    <string name="explorerTutorialDialog">SHAKIN\'it!</string>
+    <string name="settingTutorialDialog">TEMPO A DISPOSIZIONE</string>
+    <string name="liveTutorialDialog">LOCALIZZAZIONE</string>
+    <string name="titleAreYouSureDialog">TERMINA TOUR?</string>
+    <string name="summaryTour">Riepilogo</string>
+
+    <string name="downloadAndInstallation">Download ed installazione pacchetto immagine</string>
+    <string name="configurationCity">Configurazione della città in corso</string>
 
 
 

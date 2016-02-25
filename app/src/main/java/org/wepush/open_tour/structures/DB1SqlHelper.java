@@ -284,8 +284,31 @@ public class DB1SqlHelper extends SQLiteOpenHelper {
 
 
 
+    public String getSiteByName(String name){
+        SQLiteDatabase database=getReadableDatabase();
+        Site site=null;
+        String s="";
+        Cursor cursor;
+        cursor=database.query(SITES_TABLE, null, "name='" +  name + "'", null, null, null, null);
 
 
+        try{
+
+            if (cursor.moveToFirst()) {
+//                Log.d("miotag","moveToFirst");
+                do {
+                    site = new Site();
+                    site.id = cursor.getString(COLUMN_ID);
+//                    site.name = cursor.getString(COLUMN_NAME);
+                } while (cursor.moveToNext());
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return site.id;
+    }
 
 
 

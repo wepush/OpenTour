@@ -11,8 +11,6 @@ import org.wepush.open_tour.R;
 
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 /**
  * Created by antoniocoppola on 02/07/15.
  */
@@ -41,8 +39,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_discovery, parent, false);
+        OpenTourUtils mOpenTourUtils=new OpenTourUtils(context,Repository.retrieve(context,Constants.KEY_CURRENT_CITY,String.class));
 
-        return RecyclerViewHolder.newInstance(view,context);
+
+        return RecyclerViewHolder.newInstance(view,context,mOpenTourUtils,Repository.retrieve(context,Constants.USER_LANGUAGE,String.class));
     }
 
     @Override
@@ -55,6 +55,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         String tempTimeString=timeLive.get(position);
         String tempDistanceString=distanceLive.get(position);
         recHolder.setTextInViewHolder(tempIdString,tempTimeString,tempDistanceString);
+        Log.d("miotag","return from onBindViewHolder");
 
     }
 

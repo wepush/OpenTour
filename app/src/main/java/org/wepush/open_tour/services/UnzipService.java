@@ -32,9 +32,6 @@ public class UnzipService extends IntentService {
         zipFile=new File(intent.getStringExtra("zipFilePath"),intent.getStringExtra("zipFileName"));
         targetDirectory=new File(intent.getStringExtra("targetDirectory"));
 
-        Log.d("miotag", "zipFile: " + zipFile + ", con percorso: " + zipFile.getPath() + ", e con destinazione: " + targetDirectory);
-
-
         try {
             zis = new ZipInputStream(
                     new BufferedInputStream(new FileInputStream(zipFile)));
@@ -67,11 +64,9 @@ public class UnzipService extends IntentService {
             } catch (IOException e){
                 e.printStackTrace();
             }
-                    Log.d("miotag", "lancio l'intent di ritorno al brodcaster");
                     Intent i=new Intent();
                     i.setAction(Constants.UNZIP_DONE);
-//                    LocalBroadcastManager.getInstance(this).sendBroadcast(i);
-//                    this.sendBroadcast(i);
+
                     sendBroadcast(i);
 
 

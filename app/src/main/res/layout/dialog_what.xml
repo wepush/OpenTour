@@ -185,13 +185,15 @@
 
         <CheckBox
             style="@style/IndigoCheckBox"
+            android:clickable="false"
             android:id="@+id/whatMonuments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/monuments"
             android:layout_below="@+id/whatStructures"
             android:layout_alignLeft="@+id/whatStructures"
-            android:layout_alignStart="@+id/whatStructures" />
+            android:layout_alignStart="@+id/whatStructures"
+            android:visibility="gone" />
 
         <CheckBox
             style="@style/IndigoCheckBox"

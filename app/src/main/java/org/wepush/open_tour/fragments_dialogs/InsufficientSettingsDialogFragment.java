@@ -37,11 +37,7 @@ public class InsufficientSettingsDialogFragment extends DialogFragment {
 
             }
         });
-//        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int id) {
-//                dismiss();
-//            }
-//        });
+
 
         builder.setOnKeyListener(new Dialog.OnKeyListener() {
 
@@ -52,7 +48,6 @@ public class InsufficientSettingsDialogFragment extends DialogFragment {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
                     startActivity(new Intent(getActivity(), SettingTourActivity.class));
                     getActivity().finish();
-//                    dialog.dismiss();
                 }
                 return true;
             }

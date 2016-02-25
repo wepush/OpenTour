@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+
+
+    <item android:drawable="@drawable/explorer1" android:duration="1400" />
+    <item android:drawable="@drawable/explorer2" android:duration="40" />
+    <item android:drawable="@drawable/explorer3" android:duration="40" />
+    <item android:drawable="@drawable/explorer4" android:duration="40" />
+    <item android:drawable="@drawable/explorer5" android:duration="40" />
+    <item android:drawable="@drawable/explorer6" android:duration="40" />
+    <item android:drawable="@drawable/explorer7" android:duration="40" />
+    <item android:drawable="@drawable/explorer8" android:duration="40" />
+    <item android:drawable="@drawable/explorer9" android:duration="40" />
+    <item android:drawable="@drawable/explorer10" android:duration="40" />
+    <item android:drawable="@drawable/explorer11" android:duration="40" />
+    <item android:drawable="@drawable/explorer12" android:duration="40" />
+    <item android:drawable="@drawable/explorer13" android:duration="40" />
+    <item android:drawable="@drawable/explorer14" android:duration="40" />
+    <item android:drawable="@drawable/explorer15" android:duration="40" />
+    <item android:drawable="@drawable/explorer16" android:duration="40" />
+    <item android:drawable="@drawable/explorer17" android:duration="40" />
+    <item android:drawable="@drawable/explorer18" android:duration="40" />
+    <item android:drawable="@drawable/explorer19" android:duration="40" />
+    <item android:drawable="@drawable/explorer20" android:duration="40" />
+    <item android:drawable="@drawable/explorer21" android:duration="40" />
+    <item android:drawable="@drawable/explorer22" android:duration="40" />
+    <item android:drawable="@drawable/explorer23" android:duration="40" />
+    <item android:drawable="@drawable/explorer24" android:duration="40" />
+    <item android:drawable="@drawable/explorer25" android:duration="40" />
+    <item android:drawable="@drawable/explorer26" android:duration="40" />
+    <item android:drawable="@drawable/explorer27" android:duration="40" />
+    <item android:drawable="@drawable/explorer28" android:duration="40" />
+    <item android:drawable="@drawable/explorer29" android:duration="40" />
+    <item android:drawable="@drawable/explorer30" android:duration="40" />
+    <item android:drawable="@drawable/explorer31" android:duration="40" />
+    <item android:drawable="@drawable/explorer32" android:duration="40" />
+    <item android:drawable="@drawable/explorer33" android:duration="40" />
+    <item android:drawable="@drawable/explorer34" android:duration="40" />
+    <item android:drawable="@drawable/explorer35" android:duration="40" />
+    <item android:drawable="@drawable/explorer36" android:duration="40" />
+    <item android:drawable="@drawable/explorer37" android:duration="40" />
+    <item android:drawable="@drawable/explorer38" android:duration="40" />
+    <item android:drawable="@drawable/explorer39" android:duration="40" />
+    <item android:drawable="@drawable/explorer40" android:duration="40" />
+    <item android:drawable="@drawable/explorer41" android:duration="40" />
+    <item android:drawable="@drawable/explorer42" android:duration="40" />
+    <item android:drawable="@drawable/explorer43" android:duration="40" />
+    <item android:drawable="@drawable/explorer44" android:duration="40" />
+    <item android:drawable="@drawable/explorer45" android:duration="40" />
+    <item android:drawable="@drawable/explorer46" android:duration="40" />
+    <item android:drawable="@drawable/explorer47" android:duration="40" />
+    <item android:drawable="@drawable/explorer48" android:duration="40" />
+    <item android:drawable="@drawable/explorer49" android:duration="40" />
+    <item android:drawable="@drawable/explorer50" android:duration="40" />
+
+
+
+</animation-list>

@@ -122,7 +122,7 @@
 
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="NR"
                         android:gravity="center"
@@ -158,7 +158,7 @@
 
                     <TextView
                         android:id="@+id/txtSlImage"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:fontFamily="sans-serif-medium"
@@ -185,7 +185,7 @@
                         android:alpha="0.8"
                         />
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:fontFamily="sans-serif-medium"
@@ -203,276 +203,16 @@
 
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:background="@color/gray_background">
-            <!--android:layout_weight="4"-->
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cdTouch0"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:elevation="5dp"
-                android:layout_margin="5dp"
-                android:background="@color/white">
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/circleImageDiscoveryPreviewList0"
-                        android:layout_gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Titolo Sito Listato"
-                            android:id="@+id/txtTitleDiscoveryPreviewList0"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Body Sito Listato"
-                            android:id="@+id/txtBodyDiscoveryPreviewList0"/>
-
-
-                    </LinearLayout>
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cdTouch1"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:elevation="5dp"
-                android:layout_margin="5dp"
-                android:background="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/circleImageDiscoveryPreviewList1"
-
-                        android:layout_gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Titolo Sito Listato"
-                            android:id="@+id/txtTitleDiscoveryPreviewList1"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Body Sito Listato"
-                            android:id="@+id/txtBodyDiscoveryPreviewList1"/>
-
-
-                    </LinearLayout>
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cdTouch2"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:elevation="5dp"
-                android:layout_margin="5dp"
-                android:background="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/circleImageDiscoveryPreviewList2"
-
-                        android:layout_gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Titolo Sito Listato"
-                            android:id="@+id/txtTitleDiscoveryPreviewList2"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Body Sito Listato"
-                            android:id="@+id/txtBodyDiscoveryPreviewList2"/>
-
-
-                    </LinearLayout>
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cdTouch3"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:elevation="5dp"
-                android:layout_margin="5dp"
-                android:background="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/circleImageDiscoveryPreviewList3"
-
-                        android:layout_gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Titolo Sito Listato"
-                            android:id="@+id/txtTitleDiscoveryPreviewList3"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Body Sito Listato"
-                            android:id="@+id/txtBodyDiscoveryPreviewList3"/>
-
-
-                    </LinearLayout>
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cdTouch4"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:elevation="5dp"
-                android:layout_margin="5dp"
-                android:background="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/circleImageDiscoveryPreviewList4"
-                        android:layout_gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Titolo Sito Listato"
-                            android:id="@+id/txtTitleDiscoveryPreviewList4"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Body Sito Listato"
-                            android:id="@+id/txtBodyDiscoveryPreviewList4"
-                            />
-
-
-                    </LinearLayout>
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!-- listiview STAVA MESSA PROPRIO QUI-->
-
-            <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="112dp"-->
-                <!--android:background="@color/white"></View>-->
-
-
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:text="loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum-->
-                <!--loremipsumloremipsumloremipsumloremipsumloremipsum-->
-                <!--loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum-->
-                <!--loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum-->
-                <!--loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum-->
-                <!--loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum"/>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:visibility="gone"-->
+            <!--android:background="@color/gray_background">-->
+            <!--&lt;!&ndash;android:layout_weight="4"&ndash;&gt;-->
 
             <!--<android.support.v7.widget.CardView-->
-                <!--android:id="@+id/cdTouch4"-->
+                <!--android:id="@+id/cdTouch0"-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="80dp"-->
                 <!--android:elevation="5dp"-->
@@ -480,7 +220,7 @@
                 <!--android:background="@color/white">-->
 
                 <!--<LinearLayout-->
-                    <!--android:background="@color/white"-->
+
                     <!--android:layout_width="match_parent"-->
                     <!--android:layout_height="match_parent"-->
                     <!--android:orientation="horizontal">-->
@@ -489,7 +229,54 @@
                         <!--android:layout_marginStart="10dp"-->
                         <!--android:layout_width="50dp"-->
                         <!--android:layout_height="50dp"-->
-                        <!--android:id="@+id/circleImageDiscoveryPreviewList4"-->
+                        <!--android:id="@+id/circleImageDiscoveryPreviewList0"-->
+                        <!--android:layout_gravity="center_vertical" />-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginStart="10dp"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:gravity="center_vertical">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Titolo Sito Listato"-->
+                            <!--android:id="@+id/txtTitleDiscoveryPreviewList0"/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Body Sito Listato"-->
+                            <!--android:id="@+id/txtBodyDiscoveryPreviewList0"/>-->
+
+
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+
+
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:id="@+id/cdTouch1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:elevation="5dp"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:background="@color/white">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="horizontal">-->
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginStart="10dp"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:id="@+id/circleImageDiscoveryPreviewList1"-->
 
                         <!--android:layout_gravity="center_vertical" />-->
 
@@ -505,13 +292,13 @@
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:text="Titolo Sito Listato"-->
-                            <!--android:id="@+id/txtTitleDiscoveryPreviewList4"/>-->
+                            <!--android:id="@+id/txtTitleDiscoveryPreviewList1"/>-->
 
                         <!--<TextView-->
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:text="Body Sito Listato"-->
-                            <!--android:id="@+id/txtBodyDiscoveryPreviewList4"/>-->
+                            <!--android:id="@+id/txtBodyDiscoveryPreviewList1"/>-->
 
 
                     <!--</LinearLayout>-->
@@ -520,7 +307,220 @@
 
             <!--</android.support.v7.widget.CardView>-->
 
-        </LinearLayout>
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:id="@+id/cdTouch2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:elevation="5dp"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:background="@color/white">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="horizontal">-->
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginStart="10dp"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:id="@+id/circleImageDiscoveryPreviewList2"-->
+
+                        <!--android:layout_gravity="center_vertical" />-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginStart="10dp">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Titolo Sito Listato"-->
+                            <!--android:id="@+id/txtTitleDiscoveryPreviewList2"/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Body Sito Listato"-->
+                            <!--android:id="@+id/txtBodyDiscoveryPreviewList2"/>-->
+
+
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+
+
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:id="@+id/cdTouch3"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:elevation="5dp"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:background="@color/white">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="horizontal">-->
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginStart="10dp"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:id="@+id/circleImageDiscoveryPreviewList3"-->
+
+                        <!--android:layout_gravity="center_vertical" />-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginStart="10dp">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Titolo Sito Listato"-->
+                            <!--android:id="@+id/txtTitleDiscoveryPreviewList3"/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Body Sito Listato"-->
+                            <!--android:id="@+id/txtBodyDiscoveryPreviewList3"/>-->
+
+
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+
+
+            <!--</android.support.v7.widget.CardView>-->
+
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:id="@+id/cdTouch4"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:elevation="5dp"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:background="@color/white">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="horizontal">-->
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginStart="10dp"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:id="@+id/circleImageDiscoveryPreviewList4"-->
+                        <!--android:layout_gravity="center_vertical" />-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginStart="10dp">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Titolo Sito Listato"-->
+                            <!--android:id="@+id/txtTitleDiscoveryPreviewList4"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Body Sito Listato"-->
+                            <!--android:id="@+id/txtBodyDiscoveryPreviewList4"-->
+                            <!--/>-->
+
+
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+
+
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--&lt;!&ndash; listiview STAVA MESSA PROPRIO QUI&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<View&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="112dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:background="@color/white"></View>&ndash;&gt;-->
+
+
+            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum&ndash;&gt;-->
+                <!--&lt;!&ndash;loremipsumloremipsumloremipsumloremipsumloremipsum&ndash;&gt;-->
+                <!--&lt;!&ndash;loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum&ndash;&gt;-->
+                <!--&lt;!&ndash;loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum&ndash;&gt;-->
+                <!--&lt;!&ndash;loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum&ndash;&gt;-->
+                <!--&lt;!&ndash;loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum"/>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<android.support.v7.widget.CardView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/cdTouch4"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="80dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:elevation="5dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_margin="5dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:background="@color/white">&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:background="@color/white"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:orientation="horizontal">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<de.hdodenhof.circleimageview.CircleImageView&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="10dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginStart="10dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="50dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="50dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/circleImageDiscoveryPreviewList4"&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;android:layout_gravity="center_vertical" />&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:gravity="center_vertical"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="10dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginStart="10dp">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:text="Titolo Sito Listato"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/txtTitleDiscoveryPreviewList4"/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:text="Body Sito Listato"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/txtBodyDiscoveryPreviewList4"/>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+                <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+            <!--&lt;!&ndash;</android.support.v7.widget.CardView>&ndash;&gt;-->
+
+        <!--</LinearLayout>-->
 
         <ListView
 
